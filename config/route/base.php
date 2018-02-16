@@ -6,9 +6,15 @@ return [
     "routes" => [
         [
             "info" => "Home",
-            "requestMethod" => null,
-            "path" => null,
-            "callable" => ["baseController", "home"],
+            "requestMethod" => "GET",
+            "path" => "",
+            "callable" => ["baseController", "frontpage"],
         ],
+        [
+            "info" => "About",
+            "requestMethod" => "GET",
+            "path" => "about",
+            "callable" => ["baseController", "aboutpage"],
+        ]
     ]
 ];
