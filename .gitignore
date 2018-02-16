@@ -1,3 +1,7 @@
 .DS_Store
 .bin/
 build/
+cache/
+config/database.php
+vendor/
+data/
