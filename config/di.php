@@ -106,5 +106,22 @@ return [
                 return $obj;
             }
         ],
+        "baseController" => [
+            "shared" => true,
+            "callback" => function () {
+                $obj = new \Course\Base\BaseController();
+                $obj->setDI($this);
+                return $obj;
+            }
+        ],
+        "navbar" => [
+            "shared" => true,
+            "callback" => function () {
+                $navbar = new \Course\Navbar\Navbar();
+                $navbar->setDI($this);
+                $navbar->configure("navbar.php");
+                return $navbar;
+            }
+        ],
     ],
 ];
