@@ -12,9 +12,3 @@ return [
         ],
     ]
 ];
-
-/*
-$app->router->always(function () use ($app) {
-    throw new \Anax\Route\NotFoundException();
-});
-*/
