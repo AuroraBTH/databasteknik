@@ -5,7 +5,7 @@
 RewriteEngine on
 
 # Rewrite for cimage
-RewriteRule ^image/(.*)$ cimage/img.php?src=$1 [QSA,NC,L] 
+RewriteRule ^image/(.*)$ cimage/img.php?src=$1 [QSA,NC,L]
 
 # Rewrite to Anax frontcontroller
 RewriteCond %{REQUEST_FILENAME} !-f
