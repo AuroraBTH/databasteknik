@@ -12,6 +12,14 @@ return [
             "file" => __DIR__ . "/route/base.php",
         ],
         [
+            "mount" => null,
+            "file" => __DIR__ . "/route/category.php"
+        ],
+        [
+            "mount" => null,
+            "file" => __DIR__ . "/route/product.php"
+        ],
+        [
             // These are for internal error handling and exceptions
             "mount" => null,
             "file" => __DIR__ . "/route/internal.php",
