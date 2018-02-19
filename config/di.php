@@ -114,6 +114,22 @@ return [
                 return $obj;
             }
         ],
+        "categoryController" => [
+            "shared" => true,
+            "callback" => function () {
+                $obj = new \Course\Category\CategoryController();
+                $obj->setDI($this);
+                return $obj;
+            }
+        ],
+        "productController" => [
+            "shared" => true,
+            "callback" => function () {
+                $obj = new \Course\Product\productController();
+                $obj->setDI($this);
+                return $obj;
+            }
+        ],
         "navbar" => [
             "shared" => true,
             "callback" => function () {
