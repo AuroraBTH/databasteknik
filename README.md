@@ -8,4 +8,27 @@
 
 This repo will contain the base for the project in the course Databasteknik.
 
-Maintained by Niklas Andersson and Magnus Greiff.
+## Installation
+
+To install, run the following command to download the dependencies needed.
+
+* ```make install```
+
+To create the tables needed in your database, run the following SQL-file:
+
+* ```sql/tables.sql```
+
+And to fill it with data:
+
+* ```sql/data.sql```
+
+## Testing
+
+Run the following commands to download the necessary tools and validate the repo.
+
+* ```make install```
+* ```make test```
+
+## Credits
+
+Maintained by Niklas Andersson ([AuroraBTH](https://github.com/AuroraBTH)) and Magnus Greiff ([MagnusGreiff](https://github.com/MagnusGreiff)).
