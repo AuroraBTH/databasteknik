@@ -25,7 +25,7 @@ class ProductController implements
         $pageRender = $this->di->get("pageRender");
 
         $data = [
-            "id" => $productId
+            "productId" => $productId
         ];
 
         $view->add("product/product", $data);
