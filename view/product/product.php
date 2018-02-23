@@ -18,7 +18,7 @@ namespace Anax\View;
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($data as $item): ?>
+            <?php foreach ($data as $item) : ?>
                 <tr>
                     <th scope="row"><?php print_r($item->productID); ?></th>
                     <td><?php print_r($item->productManufacturer); ?></td>
