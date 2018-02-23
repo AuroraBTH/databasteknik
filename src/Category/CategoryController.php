@@ -34,14 +34,14 @@ class CategoryController implements
     /**
      * This function handles the rendering of one specific categories.
      */
-    public function getSpecificCategory($id)
+    public function getSpecificCategory($categoryId)
     {
         $title = "Kategori";
         $view = $this->di->get("view");
         $pageRender = $this->di->get("pageRender");
 
         $data = [
-            "id" => $id
+            "id" => $categoryId
         ];
 
         $view->add("category/specificCategory", $data);
