@@ -125,7 +125,7 @@ return [
         "productController" => [
             "shared" => true,
             "callback" => function () {
-                $obj = new \Course\Product\productController();
+                $obj = new \Course\Product\ProductController();
                 $obj->setDI($this);
                 return $obj;
             }

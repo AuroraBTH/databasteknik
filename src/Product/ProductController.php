@@ -8,7 +8,7 @@ use \Anax\DI\InjectionAwareInterface;
 use \Anax\Di\InjectionAwareTrait;
 use \Course\Product\Product;
 
-class productController implements
+class ProductController implements
     ConfigureInterface,
     InjectionAwareInterface
 {
@@ -18,14 +18,14 @@ class productController implements
     /**
      * This function handles the rendering of one specific categories.
      */
-    public function getSpecificProduct($id)
+    public function getSpecificProduct($productId)
     {
-        $title = "Kategori";
+        $title = "Produkt";
         $view = $this->di->get("view");
         $pageRender = $this->di->get("pageRender");
 
         $data = [
-            "id" => $id
+            "productId" => $productId
         ];
 
         $view->add("product/product", $data);
