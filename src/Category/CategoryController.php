@@ -41,7 +41,7 @@ class CategoryController implements
         $pageRender = $this->di->get("pageRender");
 
         $data = [
-            "id" => $categoryId
+            "categoryId" => $categoryId
         ];
 
         $view->add("category/specificCategory", $data);
