@@ -24,9 +24,9 @@ class ProductController implements
         $view = $this->di->get("view");
         $pageRender = $this->di->get("pageRender");
 
-        $data = [
-            "productId" => $productId
-        ];
+        $product = new Product();
+        $product->setDb($this->di->get("db"));
+        $data = $product->getProducts("productID", $productId);
 
         $view->add("product/product", $data);
         $pageRender->renderPage(["title" => $title]);
