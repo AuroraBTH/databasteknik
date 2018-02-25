@@ -59,9 +59,10 @@ CREATE TABLE IF NOT EXISTS User (
     `userMail` VARCHAR(80) NOT NULL,
     `userGender` INTEGER,
     `userAddress` VARCHAR (120) NOT NULL,
-    `userMailingAddress` INTEGER NOT NULL,
+    `userPostcode` INTEGER NOT NULL,
     `userCity` VARCHAR(80) NOT NULL,
 	`userRole` INTEGER NOT NULL DEFAULT 0,
+	`userPassword` VARCHAR(255) NOT NULL,
 	FOREIGN KEY (`userRole`) REFERENCES Role(`roleID`)
 ) ENGINE INNODB CHARACTER SET utf8 COLLATE utf8_swedish_ci;
 

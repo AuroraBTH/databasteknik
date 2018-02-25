@@ -130,6 +130,14 @@ return [
                 return $obj;
             }
         ],
+        "userController" => [
+            "shared" => true,
+            "callback" => function () {
+                $obj = new \Course\User\UserController();
+                $obj->setDI($this);
+                return $obj;
+            }
+        ],
         "navbar" => [
             "shared" => true,
             "callback" => function () {

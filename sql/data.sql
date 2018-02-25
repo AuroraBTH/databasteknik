@@ -29,10 +29,11 @@ INSERT INTO User (
     `userSurName`,
     `userMail`,
     `userAddress`,
-    `userMailingAddress`,
+    `userPostcode`,
     `userCity`,
-    `userRole`
-) VALUES ("Carl", "Svensson", "carl.svensson@outlook.com", "Drottningsgatan 13", 37140, "Karlskrona", 0);
+    `userRole`,
+    `userPassword`
+) VALUES ("Carl", "Svensson", "carl.svensson@outlook.com", "Drottningsgatan 13", 37140, "Karlskrona", 0, 'hej123');
 
 INSERT INTO Coupon (
     `couponName`,

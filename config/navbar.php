@@ -26,6 +26,10 @@ return [
             "product" => [
                 "text" => "Product",
                 "route" => "product/1"
+            ],
+            "login" => [
+                "text" => "Inloggning",
+                "route" => "user/login"
             ]
         ],
     ],
