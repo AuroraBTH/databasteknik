@@ -29,7 +29,7 @@ INSERT INTO User (
     `userSurName`,
     `userMail`,
     `userAddress`,
-    `userMailingAddress`,
+    `userPostcode`,
     `userCity`,
     `userRole`,
     `userPassword`
