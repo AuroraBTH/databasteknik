@@ -2,7 +2,9 @@ imports:
     - php
 
 filter:
-    excluded_paths: [vendor/*]
+    excluded_paths:
+        - [vendor/*]
+        - src/HTMLForm/*
 
 build:
     dependencies:
