@@ -102,9 +102,10 @@ class UserCreateForm extends FormModel
             return false;
         }
 
+        $arrayOfData = [$firstname, $surname, $email, $address, $postcode, $city, $password, $passwordAgain];
+        $formcheck = $this->arrayEmpty($arrayOfData);
 
-        # Check if fields are empty.
-        if ($firstname == null || $surname == null || $email == null || $address == null || $postcode == null || $city == null || $password == null || $passwordAgain == null) {
+        if (!$formcheck) {
             $this->form->addOutput("Please fill all inputs!");
             return false;
         }
@@ -125,7 +126,7 @@ class UserCreateForm extends FormModel
             $user->setRole(0);
             $user->setPassword($password);
             $user->save();
-        } else {
+        } else if (!$user->checkUserExists($email)) {
             $this->form->addOutput("Email already in use");
             return false;
         }
@@ -133,6 +134,24 @@ class UserCreateForm extends FormModel
         #Create url and redirect to login.
         $url = $this->di->get("url")->create("user/login");
         $this->di->get("response")->redirect($url);
+        return true;
+    }
+
+
+
+    /**
+     * A simple function to check if any of the values in the targeted array is null.
+     *
+     * @return boolean true if okey, false if one or more is null.
+     */
+    public function arrayEmpty($array)
+    {
+        foreach ($array as $item) {
+            if ($item == null) {
+                return false;
+            }
+        }
+
         return true;
     }
 }
