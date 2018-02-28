@@ -5,6 +5,7 @@ filter:
     excluded_paths:
         - vendor/*
         - src/HTMLForm/*
+        - htdocs/cimage/*
 
 build:
     dependencies:

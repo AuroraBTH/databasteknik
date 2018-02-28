@@ -29,18 +29,25 @@ class UserController implements
         $view = $this->di->get("view");
         $pageRender = $this->di->get("pageRender");
 
+        $url = $this->di->get("url");
+        $response = $this->di->get("response");
+        $session = $this->di->get("session");
+        if ($session->has("email")) {
+            $url = $url->create("user/profile");
+            $response->redirect($url);
+        } else if (!$session->has("email")) {
+            $loginForm = new UserLoginForm($this->di);
 
-        $loginForm = new UserLoginForm($this->di);
+            $loginForm->check();
 
-        $loginForm->check();
+            $data = [
+                "content" => $loginForm->getHTML(),
+            ];
 
-        $data = [
-            "content" => $loginForm->getHTML(),
-        ];
+            $view->add("default1/article", $data);
 
-        $view->add("default1/article", $data);
-
-        $pageRender->renderPage(["title" => $title]);
+            $pageRender->renderPage(["title" => $title]);
+        }
     }
 
 
@@ -84,5 +91,28 @@ class UserController implements
 
         $view->add("user/profile", $data);
         $pageRender->renderPage(["title" => $title]);
+    }
+
+
+    public function logout()
+    {
+        $url = $this->di->get("url");
+        $response = $this->di->get("response");
+        $session = $this->di->get("session");
+        $login = $url->create("user/login");
+
+        if ($session->has("email")) {
+            $session->delete("email");
+            $response->redirect($login);
+        } else if (!$session->has("email")) {
+            $response->redirect($login);
+        }
+
+        $hasSession = session_status() == PHP_SESSION_ACTIVE;
+
+        if (!$hasSession) {
+            $response->redirect($login);
+            return true;
+        }
     }
 }
