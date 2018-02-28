@@ -36,9 +36,14 @@ class UserLoginForm extends FormModel
 
                 "submit" => [
                     "type"     => "submit",
-                    "value"    => "Login",
+                    "value"    => "Logga in",
                     "callback" => [$this, "callbackSubmit"],
-                ]
+                ],
+                "create" => [
+                    "type"     => "submit",
+                    "value"    => "Skapa ny användare",
+                    "callback" => [$this, "createUser"],
+                ],
             ]
         );
     }
@@ -52,11 +57,39 @@ class UserLoginForm extends FormModel
      */
     public function callbackSubmit()
     {
+        #Get information from input fields.
+        $email = htmlentities($this->form->value("email"));
+        $password = htmlentities($this->form->value("password"));
 
+        #Create a new user.
+        $user = new User();
+        #Give user access to database.
+        $user->setDB($this->di->get("db"));
+
+        #Check if the password match for the specific email.
+        $passwordValidation = $user->verifyPassword($email, $password);
+
+        #If password or email does not match.
+        if (!$passwordValidation) {
+            $this->form->addOutput("User or password did not match");
+            return false;
+        }
+
+        #Set session with the users email as value.
+        $this->di->get("session")->set("email", $user->userMail);
+
+        #Create url and redirect to profile.
+        $url = $this->di->get("url")->create("user/profile");
+        $this->di->get("response")->redirect($url);
+        return true;
     }
+
+
 
     public function createUser()
     {
-
+        #Create url and redirect to create.
+        $url = $this->di->get("url")->create("user/create");
+        $this->di->get("response")->redirect($url);
     }
 }
