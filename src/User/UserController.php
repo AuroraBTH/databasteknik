@@ -104,7 +104,7 @@ class UserController implements
         if ($session->has("email")) {
             $session->delete("email");
             $response->redirect($login);
-        } else {
+        } else if (!$session->has("email")) {
             $response->redirect($login);
         }
 
