@@ -5,7 +5,7 @@ namespace Anax\View;
     <div class="home w-75">
         <div class="d-flex flex-row space-around">
             <div class="p-2 w-50">
-                <img class="img-fluid border" src="https://stockphoto.com/samples/OTg0NDQxMDcwMDAxMWY1YmNmYjBlZA==/MjIxMWY1YmNmYjBlZA==/t-shirt-template.jpg&size=1024"></div>
+                <img class="img-fluid border" src="https://goo.gl/nVA65Q"></div>
             <div class="p-2 w-50 align-content-center">
                 <div class="d-flex flex-column justify-content-between h-100 bg-light border h-25">
                     <div class="p-3 mb-2 bg-light border text-center border-right-0 border-left-0 border-top-0">
