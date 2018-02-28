@@ -173,7 +173,7 @@ class User extends ActiveRecordModel
     *
     * @param string $email user email.
     *
-    * @return Anax\Database\ActiveRecordModel
+    * @return \Anax\Database\ActiveRecordModel
     */
     public function getUserInformationByEmail($email)
     {
@@ -182,12 +182,13 @@ class User extends ActiveRecordModel
     }
 
 
+
     /**
     * Get all information about a specific user by id.
     *
     * @param integer $userId user id.
     *
-    * @return Anax\Database\ActiveRecordModel
+    * @return \Anax\Database\ActiveRecordModel
     */
     public function getUserInformationById($userId)
     {
