@@ -2,4 +2,6 @@
 /**
  * Config file for url.
  */
-return [];
+return [
+    "urlType"       => \Anax\Url\Url::URL_CLEAN,
+];

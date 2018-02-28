@@ -14,8 +14,8 @@ class Navbar implements InjectionAwareInterface
         $nav = "";
         foreach ($this->config["items"]["user"] as $item) {
             $createUrl = $this->di->url->create($item["route"]);
-            $selected = $this->di->request->getRoute() == $item["route"] ? "selected" : "";
-            $nav .= "<li class='$selected' ><a href='$createUrl'>$item[text]</a></li>";
+            $selected = $this->di->request->getRoute() == $item["route"] ? "active" : "";
+            $nav .= "<li class='nav-item $selected' ><a class='nav-link' href='$createUrl'>$item[text]</a></li>";
         }
         return $nav;
     }
