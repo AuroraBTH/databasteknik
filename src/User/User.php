@@ -173,7 +173,7 @@ class User extends ActiveRecordModel
     *
     * @param string $email user email.
     *
-    * @return array
+    * @return Anax\Database\ActiveRecordModel
     */
     public function getUserInformationByEmail($email)
     {
@@ -187,7 +187,7 @@ class User extends ActiveRecordModel
     *
     * @param integer $userId user id.
     *
-    * @return array
+    * @return Anax\Database\ActiveRecordModel
     */
     public function getUserInformationById($userId)
     {
@@ -223,7 +223,7 @@ class User extends ActiveRecordModel
     public function getPermission($email)
     {
         $userInfo = $this->find("userMail", $email);
-        $permissions = $userInfo->permissions;
+        $permissions = $userInfo->userRole;
         return $permissions;
     }
 
