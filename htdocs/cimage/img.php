@@ -168,7 +168,7 @@ if ($pwd) {
     }
 }
 
-if ($pwdAlways && $passwordMatch !== true) {
+if ($pwdAlways and $passwordMatch !== true) {
     errorPage("Password required and does not match or exists.", 403);
 }
 
@@ -267,7 +267,7 @@ $img->injectDependency("fastTrackCache", $ftc);
  *  Load and output images from fast track cache, if items are available
  * in cache.
  */
-if ($useCache && $allowFastTrackCache) {
+if ($useCache and $allowFastTrackCache) {
     if (CIMAGE_DEBUG) {
         trace("img.php fast track cache enabled and used");
     }
@@ -283,7 +283,7 @@ if ($useCache && $allowFastTrackCache) {
  */
 $allowRemote = getConfig('remote_allow', false);
 
-if ($allowRemote && $passwordMatch !== false) {
+if ($allowRemote and $passwordMatch !== false) {
     $cacheRemote = $cache->getPathToSubdir("remote");
 
     $pattern = getConfig('remote_pattern', null);
@@ -307,7 +307,7 @@ $shortcutConfig = getConfig('shortcut', array(
 verbose("shortcut = $shortcut");
 
 if (isset($shortcut)
-    && isset($shortcutConfig[$shortcut])) {
+    and isset($shortcutConfig[$shortcut])) {
 
     parse_str($shortcutConfig[$shortcut], $get);
     verbose("shortcut-constant = {$shortcutConfig[$shortcut]}");
@@ -345,12 +345,12 @@ $dummyImage = false;
 preg_match($validFilename, $srcImage)
     || errorPage('Source filename contains invalid characters.', 404);
 
-if ($dummyEnabled && $srcImage === $dummyFilename) {
+if ($dummyEnabled and $srcImage === $dummyFilename) {
 
     // Prepare to create a dummy image and use it as the source image.
     $dummyImage = true;
 
-} elseif ($allowRemote && $img->isRemoteSource($srcImage)) {
+} elseif ($allowRemote and $img->isRemoteSource($srcImage)) {
 
     // If source is a remote file, ignore local file checks.
     $remoteSource = true;
@@ -360,7 +360,7 @@ if ($dummyEnabled && $srcImage === $dummyFilename) {
     // Check if file exists on disk or try using src-alt
     $pathToImage = realpath($imagePath . $srcImage);
 
-    if (!is_file($pathToImage) && !empty($srcAltImage)) {
+    if (!is_file($pathToImage) and !empty($srcAltImage)) {
         // Try using the src-alt instead
         $srcImage = $srcAltImage;
         $pathToImage = realpath($imagePath . $srcImage);
@@ -368,7 +368,7 @@ if ($dummyEnabled && $srcImage === $dummyFilename) {
         preg_match($validFilename, $srcImage)
             || errorPage('Source (alt) filename contains invalid characters.', 404);
 
-        if ($dummyEnabled && $srcImage === $dummyFilename) {
+        if ($dummyEnabled and $srcImage === $dummyFilename) {
             // Check if src-alt is the dummy image
             $dummyImage = true;
         }
@@ -384,7 +384,7 @@ if ($dummyEnabled && $srcImage === $dummyFilename) {
     }
 }
 
-if ($imagePathConstraint && !$dummyImage && !$remoteSource) {
+if ($imagePathConstraint and !$dummyImage and !$remoteSource) {
     // Check that the image is a file below the directory 'image_path'.
     $imageDir = realpath($imagePath);
 
@@ -445,7 +445,7 @@ if ($newWidth[strlen($newWidth)-1] == '%') {
         || errorPage('Width % not numeric.', 404);
 } else {
     is_null($newWidth)
-        || ($newWidth > 10 && $newWidth <= $maxWidth)
+        || ($newWidth > 10 and $newWidth <= $maxWidth)
         || errorPage('Width out of range.', 404);
 }
 
@@ -470,7 +470,7 @@ if ($newHeight[strlen($newHeight)-1] == '%') {
         || errorPage('Height % out of range.', 404);
 } else {
     is_null($newHeight)
-        || ($newHeight > 10 && $newHeight <= $maxHeight)
+        || ($newHeight > 10 and $newHeight <= $maxHeight)
         || errorPage('Height out of range.', 404);
 }
 
@@ -630,7 +630,7 @@ is_null($quality)
     || ($quality > 0 and $quality <= 100)
     || errorPage('Quality out of range', 404);
 
-if (is_null($quality) && !is_null($qualityDefault)) {
+if (is_null($quality) and !is_null($qualityDefault)) {
     $quality = $qualityDefault;
 }
 
@@ -648,7 +648,7 @@ is_null($compress)
     || ($compress > 0 and $compress <= 9)
     || errorPage('Compress out of range', 404);
 
-if (is_null($compress) && !is_null($compressDefault)) {
+if (is_null($compress) and !is_null($compressDefault)) {
     $compress = $compressDefault;
 }
 
@@ -791,15 +791,15 @@ if ($outputFormat == 'ascii') {
     $options = get('ascii');
     $options = explode(',', $options);
 
-    if (isset($options[0]) && !empty($options[0])) {
+    if (isset($options[0]) and !empty($options[0])) {
         $defaultOptions['characterSet'] = $options[0];
     }
 
-    if (isset($options[1]) && !empty($options[1])) {
+    if (isset($options[1]) and !empty($options[1])) {
         $defaultOptions['scale'] = $options[1];
     }
 
-    if (isset($options[2]) && !empty($options[2])) {
+    if (isset($options[2]) and !empty($options[2])) {
         $defaultOptions['luminanceStrategy'] = $options[2];
     }
 
@@ -834,7 +834,7 @@ $convolve = get('convolve', null);
 $convolutionConstant = getConfig('convolution_constant', array());
 
 // Check if the convolve is matching an existing constant
-if ($convolve && isset($convolutionConstant)) {
+if ($convolve and isset($convolutionConstant)) {
     $img->addConvolveExpressions($convolutionConstant);
     verbose("convolve constant = " . print_r($convolutionConstant, 1));
 }
@@ -889,7 +889,7 @@ $aliasPath      = getConfig('alias_path', null);
 $validAliasname = getConfig('valid_aliasname', '#^[a-z0-9A-Z-_]+$#');
 $aliasTarget    = null;
 
-if ($alias && $aliasPath && $passwordMatch) {
+if ($alias and $aliasPath and $passwordMatch) {
 
     $aliasTarget = $aliasPath . $alias;
     $useCache    = false;
