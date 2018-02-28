@@ -14,7 +14,7 @@ class UserLoginForm extends FormModel
     /**
      * Constructor injects with DI container.
      *
-     * @param Anax\DI\DIInterface $di a service container
+     * @param \Anax\DI\DIInterface $di a service container
      */
     public function __construct(DIInterface $di)
     {

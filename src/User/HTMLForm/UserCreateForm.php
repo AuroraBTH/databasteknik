@@ -121,7 +121,7 @@ class UserCreateForm extends FormModel
             $user->setSurname($surname);
             $user->setEmail($email);
             $user->setAddress($address);
-            $user->setPostcode($postcode);
+            $user->setPostcode((int)$postcode);
             $user->setCity($city);
             $user->setRole(0);
             $user->setPassword($password);
@@ -131,6 +131,21 @@ class UserCreateForm extends FormModel
             return false;
         }
 
+        #Create url and redirect to login.
+        $url = $this->di->get("url")->create("user/login");
+        $this->di->get("response")->redirect($url);
+        return true;
+    }
+
+
+
+    /**
+     * On press it will take the user back to loginpage.
+     * @method backToLogin
+     * @return boolean true when redirected.
+     */
+    public function backToLogin()
+    {
         #Create url and redirect to login.
         $url = $this->di->get("url")->create("user/login");
         $this->di->get("response")->redirect($url);
