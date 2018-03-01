@@ -31,7 +31,7 @@ $address = $data["content"]->userAddress . " " . $data["content"]->userPostcode 
             </tr>
             <tr>
                 <th>Kön</th>
-                <td><?= $data["content"]->userGender ?></td>
+                <td><?= $data["content"]->userGender == 0 ? 'Kvinna' : 'Man' ?></td>
             </tr>
         </table>
         <a type="button" class="btn btn-lg btn-primary m-2 p-2" href="#">Se ordrar</a>
