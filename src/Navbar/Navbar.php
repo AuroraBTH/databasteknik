@@ -3,6 +3,7 @@ namespace Course\Navbar;
 
 use \Anax\DI\InjectionAwareInterface;
 use \Anax\DI\InjectionAwareTrait;
+use \Course\User\User;
 
 class Navbar implements InjectionAwareInterface
 {
@@ -17,6 +18,32 @@ class Navbar implements InjectionAwareInterface
             $selected = $this->di->request->getRoute() == $item["route"] ? "active" : "";
             $nav .= "<li class='nav-item $selected' ><a class='nav-link' href='$createUrl'>$item[text]</a></li>";
         }
-        return $nav;
+
+        $logUrl = $this->checkUserLogin();
+
+        return $nav . $logUrl;
+    }
+
+    /**
+    * Checks if user is logged in.
+    *
+    * @return string $route to login || logout
+    */
+    public function checkUserLogin()
+    {
+        $user = new User();
+        $user->setDb($this->di->get("db"));
+
+        $session = $this->di->get("session");
+
+        if ($session->get("email")) {
+            $createUrl = $this->di->url->create("user/logout");
+            $route = "<li class='nav-item'><a class='nav-link' href='$createUrl'>Logga ut</a></li>";
+        } else if (!$session->get("email")) {
+            $createUrl = $this->di->url->create("user/login");
+            $route = "<li class='nav-item'><a class='nav-link' href='$createUrl'>Logga in</a></li>";
+        }
+
+        return $route;
     }
 }

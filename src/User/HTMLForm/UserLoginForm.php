@@ -24,24 +24,31 @@ class UserLoginForm extends FormModel
             [
                 "id"     => __CLASS__,
                 "legend" => "User Login",
+                "class"  => "form-group w-50 d-flex justify-content-center p-4",
             ],
             [
                 "email" => [
-                    "type" => "email"
+                    "type"        => "email",
+                    "class"       => "form-control",
+                    "placeholder" => "Email",
                 ],
 
                 "password" => [
-                    "type" => "password"
+                    "type"        => "password",
+                    "class"       => "form-control",
+                    "placeholder" => "Password",
                 ],
 
                 "submit" => [
                     "type"     => "submit",
                     "value"    => "Logga in",
+                    "class"    => "btn btn-primary w-100",
                     "callback" => [$this, "callbackSubmit"],
                 ],
                 "create" => [
                     "type"     => "submit",
                     "value"    => "Skapa ny användare",
+                    "class"    => "btn btn-primary w-100",
                     "callback" => [$this, "createUser"],
                 ],
             ]
