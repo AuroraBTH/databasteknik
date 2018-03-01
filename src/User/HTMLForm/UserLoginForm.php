@@ -42,13 +42,13 @@ class UserLoginForm extends FormModel
                 "submit" => [
                     "type"     => "submit",
                     "value"    => "Logga in",
-                    "class"    => "btn btn-primary w-100",
+                    "class"    => "btn btn-lg btn-primary w-100",
                     "callback" => [$this, "callbackSubmit"],
                 ],
                 "create" => [
                     "type"     => "submit",
                     "value"    => "Skapa ny användare",
-                    "class"    => "btn btn-primary w-100",
+                    "class"    => "btn btn-lg btn-primary w-100",
                     "callback" => [$this, "createUser"],
                 ],
             ]
