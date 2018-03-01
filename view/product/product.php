@@ -1,7 +1,7 @@
 <?php
 namespace Anax\View;
 ?>
-<div class="d-flex flex-row justify-content-center">
+<div class="d-flex flex-row justify-content-center p-2">
     <div class="home w-75">
         <div class="d-flex flex-row space-around">
             <div class="p-2 w-50">
