@@ -25,7 +25,14 @@ class CategoryController implements
         $view = $this->di->get("view");
         $pageRender = $this->di->get("pageRender");
 
-        $view->add("category/categories");
+        $category = new Category();
+        $category->setDb($this->di->get("db"));
+
+        $data = [
+            "categories" => $category->getAllCategories()
+        ];
+
+        $view->add("category/categories", $data);
         $pageRender->renderPage(["title" => $title]);
     }
 
