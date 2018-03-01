@@ -80,14 +80,14 @@ class UserCreateForm extends FormModel
                 "submit" => [
                     "type"     => "submit",
                     "value"    => "Create user",
-                    "class"    => "btn btn-primary w-100",
+                    "class"    => "btn btn-lg btn-primary w-100",
                     "callback" => [$this, "callbackSubmit"]
                 ],
 
                 "create" => [
                     "type"     => "submit",
                     "value"    => "Back to login",
-                    "class"    => "btn btn-primary w-100",
+                    "class"    => "btn btn-lg btn-primary w-100",
                     "callback" => [$this, "backToLogin"],
                 ],
             ]
