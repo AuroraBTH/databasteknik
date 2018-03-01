@@ -16,7 +16,7 @@ class User extends ActiveRecordModel
     *
     * @var integer $id primary key auto incremented.
     */
-    public $userId;
+    public $userID;
     public $userFirstName;
     public $userSurName;
     public $userPhone;
@@ -190,9 +190,9 @@ class User extends ActiveRecordModel
     *
     * @return \Anax\Database\ActiveRecordModel
     */
-    public function getUserInformationById($userId)
+    public function getUserInformationById($userID)
     {
-       $information = $this->find("userID", $userId);
+       $information = $this->find("userID", $userID);
        return $information;
     }
 
