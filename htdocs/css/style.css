@@ -1,1 +1,16 @@
-/** A css file */
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-wrap {
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex-shrink: 0;
+}
