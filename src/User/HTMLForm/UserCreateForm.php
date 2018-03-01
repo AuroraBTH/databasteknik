@@ -23,52 +23,71 @@ class UserCreateForm extends FormModel
             [
                 "id" => __CLASS__,
                 "legend" => "Create user",
+                "class"  => "form-group w-50 d-flex justify-content-center p-4",
             ],
             [
                 "firstname" => [
-                    "type" => "text",
+                    "type"        => "text",
+                    "class"       => "form-control",
+                    "placeholder" => "First Name",
                 ],
 
                 "surname" => [
-                    "type" => "text",
+                    "type"        => "text",
+                    "class"       => "form-control",
+                    "placeholder" => "Surname",
                 ],
 
                 "email" => [
-                    "type" => "email"
+                    "type"        => "email",
+                    "class"       => "form-control",
+                    "placeholder" => "Email",
                 ],
 
                 "address" => [
-                    "type" => "text"
+                    "type"        => "text",
+                    "class"       => "form-control",
+                    "placeholder" => "Address",
                 ],
 
                 "postcode" => [
-                    "type" => "number"
+                    "type"        => "number",
+                    "class"       => "form-control",
+                    "placeholder" => "Postcode",
                 ],
 
                 "city" => [
-                    "type" => "text"
+                    "type"        => "text",
+                    "class"       => "form-control",
+                    "placeholder" => "City",
                 ],
 
                 "password" => [
-                    "type" => "password"
+                    "type"        => "password",
+                    "class"       => "form-control",
+                    "placeholder" => "Password",
                 ],
 
                 "password-again" => [
-                    "type" => "password",
-                    "validation" => [
+                    "type"        => "password",
+                    "class"       => "form-control",
+                    "placeholder" => "Password again",
+                    "validation"  => [
                         "match" => "password"
                     ],
                 ],
 
                 "submit" => [
-                    "type" => "submit",
-                    "value" => "Create user",
+                    "type"     => "submit",
+                    "value"    => "Create user",
+                    "class"    => "btn btn-primary w-100",
                     "callback" => [$this, "callbackSubmit"]
                 ],
 
                 "create" => [
                     "type"     => "submit",
                     "value"    => "Back to login",
+                    "class"    => "btn btn-primary w-100",
                     "callback" => [$this, "backToLogin"],
                 ],
             ]
