@@ -21,3 +21,10 @@ body {
     display: flex;
     justify-content: center;
 }
+
+/* Centers login form on /user/create */
+
+.create .main-wrap {
+    display: flex;
+    justify-content: center;
+}
