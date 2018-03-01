@@ -14,3 +14,10 @@ body {
 .footer {
   flex-shrink: 0;
 }
+
+/* Centers login form on /user/login */
+
+.login .main-wrap {
+    display: flex;
+    justify-content: center;
+}
