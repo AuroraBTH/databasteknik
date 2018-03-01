@@ -38,6 +38,12 @@ class UserCreateForm extends FormModel
                     "placeholder" => "Surname",
                 ],
 
+                "phone" => [
+                    "type"        => "number",
+                    "class"       => "form-control",
+                    "placeholder" => "Phone number",
+                ],
+
                 "email" => [
                     "type"        => "email",
                     "class"       => "form-control",
@@ -60,6 +66,16 @@ class UserCreateForm extends FormModel
                     "type"        => "text",
                     "class"       => "form-control",
                     "placeholder" => "City",
+                ],
+
+                "gender" => [
+                    "type"        => "radio",
+                    "label"       => "Gender",
+                    "values"      => [
+                        "Female",
+                        "Male"
+                    ],
+                    "checked"     => "Female",
                 ],
 
                 "password" => [
@@ -107,12 +123,13 @@ class UserCreateForm extends FormModel
         $firstname = htmlentities($this->form->value("firstname"));
         $surname = htmlentities($this->form->value("surname"));
         $email = htmlentities($this->form->value("email"));
+        $phone = htmlentities($this->form->value("phone"));
         $address = htmlentities($this->form->value("address"));
+        $gender = htmlentities($this->form->value("gender"));
         $postcode = htmlentities($this->form->value("postcode"));
         $city = htmlentities($this->form->value("city"));
         $password = htmlentities($this->form->value("password"));
         $passwordAgain = htmlentities($this->form->value("password-again"));
-
 
         # Check password matches
         if ($password !== $passwordAgain) {
@@ -121,7 +138,19 @@ class UserCreateForm extends FormModel
             return false;
         }
 
-        $arrayOfData = [$firstname, $surname, $email, $address, $postcode, $city, $password, $passwordAgain];
+        $arrayOfData = [
+            $firstname,
+            $surname,
+            $email,
+            $address,
+            $postcode,
+            $city,
+            $password,
+            $passwordAgain,
+            $phone,
+            $gender
+        ];
+
         $formcheck = $this->arrayEmpty($arrayOfData);
 
         if (!$formcheck) {
@@ -142,8 +171,10 @@ class UserCreateForm extends FormModel
             $user->setAddress($address);
             $user->setPostcode((int)$postcode);
             $user->setCity($city);
+            $user->setPhone((int)$phone);
             $user->setRole(0);
             $user->setPassword($password);
+            $user->setGender($gender === 'Female' ? 0 : 1);
             $user->save();
         } else if (!$user->checkUserExists($email)) {
             $this->form->addOutput("Email already in use");
