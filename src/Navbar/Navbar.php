@@ -37,8 +37,10 @@ class Navbar implements InjectionAwareInterface
         $session = $this->di->get("session");
 
         if ($session->get("email")) {
-            $createUrl = $this->di->url->create("user/logout");
-            $route = "<li class='nav-item'><a class='nav-link' href='$createUrl'>Logga ut</a></li>";
+            $createUrlLogout = $this->di->url->create("user/logout");
+            $createUrlProfile = $this->di->url->create("user/profile");
+            $route = "<li class='nav-item'><a class='nav-link' href='$createUrlProfile'>Min sida</a></li>";
+            $route .= "<li class='nav-item'><a class='nav-link' href='$createUrlLogout'>Logga ut</a></li>";
         } else if (!$session->get("email")) {
             $createUrl = $this->di->url->create("user/login");
             $route = "<li class='nav-item'><a class='nav-link' href='$createUrl'>Logga in</a></li>";
