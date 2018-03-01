@@ -51,6 +51,7 @@ class UserController implements
     }
 
 
+
     public function getCreatePage()
     {
         $title = "Skapa ny användare";
@@ -72,11 +73,14 @@ class UserController implements
     }
 
 
+
     public function getProfilePage()
     {
         $title = "Profil";
         $view = $this->di->get("view");
         $pageRender = $this->di->get("pageRender");
+
+        $this->checkLoggedIn();
 
         # Creating new user and set database.
         $user = new User();
@@ -92,6 +96,7 @@ class UserController implements
         $view->add("user/profile", $data);
         $pageRender->renderPage(["title" => $title]);
     }
+
 
 
     public function logout()
@@ -113,6 +118,23 @@ class UserController implements
         if (!$hasSession) {
             $response->redirect($login);
             return true;
+        }
+    }
+
+
+
+    public function checkLoggedIn()
+    {
+        $url = $this->di->get("url");
+        $response = $this->di->get("response");
+        $session = $this->di->get("session");
+        $login = $url->create("user/login");
+
+        if ($session->has("email")) {
+            return true;
+        } else if (!$session->has("email")) {
+            $response->redirect($login);
+            return false;
         }
     }
 }
