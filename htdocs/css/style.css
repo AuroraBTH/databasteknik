@@ -22,9 +22,17 @@ body {
     justify-content: center;
 }
 
+.login fieldset {
+    width: 100%;
+}
+
 /* Centers login form on /user/create */
 
 .create .main-wrap {
     display: flex;
     justify-content: center;
+}
+
+.create fieldset {
+    width: 100%;
 }
