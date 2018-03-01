@@ -3,8 +3,9 @@ USE databasteknik;
 SET NAMES utf8;
 
 INSERT INTO Category (
-    `categoryName`
-) VALUES ("Tröja");
+    `categoryName`,
+    `gender`
+) VALUES ("Byxor", 0), ("Tröjor", 0), ("Jackor", 0), ("Underkläder", 0), ("Klänningar", 0), ("Väskor", 0), ("Byxor", 1), ("Tröjor", 1), ("Underkläder", 1), ("Jackor", 1), ("Väskor", 1);
 
 INSERT INTO Product(
     `productManufacturer`,
