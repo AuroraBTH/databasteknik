@@ -132,13 +132,13 @@ build: test doc #theme less-compile less-minify js-minify
 
 # target: install            - Install all tools
 .PHONY:  install
-install: prepare install-tools-bash install-tools-php
+install: prepare install-tools-bash install-tools-php install-dep
 	@$(call HELPTEXT,$@)
 
 
-# target installDep          - Install all dependencies
-.PHONY: installDep
-installDep:
+# target install-dep          - Install all dependencies
+.PHONY: install-dep
+install-dep:
 	@$(call HELPTEXT,$@)
 	composer install
 
