@@ -16,7 +16,8 @@ $categoryUrl = url("category");
         <tbody>
             <?php foreach ($data["categories"] as $category) : ?>
                 <tr>
-                     <td><a href="<?= $categoryUrl ?>/<?= $category->categoryID ?>"><?= $category->categoryName; ?></a></td>
+                     <td><a href="<?= $categoryUrl ?>/<?= $category->categoryID ?>">
+                         <?= $category->categoryName; ?></a></td>
                      <td><?= $category->gender === 0 ? "Kvinna" : "Man"; ?> </td>
                 </tr>
             <?php endforeach; ?>
