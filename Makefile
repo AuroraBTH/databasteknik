@@ -132,9 +132,15 @@ build: test doc #theme less-compile less-minify js-minify
 
 # target: install            - Install all tools
 .PHONY:  install
-install: prepare install-tools-bash install-tools-php
+install: prepare install-tools-bash install-tools-php install-dep
 	@$(call HELPTEXT,$@)
 
+
+# target install-dep          - Install all dependencies
+.PHONY: install-dep
+install-dep:
+	@$(call HELPTEXT,$@)
+	composer install
 
 
 # target: update             - Update the codebase and tools.
@@ -170,13 +176,11 @@ install-tools-php:
 
 	curl -Lso $(PHPMD) http://static.phpmd.org/php/latest/phpmd.phar && chmod 755 $(PHPMD)
 
-	curl -Lso $(PHPUNIT) https://phar.phpunit.de/phpunit-5.7.9.phar && chmod 755 $(PHPUNIT)
+	curl -Lso $(PHPUNIT) https://phar.phpunit.de/phpunit-7.0.0.phar && chmod 755 $(PHPUNIT)
 
 	curl -Lso $(PHPLOC) https://phar.phpunit.de/phploc.phar && chmod 755 $(PHPLOC)
 
 	curl -Lso $(BEHAT) https://github.com/Behat/Behat/releases/download/v3.3.0/behat.phar && chmod 755 $(BEHAT)
-
-	composer install
 
 
 
