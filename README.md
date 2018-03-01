@@ -12,7 +12,7 @@ This repo will contain the base for the project in the course Databasteknik.
 
 To install, run the following command to download the dependencies needed.
 
-* ```make install```
+* ```make install-dep```
 
 To create the tables needed in your database, run the following SQL-file:
 
