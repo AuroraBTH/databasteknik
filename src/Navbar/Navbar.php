@@ -35,6 +35,7 @@ class Navbar implements InjectionAwareInterface
         $user->setDb($this->di->get("db"));
 
         $session = $this->di->get("session");
+        $route = "";
 
         if ($session->get("email")) {
             $createUrlLogout = $this->di->url->create("user/logout");
