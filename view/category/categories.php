@@ -16,7 +16,8 @@ $categoryUrl = url("category");
         <div class="row text-center mr-0 ml-0">
             <?php foreach ($data["categoriesFemale"] as $category) : ?>
                 <div class="w-50 mt-3 mb-3 col-md-<?php echo $bootstrapColWidth; ?>">
-                    <a type="button" class="mx-auto w-75 btn btn-lg btn-primary pt-4 pb-4 btn-block" href="<?= $categoryUrl ?>/<?= $category->categoryID ?>"><?= $category->categoryName; ?></a>
+                    <a type="button" class="mx-auto w-75 btn btn-lg btn-primary pt-4 pb-4 btn-block"
+                    href="<?= $categoryUrl ?>/<?= $category->categoryID ?>"><?= $category->categoryName; ?></a>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -24,7 +25,8 @@ $categoryUrl = url("category");
         <div class="row text-center mr-0 ml-0">
             <?php foreach ($data["categoriesMale"] as $category) : ?>
                 <div class="w-50 mt-3 mb-3 col-md-<?php echo $bootstrapColWidth; ?>">
-                    <a type="button" class="mx-auto w-75 btn btn-lg btn-primary pt-4 pb-4 btn-block" href="<?= $categoryUrl ?>/<?= $category->categoryID ?>"><?= $category->categoryName; ?></a>
+                    <a type="button" class="mx-auto w-75 btn btn-lg btn-primary pt-4 pb-4 btn-block"
+                    href="<?= $categoryUrl ?>/<?= $category->categoryID ?>"><?= $category->categoryName; ?></a>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -33,5 +35,5 @@ $categoryUrl = url("category");
 
 <?php
     $rowCount++;
-    if($rowCount % $numOfCols == 0) echo '</div><div class="row">';
+    if ($rowCount % $numOfCols == 0) echo '</div><div class="row">';
 ?>
