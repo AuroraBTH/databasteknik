@@ -29,7 +29,8 @@ class CategoryController implements
         $category->setDb($this->di->get("db"));
 
         $data = [
-            "categories" => $category->getAllCategories()
+            "categoriesFemale" => $category->getAllCategoriesGender(0),
+            "categoriesMale" => $category->getAllCategoriesGender(1)
         ];
 
         $view->add("category/categories", $data);
