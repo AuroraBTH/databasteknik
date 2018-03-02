@@ -79,7 +79,7 @@ class Category extends ActiveRecordModel
     *
     * @param integer $genderID value of gender in database. 0 = Female, 1 = Male
     *
-    * @return \Anax\Database\ActiveRecordModel
+    * @return array
     */
     public function getAllCategoriesGender($genderID)
     {
