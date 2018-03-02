@@ -1,13 +1,11 @@
 <?php
 namespace Anax\View;
 
-//Columns must be a factor of 12 (1,2,3,4,6,12)
 $numOfCols = 3;
 $rowCount = 0;
 $bootstrapColWidth = 12 / $numOfCols;
 
 $categoryUrl = url("category");
-
 ?>
 
 <div class="d-flex flex-row justify-content-center p-2">
