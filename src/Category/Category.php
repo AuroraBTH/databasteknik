@@ -74,4 +74,19 @@ class Category extends ActiveRecordModel
 
 
 
+    /**
+    * Get all categories based on gender.
+    *
+    * @param integer $genderID value of gender in database. 0 = Female, 1 = Male
+    *
+    * @return array
+    */
+    public function getAllCategoriesGender($genderID)
+    {
+        $categories = $this->findAllWhere("gender = ?", $genderID);
+        return $categories;
+    }
+
+
+
 }

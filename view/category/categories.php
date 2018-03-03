@@ -1,26 +1,37 @@
 <?php
 namespace Anax\View;
 
-$categoryUrl = url("category");
+$numOfCols = 3;
+$rowCount = 0;
+$bootstrapColWidth = 12 / $numOfCols;
 
+$categoryUrl = url("category");
 ?>
 
-<div class="home">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Kategori</th>
-                <th scope="col">Kön</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($data["categories"] as $category) : ?>
-                <tr>
-                     <td><a href="<?= $categoryUrl ?>/<?= $category->categoryID ?>">
-                         <?= $category->categoryName; ?></a></td>
-                     <td><?= $category->gender === 0 ? "Kvinna" : "Man"; ?> </td>
-                </tr>
+<div class="d-flex flex-row justify-content-center p-2">
+    <div class="home w-75">
+        <p class="h2 text-center mt-4">Damkläder</p>
+        <div class="row text-center mr-0 ml-0">
+            <?php foreach ($data["categoriesFemale"] as $category) : ?>
+                <div class="w-50 mt-3 mb-3 col-md-<?php echo $bootstrapColWidth; ?>">
+                    <a type="button" class="mx-auto w-75 btn btn-lg btn-primary pt-4 pb-4 btn-block"
+                    href="<?= $categoryUrl ?>/<?= $category->categoryID ?>"><?= $category->categoryName; ?></a>
+                </div>
             <?php endforeach; ?>
-        </tbody>
-    </table>
+        </div>
+        <p class="h2 text-center mt-4">Herrkläder</p>
+        <div class="row text-center mr-0 ml-0">
+            <?php foreach ($data["categoriesMale"] as $category) : ?>
+                <div class="w-50 mt-3 mb-3 col-md-<?php echo $bootstrapColWidth; ?>">
+                    <a type="button" class="mx-auto w-75 btn btn-lg btn-primary pt-4 pb-4 btn-block"
+                    href="<?= $categoryUrl ?>/<?= $category->categoryID ?>"><?= $category->categoryName; ?></a>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
 </div>
+
+<?php
+    $rowCount++;
+    if ($rowCount % $numOfCols == 0) echo '</div><div class="row">';
+?>
