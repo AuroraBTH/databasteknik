@@ -7,7 +7,7 @@ dummytOriginCountry=('Sweden' 'Denmark' 'Finland' 'Norway' 'Germany' 'New Zealan
 dummyColor=('Pink' 'Purple' 'Green' 'Blue' 'Yellow' 'Cyan')
 dummyComplete=()
 #COUNTERALL=0
-for i in `seq 1 2000`;
+for _ in `seq 1 2000`;
 do
     RANDOMSIZE=$(( ( RANDOM % 6 ) ))
     RANDOMCATEGORY=$(( ( RANDOM % 3 ) ))
