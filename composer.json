@@ -15,7 +15,7 @@
         "anax/page": "^1.0",
         "anax/htmlform": "^1.0",
         "anax/database": "^1.0",
-        "twbs/bootstrap": "4.0.0"
+        "twbs/bootstrap": "^4.0.0"
     },
     "autoload": {
         "psr-4": {
