@@ -26,6 +26,11 @@ class PageRender implements PageRenderInterface, InjectionAwareInterface
     public function renderPage($data = null, $status = 200)
     {
         $data["stylesheets"] = ["css/style.css", "../vendor/twbs/bootstrap/dist/css/bootstrap.min.css"];
+        $data["scripts"] = [
+            "../vendor/twbs/bootstrap/assets/js/vendor/jquery-slim.min.js",
+            "../vendor/twbs/bootstrap/assets/js/vendor/popper.min.js",
+            "../vendor/twbs/bootstrap/dist/js/bootstrap.min.js"
+        ];
 
         $view = $this->di->get("view");
         $view->add("defaults/header", [], "header");
