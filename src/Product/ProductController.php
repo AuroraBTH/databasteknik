@@ -31,4 +31,20 @@ class ProductController implements
         $view->add("product/product", $data);
         $pageRender->renderPage(["title" => $title]);
     }
+
+
+
+    public function getAllProductsFromCategory($categoryID)
+    {
+        $title = "Produkter";
+        $view = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+
+        $products = new Product();
+        $products->setDb($this->di->get("db"));
+        $data = $products->getProducts("productCategoryID", $categoryID);
+
+        $view->add("product/products", $data);
+        $pageRender->renderPage(["title" => $title]);
+    }
 }
