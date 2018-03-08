@@ -86,7 +86,4 @@ class Category extends ActiveRecordModel
         $categories = $this->findAllWhere("gender = ?", $genderID);
         return $categories;
     }
-
-
-
 }
