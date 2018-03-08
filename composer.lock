@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "97f88b02a64bbb866b6c19ad6e2678bd",
+    "content-hash": "c692936e296d6e2595c687a4d2f31e2a",
     "packages": [
         {
             "name": "anax/common",
@@ -202,16 +202,16 @@
         },
         {
             "name": "anax/htmlform",
-            "version": "v1.0.4",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/canax/htmlform.git",
-                "reference": "f4804e1e764b5c4f610befb8bfc7f91b175db53d"
+                "reference": "518a6832e78b7f47d778b9fc87234902969f32e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/canax/htmlform/zipball/f4804e1e764b5c4f610befb8bfc7f91b175db53d",
-                "reference": "f4804e1e764b5c4f610befb8bfc7f91b175db53d",
+                "url": "https://api.github.com/repos/canax/htmlform/zipball/518a6832e78b7f47d778b9fc87234902969f32e0",
+                "reference": "518a6832e78b7f47d778b9fc87234902969f32e0",
                 "shasum": ""
             },
             "require": {
@@ -220,7 +220,7 @@
                 "anax/response": "^1.0",
                 "anax/session": "^1.0",
                 "anax/url": "^1.0",
-                "php": ">=5.6"
+                "php": ">=7.0"
             },
             "type": "library",
             "autoload": {
@@ -249,7 +249,7 @@
                 "micro",
                 "mvc"
             ],
-            "time": "2018-02-26T18:56:01+00:00"
+            "time": "2018-03-05T17:27:20+00:00"
         },
         {
             "name": "anax/page",
@@ -595,7 +595,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.5",
+            "version": "v3.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
