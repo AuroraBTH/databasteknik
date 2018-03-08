@@ -5,7 +5,7 @@ $numOfCols = 3;
 $rowCount = 0;
 $bootstrapColWidth = 12 / $numOfCols;
 
-$categoryUrl = url("category");
+$productUrl = url("products");
 ?>
 
 <div class="d-flex flex-row justify-content-center p-2">
@@ -15,7 +15,7 @@ $categoryUrl = url("category");
             <?php foreach ($data["categoriesFemale"] as $category) : ?>
                 <div class="w-50 mt-3 mb-3 col-md-<?php echo $bootstrapColWidth; ?>">
                     <a type="button" class="mx-auto w-75 btn btn-lg btn-primary pt-4 pb-4 btn-block"
-                    href="<?= $categoryUrl ?>/<?= $category->categoryID ?>"><?= $category->categoryName; ?></a>
+                    href="<?= $productUrl ?>/<?= $category->categoryID ?>"><?= $category->categoryName; ?></a>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -24,7 +24,7 @@ $categoryUrl = url("category");
             <?php foreach ($data["categoriesMale"] as $category) : ?>
                 <div class="w-50 mt-3 mb-3 col-md-<?php echo $bootstrapColWidth; ?>">
                     <a type="button" class="mx-auto w-75 btn btn-lg btn-primary pt-4 pb-4 btn-block"
-                    href="<?= $categoryUrl ?>/<?= $category->categoryID ?>"><?= $category->categoryName; ?></a>
+                    href="<?= $productUrl ?>/<?= $category->categoryID ?>"><?= $category->categoryName; ?></a>
                 </div>
             <?php endforeach; ?>
         </div>
