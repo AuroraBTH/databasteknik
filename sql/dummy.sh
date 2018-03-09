@@ -15,7 +15,6 @@ for _ in $(seq 1 ${amount});
 do
     RANDOMSIZE=$(( ( RANDOM % 6 ) ))
     RANDOMCATEGORY=$(( ( RANDOM % 32 ) + 12 ))
-    RANDOMCATEGORYID=$(( ( $RANDOMCATEGORY )))
     RANDOMMANUFACTURER=$(( ( RANDOM % 6 ) ))
     RANDOMORIGIN=$(( ( RANDOM % 6 ) ))
     RANDOMWEIGHT=$(( ( RANDOM % 1000 ) + 200 ))
