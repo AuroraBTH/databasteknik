@@ -1,20 +1,28 @@
 <?php
 namespace Anax\View;
+
+$loggedIn = $this->di->get("session")->has("email");
 ?>
 
 <script>
-    addToCart = () => {
-        var url = window.location.protocol + "//" + window.location.host;
-        var pathArray = window.location.pathname.split( '/' );
-        var newPathname = "";
+    generateURL = () => {
+        let url = window.location.protocol + "//" + window.location.host;
+        let pathArray = window.location.pathname.split( '/' );
+        let newPathname = "";
             for (i = 0; i < pathArray.length - 2; i++) {
               newPathname += pathArray[i];
               newPathname += "/";
         }
-        var newURL = url + newPathname;
+        let newURL = url + newPathname;
+
+        return newURL;
+    }
+
+    addToCart = () => {
+        let url = generateURL();
         $.ajax({
             type: 'POST',
-            url: newURL + "ajax",
+            url: url + "ajax",
             dataType: 'text',
             data: {data: <?php echo(json_encode($data[0])); ?>},
             success: function() {
@@ -27,6 +35,11 @@ namespace Anax\View;
                 alert("Status: " + textStatus); alert("Error: " + errorThrown);
             }
         });
+    }
+
+    redirectToLogin = () => {
+        let url = generateURL();
+        window.location.replace(url + "user/login");
     }
 </script>
 
@@ -54,7 +67,11 @@ namespace Anax\View;
                     <div class="pt-4 p-3 bg-light border text-center border-right-0 border-left-0 border-bottom-0 h-50">
                         <h3>Pris:</h3>
                         <p class="font-weight-bold"><?= ($data[0]->productSellPrize); ?> kr</p>
-                        <button type="button" onclick="addToCart();" class="btn btn-primary w-50">Lägg i kundvagn</button>
+                        <?= $loggedIn === true ?
+                        '<button type="button" onclick="addToCart();" class="btn btn-primary w-50">Lägg i kundvagn</button>'
+                        :' <button type="button" onclick="redirectToLogin();" class="btn btn-primary w-50">Logga in</button>'
+                        ?>
+
                         <p id="addToCartComplete"></p>
                     </div>
                 </div>
