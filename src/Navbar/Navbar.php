@@ -37,6 +37,16 @@ class Navbar implements InjectionAwareInterface
         $session = $this->di->get("session");
         $route = "";
 
+        $counter = 0;
+
+
+        $products = $this->di->get("session")->get("items");
+
+        foreach ($products as $key => $value) {
+            $counter += (int)$value['amount'];
+        }
+
+
         if ($session->get("email")) {
             $createUrlLogout = $this->di->url->create("user/logout");
             $createUrlProfile = $this->di->url->create("user/profile");
@@ -49,7 +59,7 @@ class Navbar implements InjectionAwareInterface
 
         $cartUrl = $this->di->url->create("cart");
         $route .= "<li class='nav-item'><a class='nav-link' href='$cartUrl'>
-        <i class='fas fa-shopping-cart'></i> Cart</a></li>";
+        <i class='fas fa-shopping-cart'></i> Kundvagn ($counter)</a></li>";
 
         return $route;
     }
