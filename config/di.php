@@ -73,6 +73,14 @@ return [
                 return $session;
             }
         ],
+        "cookie" => [
+            "shared" => true,
+            "active" => true,
+            "callback" => function () {
+                $cookie = new \Course\Cookie\CookieController();
+                return $cookie;
+            }
+        ],
         "pageRender" => [
             "shared" => true,
             "callback" => function () {
@@ -133,6 +141,14 @@ return [
             "shared" => true,
             "callback" => function () {
                 $obj = new \Course\User\UserController();
+                $obj->setDI($this);
+                return $obj;
+            }
+        ],
+        "ajaxController" => [
+            "shared" => false,
+            "callback" => function () {
+                $obj = new \Course\Ajax\AjaxController();
                 $obj->setDI($this);
                 return $obj;
             }
