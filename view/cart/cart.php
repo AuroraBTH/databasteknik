@@ -22,7 +22,7 @@ $price = 0;
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($cartItems as $key => $value) : ?>
+                <?php foreach ((array)$cartItems as $key => $value) : ?>
                     <?php if ($counter % 2) : ?>
                         <tr class="bg-light">
                             <td><?php print_r($value['productManufacturer']); ?></td>
