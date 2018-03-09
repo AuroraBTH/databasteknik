@@ -28,8 +28,8 @@ $loggedIn = $this->di->get("session")->has("email");
             success: function() {
                 document.getElementById("addToCartComplete").innerHTML = "Produkten finns nu i din kundvagn";
                 setTimeout(function(){
-                    document.getElementById("addToCartComplete").innerHTML = "";
-                }, 2000);
+                    location.reload();
+                }, 1000);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                 alert("Status: " + textStatus); alert("Error: " + errorThrown);
@@ -40,6 +40,11 @@ $loggedIn = $this->di->get("session")->has("email");
     redirectToLogin = () => {
         let url = generateURL();
         window.location.replace(url + "user/login");
+    }
+
+
+    previousLocation = () => {
+        window.history.back();
     }
 </script>
 

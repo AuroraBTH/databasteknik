@@ -5,6 +5,7 @@ namespace Anax\View;
 $url = url("product");
 $counter = 0;
 $price = 0;
+$amountOfItems = 0;
 ?>
 
 <div class="d-flex flex-row justify-content-center mt-4">
@@ -45,10 +46,12 @@ $price = 0;
                         </tr>
                     <?php endif; ?>
                     <?php $price += ((int)$value['productSellPrize'] * (int)$value['amount'])?>
+                    <?php $amountOfItems += ((int)$value['amount'])?>
                     <?php $counter++ ?>
                 <?php endforeach; ?>
             </tbody>
         </table>
         <p>Summa: <?php echo $price ?> kr</p>
+        <p>Antal Produkter: <?php echo $amountOfItems ?></p>
     </div>
 </div>
