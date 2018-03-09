@@ -18,13 +18,28 @@ class AjaxController implements
     public function addToCart()
     {
         $data = $_POST["data"];
+        $exists = false;
         if ($this->di->get("session")->get("items")) {
             $getItems = $this->di->get("session")->get("items");
-            array_push($getItems, $data);
+
+            foreach ($getItems as $key => $value) {
+                if ($data['productID'] === $value['productID']) {
+                    $test = $value["amount"] + 1;
+                    $getItems[$key]['amount'] = $test;
+                    $exists = True;
+                }
+            }
+
+            if (!$exists) {
+                $data["amount"] = 1;
+                array_push($getItems, $data);
+            }
+
             $this->di->get("session")->set("items", $getItems);
-        } else {
+        } elseif (!$this->di->get("session")->get("items")) {
             $this->di->get("session")->set("items", []);
             $getItems = $this->di->get("session")->get("items");
+            $data["amount"] = 1;
             array_push($getItems, $data);
             $this->di->get("session")->set("items", $getItems);
         }
