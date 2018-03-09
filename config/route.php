@@ -13,7 +13,15 @@ return [
         ],
         [
             "mount" => null,
+            "file" => __DIR__ . "/route/ajax.php",
+        ],
+        [
+            "mount" => null,
             "file" => __DIR__ . "/route/user.php",
+        ],
+        [
+            "mount" => null,
+            "file" => __DIR__ . "/route/cart.php",
         ],
         [
             "mount" => null,
