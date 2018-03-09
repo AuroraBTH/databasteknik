@@ -30,7 +30,8 @@ class PageRender implements PageRenderInterface, InjectionAwareInterface
             "../vendor/twbs/bootstrap/assets/js/vendor/jquery-slim.min.js",
             "../vendor/twbs/bootstrap/assets/js/vendor/popper.min.js",
             "../vendor/twbs/bootstrap/dist/js/bootstrap.min.js",
-            "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+            "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js",
+            "https://use.fontawesome.com/releases/v5.0.8/js/all.js"
         ];
 
         $view = $this->di->get("view");

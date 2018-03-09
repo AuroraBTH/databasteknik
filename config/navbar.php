@@ -15,10 +15,6 @@ return [
                 "text" => "Kategori",
                 "route" => "category"
             ],
-            "cart" => [
-                "text" => "Kundvagn",
-                "route" => "cart"
-            ]
         ],
     ],
 ];
