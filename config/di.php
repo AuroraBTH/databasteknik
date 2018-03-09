@@ -153,6 +153,14 @@ return [
                 return $obj;
             }
         ],
+        "cartController" => [
+            "shared" => false,
+            "callback" => function () {
+                $obj = new \Course\Cart\CartController();
+                $obj->setDI($this);
+                return $obj;
+            }
+        ],
         "navbar" => [
             "shared" => true,
             "callback" => function () {
