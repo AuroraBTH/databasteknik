@@ -4,7 +4,7 @@ echo "How many products do you want? (1+) (Press Enter to continue)"
 read amount
 
 dummySize=(XS S M L XL XXL)
-dummyCategoryName=('' '' '' '' '' '' '' '' '' '' '' '' 'Shorts' 'Jeans' 'Träningsbyxor' 'Trosor' 'BH' 'Nattlinnen' 'T-shirt' 'Sweatshirt' 'Cardigans' 'Linnen' 'Långklänningar' 'Korta klänningar' 'Vinterjackor' 'Skinnjackor' 'Övriga jackor' 'Skinnväskor' 'Ryggsäckar' 'Shorts' 'Jeans' 'Träningsbyxor' 'T-shirt' 'Sweatshirt' 'Cardigans' 'Linnen' 'Y-front' 'Boxershort' 'Vinterjackor' 'Skinnjackor' 'Övriga jackor' 'Kostymer' 'Skinnväskor' 'Ryggsäckar')
+dummyCategoryName=('' '' '' '' '' '' '' '' '' '' '' '' 'Shorts' 'Jeans' 'Träningsbyxa' 'Trosa' 'BH' 'Nattlinne' 'T-shirt' 'Sweatshirt' 'Cardigan' 'Linne' 'Långklänning' 'Korta klänning' 'Vinterjacka' 'Skinnjacka' 'Jacka' 'Skinnväska' 'Ryggsäck' 'Shorts' 'Jeans' 'Träningsbyxa' 'T-shirt' 'Sweatshirt' 'Cardigan' 'Linne' 'Y-front' 'Boxershort' 'Vinterjacka' 'Skinnjacka' 'Jacka' 'Kostym' 'Skinnväska' 'Ryggsäck')
 dummyManufacturer=('HM' 'Cubus' 'GANT' 'Jack&Jones' 'Levi' 'Adrian Hammond')
 dummytOriginCountry=('Sverige' 'Danmark' 'Finland' 'Norge' 'Tyskland' 'Nya Zeeland')
 dummyColor=('Rosa' 'Lila' 'Grön' 'Blå' 'Gul' 'Ljusblå' 'Vit' 'Svart')
