@@ -5,7 +5,7 @@ $numOfCols = 3;
 $rowCount = 0;
 $bootstrapColWidth = 12 / $numOfCols;
 
-$productUrl = url("products");
+$productUrl = url("category");
 ?>
 
 <div class="d-flex flex-row justify-content-center p-2">

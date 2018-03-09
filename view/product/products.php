@@ -11,11 +11,11 @@ $counter = 0;
         <table class="table border mb-4">
             <thead>
                 <tr>
-                    <th scope="col" class="border-bottom-0">Färg</th>
                     <th scope="col" class="border-bottom-0">Tillverkare</th>
                     <th scope="col" class="border-bottom-0">Namn</th>
                     <th scope="col" class="border-bottom-0">Storlek</th>
                     <th scope="col" class="border-bottom-0">Pris</th>
+                    <th scope="col" class="border-bottom-0">Färg</th>
                     <th scope="col" class="border-bottom-0"></th>
                 </tr>
             </thead>
