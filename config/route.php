@@ -21,6 +21,10 @@ return [
         ],
         [
             "mount" => null,
+            "file" => __DIR__ . "/route/cart.php",
+        ],
+        [
+            "mount" => null,
             "file" => __DIR__ . "/route/category.php"
         ],
         [
