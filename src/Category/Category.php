@@ -83,7 +83,37 @@ class Category extends ActiveRecordModel
     */
     public function getAllCategoriesGender($genderID)
     {
-        $categories = $this->findAllWhere("gender = ?", $genderID);
+        $categories = $this->findAllWhere("gender = ? AND parentID IS NULL", $genderID);
+        return $categories;
+    }
+
+
+
+    /**
+    * Get specific categories based on its ID.
+    *
+    * @param integer $categoryID the ID to the category
+    *
+    * @return array
+    */
+    public function getSpecificCategory($categoryID)
+    {
+        $categories = $this->findAllWhere("categoryID = ?", $categoryID);
+        return $categories;
+    }
+
+
+
+    /**
+    * Get all sub-ategories based on parent category ID.
+    *
+    * @param integer $parentID ID to parent category.
+    *
+    * @return array
+    */
+    public function getAllSubCategories($parentID)
+    {
+        $categories = $this->findAllWhere("parentID = ?", $parentID);
         return $categories;
     }
 }

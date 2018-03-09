@@ -40,16 +40,23 @@ class CategoryController implements
 
 
     /**
-     * This function handles the rendering of one specific categories.
+     * Renders the page for subcategories.
+     *
+     * @param integer $parentID ID to parent category
+     *
      */
-    public function getSpecificCategory($categoryId)
+    public function getSpecificCategory($parentID)
     {
         $title = "Kategori";
         $view = $this->di->get("view");
         $pageRender = $this->di->get("pageRender");
 
+        $category = new Category();
+        $category->setDb($this->di->get("db"));
+
         $data = [
-            "categoryId" => $categoryId
+            "title" => $category->getSpecificCategory($parentID),
+            "categories" => $category->getAllSubCategories($parentID)
         ];
 
         $view->add("category/specificCategory", $data);
