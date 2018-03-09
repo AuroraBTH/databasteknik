@@ -26,7 +26,7 @@ class AjaxController implements
                 if ($data['productID'] === $value['productID']) {
                     $test = $value["amount"] + 1;
                     $getItems[$key]['amount'] = $test;
-                    $exists = True;
+                    $exists = true;
                 }
             }
 
