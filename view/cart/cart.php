@@ -6,6 +6,8 @@ $url = url("product");
 $counter = 0;
 $price = 0;
 $amountOfItems = 0;
+$totalWeight = 0;
+$totalShipping = 0;
 ?>
 
 <div class="d-flex flex-row justify-content-center mt-4">
@@ -45,13 +47,25 @@ $amountOfItems = 0;
                             <th scope="row"><a href="<?= $url ?>/<?= $value['productID'] ?>">Mer information</a></th>
                         </tr>
                     <?php endif; ?>
-                    <?php $price += ((int)$value['productSellPrize'] * (int)$value['amount'])?>
-                    <?php $amountOfItems += ((int)$value['amount'])?>
-                    <?php $counter++ ?>
+                    <?php
+                    $price += ((int)$value['productSellPrize'] * (int)$value['amount']);
+                    $totalWeight += (int)$value['productWeight'] * (int)$value['amount'];
+                    $amountOfItems += ((int)$value['amount']);
+                    $totalShipping = ($totalWeight / 1000) < 1 ? 50 : 50 + (20 * round($totalWeight / 1000));
+                    $counter++;
+                    ?>
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <p>Summa: <?php echo $price ?> kr</p>
-        <p>Antal Produkter: <?php echo $amountOfItems ?></p>
+        <?php if ($amountOfItems > 0): ?>
+            <p><b>Antal Produkter: <?= $amountOfItems ?></b></p>
+            <p><b>Total vikt: <?= round($totalWeight / 1000, 1) ?> kg</b></p>
+            <p><b>Summa: <?= $price ?> kr</b></p>
+            <p><b>Frakt: <?= $totalShipping ?> kr</b></p>
+            <p><b>Summa totalt: <?= $price + $totalShipping ?> kr</b></p>
+            <button type="button" class="btn btn-primary w-10">Gå till kassan</button>
+        <?php elseif ($amountOfItems == 0) : ?>
+            <p>Din kundvagn innehåller för tillfället inga produkter.</p>
+        <?php endif; ?>
     </div>
 </div>
