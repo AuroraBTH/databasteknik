@@ -42,7 +42,7 @@ class Navbar implements InjectionAwareInterface
 
         $products = $this->di->get("session")->get("items");
 
-        foreach ($products as $key => $value) {
+        foreach ((array)$products as $key => $value) {
             $counter += (int)$value['amount'];
         }
 
