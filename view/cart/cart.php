@@ -57,14 +57,14 @@ $totalShipping = 0;
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <?php if ($amountOfItems > 0): ?>
+        <?php if ($amountOfItems > 0) : ?>
             <p><b>Antal Produkter: <?= $amountOfItems ?></b></p>
             <p><b>Total vikt: <?= round($totalWeight / 1000, 1) ?> kg</b></p>
             <p><b>Summa: <?= $price ?> kr</b></p>
             <p><b>Frakt: <?= $totalShipping ?> kr</b></p>
             <p><b>Summa totalt: <?= $price + $totalShipping ?> kr</b></p>
             <button type="button" class="btn btn-primary w-10">Gå till kassan</button>
-        <?php elseif ($amountOfItems == 0) : ?>
+        <?php elseif ($amountOfItems < 1) : ?>
             <p>Din kundvagn innehåller för tillfället inga produkter.</p>
         <?php endif; ?>
     </div>
