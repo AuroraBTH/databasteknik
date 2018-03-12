@@ -8,6 +8,7 @@ use \Anax\DI\InjectionAwareInterface;
 use \Anax\Di\InjectionAwareTrait;
 use \Course\User\HTMLForm\UserLoginForm;
 use \Course\User\HTMLForm\UserCreateForm;
+use \Course\User\HTMLForm\UserUpdateForm;
 
 /**
  * A controller class.
@@ -65,6 +66,28 @@ class UserController implements
 
         $data = [
             "content" => $createForm->getHTML(),
+        ];
+
+        $view->add("default1/article", $data);
+
+        $pageRender->renderPage(["title" => $title]);
+    }
+
+
+
+    public function updateProfile()
+    {
+        $title = "Uppdatera profil";
+        $view = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+
+
+        $updateForm = new UserUpdateForm($this->di);
+
+        $updateForm->check();
+
+        $data = [
+            "content" => $updateForm->getHTML(),
         ];
 
         $view->add("default1/article", $data);
