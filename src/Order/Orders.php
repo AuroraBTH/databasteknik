@@ -59,4 +59,11 @@ class Orders extends ActiveRecordModel {
     {
         return $this->find("orderID", $orderID);
     }
+
+
+
+    public function getAllOrderByUserID($userID)
+    {
+        return $this->findallwhere("userID = ?", $userID);
+    }
 }
