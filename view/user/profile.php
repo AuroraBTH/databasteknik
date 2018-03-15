@@ -2,6 +2,7 @@
 namespace Anax\View;
 
 $logout = url("user/logout");
+$edit = url("user/profile/edit");
 
 $address = $data["content"]->userAddress . " " . $data["content"]->userPostcode . " " . $data["content"]->userCity;
 ?>
@@ -35,7 +36,7 @@ $address = $data["content"]->userAddress . " " . $data["content"]->userPostcode 
             </tr>
         </table>
         <a type="button" class="btn btn-lg btn-primary m-2 p-2" href="#">Se ordrar</a>
-        <a type="button" class="btn btn-lg btn-primary m-2 p-2" href="#">Redigera profil</a>
+        <a type="button" class="btn btn-lg btn-primary m-2 p-2" href="<?= $edit ?>">Redigera profil</a>
         <a type="button" class="btn btn-lg btn-primary m-2 p-2" href="<?= $logout ?>">Logga ut</a>
     </div>
 </div>

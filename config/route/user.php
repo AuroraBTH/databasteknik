@@ -26,7 +26,13 @@ return [
             "info" => "Logout",
             "requestMethod" => "get",
             "path" => "user/logout",
-            "callable" => ["userController", "logout"],
+            "callable" => ["userController", "logout"]
         ],
+        [
+            "info" => "Update profile",
+            "requestMethod" => "GET|POST",
+            "path" => "user/profile/edit",
+            "callable" => ["userController", "updateProfile"]
+        ]
     ]
 ];
