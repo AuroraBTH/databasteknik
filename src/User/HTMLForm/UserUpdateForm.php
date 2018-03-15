@@ -19,11 +19,14 @@ class UserUpdateForm extends FormModel
     public function __construct(DIInterface $di)
     {
         parent::__construct($di);
+
         $session = $this->di->get("session");
+        
         $currentUser = new User();
         $currentUser->setDb($this->di->get("db"));
         $currentUser->getUserInformationByEmail($session->get("email"));
-        $gender = $currentUser->gender = 0 ? "Male" : "Female";
+
+        $gender = $currentUser->userGender === 1 ? "Male" : "Female";
 
         $this->form->create(
             [
@@ -132,37 +135,32 @@ class UserUpdateForm extends FormModel
      */
     public function callbackSubmit()
     {
+        # Create new user and set databas.
+        $user = new User();
+        $user->setDb($this->di->get("db"));
+        $session = $this->di->get("session");
+        $user->getUserInformationByEmail($session->get("email"));
+
         #Get all values from Form
-        $firstname = htmlentities($this->form->value("firstname"));
-        $surname = htmlentities($this->form->value("surname"));
-        $email = htmlentities($this->form->value("email"));
-        $phone = htmlentities($this->form->value("phone"));
-        $address = htmlentities($this->form->value("address"));
-        $gender = htmlentities($this->form->value("gender"));
-        $postcode = htmlentities($this->form->value("postcode"));
-        $city = htmlentities($this->form->value("city"));
-        $password = htmlentities($this->form->value("password"));
-        $passwordAgain = htmlentities($this->form->value("password-again"));
+        $arrayOfData = [
+            "firstname" => htmlentities($this->form->value("firstname")),
+            "surname" => htmlentities($this->form->value("surname")),
+            "email" => htmlentities($this->form->value("email")),
+            "phone" => htmlentities($this->form->value("phone")),
+            "address" => htmlentities($this->form->value("address")),
+            "gender" => htmlentities($this->form->value("gender")),
+            "postcode" => htmlentities($this->form->value("postcode")),
+            "city" => htmlentities($this->form->value("city")),
+            "password" => htmlentities($this->form->value("password")),
+            "passwordAgain" => htmlentities($this->form->value("password-again"))
+        ];
 
         # Check password matches
-        if ($password !== $passwordAgain) {
+        if ($arrayOfData["password"] !== $arrayOfData["passwordAgain"]) {
             $this->form->rememberValues();
             $this->form->addOutput("Password did not match.");
             return false;
         }
-
-        $arrayOfData = [
-            $firstname,
-            $surname,
-            $email,
-            $address,
-            $postcode,
-            $city,
-            $password,
-            $passwordAgain,
-            $phone,
-            $gender
-        ];
 
         $formcheck = $this->arrayEmpty($arrayOfData);
 
@@ -171,34 +169,29 @@ class UserUpdateForm extends FormModel
             return false;
         }
 
-        # Create new user and set databas.
-        $user = new User();
-        $user->setDb($this->di->get("db"));
-        $session = $this->di->get("session");
-        $user->getUserInformationByEmail($session->get("email"));
-
         # Check if email is already in use. If not create new user.
-        if (!$user->checkUserExists($email)) {
-            $user->setFirstname($firstname);
-            $user->setSurname($surname);
-            $user->setEmail($email);
-            $user->setAddress($address);
-            $user->setPostcode((int)$postcode);
-            $user->setCity($city);
-            $user->setPhone((int)$phone);
-            $user->setPassword($password);
-            $user->setGender($gender === 'Female' ? 0 : 1);
-            var_dump($user);
+        if (!$user->checkUserExists($arrayOfData["email"]) || $user->checkUserExists($session->get("mail"))) {
+            $user->setFirstname($arrayOfData["firstname"]);
+            $user->setSurname($arrayOfData["surname"]);
+            $user->setEmail($arrayOfData["email"]);
+            $user->setAddress($arrayOfData["address"]);
+            $user->setPostcode((int)$arrayOfData["postcode"]);
+            $user->setCity($arrayOfData["city"]);
+            $user->setPhone((int)$arrayOfData["phone"]);
+            $user->setPassword($arrayOfData["password"]);
+            $user->setGender($arrayOfData["gender"] === 'Female' ? 0 : 1);
             $user->save();
-        } else if ($user->checkUserExists($email)) {
-            $this->form->addOutput("User does not exist");
+        } else if ($user->checkUserExists($arrayOfData["email"])) {
+            $this->form->addOutput("That mail is already in use.");
             return false;
         }
 
+        $session->set("email", $user->userMail);
+
         #Create url and redirect to login.
         $url = $this->di->get("url")->create("user/profile");
-        // $this->di->get("response")->redirect($url);
-        // return true;
+        $this->di->get("response")->redirect($url);
+        return true;
     }
 
 
