@@ -21,7 +21,7 @@ class UserUpdateForm extends FormModel
         parent::__construct($di);
 
         $session = $this->di->get("session");
-        
+
         $currentUser = new User();
         $currentUser->setDb($this->di->get("db"));
         $currentUser->getUserInformationByEmail($session->get("email"));
@@ -41,49 +41,42 @@ class UserUpdateForm extends FormModel
                     "placeholder" => "$currentUser->userFirstName",
                     "value"       => "$currentUser->userFirstName",
                 ],
-
                 "surname" => [
                     "type"        => "text",
                     "class"       => "form-control",
                     "placeholder" => "$currentUser->userSurName",
                     "value"       => "$currentUser->userSurName",
                 ],
-
                 "phone" => [
                     "type"        => "number",
                     "class"       => "form-control",
                     "placeholder" => "$currentUser->userPhone",
                     "value"       => "$currentUser->userPhone",
                 ],
-
                 "email" => [
                     "type"        => "email",
                     "class"       => "form-control",
                     "placeholder" => "$currentUser->userMail",
                     "value"       => "$currentUser->userMail",
                 ],
-
                 "address" => [
                     "type"        => "text",
                     "class"       => "form-control",
                     "placeholder" => "$currentUser->userAddress",
                     "value"       => "$currentUser->userAddress",
                 ],
-
                 "postcode" => [
                     "type"        => "number",
                     "class"       => "form-control",
                     "placeholder" => "$currentUser->userPostcode",
                     "value"       => "$currentUser->userPostcode",
                 ],
-
                 "city" => [
                     "type"        => "text",
                     "class"       => "form-control",
                     "placeholder" => "$currentUser->userCity",
                     "value"       => "$currentUser->userCity",
                 ],
-
                 "gender" => [
                     "type"        => "radio",
                     "label"       => "Gender",
@@ -93,13 +86,11 @@ class UserUpdateForm extends FormModel
                     ],
                     "checked"     => "$gender",
                 ],
-
                 "password" => [
                     "type"        => "password",
                     "class"       => "form-control",
                     "placeholder" => "Password",
                 ],
-
                 "password-again" => [
                     "type"        => "password",
                     "class"       => "form-control",
@@ -108,14 +99,12 @@ class UserUpdateForm extends FormModel
                         "match" => "password"
                     ],
                 ],
-
                 "submit" => [
                     "type"     => "submit",
                     "value"    => "Update profile",
                     "class"    => "btn btn-lg btn-primary w-100",
                     "callback" => [$this, "callbackSubmit"]
                 ],
-
                 "create" => [
                     "type"     => "submit",
                     "value"    => "Back to profile",
