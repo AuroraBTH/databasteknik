@@ -54,7 +54,6 @@ class OrderController implements
             $title = "Order";
             $view = $this->di->get("view");
             $pageRender = $this->di->get("pageRender");
-            $session = $this->di->get("session");
 
             $user = new User();
             $user->setDb($this->di->get("db"));
