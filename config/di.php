@@ -161,6 +161,14 @@ return [
                 return $obj;
             }
         ],
+        "orderController" => [
+            "shared" => false,
+            "callback" => function () {
+                $obj = new \Course\Order\OrderController();
+                $obj->setDI($this);
+                return $obj;
+            }
+        ],
         "navbar" => [
             "shared" => true,
             "callback" => function () {
