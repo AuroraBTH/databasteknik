@@ -36,3 +36,15 @@ body {
 .create fieldset {
     width: 100%;
 }
+
+.btn-light-blue {
+  background: #3DA2E9;
+  color: #FFF;
+  border-color: #007BFF;
+}
+
+.btn-light-blue:hover {
+    color: #FFF;
+    background-color: #1985F9;
+    border-color: #0062CC;
+}
