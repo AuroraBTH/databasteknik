@@ -62,25 +62,4 @@ class CategoryController implements
         $view->add("category/specificCategory", $data);
         $pageRender->renderPage(["title" => $title]);
     }
-
-
-
-    /**
-     * This function handles the rendering of one specific subcategory.
-     */
-    public function getSpecificSubCategory($categoryId, $specificCategoryId)
-    {
-        $title = "Kategori";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
-        $data = [
-            "categoryId" => $categoryId,
-            "specificCategoryId" => $specificCategoryId
-        ];
-
-        $view->add("category/specificSubCategory", $data);
-        $pageRender->renderPage(["title" => $title]);
-    }
-
 }

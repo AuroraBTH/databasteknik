@@ -7,6 +7,7 @@ use \Anax\Configure\ConfigureTrait;
 use \Anax\DI\InjectionAwareInterface;
 use \Anax\Di\InjectionAwareTrait;
 use \Course\Product\Product;
+use \Course\Category\Category;
 
 class ProductController implements
     ConfigureInterface,
@@ -42,7 +43,15 @@ class ProductController implements
 
         $products = new Product();
         $products->setDb($this->di->get("db"));
-        $data = $products->getProducts("productCategoryID", $categoryID);
+
+        $category = new Category();
+        $category->setDb($this->di->get("db"));
+        $productCategory = $category->getSpecificCategory($categoryID);
+
+        $data = [
+            "products" => $products->getProducts("productCategoryID", $categoryID),
+            "categoryParent" => $productCategory
+        ];
 
         $view->add("product/products", $data);
         $pageRender->renderPage(["title" => $title]);
