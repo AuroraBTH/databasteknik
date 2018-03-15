@@ -26,20 +26,20 @@ $parentUrl = url("category/$parentID");
                 <?php foreach ($data["products"] as $item) : ?>
                     <?php if ($counter % 2) : ?>
                         <tr class="bg-light">
-                            <td><?php print_r($item->productManufacturer); ?></td>
-                            <td><?php print_r($item->productName); ?></td>
-                            <td><?php print_r($item->productSize); ?></td>
-                            <td><?php print_r($item->productSellPrize); ?></td>
-                            <td><?php print_r($item->productColor); ?></td>
+                            <td><?= $item->productManufacturer ?></td>
+                            <td><?= $item->productName ?></td>
+                            <td><?= $item->productSize ?></td>
+                            <td><?= $item->productSellPrize ?></td>
+                            <td><?= $item->productColor ?></td>
                             <th scope="row"><a href="<?= $url ?>/<?= $item->productID ?>">Mer information</a></th>
                         </tr>
                     <?php else : ?>
                         <tr>
-                            <td><?php print_r($item->productManufacturer); ?></td>
-                            <td><?php print_r($item->productName); ?></td>
-                            <td><?php print_r($item->productSize); ?></td>
-                            <td><?php print_r($item->productSellPrize); ?></td>
-                            <td><?php print_r($item->productColor); ?></td>
+                            <td><?= $item->productManufacturer ?></td>
+                            <td><?= $item->productName ?></td>
+                            <td><?= $item->productSize ?></td>
+                            <td><?= $item->productSellPrize ?></td>
+                            <td><?= $item->productColor ?></td>
                             <th scope="row"><a href="<?= $url ?>/<?= $item->productID ?>">Mer information</a></th>
                         </tr>
                     <?php endif; ?>
