@@ -45,4 +45,11 @@ class OrderItem extends ActiveRecordModel {
         $this->productAmount = $amount;
     }
 
+
+
+    public function getAllItemsWhereID($orderID)
+    {
+        return $this->findallwhere("orderID = ?", $orderID);
+    }
+
 }
