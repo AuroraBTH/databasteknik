@@ -80,7 +80,7 @@ class CartController implements
             $orderID = $order->getLastInsertedID();
             $session->set("orderID", $orderID);
 
-            foreach ($session->get("items") as $key => $value) {
+            foreach ($session->get("items") as $value) {
                 $orderItem = new OrderItem();
                 $orderItem->setDb($db);
                 $orderItem->setOrderID((int)$orderID);

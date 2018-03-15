@@ -58,7 +58,6 @@ class OrderController implements
 
             $user = new User();
             $user->setDb($this->di->get("db"));
-            $userInformation = $user->getUserInformationByEmail($session->get("email"));
 
             $orderItem = new OrderItem();
             $orderItem->setDb($this->di->get("db"));
