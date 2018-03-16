@@ -51,4 +51,12 @@ class Product extends ActiveRecordModel {
         $query = $key . " = ?";
         return $this->findAllWhere($query, $value);
     }
+
+
+
+    public function getProductByID($productID){
+        $res = $this->find("productID", $productID);
+        // var_dump($res);
+        return $res;
+    }
 }
