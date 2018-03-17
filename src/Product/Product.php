@@ -56,7 +56,6 @@ class Product extends ActiveRecordModel {
 
     public function getProductByID($productID){
         $res = $this->find("productID", $productID);
-        // var_dump($res);
         return $res;
     }
 }
