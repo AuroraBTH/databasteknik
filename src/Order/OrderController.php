@@ -60,44 +60,49 @@ class OrderController implements
             $pageRender = $this->di->get("pageRender");
             $session = $this->di->get("session");
 
+
             $this->checkLoggedIn();
+
 
             $user = new User();
             $user->setDb($this->di->get("db"));
             $userInformation = $user->getUserInformationByEmail($session->get("email"));
 
+
             $order = new Orders();
             $order->setDb($this->di->get("db"));
             $orders = $order->getAllOrderByUserID($userInformation->userID);
 
+
             $orderNumbers = $this->getOrderNumbers($orders);
+
 
             if (in_array($orderID, $orderNumbers)) {
                 $product = new Product();
                 $product->setDb($this->di->get("db"));
 
+
                 $orderItem = new OrderItem();
                 $orderItem->setDb($this->di->get("db"));
 
+
                 $items = $orderItem->getAllItemsWhereID($orderID);
+
 
                 $products = [];
 
-                for ($i = 0; $i < count($items); $i++) {
-                    $productItem = $product->getProductByID($items[$i]->productID);
-
-                    $products[] = [
-                        "products" => $productItem,
-                        "order" => $items[$i]
-                    ];
+                foreach ($items as $value) {
+                    $productItem = $product->getProductByID($value->productID);
+                    $res = array_merge_recursive((array)$productItem, (array)$value);
+                    $products[] = $res;
                 }
 
-                var_dump($products);
-                die;
 
                 $data = [
+                    "userInfo" => $userInformation,
                     "orderItems" => $products,
                 ];
+
 
                 $view->add("order/order", $data);
                 $pageRender->renderPage(["title" => $title]);
