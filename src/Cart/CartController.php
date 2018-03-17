@@ -9,6 +9,7 @@ use \Anax\Di\InjectionAwareTrait;
 
 use \Course\Order\OrderItem;
 use \Course\Order\Orders;
+use \Course\Product\Product;
 use \Course\User\User;
 
 class CartController implements
@@ -76,11 +77,16 @@ class CartController implements
             $order->setCouponID(1);
             $order->save();
 
-
             $orderID = $order->getLastInsertedID();
             $session->set("orderID", $orderID);
 
             foreach ($session->get("items") as $value) {
+                $product = new Product();
+                $product->setDb($db);
+                $product->getProductByID($value['productID']);
+                $product->productAmount = ($product->productAmount - (int)$value["amount"]);
+                $product->save();
+
                 $orderItem = new OrderItem();
                 $orderItem->setDb($db);
                 $orderItem->setOrderID((int)$orderID);
@@ -97,7 +103,6 @@ class CartController implements
             "orderID" => $session->get("orderID"),
             "cartItems" => $session->get("items"),
         ];
-
 
         $session->delete("items");
         $session->delete("orderID");
