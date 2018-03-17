@@ -10,6 +10,8 @@ class Product extends ActiveRecordModel {
      */
     protected $tableName = "Product";
 
+    protected $tableIdColumn = "productID";
+
     /**
      * Columns in the table.
      *
