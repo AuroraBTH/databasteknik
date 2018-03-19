@@ -53,19 +53,65 @@ $totalShipping = 0;
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <p><b>Antal Produkter: <?= $amountOfItems ?></b></p>
-        <p><b>Total vikt: <?= round($totalWeight / 1000, 1) ?> kg</b></p>
-        <p><b>Summa: <?= $price ?> kr</b></p>
-        <p><b>Frakt: <?= $totalShipping ?> kr</b></p>
-        <p><b>Summa totalt: <?= $price + $totalShipping ?> kr</b></p>
-        <br>
-        <p>Namn: <?= $userInfo->userFirstName . " " . $userInfo->userSurName ?></p>
-        <p>Adress: <?= $userInfo->userAddress . " " . $userInfo->userPostcode . " " . $userInfo->userCity; ?></p>
-        <p>Email: <?= $userInfo->userMail ?></p>
-        <p>Telefonnummer: <?= $userInfo->userPhone ?></p>
-        <a type="button"
-           class="btn btn-lg btn-primary m-2 p-2"
-           href="<?= $ordersUrl ?>">Tillbaka till beställningar
-       </a>
+        <div class="d-flex flex-row justify-content-around">
+            <table class="table w-25 border border-top-0">
+                <thead>
+                    <tr class="text-center font-weight-bold">
+                        <th colspan="2">Beställningsinformation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Antal Produkter:</th>
+                        <td><?= $amountOfItems ?></td>
+                    </tr>
+                    <tr>
+                        <th>Total vikt:</th>
+                        <td><?= round($totalWeight / 1000, 1) ?> kg</td>
+                    </tr>
+                    <tr>
+                        <th>Summa:</th>
+                        <td><?= $price ?> kr</td>
+                    </tr>
+                    <tr>
+                        <th>Frakt:</th>
+                        <td><?= $totalShipping ?> kr</td>
+                    </tr>
+                    <tr>
+                        <th>Summa totalt:</th>
+                        <td><?= $price + $totalShipping ?> kr</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table w-50 border border-top-0">
+                <thead>
+                    <tr class="text-center font-weight-bold">
+                        <th colspan="2">Kundinformation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Namn:</th>
+                        <td><?= $userInfo->userFirstName . " " . $userInfo->userSurName ?></td>
+                    </tr>
+                    <tr>
+                        <th>Adress:</th>
+                        <td><?= $userInfo->userAddress . " " . $userInfo->userPostcode . " " . $userInfo->userCity; ?></td>
+                    </tr>
+                    <tr>
+                        <th>Email:</th>
+                        <td><?= $userInfo->userMail ?></td>
+                    </tr>
+                    <tr>
+                        <th>Telefonnummer:</th>
+                        <td><?= $userInfo->userPhone ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <a type="button" class="btn btn-block btn-light-blue w-25 mx-auto m-2 p-2 mb-4" href="<?= $ordersUrl ?>">
+            <i class="far fa-arrow-alt-circle-left fa-2x"></i>
+            <span class="align-text-bottom pl-1"> Tillbaka till beställningar</span>
+        </a>
     </div>
 </div>

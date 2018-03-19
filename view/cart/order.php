@@ -61,16 +61,62 @@ $order = url("cart/order");
             </tbody>
         </table>
         <?php if ($amountOfItems > 0) : ?>
-            <p><b>Antal Produkter: <?= $amountOfItems ?></b></p>
-            <p><b>Total vikt: <?= round($totalWeight / 1000, 1) ?> kg</b></p>
-            <p><b>Summa: <?= $price ?> kr</b></p>
-            <p><b>Frakt: <?= $totalShipping ?> kr</b></p>
-            <p><b>Summa totalt: <?= $price + $totalShipping ?> kr</b></p>
-            <br>
-            <p>Namn: <?= $userInfo->userFirstName . " " . $userInfo->userSurName ?></p>
-            <p>Adress: <?= $userInfo->userAddress . " " . $userInfo->userPostcode . " " . $userInfo->userCity; ?></p>
-            <p>Email: <?= $userInfo->userMail ?></p>
-            <p>Telefonnummer: <?= $userInfo->userPhone ?></p>
+            <div class="d-flex flex-row justify-content-around">
+                <table class="table w-25 border border-top-0">
+                    <thead>
+                        <tr class="text-center font-weight-bold">
+                            <th colspan="2">Beställningsinformation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Antal Produkter:</th>
+                            <td><?= $amountOfItems ?></td>
+                        </tr>
+                        <tr>
+                            <th>Total vikt:</th>
+                            <td><?= round($totalWeight / 1000, 1) ?> kg</td>
+                        </tr>
+                        <tr>
+                            <th>Summa:</th>
+                            <td><?= $price ?> kr</td>
+                        </tr>
+                        <tr>
+                            <th>Frakt:</th>
+                            <td><?= $totalShipping ?> kr</td>
+                        </tr>
+                        <tr>
+                            <th>Summa totalt:</th>
+                            <td><?= $price + $totalShipping ?> kr</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table w-50 border border-top-0">
+                    <thead>
+                        <tr class="text-center font-weight-bold">
+                            <th colspan="2">Kundinformation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Namn:</th>
+                            <td><?= $userInfo->userFirstName . " " . $userInfo->userSurName ?></td>
+                        </tr>
+                        <tr>
+                            <th>Adress:</th>
+                            <td><?= $userInfo->userAddress . " " . $userInfo->userPostcode . " " . $userInfo->userCity; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Email:</th>
+                            <td><?= $userInfo->userMail ?></td>
+                        </tr>
+                        <tr>
+                            <th>Telefonnummer:</th>
+                            <td><?= $userInfo->userPhone ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         <?php elseif ($amountOfItems < 1) : ?>
             <p>Din kundvagn innehåller för tillfället inga produkter.</p>
         <?php endif; ?>

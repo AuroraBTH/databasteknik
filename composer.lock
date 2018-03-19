@@ -57,16 +57,16 @@
         },
         {
             "name": "anax/configure",
-            "version": "v1.0.4",
+            "version": "v1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/canax/configure.git",
-                "reference": "81b7ebf49c13cd5d96453737acea8b3352e1a1ef"
+                "reference": "7247e1938bdf97b19090ac8024f2fd264ac8b6b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/canax/configure/zipball/81b7ebf49c13cd5d96453737acea8b3352e1a1ef",
-                "reference": "81b7ebf49c13cd5d96453737acea8b3352e1a1ef",
+                "url": "https://api.github.com/repos/canax/configure/zipball/7247e1938bdf97b19090ac8024f2fd264ac8b6b4",
+                "reference": "7247e1938bdf97b19090ac8024f2fd264ac8b6b4",
                 "shasum": ""
             },
             "require": {
@@ -99,7 +99,7 @@
                 "micro",
                 "mvc"
             ],
-            "time": "2017-09-26T17:53:23+00:00"
+            "time": "2018-03-16T14:47:26+00:00"
         },
         {
             "name": "anax/database",
@@ -399,22 +399,22 @@
         },
         {
             "name": "anax/router",
-            "version": "v1.0.15",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/canax/router.git",
-                "reference": "c7eb4e1b1ac8e88ea773c29e9ab863ebebee71dc"
+                "reference": "9291048e58baf2c4e6207eb33ddd5f1c306eb06d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/canax/router/zipball/c7eb4e1b1ac8e88ea773c29e9ab863ebebee71dc",
-                "reference": "c7eb4e1b1ac8e88ea773c29e9ab863ebebee71dc",
+                "url": "https://api.github.com/repos/canax/router/zipball/9291048e58baf2c4e6207eb33ddd5f1c306eb06d",
+                "reference": "9291048e58baf2c4e6207eb33ddd5f1c306eb06d",
                 "shasum": ""
             },
             "require": {
                 "anax/common": "1.0.*",
                 "anax/di": "1.0.*",
-                "php": ">=5.6"
+                "php": ">=7.0"
             },
             "type": "library",
             "autoload": {
@@ -443,7 +443,7 @@
                 "micro",
                 "mvc"
             ],
-            "time": "2017-09-28T19:44:36+00:00"
+            "time": "2018-03-16T14:43:54+00:00"
         },
         {
             "name": "anax/session",

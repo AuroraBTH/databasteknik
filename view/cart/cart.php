@@ -14,6 +14,7 @@ $checkout = url("cart/checkout");
 
 <div class="d-flex flex-row justify-content-center mt-4">
     <div class="w-75">
+        <h1 class="text-center">Kundvagn</h1>
         <table class="table border mb-4">
             <thead>
                 <tr>
@@ -58,8 +59,23 @@ $checkout = url("cart/checkout");
             </tbody>
         </table>
         <?php if ($amountOfItems > 0) : ?>
-            <p><b>Antal Produkter: <?= $amountOfItems ?></b></p>
-            <p><b>Summa: <?= $price ?> kr</b></p>
+            <table class="table w-25 border border-top-0">
+                <thead>
+                    <tr class="text-center font-weight-bold">
+                        <th colspan="2">Beställningsinformation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Antal Produkter:</th>
+                        <td><?= $amountOfItems ?></td>
+                    </tr>
+                    <tr>
+                        <th>Summa:</th>
+                        <td><?= $price ?> kr</td>
+                    </tr>
+                </tbody>
+            </table>
             <a href="<?= $checkout ?>"><button type="button" class="btn btn-primary w-10">Gå till kassan</button></a>
         <?php elseif ($amountOfItems < 1) : ?>
             <p>Din kundvagn innehåller för tillfället inga produkter.</p>
