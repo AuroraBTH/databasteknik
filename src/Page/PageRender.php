@@ -13,8 +13,6 @@ class PageRender implements PageRenderInterface, InjectionAwareInterface
 {
     use InjectionAwareTrait;
 
-
-
     /**
      * Render a standard web page using a specific layout.
      *
@@ -25,13 +23,17 @@ class PageRender implements PageRenderInterface, InjectionAwareInterface
      */
     public function renderPage($data = null, $status = 200)
     {
-        $data["stylesheets"] = ["css/style.css", "../vendor/twbs/bootstrap/dist/css/bootstrap.min.css"];
+        $data["stylesheets"] = [
+            "css/style.css", "../vendor/twbs/bootstrap/dist/css/bootstrap.min.css",
+            "../vendor/components/font-awesome/css/fontawesome-all.min.css"
+        ];
+
         $data["scripts"] = [
             "../vendor/twbs/bootstrap/assets/js/vendor/jquery-slim.min.js",
             "../vendor/twbs/bootstrap/assets/js/vendor/popper.min.js",
             "../vendor/twbs/bootstrap/dist/js/bootstrap.min.js",
-            "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js",
-            "https://use.fontawesome.com/releases/v5.0.8/js/all.js"
+            "../vendor/components/jquery/jquery.min.js",
+            "js/product.js"
         ];
 
         $view = $this->di->get("view");
