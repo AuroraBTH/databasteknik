@@ -8,6 +8,10 @@ use \Anax\DI\InjectionAwareInterface;
 use \Anax\Di\InjectionAwareTrait;
 use \Course\Base\Base;
 
+use \Course\Order\OrderItem;
+use \Course\Product\Product;
+use \Course\Category\Category;
+
 class BaseController implements
     ConfigureInterface,
     InjectionAwareInterface
@@ -24,8 +28,34 @@ class BaseController implements
         $title = "Frontpage";
         $view = $this->di->get("view");
         $pageRender = $this->di->get("pageRender");
+        $db = $this->di->get("db");
 
-        $view->add("base/home");
+        $orderItem = new OrderItem;
+        $orderItem->setDb($db);
+        $orderItems = $orderItem->getAllOrderItems();
+
+        $product = new Product;
+        $product->setDb($db);
+
+        $maleTop10 = [];
+        $femaleTop10 = [];
+
+        foreach ($orderItems as $item) {
+            $product->getProductByID($item->productID);
+            if ($product->productGender == 0 && count($femaleTop10) <= 10) {
+                $femaleTop10[] = (array)$product;
+            } else if ($product->productGender == 1 && count($maleTop10) <= 10) {
+                $maleTop10[] = (array)$product;
+            }
+        }
+
+        $data = [
+            "maleTop10" => $maleTop10,
+            "femaleTop10" => $femaleTop10
+        ];
+
+
+        $view->add("base/home", $data);
         $pageRender->renderPage(["title" => $title]);
     }
 
