@@ -48,3 +48,7 @@ body {
     background-color: #1985F9;
     border-color: #0062CC;
 }
+
+#addToCartComplete {
+    height: 20px;
+}
