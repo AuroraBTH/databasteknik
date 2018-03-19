@@ -49,7 +49,9 @@ class OrderItem extends ActiveRecordModel {
 
     public function getAllOrderItems()
     {
-        $sql = "select productID, sum(productAmount) as Amount from OrderItem group by productID order by sum(productAmount) desc";
+        $sql = "select productID, sum(productAmount) as Amount
+        from OrderItem group by productID
+        order by sum(productAmount) desc";
         $res = $this->findAllSql($sql);
         return $res;
     }
