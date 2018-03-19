@@ -36,6 +36,9 @@ $counter = 0;
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <a type="button" class="btn btn-lg btn-primary m-2 p-2" href="<?= $profileUrl ?>">Tillbaka till profil</a>
+        <a type="button" class="btn btn-block btn-light-blue w-25 mx-auto m-2 p-2 mb-4" href="<?= $profileUrl ?>">
+            <i class="far fa-arrow-alt-circle-left fa-2x"></i>
+            <span class="align-text-bottom pl-1"> Tillbaka till profil</span>
+        </a>
     </div>
 </div>
