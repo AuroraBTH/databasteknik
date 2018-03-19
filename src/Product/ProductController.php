@@ -35,7 +35,7 @@ class ProductController implements
 
 
 
-    public function getAllProductsFromCategory($categoryID)
+    public function getAllProductsFromCategory($categoryID, $genderID)
     {
         $title = "Produkter";
         $view = $this->di->get("view");
@@ -49,7 +49,7 @@ class ProductController implements
         $productCategory = $category->getSpecificCategory($categoryID);
 
         $data = [
-            "products" => $products->getProducts("productCategoryID", $categoryID),
+            "products" => $products->getProductsByGender("productCategoryID", $categoryID, $genderID),
             "categoryParent" => $productCategory
         ];
 
