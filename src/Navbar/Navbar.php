@@ -58,7 +58,7 @@ class Navbar implements InjectionAwareInterface
         }
 
         $cartUrl = $this->di->url->create("cart");
-        $route .= "<li class='nav-item'><a class='nav-link' href='$cartUrl'>
+        $route .= "<li class='nav-item' id='cart'><a class='nav-link' href='$cartUrl'>
         <i class='fas fa-shopping-cart'></i> Kundvagn ($counter)</a></li>";
 
         return $route;
