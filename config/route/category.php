@@ -19,7 +19,7 @@ return [
         [
             "info" => "Specific subcategory",
             "requestMethod" => "GET",
-            "path" => "category/{id:digit}/{id:digit}",
+            "path" => "category/{id:digit}/{id:digit}/{gender:digit}",
             "callable" => ["categoryController", "getSpecificSubCategory"]
         ]
     ]
