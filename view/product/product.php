@@ -4,48 +4,8 @@ namespace Anax\View;
 $loggedIn = $this->di->get("session")->has("email");
 ?>
 
-<script>
-    generateURL = () => {
-        let url = window.location.protocol + "//" + window.location.host;
-        let pathArray = window.location.pathname.split( '/' );
-        let newPathname = "";
-            for (i = 0; i < pathArray.length - 2; i++) {
-              newPathname += pathArray[i];
-              newPathname += "/";
-        }
-        let newURL = url + newPathname;
-
-        return newURL;
-    }
-
-    addToCart = () => {
-        let url = generateURL();
-        $.ajax({
-            type: 'POST',
-            url: url + "ajax",
-            dataType: 'text',
-            data: {data: <?php echo(json_encode($data[0])); ?>},
-            success: function() {
-                document.getElementById("addToCartComplete").innerHTML = "Produkten finns nu i din kundvagn";
-                setTimeout(function(){
-                    location.reload();
-                }, 1000);
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
-                alert("Status: " + textStatus); alert("Error: " + errorThrown);
-            }
-        });
-    }
-
-    redirectToLogin = () => {
-        let url = generateURL();
-        window.location.replace(url + "user/login");
-    }
-
-
-    previousLocation = () => {
-        window.history.back();
-    }
+<script type="text/javascript">
+    let data = <?php echo(json_encode($data[0])); ?>;
 </script>
 
 <div class="d-flex flex-row justify-content-center p-2">
@@ -73,12 +33,11 @@ $loggedIn = $this->di->get("session")->has("email");
                         <h3>Pris:</h3>
                         <p class="font-weight-bold"><?= ($data[0]->productSellPrize); ?> kr</p>
                         <?= $loggedIn === true ?
-                        '<button type="button" onclick="addToCart();"
+                        '<button type="button" onclick="addToCart(data);"
                         class="btn btn-primary w-50">Lägg i kundvagn</button>'
                         :' <button type="button" onclick="redirectToLogin();"
                         class="btn btn-primary w-50">Logga in</button>'
                         ?>
-
                         <p id="addToCartComplete"></p>
                     </div>
                 </div>
