@@ -354,6 +354,21 @@ class ActiveRecordModel
 
 
 
+    /**
+    * Execute rawsql
+    *
+    * @return array
+    */
+    public function findAllSql($sql, $params = [])
+    {
+        $this->checkDb();
+        return $this->db->connect()
+                        ->execute($sql, $params)
+                        ->fetchAllClass(get_class($this));
+    }
+
+
+
     public function lastInsertId()
     {
         return $this->db->lastInsertId();
