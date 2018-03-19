@@ -39,6 +39,7 @@ class Product extends ActiveRecordModel {
     public $productColor;
     public $productAmount;
     public $productCategoryID;
+    public $productGender;
 
     /**
      * Get product by key.
@@ -52,6 +53,22 @@ class Product extends ActiveRecordModel {
     {
         $query = $key . " = ?";
         return $this->findAllWhere($query, $value);
+    }
+
+
+
+    /**
+     * Get product by key.
+     *
+     * @param mixed $key to use in where statement.
+     * @param mixed $value to use in where statement.
+     *
+     * @return array with product(s) from database.
+     */
+    public function getProductsByGender($key, $value, $gender)
+    {
+        $query = $key . " = ? and productGender = ?";
+        return $this->findAllWhere($query, [$value, $gender]);
     }
 
 

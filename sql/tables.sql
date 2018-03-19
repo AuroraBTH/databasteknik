@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS Product (
     `productColor` VARCHAR(20) NOT NULL,
     `productAmount` INTEGER,
     `productCategoryID` INTEGER,
+	`productGender`   INTEGER NOT NULL,
 	FOREIGN KEY (`productCategoryID`) REFERENCES Category(`categoryID`)
 ) ENGINE INNODB CHARACTER SET utf8 COLLATE utf8_swedish_ci;
 

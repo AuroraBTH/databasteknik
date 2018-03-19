@@ -13,7 +13,7 @@ return [
         [
             "info" => "Products",
             "requestMethod" => "GET",
-            "path" => "products/{id:digit}",
+            "path" => "products/{id:digit}/{gender:digit}",
             "callable" => ["productController", "getAllProductsFromCategory"]
         ]
     ]
