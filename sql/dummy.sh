@@ -8,7 +8,7 @@ dummyCategoryName=('' '' '' '' '' '' '' '' '' '' '' '' 'Shorts' 'Jeans' 'Tränin
 dummyManufacturer=('HM' 'Cubus' 'GANT' 'Jack&Jones' 'Levi' 'Adrian Hammond')
 dummytOriginCountry=('Sverige' 'Danmark' 'Finland' 'Norge' 'Tyskland' 'Nya Zeeland')
 dummyColor=('Rosa' 'Lila' 'Grön' 'Blå' 'Gul' 'Ljusblå' 'Vit' 'Svart')
-dummyComplete=('INSERT INTO Product(`productManufacturer`, `productName`, `productOriginCountry`, `productWeight`, `productSize`, `productSellPrize`, `productBuyPrize`, `productColor`, `productAmount`, `productCategoryID`) VALUES ')
+dummyComplete=('INSERT INTO Product(`productManufacturer`, `productName`, `productOriginCountry`, `productWeight`, `productSize`, `productSellPrize`, `productBuyPrize`, `productColor`, `productAmount`, `productCategoryID`, `productGender`) VALUES ')
 
 
 for _ in $(seq 1 ${amount});
@@ -22,7 +22,7 @@ do
     RANDOMSELLPRIZE=$(( ( RANDOM % 2000 ) + $RANDOMBUYPRIZE ))
     RANDOMCOLOR=$(( ( RANDOM % 8 ) ))
     RANDOMAMOUNT=$(( ( RANDOM % 200 ) + 1 ))
-
+    RANDOMGENDER=$(( RANDOM % 2))
     dummyComplete+=("
     ("\"${dummyManufacturer[RANDOMMANUFACTURER]}"\",
     "\"${dummyManufacturer[RANDOMMANUFACTURER]} ${dummyColor[RANDOMCOLOR]} ${dummyCategoryName[RANDOMCATEGORY]}"\",
@@ -33,7 +33,8 @@ do
     ${RANDOMBUYPRIZE},
     "\"${dummyColor[RANDOMCOLOR]}"\",
     ${RANDOMAMOUNT},
-    ${RANDOMCATEGORY}),
+    ${RANDOMCATEGORY},
+    ${RANDOMGENDER}),
     ")
     #echo The counter is $COUNTERALL
     #let COUNTERALL=COUNTERALL+1
