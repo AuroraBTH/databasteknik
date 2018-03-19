@@ -9,7 +9,7 @@ $genderCounter = 0;
 
 <div class="d-flex flex-row justify-content-center mt-4">
     <div class="w-75">
-        <?php foreach($data as $top10) : ?>
+        <?php foreach ($data as $top10) : ?>
             <?= $genderCounter == 0 ? '<h1>Top 10 Dam</h1>' : '<h1>Top 10 Herr</h1>' ?>
             <table class="table border mb-4">
                 <thead>
