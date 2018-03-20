@@ -17,6 +17,10 @@ return [
         ],
         [
             "mount" => null,
+            "file" => __DIR__ . "/route/search.php",
+        ],
+        [
+            "mount" => null,
             "file" => __DIR__ . "/route/order.php",
         ],
         [
