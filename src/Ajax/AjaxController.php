@@ -45,4 +45,27 @@ class AjaxController implements
         }
         return "success";
     }
+
+
+
+    public function removeFromCart()
+    {
+        if (isset($_POST["data"])) {
+            $data = $_POST["data"];
+
+            $getItems = $this->di->get("session")->get("items");
+
+            foreach ($getItems as $key => $value) {
+                if ($value["productID"] == $data) {
+                    unset($getItems[$key]);
+                    $getItems = $this->di->get("session")->set("items", $getItems);
+                    return "success";
+                }
+            }
+        }
+        $response = $this->di->get("response");
+        $url = $this->di->get("url");
+        $frontpage = $url->create("");
+        $response->redirect($frontpage);
+    }
 }
