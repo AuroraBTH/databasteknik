@@ -57,6 +57,8 @@ class Navbar implements InjectionAwareInterface
             $route = "<li class='nav-item'><a class='nav-link' href='$loginUrl'>Logga in</a></li>";
         }
 
+        $searchUrl = $this->di->url->create("search");
+        $route .= "<li class='nav-item'><form class='nav-link' action='$searchUrl' method='post'><input type='text' name='search' placeholder='Sök'></form></li>";
         $cartUrl = $this->di->url->create("cart");
         $route .= "<li class='nav-item' id='cart'><a class='nav-link' href='$cartUrl'>
         <i class='fas fa-shopping-cart'></i> Kundvagn ($counter)</a></li>";
@@ -64,3 +66,4 @@ class Navbar implements InjectionAwareInterface
         return $route;
     }
 }
+?>
