@@ -146,7 +146,7 @@ return [
             }
         ],
         "ajaxController" => [
-            "shared" => false,
+            "shared" => true,
             "callback" => function () {
                 $obj = new \Course\Ajax\AjaxController();
                 $obj->setDI($this);
@@ -154,7 +154,7 @@ return [
             }
         ],
         "cartController" => [
-            "shared" => false,
+            "shared" => true,
             "callback" => function () {
                 $obj = new \Course\Cart\CartController();
                 $obj->setDI($this);
@@ -162,7 +162,7 @@ return [
             }
         ],
         "orderController" => [
-            "shared" => false,
+            "shared" => true,
             "callback" => function () {
                 $obj = new \Course\Order\OrderController();
                 $obj->setDI($this);
@@ -170,7 +170,7 @@ return [
             }
         ],
         "searchController" => [
-            "shared" => false,
+            "shared" => true,
             "callback" => function () {
                 $obj = new \Course\Search\SearchController();
                 $obj->setDI($this);
