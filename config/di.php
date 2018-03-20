@@ -169,6 +169,14 @@ return [
                 return $obj;
             }
         ],
+        "searchController" => [
+            "shared" => false,
+            "callback" => function () {
+                $obj = new \Course\Search\SearchController();
+                $obj->setDI($this);
+                return $obj;
+            }
+        ],
         "navbar" => [
             "shared" => true,
             "callback" => function () {
