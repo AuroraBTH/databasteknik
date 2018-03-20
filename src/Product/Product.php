@@ -77,4 +77,13 @@ class Product extends ActiveRecordModel {
         $res = $this->find("productID", $productID);
         return $res;
     }
+
+
+
+    public function searchProducts($searchString) {
+        $param = "[[:<:]]{$searchString}[[:>:]]";
+        $sql = "SELECT * FROM Product WHERE productName REGEXP ?";
+        $res = $this->findAllSql($sql, [$param]);
+        return $res;
+    }
 }
