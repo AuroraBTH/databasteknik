@@ -10,5 +10,11 @@ return [
             "path" => "ajax",
             "callable" => ["ajaxController", "addToCart"],
         ],
+        [
+            "info" => "Ta bort från kundvagnen",
+            "requestMethod" => "GET|POST",
+            "path" => "ajax/remove",
+            "callable" => ["ajaxController", "removeFromCart"]
+        ],
     ]
 ];

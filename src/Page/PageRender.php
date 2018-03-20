@@ -33,7 +33,8 @@ class PageRender implements PageRenderInterface, InjectionAwareInterface
             "../vendor/twbs/bootstrap/assets/js/vendor/popper.min.js",
             "../vendor/twbs/bootstrap/dist/js/bootstrap.min.js",
             "../vendor/components/jquery/jquery.min.js",
-            "js/product.js"
+            "js/product.js",
+            "js/cart.js"
         ];
 
         $view = $this->di->get("view");

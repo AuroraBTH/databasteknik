@@ -35,8 +35,3 @@ redirectToLogin = () => {
     let url = generateURL();
     window.location.replace(url + "user/login");
 }
-
-
-previousLocation = () => {
-    window.history.back();
-}
