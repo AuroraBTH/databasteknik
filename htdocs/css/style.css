@@ -1,18 +1,18 @@
 html, body {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .main-wrap {
-  flex: 1 0 auto;
+    flex: 1 0 auto;
 }
 
 .footer {
-  flex-shrink: 0;
+    flex-shrink: 0;
 }
 
 /* Centers login form on /user/login */
@@ -38,9 +38,9 @@ body {
 }
 
 .btn-light-blue {
-  background: #3DA2E9;
-  color: #FFF;
-  border-color: #007BFF;
+    background: #3DA2E9;
+    color: #FFF;
+    border-color: #007BFF;
 }
 
 .btn-light-blue:hover {
@@ -51,4 +51,20 @@ body {
 
 #addToCartComplete {
     height: 20px;
+}
+
+.removeFromCart {
+    color: red;
+}
+
+.removeButton {
+    background: none;
+    color: red;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.removeButton:hover {
+    color: #007BFF;
 }
