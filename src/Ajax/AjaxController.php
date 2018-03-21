@@ -68,4 +68,12 @@ class AjaxController implements
         $frontpage = $url->create("");
         $response->redirect($frontpage);
     }
+
+
+
+    public function removeAllFromCart()
+    {
+        $this->di->get("session")->delete("items");
+        return "success";
+    }
 }

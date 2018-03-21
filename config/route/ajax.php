@@ -12,9 +12,15 @@ return [
         ],
         [
             "info" => "Ta bort från kundvagnen",
-            "requestMethod" => "GET|POST",
+            "requestMethod" => "POST",
             "path" => "ajax/remove",
             "callable" => ["ajaxController", "removeFromCart"]
+        ],
+        [
+            "info" => "Ta bort allt från kundvagnen",
+            "requestMethod" => "POST",
+            "path" => "ajax/removeall",
+            "callable" => ["ajaxController", "removeAllFromCart"]
         ],
     ]
 ];
