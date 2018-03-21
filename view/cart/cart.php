@@ -62,6 +62,7 @@ $checkout = url("cart/checkout");
                 </tbody>
             </table>
             <?php if ($amountOfItems > 0) : ?>
+                <button class="btn btn-primary w-10 mb-4" onclick=removeAllFromCart() type="button" name="button">Töm kundvagn</button>
                 <table class="table w-25 border border-top-0">
                     <thead>
                         <tr class="text-center font-weight-bold">
