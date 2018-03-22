@@ -54,8 +54,13 @@ class BaseController implements
             "femaleTop10" => $femaleTop10
         ];
 
+        $under500 = [
+            "productsUnder500Female" => $product->getProductsUnder500(0, 10),
+            "productsUnder500Male" => $product->getProductsUnder500(1, 10),
+        ];
 
-        $view->add("base/home", $data);
+
+        $view->add("base/home", [$data, $under500]);
         $pageRender->renderPage(["title" => $title]);
     }
 
