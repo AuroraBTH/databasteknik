@@ -3,7 +3,6 @@ namespace Anax\View;
 
 
 $url = url("product");
-$products = url("products");
 $counter = 0;
 $genderCounter = 0;
 ?>
