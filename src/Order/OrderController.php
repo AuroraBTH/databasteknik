@@ -8,7 +8,7 @@ use \Anax\DI\InjectionAwareInterface;
 use \Anax\Di\InjectionAwareTrait;
 
 use \Course\Order\Orders;
-use \Course\Order\OrderItems;
+use \Course\Order\OrderItem;
 
 use \Course\User\User;
 
