@@ -79,6 +79,18 @@ class Product extends ActiveRecordModel {
     }
 
 
+    public function getProductsUnder500($gender, $limit) {
+        if ($limit === null) {
+            $sql = "SELECT * FROM Product WHERE productSellPrize <= 500 and productGender = ?";
+            $res = $this->findAllSql($sql, [$gender]);
+        } elseif ($limit !== null) {
+            $sql = "SELECT * FROM Product WHERE productSellPrize <= 500 and productGender = ? LIMIT ?";
+            $res = $this->findAllSql($sql, [$gender, $limit]);
+        }
+        return $res;
+    }
+
+
 
     public function searchProducts($searchString) {
         $param = "[[:<:]]{$searchString}[[:>:]]";

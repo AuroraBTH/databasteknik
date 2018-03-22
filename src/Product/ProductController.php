@@ -56,4 +56,24 @@ class ProductController implements
         $view->add("product/products", $data);
         $pageRender->renderPage(["title" => $title]);
     }
+
+
+
+    public function getAllProductsUnder500()
+    {
+        $title = "Produkter under 500kr";
+        $view = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+
+        $products = new Product();
+        $products->setDb($this->di->get("db"));
+
+        $data = [
+            "under500Female" => $products->getProductsUnder500(0, null),
+            "under500Male" => $products->getProductsUnder500(1, null)
+        ];
+
+        $view->add("product/under500", $data);
+        $pageRender->renderPage(["title" => $title]);
+    }
 }
