@@ -34,13 +34,13 @@ class CookieController
 
     /**
      * Retrieve a cookie
-     * @param $key string The key to get from $_COOKIE
-     * @param $default optional The return value if not found
+     * @param string $key The key to get from $_COOKIE
+     * @param boolean $default The return value if not found
      * @return string The cookie if present, else $default
      */
     public function get($key, $default = false)
     {
-        return (self::has($key)) ? $_COOKIE[$key] : $default;
+        return ($this->has($key)) ? $_COOKIE[$key] : $default;
     }
 
 
@@ -51,7 +51,7 @@ class CookieController
      */
     public function dump()
     {
-        var_dump($_COOKIE);
+        print_r($_COOKIE);
     }
 
     /**
@@ -61,7 +61,7 @@ class CookieController
      */
     public function delete($key)
     {
-        if (self::has($key)) {
+        if ($this->has($key)) {
             unset($_COOKIE[$key]);
         }
     }

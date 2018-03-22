@@ -64,7 +64,7 @@ class Category extends ActiveRecordModel
     /**
     * Get all categories from database.
     *
-    *@return \Anax\Database\ActiveRecordModel
+    * @return array $categories list of categories.
     */
     public function getAllCategories()
     {

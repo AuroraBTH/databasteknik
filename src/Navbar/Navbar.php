@@ -69,4 +69,3 @@ class Navbar implements InjectionAwareInterface
         return $route;
     }
 }
-?>

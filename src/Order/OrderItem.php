@@ -10,8 +10,6 @@ class OrderItem extends ActiveRecordModel {
      */
     protected $tableName = "OrderItem";
 
-    // protected $tableIdColumn = "orderID";
-
     /**
      * Columns in the table.
      *
