@@ -12,7 +12,7 @@ $loggedIn = $this->di->get("session")->has("email");
     <div class="home w-75">
         <div class="d-flex flex-row space-around">
             <div class="p-2 w-50">
-                <img class="img-fluid border" src="https://goo.gl/nVA65Q"></div>
+                <img class="img-fluid border" src="../img/shirt.png"></div>
             <div class="p-2 w-50 align-content-center">
                 <div class="d-flex flex-column justify-content-between h-100 bg-light border h-25 mh-10">
                     <div class="p-3 mb-2 bg-light border text-center border-right-0 border-left-0 border-top-0">
