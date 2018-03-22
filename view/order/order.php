@@ -109,7 +109,7 @@ $totalShipping = 0;
                 </tbody>
             </table>
         </div>
-        <a type="button" class="btn btn-block btn-light-blue w-25 mx-auto m-2 p-2 mb-4" href="<?= $ordersUrl ?>">
+        <a class="btn btn-block btn-light-blue w-25 mx-auto m-2 p-2 mb-4" href="<?= $ordersUrl ?>">
             <i class="far fa-arrow-alt-circle-left fa-2x"></i>
             <span class="align-text-bottom pl-1"> Tillbaka till beställningar</span>
         </a>

@@ -10,7 +10,7 @@ $parentUrl = url("category/$parentID");
 
 <div class="d-flex flex-row justify-content-center mt-4">
     <div class="w-75">
-        <a type="button" class="btn btn-block btn-light-blue w-25 mx-auto pt-2 pb-2 mb-4" href="<?= $parentUrl ?>"><i class="far fa-arrow-alt-circle-left fa-2x"></i> <span class="align-text-bottom pl-1">Tillbaka</span></a>
+        <a class="btn btn-block btn-light-blue w-25 mx-auto pt-2 pb-2 mb-4" href="<?= $parentUrl ?>"><i class="far fa-arrow-alt-circle-left fa-2x"></i> <span class="align-text-bottom pl-1">Tillbaka</span></a>
         <table class="table border mb-4">
             <thead>
                 <tr>
@@ -47,6 +47,6 @@ $parentUrl = url("category/$parentID");
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <a type="button" class="btn btn-block btn-light-blue w-25 mx-auto pt-2 pb-2 mb-4" href="<?= $parentUrl ?>"><i class="far fa-arrow-alt-circle-left fa-2x"></i> <span class="align-text-bottom pl-1">Tillbaka</span></a>
+        <a class="btn btn-block btn-light-blue w-25 mx-auto pt-2 pb-2 mb-4" href="<?= $parentUrl ?>"><i class="far fa-arrow-alt-circle-left fa-2x"></i> <span class="align-text-bottom pl-1">Tillbaka</span></a>
     </div>
 </div>

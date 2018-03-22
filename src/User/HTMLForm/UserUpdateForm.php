@@ -190,7 +190,7 @@ class UserUpdateForm extends FormModel
      * @method back
      * @return boolean true when redirected.
      */
-    public function back()
+    public function backToProfile()
     {
         #Create url and redirect to user profile.
         $url = $this->di->get("url")->create("user/profile");

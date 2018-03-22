@@ -28,12 +28,12 @@ body {
 
 /* Centers login form on /user/create */
 
-.create .main-wrap {
+.create .main-wrap, .edit .main-wrap {
     display: flex;
     justify-content: center;
 }
 
-.create fieldset {
+.create, .edit fieldset {
     width: 100%;
 }
 
