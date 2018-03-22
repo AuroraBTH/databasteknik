@@ -24,8 +24,7 @@ class AjaxController implements
 
             foreach ($getItems as $key => $value) {
                 if ($data['productID'] === $value['productID']) {
-                    $test = $value["amount"] + 1;
-                    $getItems[$key]['amount'] = $test;
+                    $getItems[$key]['amount'] = $value["amount"] + 1;
                     $exists = true;
                 }
             }
@@ -58,7 +57,7 @@ class AjaxController implements
             foreach ($getItems as $key => $value) {
                 if ($value["productID"] == $data) {
                     unset($getItems[$key]);
-                    $getItems = $this->di->get("session")->set("items", $getItems);
+                    $this->di->get("session")->set("items", $getItems);
                     return "success";
                 }
             }
