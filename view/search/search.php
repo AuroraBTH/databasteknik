@@ -4,8 +4,6 @@ namespace Anax\View;
 
 $url = url("product");
 $counter = 0;
-// $parentID = $data['categoryParent'][0]->parentID;
-// $parentUrl = url("category/$parentID");
 ?>
 
 <div class="d-flex flex-row justify-content-center mt-4">
