@@ -16,7 +16,7 @@ $backUrl = url("category");
         <div class="row text-center mr-0 ml-0">
             <?php foreach ($data["categories"] as $category) : ?>
                 <div class="w-50 mt-3 mb-3 col-md-<?php echo $bootstrapColWidth; ?>">
-                    <a type="button" class="mx-auto w-75 btn btn-lg btn-primary pt-4 pb-4 btn-block"
+                    <a class="mx-auto w-75 btn btn-lg btn-primary pt-4 pb-4 btn-block"
                     href="<?= $productUrl ?>/<?= $category->categoryID ?>/<?= $data["title"][0]->gender ?>">
                     <?= $category->categoryName; ?></a>
                 </div>
@@ -24,7 +24,7 @@ $backUrl = url("category");
         </div>
     </div>
 </div>
-<a type="button" class="btn btn-block btn-light-blue w-25 mx-auto pt-4 pb-4" href="<?= $backUrl ?>">
+<a class="btn btn-block btn-light-blue w-25 mx-auto pt-4 pb-4" href="<?= $backUrl ?>">
     <i class="far fa-arrow-alt-circle-left fa-2x"></i>
     <span class="align-text-bottom pl-1">Tillbaka</span>
 </a>

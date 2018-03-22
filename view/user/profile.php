@@ -36,8 +36,8 @@ $address = $data["content"]->userAddress . " " . $data["content"]->userPostcode 
                 <td><?= $data["content"]->userGender == 0 ? 'Kvinna' : 'Man' ?></td>
             </tr>
         </table>
-        <a type="button" class="btn btn-lg btn-primary m-2 p-2" href="<?= $orders ?>">Se ordrar</a>
-        <a type="button" class="btn btn-lg btn-primary m-2 p-2" href="<?= $edit ?>">Redigera profil</a>
-        <a type="button" class="btn btn-lg btn-primary m-2 p-2" href="<?= $logout ?>">Logga ut</a>
+        <a class="btn btn-lg btn-primary m-2 p-2" href="<?= $orders ?>">Se ordrar</a>
+        <a class="btn btn-lg btn-primary m-2 p-2" href="<?= $edit ?>">Redigera profil</a>
+        <a class="btn btn-lg btn-primary m-2 p-2" href="<?= $logout ?>">Logga ut</a>
     </div>
 </div>
