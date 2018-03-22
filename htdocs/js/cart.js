@@ -7,6 +7,7 @@ removeFromCart = (productID) => {
         data: {data: productID},
         success: function() {
             $("#cartView").load(location.href + " #cartView");
+            $("#cart").load(location.href + " #cart");
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             alert("Status: " + textStatus); alert("Error: " + errorThrown);
@@ -25,6 +26,7 @@ removeAllFromCart = () => {
         data: {data: "remove"},
         success: function() {
             $("#cartView").load(location.href + " #cartView");
+            $("#cart").load(location.href + " #cart");
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             alert("Status: " + textStatus); alert("Error: " + errorThrown);
