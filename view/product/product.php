@@ -22,22 +22,27 @@ $loggedIn = $this->di->get("session")->has("email");
                         <h3>Webblager:</h3>
                         <p>
                             <?php
-                            if ($data[0]->productAmount == 0) {
+                            if ($data[0]->productAmount <= 0) {
                                 echo("Ej i lager");
-                            } else if ($data[0]->productAmount > 0)
+                            }  else if ($data[0]->productAmount < 5) {
+                                echo("Endast ett fåtal kvar i lager");
+                            } elseif ($data[0]->productAmount > 5) {
                                 echo("I lager: ".$data[0]->productAmount);
+                            }
                             ?>
                         </p>
                     </div>
                     <div class="pt-4 p-3 bg-light border text-center border-right-0 border-left-0 border-bottom-0 h-50">
                         <h3>Pris:</h3>
                         <p class="font-weight-bold"><?= ($data[0]->productSellPrize); ?> kr</p>
-                        <?= $loggedIn === true ?
-                        '<button type="button" onclick="addToCart(data);"
-                        class="btn btn-primary w-50">Lägg i kundvagn</button>'
-                        :' <button type="button" onclick="redirectToLogin();"
-                        class="btn btn-primary w-50">Logga in</button>'
-                        ?>
+                        <?php if ($data[0]->productAmount > 0) : ?>
+                            <?= $loggedIn === true ?
+                            '<button type="button" onclick="addToCart(data);"
+                            class="btn btn-primary w-50">Lägg i kundvagn</button>'
+                            :' <button type="button" onclick="redirectToLogin();"
+                            class="btn btn-primary w-50">Logga in</button>'
+                            ?>
+                        <?php endif; ?>
                         <p id="addToCartComplete"></p>
                     </div>
                 </div>
