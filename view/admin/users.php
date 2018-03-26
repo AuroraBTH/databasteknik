@@ -9,7 +9,9 @@ $admin = url("admin");
 
 <div class="d-flex flex-row justify-content-center mt-4">
     <div class="w-75">
-        <a class="btn btn-block btn-light-blue w-25 mx-auto pt-2 pb-2 mb-4" href="<?= $admin ?>"><i class="far fa-arrow-alt-circle-left fa-2x"></i> <span class="align-text-bottom pl-1">Tillbaka</span></a>
+        <a class="btn btn-block btn-light-blue w-25 mx-auto pt-2 pb-2 mb-4"
+        href="<?= $admin ?>"><i class="far fa-arrow-alt-circle-left fa-2x"></i>
+        <span class="align-text-bottom pl-1">Tillbaka</span></a>
         <table class="table border mb-4">
             <thead>
                 <tr>
@@ -27,7 +29,7 @@ $admin = url("admin");
                             <td><?= $user->userMail ?></td>
                             <td><?= $user->userPhone ?></td>
                             <td><?= $user->userGender == 0 ? "Kvinna" : "Herr" ?></td>
-                            <?php switch($user->userRole): case 0: ?>
+                            <?php switch ($user->userRole): case 0: ?>
                                 <td>Kund</td>
                             <?php break; case 1: ?>
                                 <td>Admin</td>
@@ -39,6 +41,8 @@ $admin = url("admin");
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <a class="btn btn-block btn-light-blue w-25 mx-auto pt-2 pb-2 mb-4" href="<?= $admin ?>"><i class="far fa-arrow-alt-circle-left fa-2x"></i> <span class="align-text-bottom pl-1">Tillbaka</span></a>
+        <a class="btn btn-block btn-light-blue w-25 mx-auto pt-2 pb-2 mb-4"
+        href="<?= $admin ?>"><i class="far fa-arrow-alt-circle-left fa-2x"></i>
+        <span class="align-text-bottom pl-1">Tillbaka</span></a>
     </div>
 </div>

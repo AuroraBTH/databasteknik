@@ -66,7 +66,7 @@ $genderCounter = 0;
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($under500 as $item): ?>
+                            <?php foreach ($under500 as $item) : ?>
                                 <tr <?= ($counter % 2) == 0 ? 'class="bg-light"' : "" ?>>
                                     <td><?= $item->productManufacturer ?></td>
                                     <td><?= $item->productName ?></td>
