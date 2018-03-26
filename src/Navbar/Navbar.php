@@ -68,7 +68,8 @@ class Navbar implements InjectionAwareInterface
 
 
         if ($session->has("email")) {
-            if ($user->getPermission($session->get("email")) == 1 || $user->getPermission($session->get("email")) == 2) {
+            if ($user->getPermission($session->get("email")) == 1 ||
+            $user->getPermission($session->get("email")) == 2) {
                 $adminUrl = $this->di->url->create("admin");
                 $route .= "<li class='nav-item'><a class='nav-link' href='$adminUrl'>Admin</a></li>";
             }

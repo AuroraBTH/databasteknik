@@ -22,7 +22,9 @@ $counter = 0;
                     <tr <?= ($counter % 2) == 0 ? 'class="bg-light"' : "" ?>>
                             <td><?= $item->orderID ?></td>
                             <td><?= $item->purchaseTime ?></td>
-                            <th scope="row"><a href="<?= $adminURL ?>/order/<?= $item->orderID ?>">Mer information</a></th>
+                            <th scope="row">
+                                <a href="<?= $adminURL ?>/order/<?= $item->orderID ?>">Mer information</a>
+                            </th>
                         </tr>
                     <?php $counter++ ?>
                 <?php endforeach; ?>

@@ -33,7 +33,9 @@ $genderCounter = 0;
                                     <td><?= $item['productSize'] ?></td>
                                     <td><?= $item['productSellPrize'] ?></td>
                                     <td><?= $item['productColor'] ?></td>
-                                    <th scope="row"><a href="<?= $url ?>/<?= $item['productID'] ?>">Mer information</a></th>
+                                    <th scope="row">
+                                        <a href="<?= $url ?>/<?= $item['productID'] ?>">Mer information</a>
+                                    </th>
                                 </tr>
                                 <?php $counter++ ?>
                             <?php endforeach; ?>
@@ -48,7 +50,10 @@ $genderCounter = 0;
             <?php $genderCounter = 0; $counter = 0; ?>
             <?php foreach ($data[1] as $under500) : ?>
                 <div class="mx-4 w-50">
-                    <?= $genderCounter == 1 ? '<h1>Produkter under 500kr Dam</h1>' : '<h1>Produkter under 500kr Herr</h1>' ?>
+                    <?= $genderCounter == 1 ?
+                        '<h1>Produkter under 500kr Dam</h1>' :
+                        '<h1>Produkter under 500kr Herr</h1>'
+                    ?>
                     <table class="table border mb-4">
                         <thead>
                             <tr>
@@ -68,13 +73,16 @@ $genderCounter = 0;
                                     <td><?= $item->productSize ?></td>
                                     <td><?= $item->productSellPrize ?></td>
                                     <td><?= $item->productColor ?></td>
-                                    <th scope="row"><a href="<?= $url ?>/<?= $item->productID ?>">Mer information</a></th>
+                                    <th scope="row">
+                                        <a href="<?= $url ?>/<?= $item->productID ?>">Mer information</a>
+                                    </th>
                                 </tr>
                             <?php $counter++ ?>
                         <?php endforeach; ?>
                         </tbody>
                     </table>
-                    <a class="btn btn-block btn-primary w-50 mx-auto m-2 p-2 mb-4" href="<?= $products ?>/under500">Fler produkter</a>
+                    <a class="btn btn-block btn-primary w-50 mx-auto m-2 p-2 mb-4"
+                    href="<?= $products ?>/under500">Fler produkter</a>
                 </div>
                 <?php $genderCounter++ ?>
             <?php endforeach; ?>
