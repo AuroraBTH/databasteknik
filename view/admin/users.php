@@ -29,11 +29,12 @@ $admin = url("admin");
                             <td><?= $user->userMail ?></td>
                             <td><?= $user->userPhone ?></td>
                             <td><?= $user->userGender == 0 ? "Kvinna" : "Herr" ?></td>
-                            <?php switch ($user->userRole) : case 0 : ?>
+                            <?php switch($user->userRole):
+                                case 0: ?>
                                 <td>Kund</td>
-                            <?php break; case 1 : ?>
+                            <?php break; case 1: ?>
                                 <td>Admin</td>
-                            <?php break; case 2 : ?>
+                            <?php break; case 2: ?>
                                 <td>Företag</td>
                             <?php break; endswitch; ?>
                         </tr>
