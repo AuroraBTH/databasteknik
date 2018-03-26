@@ -29,8 +29,7 @@ $order = url("cart/order");
             </thead>
             <tbody>
                 <?php foreach ((array)$cartItems as $key => $value) : ?>
-                    <?php if ($counter % 2) : ?>
-                        <tr class="bg-light">
+                    <tr <?= ($counter % 2) == 0 ? 'class="bg-light"' : "" ?>>
                             <td><?= $value["productManufacturer"] ?></td>
                             <td><?= $value["productName"] ?></td>
                             <td><?= $value["productSize"] ?></td>
@@ -39,17 +38,6 @@ $order = url("cart/order");
                             <td><?= $value['amount'] ?></td>
                             <th scope="row"><a href="<?= $url ?>/<?= $value['productID'] ?>">Mer information</a></th>
                         </tr>
-                    <?php else : ?>
-                        <tr>
-                            <td><?= $value["productManufacturer"] ?></td>
-                            <td><?= $value["productName"] ?></td>
-                            <td><?= $value["productSize"] ?></td>
-                            <td><?= $value["productSellPrize"] ?></td>
-                            <td><?= $value["productColor"] ?></td>
-                            <td><?= $value['amount'] ?></td>
-                            <th scope="row"><a href="<?= $url ?>/<?= $value['productID'] ?>">Mer information</a></th>
-                        </tr>
-                    <?php endif; ?>
                     <?php
                     $price += ((int)$value['productSellPrize'] * (int)$value['amount']);
                     $totalWeight += (int)$value['productWeight'] * (int)$value['amount'];

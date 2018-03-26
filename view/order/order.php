@@ -26,23 +26,13 @@ $totalShipping = 0;
             </thead>
             <tbody>
                 <?php foreach ($data['orderItems'] as $item) : ?>
-                    <?php if ($counter % 2) : ?>
-                        <tr class="bg-light">
+                    <tr <?= ($counter % 2) == 0 ? 'class="bg-light"' : "" ?>>
                             <td><?= $item['productName'] ?></td>
                             <td><?= $item['productAmount'][1] ?></td>
                             <td><?= $item['productSellPrize'] ?></td>
                             <td><?= $item['productColor'] ?></td>
                             <td><?= $item['productManufacturer'] ?></td>
                         </tr>
-                    <?php else : ?>
-                        <tr>
-                            <td><?= $item['productName'] ?></td>
-                            <td><?= $item['productAmount'][1] ?></td>
-                            <td><?= $item['productSellPrize'] ?></td>
-                            <td><?= $item['productColor'] ?></td>
-                            <td><?= $item['productManufacturer'] ?></td>
-                        </tr>
-                    <?php endif; ?>
                     <?php
                         $price += ((int)$item['productSellPrize'] * (int)$item['productAmount'][1]);
                         $totalWeight += (int)$item['productWeight'] * (int)$item['productAmount'][1];

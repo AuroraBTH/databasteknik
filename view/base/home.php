@@ -26,26 +26,15 @@ $genderCounter = 0;
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ((array)$top10 as $item) : ?>
-                                <?php if ($counter % 2) : ?>
-                                    <tr class="bg-light">
-                                        <td><?= $item['productManufacturer'] ?></td>
-                                        <td><?= $item['productName'] ?></td>
-                                        <td><?= $item['productSize'] ?></td>
-                                        <td><?= $item['productSellPrize'] ?></td>
-                                        <td><?= $item['productColor'] ?></td>
-                                        <th scope="row"><a href="<?= $url ?>/<?= $item['productID'] ?>">Mer information</a></th>
-                                    </tr>
-                                <?php else : ?>
-                                    <tr>
-                                        <td><?= $item['productManufacturer'] ?></td>
-                                        <td><?= $item['productName'] ?></td>
-                                        <td><?= $item['productSize'] ?></td>
-                                        <td><?= $item['productSellPrize'] ?></td>
-                                        <td><?= $item['productColor'] ?></td>
-                                        <th scope="row"><a href="<?= $url ?>/<?= $item['productID'] ?>">Mer information</a></th>
-                                    </tr>
-                                <?php endif; ?>
+                            <?php foreach ($top10 as $item): ?>
+                                <tr <?= ($counter % 2) == 0 ? 'class="bg-light"' : "" ?>>
+                                    <td><?= $item['productManufacturer'] ?></td>
+                                    <td><?= $item['productName'] ?></td>
+                                    <td><?= $item['productSize'] ?></td>
+                                    <td><?= $item['productSellPrize'] ?></td>
+                                    <td><?= $item['productColor'] ?></td>
+                                    <th scope="row"><a href="<?= $url ?>/<?= $item['productID'] ?>">Mer information</a></th>
+                                </tr>
                                 <?php $counter++ ?>
                             <?php endforeach; ?>
                         </tbody>
@@ -72,9 +61,8 @@ $genderCounter = 0;
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($under500 as $item): ?>
-                            <?php if ($counter % 2) : ?>
-                                <tr class="bg-light">
+                            <?php foreach ($under500 as $item): ?>
+                                <tr <?= ($counter % 2) == 0 ? 'class="bg-light"' : "" ?>>
                                     <td><?= $item->productManufacturer ?></td>
                                     <td><?= $item->productName ?></td>
                                     <td><?= $item->productSize ?></td>
@@ -82,16 +70,6 @@ $genderCounter = 0;
                                     <td><?= $item->productColor ?></td>
                                     <th scope="row"><a href="<?= $url ?>/<?= $item->productID ?>">Mer information</a></th>
                                 </tr>
-                            <?php else : ?>
-                                <tr>
-                                    <td><?= $item->productManufacturer ?></td>
-                                    <td><?= $item->productName ?></td>
-                                    <td><?= $item->productSize ?></td>
-                                    <td><?= $item->productSellPrize ?></td>
-                                    <td><?= $item->productColor ?></td>
-                                    <th scope="row"><a href="<?= $url ?>/<?= $item->productID ?>">Mer information</a></th>
-                                </tr>
-                            <?php endif; ?>
                             <?php $counter++ ?>
                         <?php endforeach; ?>
                         </tbody>
