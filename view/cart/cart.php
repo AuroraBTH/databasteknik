@@ -30,8 +30,7 @@ $checkout = url("cart/checkout");
                 </thead>
                 <tbody>
                     <?php foreach ((array)$cartItems as $key => $value) : ?>
-                        <?php if ($counter % 2) : ?>
-                            <tr class="bg-light">
+                        <tr <?= ($counter % 2) == 0 ? 'class="bg-light"' : "" ?>>
                                 <td><?= $value["productManufacturer"] ?></td>
                                 <td><?= $value["productName"] ?></td>
                                 <td><?= $value["productSize"] ?></td>
@@ -41,18 +40,6 @@ $checkout = url("cart/checkout");
                                 <th scope="row"><a href="<?= $url ?>/<?= $value['productID'] ?>">Mer information</a></th>
                                 <td><button class="removeButton" onclick="removeFromCart('<?= $value["productID"] ?>')" type="button" name="button"><i class="fas fa-times"></i></button></td>
                             </tr>
-                        <?php else : ?>
-                            <tr>
-                                <td><?= $value["productManufacturer"] ?></td>
-                                <td><?= $value["productName"] ?></td>
-                                <td><?= $value["productSize"] ?></td>
-                                <td><?= $value["productSellPrize"] ?></td>
-                                <td><?= $value["productColor"] ?></td>
-                                <td><?= $value['amount'] ?></td>
-                                <th scope="row"><a href="<?= $url ?>/<?= $value['productID'] ?>">Mer information</a></th>
-                                <td><button class="removeButton" onclick="removeFromCart('<?= $value["productID"] ?>')" type="button" name="button"><i class="fas fa-times"></i></button></td>
-                            </tr>
-                        <?php endif; ?>
                         <?php
                         $price += ((int)$value['productSellPrize'] * (int)$value['amount']);
                         $amountOfItems += ((int)$value['amount']);

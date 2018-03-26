@@ -2,8 +2,8 @@
 namespace Anax\View;
 
 
-$url = url("order");
-$profileUrl = url("user/profile");
+$adminURL = url("admin");
+$orders = url("orders");
 $counter = 0;
 ?>
 
@@ -22,15 +22,17 @@ $counter = 0;
                     <tr <?= ($counter % 2) == 0 ? 'class="bg-light"' : "" ?>>
                             <td><?= $item->orderID ?></td>
                             <td><?= $item->purchaseTime ?></td>
-                            <th scope="row"><a href="<?= $url ?>/<?= $item->orderID ?>">Mer information</a></th>
+                            <th scope="row">
+                                <a href="<?= $adminURL ?>/order/<?= $item->orderID ?>">Mer information</a>
+                            </th>
                         </tr>
                     <?php $counter++ ?>
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <a class="btn btn-block btn-light-blue w-25 mx-auto m-2 p-2 mb-4" href="<?= $profileUrl ?>">
+        <a class="btn btn-block btn-light-blue w-25 mx-auto m-2 p-2 mb-4" href="<?= $adminURL ?>">
             <i class="far fa-arrow-alt-circle-left fa-2x"></i>
-            <span class="align-text-bottom pl-1"> Tillbaka till profil</span>
+            <span class="align-text-bottom pl-1"> Tillbaka</span>
         </a>
     </div>
 </div>

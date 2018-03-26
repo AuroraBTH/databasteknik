@@ -13,6 +13,10 @@ return [
         ],
         [
             "mount" => null,
+            "file" => __DIR__ . "/route/admin.php",
+        ],
+        [
+            "mount" => null,
             "file" => __DIR__ . "/route/ajax.php",
         ],
         [

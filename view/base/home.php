@@ -26,26 +26,17 @@ $genderCounter = 0;
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ((array)$top10 as $item) : ?>
-                                <?php if ($counter % 2) : ?>
-                                    <tr class="bg-light">
-                                        <td><?= $item['productManufacturer'] ?></td>
-                                        <td><?= $item['productName'] ?></td>
-                                        <td><?= $item['productSize'] ?></td>
-                                        <td><?= $item['productSellPrize'] ?></td>
-                                        <td><?= $item['productColor'] ?></td>
-                                        <th scope="row"><a href="<?= $url ?>/<?= $item['productID'] ?>">Mer information</a></th>
-                                    </tr>
-                                <?php else : ?>
-                                    <tr>
-                                        <td><?= $item['productManufacturer'] ?></td>
-                                        <td><?= $item['productName'] ?></td>
-                                        <td><?= $item['productSize'] ?></td>
-                                        <td><?= $item['productSellPrize'] ?></td>
-                                        <td><?= $item['productColor'] ?></td>
-                                        <th scope="row"><a href="<?= $url ?>/<?= $item['productID'] ?>">Mer information</a></th>
-                                    </tr>
-                                <?php endif; ?>
+                            <?php foreach ($top10 as $item) : ?>
+                                <tr <?= ($counter % 2) == 0 ? 'class="bg-light"' : "" ?>>
+                                    <td><?= $item['productManufacturer'] ?></td>
+                                    <td><?= $item['productName'] ?></td>
+                                    <td><?= $item['productSize'] ?></td>
+                                    <td><?= $item['productSellPrize'] ?></td>
+                                    <td><?= $item['productColor'] ?></td>
+                                    <th scope="row">
+                                        <a href="<?= $url ?>/<?= $item['productID'] ?>">Mer information</a>
+                                    </th>
+                                </tr>
                                 <?php $counter++ ?>
                             <?php endforeach; ?>
                         </tbody>
@@ -59,7 +50,10 @@ $genderCounter = 0;
             <?php $genderCounter = 0; $counter = 0; ?>
             <?php foreach ($data[1] as $under500) : ?>
                 <div class="mx-4 w-50">
-                    <?= $genderCounter == 1 ? '<h1>Produkter under 500kr Dam</h1>' : '<h1>Produkter under 500kr Herr</h1>' ?>
+                    <?= $genderCounter == 1 ?
+                        '<h1>Produkter under 500kr Dam</h1>' :
+                        '<h1>Produkter under 500kr Herr</h1>'
+                    ?>
                     <table class="table border mb-4">
                         <thead>
                             <tr>
@@ -72,31 +66,23 @@ $genderCounter = 0;
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($under500 as $item): ?>
-                            <?php if ($counter % 2) : ?>
-                                <tr class="bg-light">
+                            <?php foreach ($under500 as $item) : ?>
+                                <tr <?= ($counter % 2) == 0 ? 'class="bg-light"' : "" ?>>
                                     <td><?= $item->productManufacturer ?></td>
                                     <td><?= $item->productName ?></td>
                                     <td><?= $item->productSize ?></td>
                                     <td><?= $item->productSellPrize ?></td>
                                     <td><?= $item->productColor ?></td>
-                                    <th scope="row"><a href="<?= $url ?>/<?= $item->productID ?>">Mer information</a></th>
+                                    <th scope="row">
+                                        <a href="<?= $url ?>/<?= $item->productID ?>">Mer information</a>
+                                    </th>
                                 </tr>
-                            <?php else : ?>
-                                <tr>
-                                    <td><?= $item->productManufacturer ?></td>
-                                    <td><?= $item->productName ?></td>
-                                    <td><?= $item->productSize ?></td>
-                                    <td><?= $item->productSellPrize ?></td>
-                                    <td><?= $item->productColor ?></td>
-                                    <th scope="row"><a href="<?= $url ?>/<?= $item->productID ?>">Mer information</a></th>
-                                </tr>
-                            <?php endif; ?>
                             <?php $counter++ ?>
                         <?php endforeach; ?>
                         </tbody>
                     </table>
-                    <a class="btn btn-block btn-primary w-50 mx-auto m-2 p-2 mb-4" href="<?= $products ?>/under500">Fler produkter</a>
+                    <a class="btn btn-block btn-primary w-50 mx-auto m-2 p-2 mb-4"
+                    href="<?= $products ?>/under500">Fler produkter</a>
                 </div>
                 <?php $genderCounter++ ?>
             <?php endforeach; ?>
