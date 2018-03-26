@@ -57,6 +57,13 @@ class Product extends ActiveRecordModel {
 
 
 
+    public function getAllProducts()
+    {
+        return $this->findAll();
+    }
+
+
+
     /**
      * Get product by key.
      *
@@ -87,6 +94,14 @@ class Product extends ActiveRecordModel {
             $sql = "SELECT * FROM Product WHERE productSellPrize <= 500 and productGender = ? LIMIT ?";
             $res = $this->findAllSql($sql, [$gender, $limit]);
         }
+        return $res;
+    }
+
+
+
+    public function getProductsWithLowAmount()
+    {
+        $res = $this->findAllWhere("productAmount <= ?", 5);
         return $res;
     }
 
