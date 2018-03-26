@@ -86,7 +86,9 @@ $totalShipping = 0;
                     </tr>
                     <tr>
                         <th>Adress:</th>
-                        <td><?= $userInfo->userAddress . " " . $userInfo->userPostcode . " " . $userInfo->userCity; ?></td>
+                        <td>
+                            <?= $userInfo->userAddress . " " . $userInfo->userPostcode . " " . $userInfo->userCity; ?>
+                        </td>
                     </tr>
                     <tr>
                         <th>Email:</th>
