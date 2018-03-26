@@ -52,7 +52,7 @@ class Navbar implements InjectionAwareInterface
             $createUrlProfile = $this->di->url->create("user/profile");
             $route = "<li class='nav-item'><a class='nav-link' href='$createUrlProfile'>Min sida</a></li>";
             $route .= "<li class='nav-item'><a class='nav-link' href='$createUrlLogout'>Logga ut</a></li>";
-        } else if (!$session->get("email")) {
+        } elseif (!$session->get("email")) {
             $loginUrl = $this->di->url->create("user/login");
             $route = "<li class='nav-item'><a class='nav-link' href='$loginUrl'>Logga in</a></li>";
         }
@@ -65,6 +65,14 @@ class Navbar implements InjectionAwareInterface
         $cartUrl = $this->di->url->create("cart");
         $route .= "<li class='nav-item' id='cart'><a class='nav-link' href='$cartUrl'>
         <i class='fas fa-shopping-cart'></i> Kundvagn ($counter)</a></li>";
+
+
+        if ($session->has("email")) {
+            if ($user->getPermission($session->get("email")) == 1 || $user->getPermission($session->get("email")) == 2) {
+                $adminUrl = $this->di->url->create("admin");
+                $route .= "<li class='nav-item'><a class='nav-link' href='$adminUrl'>Admin</a></li>";
+            }
+        }
 
         return $route;
     }
