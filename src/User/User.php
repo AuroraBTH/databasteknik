@@ -225,8 +225,11 @@ class User extends ActiveRecordModel
     public function getPermission($email)
     {
         $userInfo = $this->find("userMail", $email);
-        $permissions = $userInfo->userRole;
-        return $permissions;
+        if ($userInfo) {
+            $permissions = $userInfo->userRole;
+            return $permissions;
+        }
+        return false;
     }
 
 
@@ -241,5 +244,13 @@ class User extends ActiveRecordModel
     {
         $res = $this->find("userMail", $email);
         return !$res ? true : false;
+    }
+
+
+
+    public function getAllUsers()
+    {
+        $res = $this->findAll();
+        return $res;
     }
 }
