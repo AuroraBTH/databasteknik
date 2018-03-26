@@ -19,19 +19,11 @@ $counter = 0;
             </thead>
             <tbody>
                 <?php foreach ($data["orders"] as $item) : ?>
-                    <?php if ($counter % 2) : ?>
-                        <tr class="bg-light">
+                    <tr <?= ($counter % 2) == 0 ? 'class="bg-light"' : "" ?>>
                             <td><?= $item->orderID ?></td>
                             <td><?= $item->purchaseTime ?></td>
                             <th scope="row"><a href="<?= $adminURL ?>/order/<?= $item->orderID ?>">Mer information</a></th>
                         </tr>
-                    <?php else : ?>
-                        <tr>
-                            <td><?= $item->orderID ?></td>
-                            <td><?= $item->purchaseTime ?></td>
-                            <th scope="row"><a href="<?= $adminURL ?>/order/<?= $item->orderID ?>">Mer information</a></th>
-                        </tr>
-                    <?php endif; ?>
                     <?php $counter++ ?>
                 <?php endforeach; ?>
             </tbody>
