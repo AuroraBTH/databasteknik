@@ -89,6 +89,14 @@ class Category extends ActiveRecordModel
 
 
 
+    public function getAllSubCategoriesGender($genderID)
+    {
+        $categories = $this->findAllWhere("gender = ? AND parentID IS NOT NULL", $genderID);
+        return $categories;
+    }
+
+
+
     /**
     * Get specific categories based on its ID.
     *
