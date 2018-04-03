@@ -38,11 +38,38 @@ body {
     justify-content: center;
 }
 
+.buyMale .main-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.buyFemale .main-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.buy .main-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.buyMale fieldset {
+    width: 100%;
+}
+
+.buyFemale fieldset {
+    width: 100%;
+}
+
 .create fieldset {
     width: 100%;
 }
 
 .edit fieldset {
+    width: 100%;
+}
+
+.buy fieldset {
     width: 100%;
 }
 
@@ -72,8 +99,4 @@ body {
     border: none;
     padding: 0;
     cursor: pointer;
-}
-
-.removeButton:hover {
-    color: #007BFF;
 }
