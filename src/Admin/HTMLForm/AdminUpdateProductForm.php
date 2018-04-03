@@ -29,8 +29,6 @@ class AdminUpdateProductForm extends FormModel
         $product->setDb($this->di->get("db"));
         $product->getProductByID($productID);
 
-        // var_dump($product);
-
         $category = new Category();
         $category->setDb($this->di->get("db"));
         $categories = $category->getAllSubCategoriesGender($product->productGender);
