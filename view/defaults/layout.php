@@ -23,8 +23,8 @@ if (strpos($req_uri, "?") !== false) {
         <?php foreach ($stylesheets as $stylesheet) : ?>
         <link rel="stylesheet" type="text/css" href="<?= $this->asset($stylesheet) ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta charset="utf-8">
         <?php endforeach; ?>
-
 </head>
 <body>
 
