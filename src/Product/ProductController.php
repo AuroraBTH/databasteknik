@@ -29,8 +29,15 @@ class ProductController implements
         $product->setDb($this->di->get("db"));
         $data = $product->getProducts("productID", $productId);
 
+        if (!$data) {
+            $redirect = $this->di->get("url")->create("");
+            $this->di->get("response")->redirect($redirect);
+            return false;
+        }
+
         $view->add("product/product", $data);
         $pageRender->renderPage(["title" => $title]);
+        return true;
     }
 
 
