@@ -22,5 +22,11 @@ return [
             "path" => "ajax/removeall",
             "callable" => ["ajaxController", "removeAllFromCart"]
         ],
+        [
+            "info" => "Ta bort produkt",
+            "requestMethod" => "POST",
+            "path" => "ajax/removeProduct",
+            "callable" => ["ajaxController", "removeProduct"]
+        ],
     ]
 ];
