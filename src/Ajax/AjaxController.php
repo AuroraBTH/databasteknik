@@ -7,6 +7,8 @@ use \Anax\Configure\ConfigureTrait;
 use \Anax\DI\InjectionAwareInterface;
 use \Anax\Di\InjectionAwareTrait;
 
+use \Course\Product\Product;
+
 class AjaxController implements
     ConfigureInterface,
     InjectionAwareInterface
@@ -62,6 +64,25 @@ class AjaxController implements
                 }
             }
         }
+        $response = $this->di->get("response");
+        $url = $this->di->get("url");
+        $frontpage = $url->create("");
+        $response->redirect($frontpage);
+    }
+
+
+
+    public function removeProduct()
+    {
+        $data = $_POST["data"];
+
+        $product = new Product();
+        $product->setDb($this->di->get("db"));
+        $product->getProductByID($data);
+        $product->setProductDeleted("true");
+        $product->save();
+
+
         $response = $this->di->get("response");
         $url = $this->di->get("url");
         $frontpage = $url->create("");

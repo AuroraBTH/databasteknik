@@ -31,6 +31,25 @@ addToCart = (productData) => {
     });
 }
 
+
+
+removeProduct = (productID) => {
+    console.log(productID);
+    let url = generateURL();
+    $.ajax({
+        type: 'POST',
+        url: url + "ajax/removeProduct",
+        dataType: 'text',
+        data: {data: productID},
+        success: function() {
+            $("#products").load(location.href + " #products");
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("Status: " + textStatus); alert("Error: " + errorThrown);
+        }
+    });
+}
+
 redirectToLogin = () => {
     let url = generateURL();
     window.location.replace(url + "user/login");

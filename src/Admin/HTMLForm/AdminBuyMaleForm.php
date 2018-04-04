@@ -5,35 +5,27 @@ namespace Course\Admin\HTMLForm;
 use \Anax\HTMLForm\FormModel;
 use \Course\Product\Product;
 use \Anax\DI\DIInterface;
-use Course\Category\Category;
+
+use \Course\Category\Category;
 
 /**
  * Example of FormModel implementation.
  */
-class AdminUpdateProductForm extends FormModel
+class AdminBuyMaleForm extends FormModel
 {
     /**
      * Constructor injects with DI container.
      *
      * @param \Anax\DI\DIInterface $di a service container
      */
-
-    private $productID;
-
-
-    public function __construct(DIInterface $di, $productID)
+    public function __construct(DIInterface $di)
     {
         parent::__construct($di);
 
-        $product = new Product();
-        $product->setDb($this->di->get("db"));
-        $product->getProductByID($productID);
 
         $category = new Category();
         $category->setDb($this->di->get("db"));
-        $categories = $category->getAllSubCategoriesGender($product->productGender);
-
-        $currentCategory = $category->getSpecificCategory($product->productCategoryID);
+        $categories = $category->getAllSubCategoriesGender(1);
 
         $categoryArr = [];
 
@@ -41,13 +33,11 @@ class AdminUpdateProductForm extends FormModel
             $categoryArr[$value->categoryID] = $value->categoryName;
         }
 
-        $this->productID = $productID;
-        $gender = $product->productGender == 0 ? "Kvinna" : "Man";
 
         $this->form->create(
             [
                 "id" => __CLASS__,
-                "legend" => "Updatera produkt ($gender)",
+                "legend" => "Köp produkt (Man)",
                 "class"  => "form-group w-50 d-flex justify-content-center p-4",
             ],
             [
@@ -55,80 +45,61 @@ class AdminUpdateProductForm extends FormModel
                     "label"       => "Tillverkare",
                     "type"        => "text",
                     "class"       => "form-control",
-                    "placeholder" => "$product->productManufacturer",
-                    "value"       => "$product->productManufacturer",
                     "maxlength"   => 80
                 ],
                 "productName" => [
                     "label"       => "Namn",
                     "type"        => "text",
                     "class"       => "form-control",
-                    "placeholder" => "$product->productName",
-                    "value"       => html_entity_decode("$product->productName"),
                     "maxlength"   => 80
                 ],
                 "productOriginCountry" => [
                     "label"       => "Land",
                     "type"        => "text",
                     "class"       => "form-control",
-                    "placeholder" => "$product->productOriginCountry",
-                    "value"       => "$product->productOriginCountry",
                     "maxlength"   => 39
                 ],
                 "productWeight" => [
                     "label"       => "Vikt",
                     "type"        => "number",
                     "class"       => "form-control",
-                    "placeholder" => "$product->productWeight",
-                    "value"       => "$product->productWeight",
                 ],
                 "productSize" => [
                     "label"       => "Storlek",
                     "type"        => "text",
                     "class"       => "form-control",
-                    "placeholder" => "$product->productSize",
-                    "value"       => "$product->productSize",
                     "maxlength"   => 3
                 ],
                 "productSellPrize" => [
                     "label"       => "Säljpris",
                     "type"        => "number",
                     "class"       => "form-control",
-                    "placeholder" => "$product->productSellPrize",
-                    "value"       => "$product->productSellPrize",
                 ],
                 "productBuyPrize" => [
-                    "label"       => "Inköpspris",
+                    "label"       => "Pris (Köp)",
                     "type"        => "number",
                     "class"       => "form-control",
-                    "placeholder" => "$product->productBuyPrize",
-                    "value"       => "$product->productBuyPrize",
                 ],
                 "productColor" => [
                     "label"       => "Färg",
                     "type"        => "text",
                     "class"       => "form-control",
-                    "placeholder" => "$product->productColor",
-                    "value"       => "$product->productColor",
                     "maxlength"   => 20
                 ],
                 "productAmount" => [
                     "label"       => "Antal",
                     "type"        => "number",
                     "class"       => "form-control",
-                    "placeholder" => "$product->productAmount",
-                    "value"       => "$product->productAmount",
                 ],
                 "productCategoryID" => [
                     "type"        => "select",
                     "label"       => "Kategori",
                     "class"       => "custom-select",
-                    "options"     => $categoryArr,
-                    "checked"     => $currentCategory[0]->categoryID
+                    "options"     => $categoryArr
                 ],
                 "submit" => [
                     "type"     => "submit",
-                    "value"    => "Updatera product",
+                    "value"    => "Lägg till",
                     "class"    => "btn btn-lg btn-primary w-100",
                     "callback" => [$this, "callbackSubmit"]
                 ],
@@ -151,17 +122,6 @@ class AdminUpdateProductForm extends FormModel
      */
     public function callbackSubmit()
     {
-        # Create new user and set databas.
-        $product = new Product();
-        $product->setDb($this->di->get("db"));
-
-
-        $productID = $this->productID;
-
-
-        $product->getProductByID($productID);
-
-        #Get all values from Form
         $arrayOfData = [
             "productManufacturer" => $this->form->value("productManufacturer"),
             "productName" => $this->form->value("productName"),
@@ -172,7 +132,7 @@ class AdminUpdateProductForm extends FormModel
             "productBuyPrize" => $this->form->value("productBuyPrize"),
             "productColor" => $this->form->value("productColor"),
             "productAmount" => $this->form->value("productAmount"),
-            "productCategoryID" => $this->form->value("productCategoryID")
+            "productCategoryID" => $this->form->value("productCategoryID"),
         ];
 
         $formcheck = $this->arrayEmpty($arrayOfData);
@@ -181,6 +141,9 @@ class AdminUpdateProductForm extends FormModel
             $this->form->addOutput("Please fill all inputs!");
             return false;
         }
+
+        $product = new Product();
+        $product->setDb($this->di->get("db"));
 
         $product->setProductManufacturer($arrayOfData["productManufacturer"]);
         $product->setProductName($arrayOfData["productName"]);
@@ -192,7 +155,7 @@ class AdminUpdateProductForm extends FormModel
         $product->setProductColor($arrayOfData["productColor"]);
         $product->setProductAmount((int)$arrayOfData["productAmount"]);
         $product->setProductCategoryID((int)$arrayOfData["productCategoryID"]);
-        $product->setProductGender($product->productGender);
+        $product->setProductGender(1);
         $product->setProductDeleted("false");
         $product->save();
         //
@@ -204,15 +167,16 @@ class AdminUpdateProductForm extends FormModel
 
 
 
+
     /**
-     * On click it will take the user back their profile page.
-     * @method back
+     * On press it will take the user back to loginpage.
+     * @method backToLogin
      * @return boolean true when redirected.
      */
     public function back()
     {
-        #Create url and redirect to user profile.
-        $url = $this->di->get("url")->create("admin/products");
+        #Create url and redirect to login.
+        $url = $this->di->get("url")->create("admin");
         $this->di->get("response")->redirect($url);
         return true;
     }

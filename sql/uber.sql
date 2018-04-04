@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS Product (
     `productAmount` INTEGER,
     `productCategoryID` INTEGER,
 	`productGender`   INTEGER NOT NULL,
+    `productDeleted`  VARCHAR(5) NOT NULL,
 	FOREIGN KEY (`productCategoryID`) REFERENCES Category(`categoryID`)
 ) ENGINE INNODB CHARACTER SET utf8 COLLATE utf8_swedish_ci;
 
@@ -130,8 +131,9 @@ INSERT INTO Product(
     `productColor`,
     `productAmount`,
     `productCategoryID`,
-    `productGender`
-) VALUES ("HM", "En fin tröja", "Sweden", 200, "M", 200, 100, "Lila", 100, 1, 0);
+    `productGender`,
+    `productDeleted`
+) VALUES ("HM", "En fin tröja", "Sweden", 200, "M", 200, 100, "Lila", 100, 1, 0, "false");
 
 INSERT INTO Role (
     `roleID`,

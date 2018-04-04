@@ -12,6 +12,10 @@ use \Course\Product\Product;
 use \Course\Order\Orders;
 use \Course\Order\OrderItem;
 
+use \Course\Admin\HTMLForm\AdminUpdateProductForm;
+use \Course\Admin\HTMLForm\AdminBuyFemaleForm;
+use \Course\Admin\HTMLForm\AdminBuyMaleForm;
+
 
 
 class AdminController implements
@@ -173,27 +177,68 @@ class AdminController implements
 
 
 
-    public function displayBuyAdmin()
+    public function displayBuyFemaleAdmin()
     {
         $this->checkIfAdmin();
-        $title = "Admin Produkter";
+        $title = "Admin Köp Produkt";
         $view = $this->di->get("view");
         $pageRender = $this->di->get("pageRender");
 
-        $view->add("default1/article");
+
+        $buyForm = new AdminBuyFemaleForm($this->di);
+
+        $buyForm->check();
+
+        $data = [
+            "content" => $buyForm->getHTML(),
+        ];
+
+        $view->add("default1/article", $data);
         $pageRender->renderPage(["title" => $title]);
     }
 
 
 
-    public function displayEditAdmin()
+    public function displayBuyMaleAdmin()
     {
         $this->checkIfAdmin();
-        $title = "Admin Produkter";
+        $title = "Admin Köp Produkt";
         $view = $this->di->get("view");
         $pageRender = $this->di->get("pageRender");
 
-        $view->add("default1/article");
+
+        $buyForm = new AdminBuyMaleForm($this->di);
+
+        $buyForm->check();
+
+        $data = [
+            "content" => $buyForm->getHTML(),
+        ];
+
+        $view->add("default1/article", $data);
+        $pageRender->renderPage(["title" => $title]);
+    }
+
+
+
+    public function displayEditAdmin($productID)
+    {
+        $this->checkIfAdmin();
+        $title = "Admin Uppdatera Produkt";
+        $view = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+
+
+        $updateForm = new AdminUpdateProductForm($this->di, $productID);
+
+        $updateForm->check();
+
+        $data = [
+            "content" => $updateForm->getHTML(),
+        ];
+
+        $view->add("default1/article", $data);
+
         $pageRender->renderPage(["title" => $title]);
     }
 

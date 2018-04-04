@@ -78,6 +78,10 @@ $loggedIn = $this->di->get("session")->has("email");
                     <th scope="col">Färg</th>
                     <td><?= ($data[0]->productColor); ?></td>
                 </tr>
+                <tr>
+                    <th scope="col">Kön</th>
+                    <td><?= ($data[0]->productGender == 0 ? "Dam" : "Herr"); ?></td>
+                </tr>
             </table>
         </div>
     </div>

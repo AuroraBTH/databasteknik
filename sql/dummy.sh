@@ -8,7 +8,7 @@ dummyCategoryName=('' '' '' '' '' '' '' '' '' '' '' '' 'Shorts' 'Jeans' 'Tränin
 dummyManufacturer=('HM' 'Cubus' 'GANT' 'Jack&Jones' 'Levi' 'Adrian Hammond')
 dummytOriginCountry=('Sverige' 'Danmark' 'Finland' 'Norge' 'Tyskland' 'Nya Zeeland' 'Kina' 'Taiwan' 'Japan' 'Nigeria' 'Sydafrika' 'Kuwait')
 dummyColor=('Rosa' 'Lila' 'Grön' 'Blå' 'Gul' 'Ljusblå' 'Vit' 'Svart')
-dummyComplete=('INSERT INTO Product(`productManufacturer`, `productName`, `productOriginCountry`, `productWeight`, `productSize`, `productSellPrize`, `productBuyPrize`, `productColor`, `productAmount`, `productCategoryID`, `productGender`) VALUES ')
+dummyComplete=('INSERT INTO Product(`productManufacturer`, `productName`, `productOriginCountry`, `productWeight`, `productSize`, `productSellPrize`, `productBuyPrize`, `productColor`, `productAmount`, `productCategoryID`, `productGender`, `productDeleted`) VALUES ')
 
 
 for _ in $(seq 1 ${amount});
@@ -34,7 +34,8 @@ do
     "\"${dummyColor[RANDOMCOLOR]}"\",
     ${RANDOMAMOUNT},
     ${RANDOMCATEGORY},
-    ${RANDOMGENDER}),
+    ${RANDOMGENDER},
+    'false'),
     ")
     #echo The counter is $COUNTERALL
     #let COUNTERALL=COUNTERALL+1

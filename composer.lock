@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "21d3a91d04631869c9f193a689307e6a",
+    "content-hash": "dc14d353dc5380e78664de15640cfa9e",
     "packages": [
         {
             "name": "anax/common",
@@ -202,16 +202,16 @@
         },
         {
             "name": "anax/htmlform",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/canax/htmlform.git",
-                "reference": "518a6832e78b7f47d778b9fc87234902969f32e0"
+                "reference": "869a1504acc457516d93dd7f730057c6d247a9c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/canax/htmlform/zipball/518a6832e78b7f47d778b9fc87234902969f32e0",
-                "reference": "518a6832e78b7f47d778b9fc87234902969f32e0",
+                "url": "https://api.github.com/repos/canax/htmlform/zipball/869a1504acc457516d93dd7f730057c6d247a9c5",
+                "reference": "869a1504acc457516d93dd7f730057c6d247a9c5",
                 "shasum": ""
             },
             "require": {
@@ -249,7 +249,7 @@
                 "micro",
                 "mvc"
             ],
-            "time": "2018-03-05T17:27:20+00:00"
+            "time": "2018-03-27T13:18:10+00:00"
         },
         {
             "name": "anax/page",

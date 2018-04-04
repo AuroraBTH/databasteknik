@@ -40,6 +40,96 @@ class Product extends ActiveRecordModel {
     public $productAmount;
     public $productCategoryID;
     public $productGender;
+    public $productDeleted;
+
+
+
+    public function setProductManufacturer($productManufacturer)
+    {
+        $this->productManufacturer = $productManufacturer;
+    }
+
+
+
+    public function setProductName($productName)
+    {
+        $this->productName = $productName;
+    }
+
+
+
+    public function setProductCountry($productOriginCountry)
+    {
+        $this->productOriginCountry = $productOriginCountry;
+    }
+
+
+
+    public function setProductWeight($productWeight)
+    {
+        $this->productWeight = $productWeight;
+    }
+
+
+
+    public function setProductSize($productSize)
+    {
+        $this->productSize = $productSize;
+    }
+
+
+
+    public function setProductSellPrize($productSellPrize)
+    {
+        $this->productSellPrize = $productSellPrize;
+    }
+
+
+
+    public function setProductBuyPrize($productBuyPrize)
+    {
+        $this->productBuyPrize = $productBuyPrize;
+    }
+
+
+
+    public function setProductColor($productColor)
+    {
+        $this->productColor = $productColor;
+    }
+
+
+
+    public function setProductAmount($productAmount)
+    {
+        $this->productAmount = $productAmount;
+    }
+
+
+
+    public function setProductCategoryID($productCategoryID)
+    {
+        $this->productCategoryID = $productCategoryID;
+    }
+
+
+
+    public function setProductGender($productGender)
+    {
+        $this->productGender = $productGender;
+    }
+
+
+
+    public function setProductDeleted($deleted)
+    {
+        $this->productDeleted = $deleted;
+    }
+
+
+
+
+
 
     /**
      * Get product by key.
@@ -51,15 +141,15 @@ class Product extends ActiveRecordModel {
      */
     public function getProducts($key, $value)
     {
-        $query = $key . " = ?";
-        return $this->findAllWhere($query, $value);
+        $query = $key . " = ? and productDeleted = ?";
+        return $this->findAllWhere($query, [$value, "false"]);
     }
 
 
 
     public function getAllProducts()
     {
-        return $this->findAll();
+        return $this->findAllWhere("productDeleted = ?", "false");
     }
 
 
@@ -74,25 +164,27 @@ class Product extends ActiveRecordModel {
      */
     public function getProductsByGender($key, $value, $gender)
     {
-        $query = $key . " = ? and productGender = ?";
-        return $this->findAllWhere($query, [$value, $gender]);
+        $query = $key . " = ? and productGender = ? and productDeleted = ?";
+        return $this->findAllWhere($query, [$value, $gender, "false"]);
     }
 
 
 
     public function getProductByID($productID){
-        $res = $this->find("productID", $productID);
+        $res = $this->findwhere("productID = ? and productDeleted = ?", [$productID, "false"]);
         return $res;
     }
 
 
     public function getProductsUnder500($gender, $limit) {
         if ($limit === null) {
-            $sql = "SELECT * FROM Product WHERE productSellPrize <= 500 and productGender = ?";
-            $res = $this->findAllSql($sql, [$gender]);
+            $sql = "SELECT * FROM Product WHERE productSellPrize <= 500
+            and productGender = ? and productDeleted = ?";
+            $res = $this->findAllSql($sql, [$gender, "false"]);
         } elseif ($limit !== null) {
-            $sql = "SELECT * FROM Product WHERE productSellPrize <= 500 and productGender = ? LIMIT ?";
-            $res = $this->findAllSql($sql, [$gender, $limit]);
+            $sql = "SELECT * FROM Product WHERE productSellPrize <= 500
+            and productGender = ? and productDeleted = ? LIMIT ?";
+            $res = $this->findAllSql($sql, [$gender, "false", $limit]);
         }
         return $res;
     }
@@ -101,7 +193,7 @@ class Product extends ActiveRecordModel {
 
     public function getProductsWithLowAmount()
     {
-        $res = $this->findAllWhere("productAmount <= ?", 5);
+        $res = $this->findAllWhere("productAmount <= ? and productDeleted = ?", [5, "false"]);
         return $res;
     }
 
@@ -109,8 +201,8 @@ class Product extends ActiveRecordModel {
 
     public function searchProducts($searchString) {
         $param = "[[:<:]]{$searchString}[[:>:]]";
-        $sql = "SELECT * FROM Product WHERE productName REGEXP ?";
-        $res = $this->findAllSql($sql, [$param]);
+        $sql = "SELECT * FROM Product WHERE productName REGEXP ? and productDeleted = ?";
+        $res = $this->findAllSql($sql, [$param, "false"]);
         return $res;
     }
 }

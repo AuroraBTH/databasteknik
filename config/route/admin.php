@@ -42,14 +42,20 @@ return [
         ],
         [
             "info" => "Admin Köp Produkter",
-            "requestMethod" => "GET",
-            "path" => "admin/buy",
-            "callable" => ["adminController", "displayBuyAdmin"],
+            "requestMethod" => "GET|POST",
+            "path" => "admin/buyFemale",
+            "callable" => ["adminController", "displayBuyFemaleAdmin"],
+        ],
+        [
+            "info" => "Admin Köp Produkter",
+            "requestMethod" => "GET|POST",
+            "path" => "admin/buyMale",
+            "callable" => ["adminController", "displayBuyMaleAdmin"],
         ],
         [
             "info" => "Admin Redigera Produkt",
-            "requestMethod" => "GET",
-            "path" => "admin/edit",
+            "requestMethod" => "GET|POST",
+            "path" => "admin/edit/{id:digit}",
             "callable" => ["adminController", "displayEditAdmin"],
         ],
     ]
