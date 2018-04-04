@@ -36,9 +36,33 @@ $checkout = url("cart/checkout");
                                 <td><?= $value["productSize"] ?></td>
                                 <td><?= $value["productSellPrize"] ?></td>
                                 <td><?= $value["productColor"] ?></td>
-                                <td><?= $value['amount'] ?></td>
-                                <th scope="row"><a href="<?= $url ?>/<?= $value['productID'] ?>">Mer information</a></th>
-                                <td><button class="removeButton" onclick="removeFromCart('<?= $value["productID"] ?>')" type="button" name="button"><i class="fas fa-times"></i></button></td>
+                                <td><?= $value['amount'] ?>
+                                    <button
+                                        class="cartButtons"
+                                        onclick="plusProduct('<?= $value["productID"] ?>')"
+                                        type="button"
+                                        name="button">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                    <button
+                                        class="cartButtons"
+                                        onclick="minusProduct('<?= $value["productID"] ?>')"
+                                        type="button"
+                                        name="button">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </td>
+                                <th scope="row">
+                                    <a href="<?= $url ?>/<?= $value['productID'] ?>">Mer information</a>
+                                </th>
+                                <td>
+                                    <button
+                                        class="removeButton"
+                                        onclick="removeFromCart('<?= $value["productID"] ?>')"
+                                        type="button" name="button">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </td>
                             </tr>
                         <?php
                         $price += ((int)$value['productSellPrize'] * (int)$value['amount']);

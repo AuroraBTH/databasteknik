@@ -91,6 +91,57 @@ class AjaxController implements
 
 
 
+    public function plusProduct()
+    {
+        if (isset($_POST["data"])) {
+            $data = $_POST["data"];
+
+            $getItems = $this->di->get("session")->get("items");
+
+            foreach ($getItems as $key => $value) {
+                if ($value["productID"] == $data) {
+                    $getItems[$key]['amount'] = $value["amount"] + 1;
+                    $this->di->get("session")->set("items", $getItems);
+                    return "success";
+                }
+            }
+        }
+        $response = $this->di->get("response");
+        $url = $this->di->get("url");
+        $frontpage = $url->create("");
+        $response->redirect($frontpage);
+    }
+
+
+
+    public function minusProduct()
+    {
+        if (isset($_POST["data"])) {
+            $data = $_POST["data"];
+
+            $getItems = $this->di->get("session")->get("items");
+
+            foreach ($getItems as $key => $value) {
+                if ($value["productID"] == $data) {
+                    if (($value["amount"] - 1) == 0) {
+                        unset($getItems[$key]);
+                        $this->di->get("session")->set("items", $getItems);
+                    } else if ($value["amount"] - 1 > 0) {
+                        $getItems[$key]['amount'] = $value["amount"] - 1;
+                        $this->di->get("session")->set("items", $getItems);    
+                    }
+                    return "success";
+                }
+            }
+        }
+        $response = $this->di->get("response");
+        $url = $this->di->get("url");
+        $frontpage = $url->create("");
+        $response->redirect($frontpage);
+    }
+
+
+
     public function removeAllFromCart()
     {
         $this->di->get("session")->delete("items");
