@@ -37,14 +37,12 @@ class AdminUpdateProductForm extends FormModel
 
         $categoryArr = [];
 
-        foreach ($categories as $key => $value) {
+        foreach ($categories as $value) {
             $categoryArr[$value->categoryID] = $value->categoryName;
         }
 
         $this->productID = $productID;
-
         $gender = $product->productGender == 0 ? "Kvinna" : "Man";
-
 
         $this->form->create(
             [

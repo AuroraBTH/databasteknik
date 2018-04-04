@@ -29,7 +29,7 @@ class AdminBuyMaleForm extends FormModel
 
         $categoryArr = [];
 
-        foreach ($categories as $key => $value) {
+        foreach ($categories as $value) {
             $categoryArr[$value->categoryID] = $value->categoryName;
         }
 

@@ -34,8 +34,14 @@ $admin = url("admin")
                             <td><?= $item->productSellPrize ?></td>
                             <td><?= $item->productColor ?></td>
                             <th scope="row"><a href="<?= $url ?>/<?= $item->productID ?>">Mer information</a></th>
-                            <td><a href="<?= $admin ?>/edit/<?= $item->productID ?>"><i class="fas fa-edit"></i></a></td>
-                            <td><button class="removeButton" onclick="removeProduct('<?= $item->productID ?>')" type="button" name="button"><i class="fas fa-trash-alt"></i></button></td>
+                            <td>
+                                <a href="<?= $admin ?>/edit/<?= $item->productID ?>"><i class="fas fa-edit"></i></a>
+                            </td>
+                            <td>
+                                <button class="removeButton" onclick="removeProduct('<?= $item->productID ?>')" type="button" name="button">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
                         </tr>
                     <?php $counter++ ?>
                 <?php endforeach; ?>
