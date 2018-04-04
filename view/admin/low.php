@@ -36,7 +36,11 @@ $admin = url("admin")
                                 <a href="<?= $admin ?>/edit/<?= $item->productID ?>"><i class="fas fa-edit"></i></a>
                             </td>
                             <td>
-                                <button class="removeButton" onclick="removeProduct('<?= $item->productID ?>')" type="button" name="button">
+                                <button
+                                    class="removeButton"
+                                    onclick="removeProduct('<?= $item->productID ?>')"
+                                    type="button"
+                                    name="button">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </td>
