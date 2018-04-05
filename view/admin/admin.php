@@ -26,11 +26,11 @@ $admin = url("admin");
                 </div>
                 <div class="w-50 mt-3 mb-3 col-md-<?php echo $bootstrapColWidth; ?>">
                     <a class="mx-auto w-75 btn btn-lg btn-primary pt-4 pb-4 btn-block"
-                    href="<?= $admin ?>/buyFemale">Köp in kvinnoprodukter</a>
+                    href="<?= $admin ?>/buyFemale">Köp in damprodukter</a>
                 </div>
                 <div class="w-50 mt-3 mb-3 col-md-<?php echo $bootstrapColWidth; ?>">
                     <a class="mx-auto w-75 btn btn-lg btn-primary pt-4 pb-4 btn-block"
-                    href="<?= $admin ?>/buyMale">Köp in manprodukter</a>
+                    href="<?= $admin ?>/buyMale">Köp in herrprodukter</a>
                 </div>
         </div>
     </div>
