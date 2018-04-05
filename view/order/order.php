@@ -3,6 +3,7 @@ namespace Anax\View;
 
 
 $ordersUrl = url("orders");
+$product = url("product");
 $counter = 0;
 $price = 0;
 $amountOfItems = 0;
@@ -32,6 +33,9 @@ $totalShipping = 0;
                             <td><?= $item['productSellPrize'] ?></td>
                             <td><?= $item['productColor'] ?></td>
                             <td><?= $item['productManufacturer'] ?></td>
+                            <th scope="row">
+                                <a href="<?= $product ?>/<?= $item['productID'][0] ?>">Mer information</a>
+                            </th>
                         </tr>
                     <?php
                         $price += ((int)$item['productSellPrize'] * (int)$item['productAmount'][1]);
