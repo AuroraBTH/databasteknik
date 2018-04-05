@@ -138,7 +138,7 @@ INSERT INTO Product(
 INSERT INTO Role (
     `roleID`,
     `roleName`
-) VALUES (0, "user"), (1, "admin");
+) VALUES (0, "user"), (1, "admin"), (2, "management");
 
 INSERT INTO User (
     `userFirstName`,
@@ -150,7 +150,8 @@ INSERT INTO User (
     `userCity`,
     `userRole`,
     `userPassword`
-) VALUES ("Carl", "Svensson", 123, "carl.svensson@outlook.com", "Drottningsgatan 13", 37140, "Karlskrona", 0, 'hej123'), ("Admin", "Adminson", 123, "admin@admin.com", "Admingatan 22", 12345, "Karlskrona", 1, '$2y$10$Jxu9IJZukqkXyUUB0RhXuOxEBtDo7O6LtuWjIYNzJeDtqpI9hh9Q.');
+) VALUES ("Carl", "Svensson", 123, "carl.svensson@outlook.com", "Drottningsgatan 13", 37140, "Karlskrona", 0, 'hej123'), ("Admin", "Adminson", 123, "admin@admin.com", "Admingatan 22", 12345, "Karlskrona", 1, '$2y$10$Jxu9IJZukqkXyUUB0RhXuOxEBtDo7O6LtuWjIYNzJeDtqpI9hh9Q.'),
+("Company", "Management", 123, "cm@cm.com", "Companygatan 11", 12222, "Karlskrona", 2, "$2y$10$Jxu9IJZukqkXyUUB0RhXuOxEBtDo7O6LtuWjIYNzJeDtqpI9hh9Q.");
 
 INSERT INTO Coupon (
     `couponName`,
