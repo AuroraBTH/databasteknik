@@ -28,5 +28,17 @@ return [
             "path" => "ajax/removeProduct",
             "callable" => ["ajaxController", "removeProduct"]
         ],
+        [
+            "info" => "Uppdatera antal av en product",
+            "requestMethod" => "POST",
+            "path" => "ajax/plusProduct",
+            "callable" => ["ajaxController", "plusProduct"]
+        ],
+        [
+            "info" => "Uppdatera antal av en product",
+            "requestMethod" => "POST",
+            "path" => "ajax/minusProduct",
+            "callable" => ["ajaxController", "minusProduct"]
+        ],
     ]
 ];

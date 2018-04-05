@@ -100,3 +100,12 @@ body {
     padding: 0;
     cursor: pointer;
 }
+
+
+.cartButtons {
+    background: none;
+    color: blue;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
