@@ -111,9 +111,9 @@ body {
 }
 
 .fa-minus::before {
-    padding-left: 7px;
+    padding-left: 0.5em;
 }
 
 .fa-plus::before {
-    padding-right: 7px;
+    padding-right: 0.5em;
 }

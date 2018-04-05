@@ -28,14 +28,14 @@ $admin = url("admin");
                             <td><?= $user->userFirstName ?> <?= $user->userSurName ?></td>
                             <td><?= $user->userMail ?></td>
                             <td><?= $user->userPhone ?></td>
-                            <td><?= $user->userGender == 0 ? "Kvinna" : "Herr" ?></td>
+                            <td><?= $user->userGender == 0 ? "Kvinna" : "Man" ?></td>
                             <?php switch ($user->userRole) :
                                 case 0: ?>
                                 <td>Kund</td>
                             <?php break; case 1: ?>
                                 <td>Admin</td>
                             <?php break; case 2: ?>
-                                <td>Företag</td>
+                                <td>Ledning</td>
                             <?php break; endswitch; ?>
                         </tr>
                     <?php $counter++ ?>

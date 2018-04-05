@@ -21,10 +21,6 @@ class ProductController implements
      */
     public function getSpecificProduct($productId)
     {
-        $title = "Produkt";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
         $product = new Product();
         $product->setDb($this->di->get("db"));
         $data = $product->getProducts("productID", $productId);
@@ -35,8 +31,7 @@ class ProductController implements
             return false;
         }
 
-        $view->add("product/product", $data);
-        $pageRender->renderPage(["title" => $title]);
+        $this->display("Produkt", "product/product", $data);
         return true;
     }
 
@@ -44,10 +39,6 @@ class ProductController implements
 
     public function getAllProductsFromCategory($categoryID, $genderID)
     {
-        $title = "Produkter";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
         $products = new Product();
         $products->setDb($this->di->get("db"));
 
@@ -60,18 +51,13 @@ class ProductController implements
             "categoryParent" => $productCategory
         ];
 
-        $view->add("product/products", $data);
-        $pageRender->renderPage(["title" => $title]);
+        $this->display("Produkter", "product/products", $data);
     }
 
 
 
     public function getAllProductsUnder500()
     {
-        $title = "Produkter under 500kr";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
         $products = new Product();
         $products->setDb($this->di->get("db"));
 
@@ -80,7 +66,17 @@ class ProductController implements
             "under500Male" => $products->getProductsUnder500(1, null)
         ];
 
-        $view->add("product/under500", $data);
+        $this->display("Produkter under 500kr", "product/under500", $data);
+    }
+
+
+
+    private function display($title, $page, $data = []) {
+        $title = $title;
+        $view = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+
+        $view->add($page, $data);
         $pageRender->renderPage(["title" => $title]);
     }
 }

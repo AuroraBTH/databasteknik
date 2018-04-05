@@ -63,17 +63,4 @@ class BaseController implements
         $view->add("base/home", [$data, $under500]);
         $pageRender->renderPage(["title" => $title]);
     }
-
-    /**
-     * This function handles the rendering of aboutpage.
-     */
-    public function aboutpage()
-    {
-        $title = "About";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
-        $view->add("base/about");
-        $pageRender->renderPage(["title" => $title]);
-    }
 }
