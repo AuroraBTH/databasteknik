@@ -30,12 +30,7 @@ class AdminController implements
     public function displaySettingsAdmin()
     {
         $this->checkIfAdmin();
-        $title = "Admin";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
-        $view->add("admin/admin");
-        $pageRender->renderPage(["title" => $title]);
+        $this->display("Admin", "admin/admin");
     }
 
 
@@ -43,11 +38,6 @@ class AdminController implements
     public function displayProductsAdmin()
     {
         $this->checkIfAdmin();
-        $title = "Admin Produkter";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
-
         $product = new Product();
         $product->setDb($this->di->get("db"));
 
@@ -55,8 +45,7 @@ class AdminController implements
             "products" => $product->getAllProducts()
         ];
 
-        $view->add("admin/products", $data);
-        $pageRender->renderPage(["title" => $title]);
+        $this->display("Admin Produkter", "admin/products", $data);
     }
 
 
@@ -64,11 +53,6 @@ class AdminController implements
     public function displayUsersAdmin()
     {
         $this->checkIfAdmin();
-        $title = "Admin Användare";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
-
         $user = new User();
         $user->setDb($this->di->get("db"));
 
@@ -76,8 +60,7 @@ class AdminController implements
             "users" => $user->getAllUsers()
         ];
 
-        $view->add("admin/users", $data);
-        $pageRender->renderPage(["title" => $title]);
+        $this->display("Admin Användare", "admin/users", $data);
     }
 
 
@@ -85,10 +68,6 @@ class AdminController implements
     public function displayLowAdmin()
     {
         $this->checkIfAdmin();
-        $title = "Admin Produkter";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
         $product = new Product();
         $product->setDb($this->di->get("db"));
 
@@ -96,8 +75,7 @@ class AdminController implements
             "products" => $product->getProductsWithLowAmount()
         ];
 
-        $view->add("admin/low", $data);
-        $pageRender->renderPage(["title" => $title]);
+        $this->display("Admin Lågt antal", "admin/low", $data);
     }
 
 
@@ -105,11 +83,6 @@ class AdminController implements
     public function displayOrdersAdmin()
     {
         $this->checkIfAdmin();
-        $title = "Admin Ordrar";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
-
         $order = new Orders();
         $order->setDb($this->di->get("db"));
 
@@ -117,8 +90,7 @@ class AdminController implements
             "orders" => $order->getAllOrders(),
         ];
 
-        $view->add("admin/orders", $data);
-        $pageRender->renderPage(["title" => $title]);
+        $this->display("Admin Ordrar", "admin/orders", $data);
     }
 
 
@@ -126,10 +98,6 @@ class AdminController implements
     public function displatSingleOrderAdmin($orderID)
     {
         $this->checkIfAdmin();
-        $title = "Admin Ordrar";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
         $order = new Orders();
         $order->setDb($this->di->get("db"));
         $orders = $order->getAllOrders();
@@ -164,12 +132,11 @@ class AdminController implements
                 "orderItems" => $products,
             ];
 
-            $view->add("admin/order", $data);
-            $pageRender->renderPage(["title" => $title]);
+            $this->display("Admin Order", "admin/order", $data);
         } elseif (!in_array($orderID, $orderNumbers)) {
             $url = $this->di->get("url");
             $response = $this->di->get("response");
-            $login = $url->create("orders");
+            $login = $url->create("admin/orders");
             $response->redirect($login);
             return false;
         }
@@ -180,11 +147,6 @@ class AdminController implements
     public function displayBuyFemaleAdmin()
     {
         $this->checkIfAdmin();
-        $title = "Admin Köp Produkt";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
-
         $buyForm = new AdminBuyFemaleForm($this->di);
 
         $buyForm->check();
@@ -193,8 +155,7 @@ class AdminController implements
             "content" => $buyForm->getHTML(),
         ];
 
-        $view->add("default1/article", $data);
-        $pageRender->renderPage(["title" => $title]);
+        $this->display("Admin Köp Product", "default1/article", $data);
     }
 
 
@@ -202,11 +163,6 @@ class AdminController implements
     public function displayBuyMaleAdmin()
     {
         $this->checkIfAdmin();
-        $title = "Admin Köp Produkt";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
-
         $buyForm = new AdminBuyMaleForm($this->di);
 
         $buyForm->check();
@@ -215,8 +171,7 @@ class AdminController implements
             "content" => $buyForm->getHTML(),
         ];
 
-        $view->add("default1/article", $data);
-        $pageRender->renderPage(["title" => $title]);
+        $this->display("Admin Köp Product", "default1/article", $data);
     }
 
 
@@ -224,11 +179,6 @@ class AdminController implements
     public function displayEditAdmin($productID)
     {
         $this->checkIfAdmin();
-        $title = "Admin Uppdatera Produkt";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
-
         $updateForm = new AdminUpdateProductForm($this->di, $productID);
 
         $updateForm->check();
@@ -237,9 +187,8 @@ class AdminController implements
             "content" => $updateForm->getHTML(),
         ];
 
-        $view->add("default1/article", $data);
 
-        $pageRender->renderPage(["title" => $title]);
+        $this->display("Admin Köp Product", "default1/article", $data);
     }
 
 
@@ -266,7 +215,18 @@ class AdminController implements
 
 
 
-    public function getOrderNumbers($orders)
+    private function display($title, $page, $data = []) {
+        $title = $title;
+        $view = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+
+        $view->add($page, $data);
+        $pageRender->renderPage(["title" => $title]);
+    }
+
+
+
+    private function getOrderNumbers($orders)
     {
         $orderNumbers = [];
         foreach ((array)$orders as $order) {

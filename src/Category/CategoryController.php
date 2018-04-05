@@ -21,10 +21,6 @@ class CategoryController implements
      */
     public function getAllCategories()
     {
-        $title = "Kategorier";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
         $category = new Category();
         $category->setDb($this->di->get("db"));
 
@@ -33,8 +29,7 @@ class CategoryController implements
             "categoriesMale" => $category->getAllCategoriesGender(1)
         ];
 
-        $view->add("category/categories", $data);
-        $pageRender->renderPage(["title" => $title]);
+        $this->display("Kategorier", "category/categories", $data);
     }
 
 
@@ -47,10 +42,6 @@ class CategoryController implements
      */
     public function getSpecificCategory($parentID)
     {
-        $title = "Kategori";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
         $category = new Category();
         $category->setDb($this->di->get("db"));
 
@@ -59,7 +50,17 @@ class CategoryController implements
             "categories" => $category->getAllSubCategories($parentID)
         ];
 
-        $view->add("category/specificCategory", $data);
+        $this->display("Kategori", "category/specificCategory", $data);
+    }
+
+
+
+    private function display($title, $page, $data = []) {
+        $title = $title;
+        $view = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+
+        $view->add($page, $data);
         $pageRender->renderPage(["title" => $title]);
     }
 }

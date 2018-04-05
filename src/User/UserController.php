@@ -26,10 +26,6 @@ class UserController implements
 
     public function getLoginPage()
     {
-        $title = "Inloggning";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
         $url = $this->di->get("url");
         $response = $this->di->get("response");
         $session = $this->di->get("session");
@@ -45,9 +41,7 @@ class UserController implements
                 "content" => $loginForm->getHTML(),
             ];
 
-            $view->add("default1/article", $data);
-
-            $pageRender->renderPage(["title" => $title]);
+            $this->display("Inloggning", "default1/article", $data);
         }
     }
 
@@ -55,11 +49,6 @@ class UserController implements
 
     public function getCreatePage()
     {
-        $title = "Skapa ny användare";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
-
         $createForm = new UserCreateForm($this->di);
 
         $createForm->check();
@@ -68,20 +57,13 @@ class UserController implements
             "content" => $createForm->getHTML(),
         ];
 
-        $view->add("default1/article", $data);
-
-        $pageRender->renderPage(["title" => $title]);
+        $this->display("Skapa ny användare", "default1/article", $data);
     }
 
 
 
     public function updateProfile()
     {
-        $title = "Uppdatera profil";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
-
         $updateForm = new UserUpdateForm($this->di);
 
         $updateForm->check();
@@ -90,19 +72,13 @@ class UserController implements
             "content" => $updateForm->getHTML(),
         ];
 
-        $view->add("default1/article", $data);
-
-        $pageRender->renderPage(["title" => $title]);
+        $this->display("Uppdatera profil", "default1/article", $data);
     }
 
 
 
     public function getProfilePage()
     {
-        $title = "Profil";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
         $this->checkLoggedIn();
 
         # Creating new user and set database.
@@ -116,8 +92,7 @@ class UserController implements
             "content" => $user->getUserInformationByEmail($session->get("email")),
         ];
 
-        $view->add("user/profile", $data);
-        $pageRender->renderPage(["title" => $title]);
+        $this->display("Profile", "user/profile", $data);
     }
 
 
@@ -143,6 +118,17 @@ class UserController implements
             $response->redirect($login);
             return true;
         }
+    }
+
+
+
+    private function display($title, $page, $data = []) {
+        $title = $title;
+        $view = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+
+        $view->add($page, $data);
+        $pageRender->renderPage(["title" => $title]);
     }
 
 
