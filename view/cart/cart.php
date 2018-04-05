@@ -36,7 +36,7 @@ $checkout = url("cart/checkout");
                                 <td><?= $value["productSize"] ?></td>
                                 <td><?= $value["productSellPrize"] ?></td>
                                 <td><?= $value["productColor"] ?></td>
-                                <td><?= $value['amount'] ?>
+                                <td>
                                     <button
                                         class="cartButtons"
                                         onclick="plusProduct('<?= $value["productID"] ?>')"
@@ -44,6 +44,7 @@ $checkout = url("cart/checkout");
                                         name="button">
                                         <i class="fas fa-plus"></i>
                                     </button>
+                                    <?= $value['amount'] ?>
                                     <button
                                         class="cartButtons"
                                         onclick="minusProduct('<?= $value["productID"] ?>')"
