@@ -109,3 +109,11 @@ body {
     padding: 0;
     cursor: pointer;
 }
+
+.fa-minus::before {
+    padding-left: 7px;
+}
+
+.fa-plus::before {
+    padding-right: 7px;
+}
