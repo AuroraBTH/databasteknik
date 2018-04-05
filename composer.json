@@ -14,7 +14,7 @@
         "anax/di": "^1.0",
         "anax/page": "^1.0",
         "twbs/bootstrap": "^4.0.0",
-        "anax/htmlform": "^1.1.1",
+        "anax/htmlform": "^1.1.2",
         "anax/database": "^1.0",
         "components/jquery": "^3.3",
         "components/font-awesome": "^5.0"

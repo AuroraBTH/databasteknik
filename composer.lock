@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "dc14d353dc5380e78664de15640cfa9e",
+    "content-hash": "a6edb716128b5a39241cc4ea0b5b6f4e",
     "packages": [
         {
             "name": "anax/common",
@@ -202,16 +202,16 @@
         },
         {
             "name": "anax/htmlform",
-            "version": "v1.1.1",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/canax/htmlform.git",
-                "reference": "869a1504acc457516d93dd7f730057c6d247a9c5"
+                "reference": "16f1420a8be6b282ed44dc805f86516b0ad4c468"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/canax/htmlform/zipball/869a1504acc457516d93dd7f730057c6d247a9c5",
-                "reference": "869a1504acc457516d93dd7f730057c6d247a9c5",
+                "url": "https://api.github.com/repos/canax/htmlform/zipball/16f1420a8be6b282ed44dc805f86516b0ad4c468",
+                "reference": "16f1420a8be6b282ed44dc805f86516b0ad4c468",
                 "shasum": ""
             },
             "require": {
@@ -249,7 +249,7 @@
                 "micro",
                 "mvc"
             ],
-            "time": "2018-03-27T13:18:10+00:00"
+            "time": "2018-04-04T14:07:37+00:00"
         },
         {
             "name": "anax/page",
@@ -672,16 +672,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.6",
+            "version": "v3.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "6af42631dcf89e9c616242c900d6c52bd53bd1bb"
+                "reference": "a42f9da85c7c38d59f5e53f076fe81a091f894d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/6af42631dcf89e9c616242c900d6c52bd53bd1bb",
-                "reference": "6af42631dcf89e9c616242c900d6c52bd53bd1bb",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/a42f9da85c7c38d59f5e53f076fe81a091f894d0",
+                "reference": "a42f9da85c7c38d59f5e53f076fe81a091f894d0",
                 "shasum": ""
             },
             "require": {
@@ -726,7 +726,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-16T09:50:28+00:00"
+            "time": "2018-04-03T05:14:20+00:00"
         },
         {
             "name": "twbs/bootstrap",
