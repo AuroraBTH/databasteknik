@@ -73,14 +73,6 @@ return [
                 return $session;
             }
         ],
-        "cookie" => [
-            "shared" => true,
-            "active" => true,
-            "callback" => function () {
-                $cookie = new \Course\Cookie\CookieController();
-                return $cookie;
-            }
-        ],
         "pageRender" => [
             "shared" => true,
             "callback" => function () {
