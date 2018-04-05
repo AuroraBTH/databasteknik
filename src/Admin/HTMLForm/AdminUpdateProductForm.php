@@ -124,7 +124,7 @@ class AdminUpdateProductForm extends FormModel
                     "label"       => "Kategori",
                     "class"       => "custom-select",
                     "options"     => $categoryArr,
-                    "checked"     => $currentCategory[0]->categoryID
+                    "value"     => $currentCategory[0]->categoryID
                 ],
                 "submit" => [
                     "type"     => "submit",
