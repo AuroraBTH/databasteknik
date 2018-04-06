@@ -60,7 +60,7 @@ class Coupon extends ActiveRecordModel
     /**
     * Set coupon start date.
     *
-    * @param DateTime $date for the start of the coupon.
+    * @param \DateTime $date for the start of the coupon.
     *
     * @return void
     */
@@ -74,7 +74,7 @@ class Coupon extends ActiveRecordModel
     /**
     * Set coupon end date.
     *
-    * @param DateTime $date for the end of the coupon.
+    * @param \DateTime $date for the end of the coupon.
     *
     * @return void
     */
@@ -105,7 +105,7 @@ class Coupon extends ActiveRecordModel
     *
     * @param string $name of the coupon.
     *
-    * @return bool
+    * @return mixed
     */
     public function validateCoupon($name)
     {
