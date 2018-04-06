@@ -66,7 +66,7 @@ class Coupon extends ActiveRecordModel
     */
     public function setStartDate($date)
     {
-        $this->startDate = $start;
+        $this->startDate = $date;
     }
 
 
