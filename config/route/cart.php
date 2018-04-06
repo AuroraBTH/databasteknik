@@ -18,7 +18,7 @@ return [
         ],
         [
             "info" => "Beställning lagd",
-            "requestMethod" => "GET",
+            "requestMethod" => "GET | POST",
             "path" => "cart/order",
             "callable" => ["cartController", "displayOrder"]
         ],
