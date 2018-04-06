@@ -49,6 +49,18 @@ $order = url("cart/order");
             </tbody>
         </table>
         <?php if ($amountOfItems > 0) : ?>
+        <div class="d-flex justify-content-around">
+            <div class="w-25">
+                <form class="" action="<?= $order ?>" method="POST">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Kupong</label>
+                        <input name="coupon" type="text" class="form-control" id="coupon" placeholder="SOMMAR2018">
+                    </div>
+                    <div class="form-group w-50 mx-auto">
+                        <button type="submit" class="form-control btn btn-lg btn-primary">Beställ</button>
+                    </div>
+                </form>
+            </div>
             <table class="table w-25 border border-top-0">
                 <thead>
                     <tr class="text-center font-weight-bold">
@@ -78,7 +90,7 @@ $order = url("cart/order");
                     </tr>
                 </tbody>
             </table>
-            <a href="<?= $order ?>"><button type="button" class="btn btn-primary w-10">Beställ</button></a>
+        </div>
         <?php elseif ($amountOfItems < 1) : ?>
             <p>Din kundvagn innehåller för tillfället inga produkter.</p>
         <?php endif; ?>
