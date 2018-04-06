@@ -83,6 +83,7 @@ class OrderController implements
             }
 
             $data = [
+                "order" => $orders,
                 "userInfo" => $userInformation,
                 "orderItems" => $products,
             ];
