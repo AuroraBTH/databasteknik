@@ -11,6 +11,7 @@ use \Course\Order\OrderItem;
 use \Course\Order\Orders;
 use \Course\Product\Product;
 use \Course\User\User;
+use \Course\Coupon\Coupon;
 
 class CartController implements
     ConfigureInterface,
@@ -71,10 +72,21 @@ class CartController implements
         $user->getUserInformationByEmail($session->get("email"));
 
         if ($session->get("order") == true) {
+            if ($this->di->get("request")->getPost("coupon") != null) {
+                $coupon = new Coupon();
+                $code = $this->di->get("request")->getPost("coupon", null);
+                $coupon->setDb($db);
+                $couponData = $coupon->validateCoupon($code);
+            }
+
             $order = new Orders();
             $order->setDb($db);
             $order->setUserID($user->userID);
-            $order->setCouponID(1);
+
+            if (isset($couponData)) {
+                $order->setCouponID($couponData->couponID);
+            }
+
             $order->save();
 
             $orderID = $order->getLastInsertedID();
