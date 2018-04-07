@@ -58,5 +58,11 @@ return [
             "path" => "admin/edit/{id:digit}",
             "callable" => ["adminController", "displayEditAdmin"],
         ],
+        [
+            "info" => "Admin Lägg till kupong",
+            "requestMethod" => "GET|POST",
+            "path" => "admin/coupon/add",
+            "callable" => ["adminController", "displayAddCoupon"],
+        ],
     ]
 ];
