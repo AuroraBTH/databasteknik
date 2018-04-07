@@ -195,10 +195,10 @@ class AdminController implements
 
 
     /**
-    * Page for adding new coupons.
-    *
-    * @return void
-    */
+     * Page for adding new coupons.
+     *
+     * @return void
+     */
     public function displayAddCoupon()
     {
         $this->checkIfAdmin();
