@@ -32,6 +32,10 @@ $admin = url("admin");
                     <a class="mx-auto w-75 btn btn-lg btn-primary pt-4 pb-4 btn-block"
                     href="<?= $admin ?>/buyMale">Köp in herrprodukter</a>
                 </div>
+                <div class="w-50 mt-3 mb-3 col-md-<?php echo $bootstrapColWidth; ?>">
+                    <a class="mx-auto w-75 btn btn-lg btn-primary pt-4 pb-4 btn-block"
+                    href="<?= $admin ?>/coupon/add">Lägg till kupong</a>
+                </div>
         </div>
     </div>
 </div>
