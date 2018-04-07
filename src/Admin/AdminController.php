@@ -11,10 +11,12 @@ use \Course\User\User;
 use \Course\Product\Product;
 use \Course\Order\Orders;
 use \Course\Order\OrderItem;
+use \Course\Coupon\Coupon;
 
 use \Course\Admin\HTMLForm\AdminUpdateProductForm;
 use \Course\Admin\HTMLForm\AdminBuyFemaleForm;
 use \Course\Admin\HTMLForm\AdminBuyMaleForm;
+use \Course\Admin\HTMLForm\CouponCreateForm;
 
 
 
@@ -190,6 +192,28 @@ class AdminController implements
 
         $this->display("Admin Köp Product", "default1/article", $data);
     }
+
+
+    /**
+    * Page for adding new coupons.
+    *
+    * @return void
+    */
+    public function displayAddCoupon()
+    {
+        $this->checkIfAdmin();
+        $form = new CouponCreateForm($this->di);
+
+        $form->check();
+
+        $data = [
+            "content" => $form->getHTML(),
+        ];
+
+
+        $this->display("Admin | Lägg till kupong", "default1/article", $data);
+    }
+
 
 
     private function checkIfAdmin()
