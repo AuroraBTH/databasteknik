@@ -102,7 +102,7 @@ class CouponCreateForm extends FormModel
         # Check if that Coupon name already exists. If not create new coupon.
         if ($coupon->getCouponByName($name) == null) {
             $coupon->setName($name);
-            $coupon->setAmount($amount);
+            $coupon->setAmount((int)$amount);
             $coupon->setStartDate($start);
             $coupon->setFinishDate($end);
             $coupon->save();
