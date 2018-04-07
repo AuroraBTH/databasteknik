@@ -48,6 +48,11 @@ body {
     justify-content: center;
 }
 
+.add .main-wrap {
+    display: flex;
+    justify-content: center;
+}
+
 .buy .main-wrap {
     display: flex;
     justify-content: center;
@@ -70,6 +75,10 @@ body {
 }
 
 .buy fieldset {
+    width: 100%;
+}
+
+.add fieldset {
     width: 100%;
 }
 
