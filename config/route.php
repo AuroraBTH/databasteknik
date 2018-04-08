@@ -17,6 +17,10 @@ return [
         ],
         [
             "mount" => null,
+            "file" => __DIR__ . "/route/cm.php",
+        ],
+        [
+            "mount" => null,
             "file" => __DIR__ . "/route/ajax.php",
         ],
         [

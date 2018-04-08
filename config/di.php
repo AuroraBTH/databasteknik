@@ -177,6 +177,14 @@ return [
                 return $obj;
             }
         ],
+        "managementController" => [
+            "shared" => true,
+            "callback" => function () {
+                $obj = new \Course\Management\ManagementController();
+                $obj->setDI($this);
+                return $obj;
+            }
+        ],
         "navbar" => [
             "shared" => true,
             "callback" => function () {
