@@ -22,10 +22,6 @@ class CartController implements
 
 
     public function displayCart() {
-        $title = "Kundvagn";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
         #Get current session.
         $session = $this->di->get("session");
 
@@ -33,17 +29,12 @@ class CartController implements
             "cartItems" => $session->get("items"),
         ];
 
-        $view->add("cart/cart", $data);
-        $pageRender->renderPage(["title" => $title]);
+        $this->display("Kassa", "cart/cart", $data);
     }
 
 
 
     public function displayCheckout() {
-        $title = "Kassa";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
         #Get current session.
         $session = $this->di->get("session");
         $session->set("order", true);
@@ -53,16 +44,12 @@ class CartController implements
             "cartItems" => $session->get("items"),
         ];
 
-        $view->add("cart/checkout", $data);
-        $pageRender->renderPage(["title" => $title]);
+        $this->display("Kassa", "cart/checkout", $data);
     }
 
 
 
     public function displayOrder() {
-        $title = "Beställning lagd";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
         $db = $this->di->get("db");
 
         $session = $this->di->get("session");
@@ -119,7 +106,17 @@ class CartController implements
         $session->delete("items");
         $session->delete("orderID");
 
-        $view->add("cart/order", $data);
+        $this->display("Beställning lagd", "cart/order", $data);
+    }
+
+
+
+    private function display($title, $page, $data = []) {
+        $title = $title;
+        $view = $this->di->get("view");
+        $pageRender = $this->di->get("pageRender");
+
+        $view->add($page, $data);
         $pageRender->renderPage(["title" => $title]);
     }
 }
