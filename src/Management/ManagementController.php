@@ -9,6 +9,7 @@ use \Anax\Di\InjectionAwareTrait;
 
 use \Course\User\User;
 use \Course\Order\OrderItem;
+use \Course\Order\Orders;
 use \Course\Product\Product;
 
 class ManagementController implements
@@ -31,16 +32,17 @@ class ManagementController implements
     public function displaySettingsMostBought()
     {
         $this->checkIfManagement();
+        $db = $this->di->get("db");
 
         $orderItems = new OrderItem();
-        $orderItems->setDb($this->di->get("db"));
+        $orderItems->setDb($db);
 
 
         $product = new Product();
-        $product->setDb($this->di->get("db"));
+        $product->setDb($db);
 
         $orderItem = new OrderItem();
-        $orderItem->setDb($this->di->get("db"));
+        $orderItem->setDb($db);
 
         $items = $orderItems->getMostBoughtProducts();
 
@@ -57,6 +59,23 @@ class ManagementController implements
         ];
 
         $this->display("Management Mest Köpta", "management/mostbought", $data);
+    }
+
+
+
+    public function displaySettingsBestSelling()
+    {
+      $this->checkIfManagement();
+      $db = $this->di->get("db");
+
+      $order = new Orders();
+      $order->setDb($db);
+
+      $data = [
+          "orders" => $order->getAllOrders1Month()
+      ];
+
+        $this->display("Management Bästsäljande", "management/bestselling", $data);
     }
 
 
