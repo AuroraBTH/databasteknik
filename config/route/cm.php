@@ -11,10 +11,16 @@ return [
             "callable" => ["managementController", "displaySettingsManagement"],
         ],
         [
-            "info" => "Management",
+            "info" => "Management Most Bought Product",
             "requestMethod" => "GET",
             "path" => "management/mostbought",
             "callable" => ["managementController", "displaySettingsMostBought"],
+        ],
+        [
+            "info" => "Management Best Selling Product 1 Month",
+            "requestMethod" => "GET",
+            "path" => "management/bestselling",
+            "callable" => ["managementController", "displaySettingsBestSelling"],
         ],
     ]
 ];
