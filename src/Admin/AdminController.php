@@ -229,7 +229,7 @@ class AdminController implements
 
         $email = $session->get("email");
 
-        if ($user->getPermission($email) == 1 || $user->getPermission($email) == 2 ) {
+        if ($user->getPermission($email) == 1) {
             return true;
         }
 
