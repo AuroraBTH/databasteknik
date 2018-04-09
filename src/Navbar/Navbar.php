@@ -16,7 +16,7 @@ class Navbar implements InjectionAwareInterface
         foreach ($this->config["items"]["user"] as $item) {
             $createUrl = $this->di->url->create($item["route"]);
             $selected = $this->di->request->getRoute() == $item["route"] ? "active" : "";
-            $nav .= "<li class='nav-item $selected' ><a class='nav-link' href='$createUrl'>$item[text]</a></li>";
+            $nav .= "<li class='nav-item $selected my-auto'><a class='nav-link' href='$createUrl'>$item[text]</a></li>";
         }
 
         $logUrl = $this->checkUserLogin();
@@ -52,7 +52,7 @@ class Navbar implements InjectionAwareInterface
         </form></li>";
 
         if ($session->get("email")) {
-            $route .= "<li class='nav-item dropdown'>";
+            $route .= "<li class='nav-item dropdown my-auto'>";
             $route .= "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Min-sida</a>";
             $route .= "<div class='dropdown-menu' aria-labelledby='navbarDropdown'>";
 
@@ -78,7 +78,7 @@ class Navbar implements InjectionAwareInterface
         }
 
         $cartUrl = $this->di->url->create("cart");
-        $route .= "<li class='nav-item' id='cart'><a class='nav-link' href='$cartUrl'>
+        $route .= "<li class='nav-item my-auto' id='cart'><a class='nav-link' href='$cartUrl'>
         <i class='fas fa-shopping-cart'></i> Kundvagn ($counter)</a></li>";
 
         return $route;
