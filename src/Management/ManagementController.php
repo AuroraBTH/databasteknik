@@ -81,7 +81,8 @@ class ManagementController implements
             $products = $orderItem->getAllItemsWhereID($value->orderID);
             foreach ($products as $key => $value) {
                 if (array_key_exists($value->productID, $orderItems)) {
-                    $orderItems[$value->productID]->total = ((int)$orderItems[$value->productID]->productAmount + $value->productAmount);
+                    $productAmount = ((int)$orderItems[$value->productID]->productAmount + $value->productAmount);
+                    $orderItems[$value->productID]->total = $productAmount;
                 } else if (!array_key_exists($value->productID, $orderItems)) {
                     $orderItems[$value->productID] = $value;
                     $orderItems[$value->productID]->total = $value->productAmount;

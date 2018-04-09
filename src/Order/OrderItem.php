@@ -65,7 +65,12 @@ class OrderItem extends ActiveRecordModel {
 
     public function getMostBoughtProducts()
     {
-      $sql = "SELECT productID, SUM(productAmount) AS total FROM OrderItem GROUP BY productID ORDER BY SUM(productAmount) DESC LIMIT 10";
+      $sql = "SELECT productID,
+        SUM(productAmount) AS total
+        FROM OrderItem
+        GROUP BY productID
+        ORDER BY SUM(productAmount)
+        DESC LIMIT 10";
       $res = $this->findAllSql($sql);
       return $res;
     }
