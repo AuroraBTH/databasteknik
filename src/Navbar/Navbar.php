@@ -53,7 +53,8 @@ class Navbar implements InjectionAwareInterface
 
         if ($session->get("email")) {
             $route .= "<li class='nav-item dropdown my-auto'>";
-            $route .= "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Min-sida</a>";
+            $route .= "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button'
+            data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Min-sida</a>";
             $route .= "<div class='dropdown-menu' aria-labelledby='navbarDropdown'>";
 
             $createUrlProfile = $this->di->url->create("user/profile");
