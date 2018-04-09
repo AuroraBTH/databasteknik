@@ -65,15 +65,48 @@ class ManagementController implements
 
     public function displaySettingsBestSelling()
     {
-      $this->checkIfManagement();
-      $db = $this->di->get("db");
+        $this->checkIfManagement();
+        $db = $this->di->get("db");
 
-      $order = new Orders();
-      $order->setDb($db);
+        $order = new Orders();
+        $order->setDb($db);
 
-      $data = [
-          "orders" => $order->getAllOrders1Month()
-      ];
+        $orders = $order->getAllOrders1Month();
+
+        $orderItems = [];
+        foreach ($orders as $key => $value) {
+            $orderItem = new OrderItem();
+            $orderItem->setDb($db);
+
+            $products = $orderItem->getAllItemsWhereID($value->orderID);
+            foreach ($products as $key => $value) {
+                if (array_key_exists($value->productID, $orderItems)) {
+                    $orderItems[$value->productID]->total = ((int)$orderItems[$value->productID]->productAmount + $value->productAmount);
+                } else if (!array_key_exists($value->productID, $orderItems)) {
+                    $orderItems[$value->productID] = $value;
+                    $orderItems[$value->productID]->total = $value->productAmount;
+                }
+            }
+        }
+
+        $products = [];
+        foreach ($orderItems as $key => $value) {
+            $product = new Product();
+            $product->setDb($db);
+            $product->getProductByID($value->productID);
+            $product->total = $value->total;
+            $products[] = $product;
+        }
+
+        foreach ($products as $key => $value) {
+            $total[$key]  = $value->total;
+        }
+
+        array_multisort($total, SORT_DESC, $products);
+
+        $data = [
+            "products" => $products
+        ];
 
         $this->display("Management Bästsäljande", "management/bestselling", $data);
     }
