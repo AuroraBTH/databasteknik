@@ -4,10 +4,6 @@ namespace Anax\View;
 $product = url("product");
 $management = url("management");
 $counter = 0;
-
-// echo '<pre>';
-// var_dump($data['products']);
-// echo '</pre>';
 ?>
 
 <div class="d-flex flex-row justify-content-center mt-4">
