@@ -200,9 +200,9 @@ class Product extends ActiveRecordModel {
 
 
     public function searchProducts($searchString) {
-        $param = "[[:<:]]{$searchString}[[:>:]]";
-        $sql = "SELECT * FROM Product WHERE productName REGEXP ? and productDeleted = ?";
-        $res = $this->findAllSql($sql, [$param, "false"]);
+        $searchString = htmlentities($searchString);
+        $sql = "SELECT * FROM Product WHERE productName like ? and productDeleted = ?";
+        $res = $this->findAllSql($sql, ["%$searchString%","false"]);
         return $res;
     }
 }
