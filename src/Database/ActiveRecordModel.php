@@ -89,7 +89,7 @@ class ActiveRecordModel
      */
     public function find($column, $value)
     {
-        return $this->findWhere("$column = ?", $value);
+        return $this->findWhere("$column = ?", htmlentities($value, ENT_QUOTES, "UTF-8"));
     }
 
 
@@ -133,7 +133,7 @@ class ActiveRecordModel
         return $this->db->connect()
                         ->select()
                         ->from($this->tableName)
-                        ->where($where)
+                        ->where(htmlentities($where))
                         ->execute($params)
                         ->fetchInto($this);
     }
@@ -178,7 +178,7 @@ class ActiveRecordModel
         return $this->db->connect()
                         ->select()
                         ->from($this->tableName)
-                        ->where($where)
+                        ->where(htmlentities($where))
                         ->execute($params)
                         ->fetchAllClass(get_class($this));
     }

@@ -60,7 +60,7 @@ class Coupon extends ActiveRecordModel
     /**
     * Set coupon start date.
     *
-    * @param \DateTime $date for the start of the coupon.
+    * @param string $date for the start of the coupon.
     *
     * @return void
     */
@@ -74,7 +74,7 @@ class Coupon extends ActiveRecordModel
     /**
     * Set coupon end date.
     *
-    * @param \DateTime $date for the end of the coupon.
+    * @param string $date for the end of the coupon.
     *
     * @return void
     */
@@ -111,11 +111,14 @@ class Coupon extends ActiveRecordModel
     {
         $currentDate = new \DateTime();
         $coupon = $this->find("couponName", $name);
-
-        if ($currentDate < new \DateTime("$coupon->startDate") || $currentDate > new \DateTime("$coupon->finishDate")) {
-            return null;
+        
+        if ($coupon) {
+            if ($currentDate < new \DateTime("$coupon->startDate") || $currentDate > new \DateTime("$coupon->finishDate")) {
+                return null;
+            }
+            return $coupon;
         }
 
-        return $coupon;
+        return null;
     }
 }
