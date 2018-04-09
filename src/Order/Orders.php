@@ -73,4 +73,12 @@ class Orders extends ActiveRecordModel {
     {
         return $this->findAll();
     }
+
+
+
+    public function getAllOrders1Month()
+    {
+      $orders = $this->findallwhere("purchaseTime >= ?", "(NOW() - INTERVAL 1 MONTH)");
+      return $orders;
+    }
 }

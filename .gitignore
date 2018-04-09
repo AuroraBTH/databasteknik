@@ -3,7 +3,7 @@
 build/
 cache/
 config/database.php
-vendor/
+vendor
 data/
 sql/dummy.txt
 sql/dummy_data.sql
