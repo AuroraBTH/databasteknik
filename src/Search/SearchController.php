@@ -22,7 +22,7 @@ class SearchController implements
     /**
      * Rendering of search result
      * @method displayResult
-     * @return void.
+     * @return void
      */
     public function displayResult()
     {

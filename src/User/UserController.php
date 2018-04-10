@@ -27,7 +27,7 @@ class UserController implements
     /**
      * Rendering of login page.
      * @method getLoginPage
-     * @return void.
+     * @return void
      */
     public function getLoginPage()
     {
@@ -55,7 +55,7 @@ class UserController implements
     /**
      * Rendering of create user page.
      * @method getCreatePage
-     * @return void.
+     * @return void
      */
     public function getCreatePage()
     {
@@ -120,7 +120,7 @@ class UserController implements
     /**
      * This function will handle logout.
      * @method logout
-     * @return mixed.
+     * @return mixed
      */
     public function logout()
     {
@@ -169,7 +169,7 @@ class UserController implements
     /**
      * Check if user is logged in.
      * @method checkLoggedIn
-     * @return mixed.
+     * @return mixed
      */
     public function checkLoggedIn()
     {

@@ -251,15 +251,17 @@ class Product extends ActiveRecordModel {
      * Get all products under 500kr.
      * @method getProductsUnder500
      * @param  int $gender 0 = Female, 1 = Male.
-     * @param  int $limit amount of product.
+     * @param  mixed $limit amount of product.
      * @return array with products under 500kr.
      */
     public function getProductsUnder500($gender, $limit) {
-        if ($limit === null) {
+        $res = null;
+        
+        if (!is_int($limit)) {
             $sql = "SELECT * FROM Product WHERE productSellPrize <= 500
             and productGender = ? and productDeleted = ?";
             $res = $this->findAllSql($sql, [$gender, "false"]);
-        } elseif ($limit !== null) {
+        } elseif (is_int($limit)) {
             $sql = "SELECT * FROM Product WHERE productSellPrize <= 500
             and productGender = ? and productDeleted = ? LIMIT ?";
             $res = $this->findAllSql($sql, [$gender, "false", $limit]);

@@ -53,7 +53,7 @@ class Orders extends ActiveRecordModel {
      * Get orderID.
      * @method getOrderID
      * @param  int $userID ID of user
-     * @return array with order..
+     * @return mixed with order.
      */
     public function getOrderID($userID)
     {
@@ -64,9 +64,9 @@ class Orders extends ActiveRecordModel {
 
 
     /**
-     * Get last inserted tidy.
+     * Get last inserted id.
      * @method getLastInsertedID
-     * @return int.
+     * @return int id of last insert.
      */
     public function getLastInsertedID()
     {
@@ -80,7 +80,7 @@ class Orders extends ActiveRecordModel {
      * Get order by ID.
      * @method getOrderByID
      * @param  int  $orderID ID of order.
-     * @return array with specific order.
+     * @return mixed with specific order.
      */
     public function getOrderByID($orderID)
     {
@@ -117,7 +117,7 @@ class Orders extends ActiveRecordModel {
     /**
      * Get all orders from 1 month.
      * @method getAllOrders1Month
-     * @return array.
+     * @return array with orders.
      */
     public function getAllOrders1Month()
     {

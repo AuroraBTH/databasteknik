@@ -47,7 +47,7 @@ class ProductController implements
      * @method getAllProductsFromCategory
      * @param  int  $categoryID category ID
      * @param  int  $genderID  0 = Female, 1 = Male.
-     * @return void.
+     * @return void
      */
     public function getAllProductsFromCategory($categoryID, $genderID)
     {
@@ -71,7 +71,7 @@ class ProductController implements
     /**
      * Rendering of all products under 500kr
      * @method getAllProductsUnder500
-     * @return void.
+     * @return void
      */
     public function getAllProductsUnder500()
     {
@@ -79,8 +79,8 @@ class ProductController implements
         $products->setDb($this->di->get("db"));
 
         $data = [
-            "under500Female" => $products->getProductsUnder500(0, null),
-            "under500Male" => $products->getProductsUnder500(1, null)
+            "under500Male" => $products->getProductsUnder500(1, null),
+            "under500Female" => $products->getProductsUnder500(0, null)
         ];
 
         $this->display("Produkter under 500kr", "product/under500", $data);
