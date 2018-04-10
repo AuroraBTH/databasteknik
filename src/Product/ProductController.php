@@ -30,7 +30,7 @@ class ProductController implements
         $product->setDb($this->di->get("db"));
         $data = $product->getProducts("productID", $productId);
 
-        if (!is_array($data)) {
+        if (empty($data)) {
             $redirect = $this->di->get("url")->create("");
             $this->di->get("response")->redirect($redirect);
             return false;

@@ -24,10 +24,10 @@ $loggedIn = $this->di->get("session")->has("email");
                             <?php
                             if ($data[0]->productAmount <= 0) {
                                 echo("Ej i lager");
-                            }  else if ($data[0]->productAmount < 5) {
+                            } else if ($data[0]->productAmount < 5) {
                                 echo("Endast ett fåtal kvar i lager");
                             } elseif ($data[0]->productAmount > 5) {
-                                echo("I lager: ".$data[0]->productAmount);
+                                echo("I lager: " . $data[0]->productAmount);
                             }
                             ?>
                         </p>

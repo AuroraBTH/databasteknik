@@ -237,8 +237,8 @@ class ActiveRecordModel
         $values  = array_values($properties);
 
         $this->db->connect()
-                 ->insert($this->tableName, $columns)
-                 ->execute($values);
+                    ->insert($this->tableName, $columns)
+                    ->execute($values);
 
         $this->{$this->tableIdColumn} = $this->db->lastInsertId();
     }
@@ -260,9 +260,9 @@ class ActiveRecordModel
         $values[] = $this->{$this->tableIdColumn};
 
         $this->db->connect()
-                 ->update($this->tableName, $columns)
-                 ->where("{$this->tableIdColumn} = ?")
-                 ->execute($values);
+                    ->update($this->tableName, $columns)
+                    ->where("{$this->tableIdColumn} = ?")
+                    ->execute($values);
     }
 
 
@@ -294,9 +294,9 @@ class ActiveRecordModel
         $values = array_merge($values, $values1);
 
         $this->db->connect()
-                 ->update($this->tableName, $columns)
-                 ->where($where)
-                 ->execute($values);
+                    ->update($this->tableName, $columns)
+                    ->where($where)
+                    ->execute($values);
     }
 
 
@@ -316,9 +316,9 @@ class ActiveRecordModel
         $id = $id ?: $this->{$this->tableIdColumn};
 
         $this->db->connect()
-                 ->deleteFrom($this->tableName)
-                 ->where("{$this->tableIdColumn} = ?")
-                 ->execute([$id]);
+                    ->deleteFrom($this->tableName)
+                    ->where("{$this->tableIdColumn} = ?")
+                    ->execute([$id]);
 
         $this->{$this->tableIdColumn} = null;
     }
@@ -347,9 +347,9 @@ class ActiveRecordModel
         $values = is_array($value) ? $value : [$value];
 
         $this->db->connect()
-                 ->deleteFrom($this->tableName)
-                 ->where($where)
-                 ->execute($values);
+                    ->deleteFrom($this->tableName)
+                    ->where($where)
+                    ->execute($values);
     }
 
 

@@ -173,9 +173,9 @@ class UserUpdateForm extends FormModel
             $user->setSurname($arrayOfData["surname"]);
             $user->setEmail($arrayOfData["email"]);
             $user->setAddress($arrayOfData["address"]);
-            $user->setPostcode((int)$arrayOfData["postcode"]);
+            $user->setPostcode((int) $arrayOfData["postcode"]);
             $user->setCity($arrayOfData["city"]);
-            $user->setPhone((int)$arrayOfData["phone"]);
+            $user->setPhone((int) $arrayOfData["phone"]);
             $user->setPassword($arrayOfData["password"]);
             $user->setGender($arrayOfData["gender"] === 'Female' ? 0 : 1);
             $user->save();

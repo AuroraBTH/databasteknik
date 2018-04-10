@@ -148,13 +148,13 @@ class AdminBuyMaleForm extends FormModel
         $product->setProductManufacturer($arrayOfData["productManufacturer"]);
         $product->setProductName($arrayOfData["productName"]);
         $product->setProductCountry($arrayOfData["productOriginCountry"]);
-        $product->setProductWeight((int)$arrayOfData["productWeight"]);
+        $product->setProductWeight((int) $arrayOfData["productWeight"]);
         $product->setProductSize($arrayOfData["productSize"]);
-        $product->setProductSellPrize((int)$arrayOfData["productSellPrize"]);
-        $product->setProductBuyPrize((int)$arrayOfData["productBuyPrize"]);
+        $product->setProductSellPrize((int) $arrayOfData["productSellPrize"]);
+        $product->setProductBuyPrize((int) $arrayOfData["productBuyPrize"]);
         $product->setProductColor($arrayOfData["productColor"]);
-        $product->setProductAmount((int)$arrayOfData["productAmount"]);
-        $product->setProductCategoryID((int)$arrayOfData["productCategoryID"]);
+        $product->setProductAmount((int) $arrayOfData["productAmount"]);
+        $product->setProductCategoryID((int) $arrayOfData["productCategoryID"]);
         $product->setProductGender(1);
         $product->setProductDeleted("false");
         $product->save();
