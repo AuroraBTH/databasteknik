@@ -44,6 +44,11 @@ class Product extends ActiveRecordModel {
 
 
 
+    /**
+     * Set product manufacturer.
+     * @method setProductManufacturer
+     * @param  string $productManufacturer name of manufacturer
+     */
     public function setProductManufacturer($productManufacturer)
     {
         $this->productManufacturer = $productManufacturer;
@@ -51,6 +56,11 @@ class Product extends ActiveRecordModel {
 
 
 
+    /**
+     * Set product name
+     * @method setProductName
+     * @param  string $productName name of product.
+     */
     public function setProductName($productName)
     {
         $this->productName = $productName;
@@ -58,6 +68,11 @@ class Product extends ActiveRecordModel {
 
 
 
+    /**
+     * Set product country
+     * @method setProductCountry
+     * @param  string $productOriginCountry name of origin country.
+     */
     public function setProductCountry($productOriginCountry)
     {
         $this->productOriginCountry = $productOriginCountry;
@@ -65,6 +80,11 @@ class Product extends ActiveRecordModel {
 
 
 
+    /**
+     * Set product weight.
+     * @method setProductWeight
+     * @param int $productWeight weight in grams.
+     */
     public function setProductWeight($productWeight)
     {
         $this->productWeight = $productWeight;
@@ -72,6 +92,11 @@ class Product extends ActiveRecordModel {
 
 
 
+    /**
+     * Set product size
+     * @method setProductSize
+     * @param  string $productSize product size
+     */
     public function setProductSize($productSize)
     {
         $this->productSize = $productSize;
@@ -79,6 +104,11 @@ class Product extends ActiveRecordModel {
 
 
 
+    /**
+     * Set product selling prize.
+     * @method setProductSellPrize
+     * @param  int $productSellPrize selling prize
+     */
     public function setProductSellPrize($productSellPrize)
     {
         $this->productSellPrize = $productSellPrize;
@@ -86,6 +116,11 @@ class Product extends ActiveRecordModel {
 
 
 
+    /**
+     * Set product buying prize.
+     * @method setProductBuyPrize
+     * @param  int $productBuyPrize buying prize
+     */
     public function setProductBuyPrize($productBuyPrize)
     {
         $this->productBuyPrize = $productBuyPrize;
@@ -93,6 +128,11 @@ class Product extends ActiveRecordModel {
 
 
 
+    /**
+     * Set product color.
+     * @method setProductColor
+     * @param  string $productColor color of product.
+     */
     public function setProductColor($productColor)
     {
         $this->productColor = $productColor;
@@ -100,6 +140,11 @@ class Product extends ActiveRecordModel {
 
 
 
+    /**
+     * Set product amount
+     * @method setProductAmount
+     * @param  int  $productAmount amount of products.
+     */
     public function setProductAmount($productAmount)
     {
         $this->productAmount = $productAmount;
@@ -107,6 +152,11 @@ class Product extends ActiveRecordModel {
 
 
 
+    /**
+     * Set product category
+     * @method setProductCategoryID
+     * @param  int $productCategoryID product category.
+     */
     public function setProductCategoryID($productCategoryID)
     {
         $this->productCategoryID = $productCategoryID;
@@ -114,6 +164,11 @@ class Product extends ActiveRecordModel {
 
 
 
+    /**
+     * Set product gender.
+     * @method setProductGender
+     * @param  int $productGender 0 = Female, 1 = Male
+     */
     public function setProductGender($productGender)
     {
         $this->productGender = $productGender;
@@ -121,6 +176,11 @@ class Product extends ActiveRecordModel {
 
 
 
+    /**
+     * Set product deleted.
+     * @method setProductDeleted
+     * @param  string  $deleted true or false.
+     */
     public function setProductDeleted($deleted)
     {
         $this->productDeleted = $deleted;
@@ -147,6 +207,11 @@ class Product extends ActiveRecordModel {
 
 
 
+    /**
+     * Get all products.
+     * @method getAllProducts
+     * @return array all products from database.
+     */
     public function getAllProducts()
     {
         return $this->findAllWhere("productDeleted = ?", "false");
@@ -170,12 +235,25 @@ class Product extends ActiveRecordModel {
 
 
 
+    /**
+     * Get product by id.
+     * @method getProductByID
+     * @param  int $productID ID of product.
+     * @return array with one product.
+     */
     public function getProductByID($productID){
         $res = $this->findwhere("productID = ? and productDeleted = ?", [$productID, "false"]);
         return $res;
     }
 
 
+    /**
+     * Get all products under 500kr.
+     * @method getProductsUnder500
+     * @param  int $gender 0 = Female, 1 = Male.
+     * @param  int $limit amount of product.
+     * @return array with products under 500kr.
+     */
     public function getProductsUnder500($gender, $limit) {
         if ($limit === null) {
             $sql = "SELECT * FROM Product WHERE productSellPrize <= 500
@@ -191,6 +269,11 @@ class Product extends ActiveRecordModel {
 
 
 
+    /**
+     * Get all products with low amount in database.
+     * @method getProductsWithLowAmount
+     * @return array with all products with low amount.
+     */
     public function getProductsWithLowAmount()
     {
         $res = $this->findAllWhere("productAmount <= ? and productDeleted = ?", [5, "false"]);
@@ -199,6 +282,12 @@ class Product extends ActiveRecordModel {
 
 
 
+    /**
+     * Search for products in database.
+     * @method searchProducts
+     * @param  string  $searchString searchstring
+     * @return array with products.
+     */
     public function searchProducts($searchString) {
         $searchString = htmlentities($searchString);
         $sql = "SELECT * FROM Product WHERE productName like ? and productDeleted = ?";

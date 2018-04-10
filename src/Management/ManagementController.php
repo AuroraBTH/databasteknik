@@ -21,6 +21,11 @@ class ManagementController implements
 
 
 
+    /**
+     * Rendering of management settings.
+     * @method displaySettingsManagement
+     * @return void
+     */
     public function displaySettingsManagement()
     {
         $this->checkIfManagement();
@@ -29,6 +34,11 @@ class ManagementController implements
 
 
 
+    /**
+     * Rendering of most bought products.
+     * @method displaySettingsMostBought
+     * @return void
+     */
     public function displaySettingsMostBought()
     {
         $this->checkIfManagement();
@@ -63,6 +73,11 @@ class ManagementController implements
 
 
 
+    /**
+     * Rendering of best selling products.
+     * @method displaySettingsBestSelling
+     * @return void
+     */
     public function displaySettingsBestSelling()
     {
         $this->checkIfManagement();
@@ -74,11 +89,11 @@ class ManagementController implements
         $orders = $order->getAllOrders1Month();
 
         $orderItems = [];
-        foreach ($orders as $key => $value) {
+        foreach ($orders as $order) {
             $orderItem = new OrderItem();
             $orderItem->setDb($db);
 
-            $products = $orderItem->getAllItemsWhereID($value->orderID);
+            $products = $orderItem->getAllItemsWhereID($order->orderID);
             foreach ($products as $key => $value) {
                 if (array_key_exists($value->productID, $orderItems)) {
                     $productAmount = ((int)$orderItems[$value->productID]->productAmount + $value->productAmount);
@@ -114,6 +129,11 @@ class ManagementController implements
 
 
 
+    /**
+     * This function will check if user is management.
+     * @method checkIfManagement
+     * @return mixed
+     */
     private function checkIfManagement()
     {
         $url = $this->di->get("url");
@@ -137,6 +157,14 @@ class ManagementController implements
 
 
 
+    /**
+     * This function will render page.
+     * @method display
+     * @param  string $title title of page.
+     * @param  string $page  page to render.
+     * @param  array  $data  data to render.
+     * @return void
+     */
     private function display($title, $page, $data = []) {
         $title = $title;
         $view = $this->di->get("view");

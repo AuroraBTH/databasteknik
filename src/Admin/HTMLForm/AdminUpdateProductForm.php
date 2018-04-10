@@ -205,7 +205,7 @@ class AdminUpdateProductForm extends FormModel
 
 
     /**
-     * On click it will take the user back their profile page.
+     * On click it will take you back to admin products
      * @method back
      * @return boolean true when redirected.
      */
