@@ -75,10 +75,10 @@ class CouponCreateForm extends FormModel
     public function callbackSubmit()
     {
         #Get all values from Form
-        $name = htmlentities($this->form->value("name"));
-        $amount = htmlentities($this->form->value("amount"));
-        $start = htmlentities($this->form->value("start"));
-        $end = htmlentities($this->form->value("end"));
+        $name = $this->form->value("name");
+        $amount = $this->form->value("amount");
+        $start = $this->form->value("start");
+        $end = $this->form->value("end");
 
         $arrayOfData = [
             $name,

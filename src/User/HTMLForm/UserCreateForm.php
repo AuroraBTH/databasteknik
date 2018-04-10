@@ -22,72 +22,81 @@ class UserCreateForm extends FormModel
         $this->form->create(
             [
                 "id" => __CLASS__,
-                "legend" => "Create user",
+                "legend" => "Skapa användare",
                 "class"  => "form-group w-50 d-flex justify-content-center p-4",
             ],
             [
                 "firstname" => [
                     "type"        => "text",
                     "class"       => "form-control",
-                    "placeholder" => "First Name",
+                    "placeholder" => "Förnamn",
+                    "label"       => "Förnamn"
                 ],
 
                 "surname" => [
                     "type"        => "text",
                     "class"       => "form-control",
-                    "placeholder" => "Surname",
+                    "placeholder" => "Efternamn",
+                    "label"       => "Efternamn"
                 ],
 
                 "phone" => [
                     "type"        => "number",
                     "class"       => "form-control",
-                    "placeholder" => "Phone number",
+                    "placeholder" => "Telefonnummer",
+                    "label"       => "Telefonnummer"
                 ],
 
                 "email" => [
                     "type"        => "email",
                     "class"       => "form-control",
                     "placeholder" => "Email",
+                    "label"       => "Email"
                 ],
 
                 "address" => [
                     "type"        => "text",
                     "class"       => "form-control",
-                    "placeholder" => "Address",
+                    "placeholder" => "Adress",
+                    "label"       => "Adress"
                 ],
 
                 "postcode" => [
                     "type"        => "number",
                     "class"       => "form-control",
-                    "placeholder" => "Postcode",
+                    "placeholder" => "Postnummer",
+                    "label"       => "Postnummer",
                 ],
 
                 "city" => [
                     "type"        => "text",
                     "class"       => "form-control",
-                    "placeholder" => "City",
+                    "placeholder" => "Stad",
+                    "label"       => "Stad"
                 ],
 
                 "gender" => [
                     "type"        => "radio",
-                    "label"       => "Gender",
+                    "label"       => "Kön",
                     "values"      => [
-                        "Female",
-                        "Male"
+                        "Kvinna",
+                        "Man"
                     ],
-                    "checked"     => "Female",
+                    "checked"     => "Kvinna",
                 ],
 
                 "password" => [
                     "type"        => "password",
                     "class"       => "form-control",
-                    "placeholder" => "Password",
+                    "placeholder" => "********",
+                    "label"       => "Lösenord"
                 ],
 
                 "password-again" => [
                     "type"        => "password",
                     "class"       => "form-control",
-                    "placeholder" => "Password again",
+                    "placeholder" => "********",
+                    "label"       => "Verifiera lösenord",
                     "validation"  => [
                         "match" => "password"
                     ],
@@ -95,14 +104,14 @@ class UserCreateForm extends FormModel
 
                 "submit" => [
                     "type"     => "submit",
-                    "value"    => "Create user",
+                    "value"    => "Skapa användare",
                     "class"    => "btn btn-lg btn-primary w-100",
                     "callback" => [$this, "callbackSubmit"]
                 ],
 
                 "create" => [
                     "type"     => "submit",
-                    "value"    => "Back to login",
+                    "value"    => "Tillbaka",
                     "class"    => "btn btn-lg btn-primary w-100",
                     "callback" => [$this, "backToLogin"],
                 ],
@@ -120,16 +129,16 @@ class UserCreateForm extends FormModel
     public function callbackSubmit()
     {
         #Get all values from Form
-        $firstname = htmlentities($this->form->value("firstname"));
-        $surname = htmlentities($this->form->value("surname"));
-        $email = htmlentities($this->form->value("email"));
-        $phone = htmlentities($this->form->value("phone"));
-        $address = htmlentities($this->form->value("address"));
-        $gender = htmlentities($this->form->value("gender"));
-        $postcode = htmlentities($this->form->value("postcode"));
-        $city = htmlentities($this->form->value("city"));
-        $password = htmlentities($this->form->value("password"));
-        $passwordAgain = htmlentities($this->form->value("password-again"));
+        $firstname = $this->form->value("firstname");
+        $surname = $this->form->value("surname");
+        $email = $this->form->value("email");
+        $phone = $this->form->value("phone");
+        $address = $this->form->value("address");
+        $gender = $this->form->value("gender");
+        $postcode = $this->form->value("postcode");
+        $city = $this->form->value("city");
+        $password = $this->form->value("password");
+        $passwordAgain = $this->form->value("password-again");
 
         # Check password matches
         if ($password !== $passwordAgain) {

@@ -23,7 +23,7 @@ class UserLoginForm extends FormModel
         $this->form->create(
             [
                 "id"     => __CLASS__,
-                "legend" => "User Login",
+                "legend" => "Logga in",
                 "class"  => "form-group w-50 d-flex justify-content-center p-4",
             ],
             [
@@ -31,12 +31,14 @@ class UserLoginForm extends FormModel
                     "type"        => "email",
                     "class"       => "form-control",
                     "placeholder" => "Email",
+                    "label"       => "Email:"
                 ],
 
                 "password" => [
                     "type"        => "password",
                     "class"       => "form-control",
-                    "placeholder" => "Password",
+                    "placeholder" => "********",
+                    "label"       => "Lösenord:"
                 ],
 
                 "submit" => [
@@ -65,8 +67,8 @@ class UserLoginForm extends FormModel
     public function callbackSubmit()
     {
         #Get information from input fields.
-        $email = htmlentities($this->form->value("email"));
-        $password = htmlentities($this->form->value("password"));
+        $email = $this->form->value("email");
+        $password = $this->form->value("password");
 
         #Create a new user.
         $user = new User();

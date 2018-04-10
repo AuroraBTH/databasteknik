@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS User (
 
 CREATE TABLE IF NOT EXISTS Coupon (
 	`couponID` INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    `couponName` VARCHAR(20) UNIQUE,
+    `couponName` VARCHAR(64) UNIQUE,
     `couponAmount` INTEGER,
     `startDate` DATETIME,
     `finishDate` DATETIME
