@@ -165,7 +165,7 @@ class User extends ActiveRecordModel
      */
     public function setFirstname($name)
     {
-       $this->userFirstName = $name;
+        $this->userFirstName = $name;
     }
 
 
@@ -178,8 +178,8 @@ class User extends ActiveRecordModel
      */
     public function getUserInformationByEmail($email)
     {
-       $information = $this->find("userMail", $email);
-       return $information;
+        $information = $this->find("userMail", $email);
+        return $information;
     }
 
 
@@ -193,8 +193,8 @@ class User extends ActiveRecordModel
      */
     public function getUserInformationById($userID)
     {
-       $information = $this->find("userID", $userID);
-       return $information;
+        $information = $this->find("userID", $userID);
+        return $information;
     }
 
 
@@ -253,9 +253,9 @@ class User extends ActiveRecordModel
 
 
     /**
-     * Get all users from the database.
-     *
-     * @return array with users.
+     * Get all users.
+     * @method getAllUsers
+     * @return array with all users.
      */
     public function getAllUsers()
     {

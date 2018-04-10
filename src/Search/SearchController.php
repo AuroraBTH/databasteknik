@@ -20,7 +20,9 @@ class SearchController implements
 
 
     /**
-     * This function handles the rendering of aboutpage.
+     * Rendering of search result
+     * @method displayResult
+     * @return void.
      */
     public function displayResult()
     {

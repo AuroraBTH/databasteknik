@@ -133,7 +133,7 @@ class ActiveRecordModel
         return $this->db->connect()
                         ->select()
                         ->from($this->tableName)
-                        ->where(htmlentities($where))
+                        ->where($where)
                         ->execute($params)
                         ->fetchInto($this);
     }
@@ -178,7 +178,7 @@ class ActiveRecordModel
         return $this->db->connect()
                         ->select()
                         ->from($this->tableName)
-                        ->where(htmlentities($where))
+                        ->where($where)
                         ->execute($params)
                         ->fetchAllClass(get_class($this));
     }

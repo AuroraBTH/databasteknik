@@ -196,7 +196,7 @@ class UserUpdateForm extends FormModel
 
     /**
      * On click it will take the user back their profile page.
-     * @method back
+     * @method backToProfile
      * @return boolean true when redirected.
      */
     public function backToProfile()

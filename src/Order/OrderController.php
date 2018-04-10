@@ -27,6 +27,12 @@ class OrderController implements
         InjectionAwareTrait;
 
 
+
+    /**
+     * Rendering of orders
+     * @method getOrderPage
+     * @return void
+     */
     public function getOrderPage()
     {
         $session = $this->di->get("session");
@@ -49,6 +55,12 @@ class OrderController implements
 
 
 
+    /**
+     * Rendering of single order
+     * @method getSingleOrder
+     * @param  int         $orderID orderID
+     * @return mixed
+     */
     public function getSingleOrder($orderID)
     {
         $session = $this->di->get("session");
@@ -100,6 +112,11 @@ class OrderController implements
 
 
 
+    /**
+     * Check if user is logged in.
+     * @method checkLoggedIn
+     * @return mixed
+     */
     public function checkLoggedIn()
     {
         $url = $this->di->get("url");
@@ -117,6 +134,14 @@ class OrderController implements
 
 
 
+    /**
+     * This function will render page.
+     * @method display
+     * @param  string $title title of page.
+     * @param  string $page  page to render.
+     * @param  array  $data  data to render.
+     * @return void
+     */
     private function display($title, $page, $data = []) {
         $title = $title;
         $view = $this->di->get("view");
@@ -128,6 +153,12 @@ class OrderController implements
 
 
 
+    /**
+     * This function will return all orderIDs.
+     * @method getOrderNumbers
+     * @param  array $orders all orders in database.
+     * @return array array with all orderiDs.
+     */
     public function getOrderNumbers($orders)
     {
         $orderNumbers = [];

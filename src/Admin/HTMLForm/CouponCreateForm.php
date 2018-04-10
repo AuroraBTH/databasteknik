@@ -120,8 +120,8 @@ class CouponCreateForm extends FormModel
 
 
     /**
-     * On press it will take the user back to loginpage.
-     * @method backToLogin
+     * On press it will take the user back to admin.
+     * @method back
      * @return boolean true when redirected.
      */
     public function back()

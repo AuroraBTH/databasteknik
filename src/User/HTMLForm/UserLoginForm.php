@@ -95,6 +95,11 @@ class UserLoginForm extends FormModel
 
 
 
+    /**
+     * Will redirect you to create user page.
+     * @method createUser
+     * @return void.
+     */
     public function createUser()
     {
         #Create url and redirect to create.

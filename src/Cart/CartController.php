@@ -21,6 +21,12 @@ class CartController implements
     InjectionAwareTrait;
 
 
+
+    /**
+     * Rendering of cart.
+     * @method displayCart
+     * @return void
+     */
     public function displayCart() {
         #Get current session.
         $session = $this->di->get("session");
@@ -34,6 +40,11 @@ class CartController implements
 
 
 
+    /**
+     * Rendering of checkout
+     * @method displayCheckout
+     * @return void
+     */
     public function displayCheckout() {
         #Get current session.
         $session = $this->di->get("session");
@@ -49,6 +60,11 @@ class CartController implements
 
 
 
+    /**
+     * Rendering of order
+     * @method displayOrder
+     * @return void
+     */
     public function displayOrder() {
         $db = $this->di->get("db");
 
@@ -111,6 +127,14 @@ class CartController implements
 
 
 
+    /**
+     * This function will render page.
+     * @method display
+     * @param  string $title title of page.
+     * @param  string $page  page to render.
+     * @param  array  $data  data to render.
+     * @return void
+     */
     private function display($title, $page, $data = []) {
         $title = $title;
         $view = $this->di->get("view");

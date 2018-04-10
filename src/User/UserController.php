@@ -24,6 +24,11 @@ class UserController implements
 
 
 
+    /**
+     * Rendering of login page.
+     * @method getLoginPage
+     * @return void.
+     */
     public function getLoginPage()
     {
         $url = $this->di->get("url");
@@ -47,6 +52,11 @@ class UserController implements
 
 
 
+    /**
+     * Rendering of create user page.
+     * @method getCreatePage
+     * @return void.
+     */
     public function getCreatePage()
     {
         $createForm = new UserCreateForm($this->di);
@@ -62,6 +72,11 @@ class UserController implements
 
 
 
+    /**
+     * Rendering of update profile page.
+     * @method updateProfile
+     * @return void
+     */
     public function updateProfile()
     {
         $updateForm = new UserUpdateForm($this->di);
@@ -77,6 +92,11 @@ class UserController implements
 
 
 
+    /**
+     * Rendering of profile page.
+     * @method getProfilePage
+     * @return void
+     */
     public function getProfilePage()
     {
         $this->checkLoggedIn();
@@ -97,6 +117,11 @@ class UserController implements
 
 
 
+    /**
+     * This function will handle logout.
+     * @method logout
+     * @return mixed.
+     */
     public function logout()
     {
         $url = $this->di->get("url");
@@ -122,6 +147,14 @@ class UserController implements
 
 
 
+    /**
+     * This function will render page.
+     * @method display
+     * @param  string $title title of page.
+     * @param  string $page  page to render.
+     * @param  array  $data  data to render.
+     * @return void
+     */
     private function display($title, $page, $data = []) {
         $title = $title;
         $view = $this->di->get("view");
@@ -133,6 +166,11 @@ class UserController implements
 
 
 
+    /**
+     * Check if user is logged in.
+     * @method checkLoggedIn
+     * @return mixed.
+     */
     public function checkLoggedIn()
     {
         $url = $this->di->get("url");
