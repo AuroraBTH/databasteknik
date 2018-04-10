@@ -25,10 +25,10 @@ class Navbar implements InjectionAwareInterface
     }
 
     /**
-    * Checks if user is logged in.
-    *
-    * @return string $route to login || logout
-    */
+     * Checks if user is logged in.
+     *
+     * @return string $route to login || logout
+     */
     public function checkUserLogin()
     {
         $user = new User();
@@ -42,7 +42,7 @@ class Navbar implements InjectionAwareInterface
         $products = $this->di->get("session")->get("items");
 
         foreach ((array)$products as $key => $value) {
-            $counter += (int)$value['amount'];
+            $counter += (int) $value['amount'];
         }
 
         $searchUrl = $this->di->url->create("search");

@@ -47,7 +47,7 @@ class PageRender implements PageRenderInterface, InjectionAwareInterface
         $view->add("defaults/layout", $data, "layout");
         $body = $view->renderBuffered("layout");
         $this->di->get("response")->setBody($body)
-                                  ->send($status);
+                                    ->send($status);
         exit;
     }
 }

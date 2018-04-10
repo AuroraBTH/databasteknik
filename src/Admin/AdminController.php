@@ -30,8 +30,8 @@ class AdminController implements
 
 
     /**
-    * Render admin settings.
-    */
+     * Render admin settings.
+     */
     public function displaySettingsAdmin()
     {
         $this->checkIfAdmin();
@@ -41,8 +41,8 @@ class AdminController implements
 
 
     /**
-    * Render admin products.
-    */
+     * Render admin products.
+     */
     public function displayProductsAdmin()
     {
         $this->checkIfAdmin();
@@ -165,8 +165,8 @@ class AdminController implements
 
 
     /**
-    * Render admin buy product female.
-    */
+     * Render admin buy product female.
+     */
     public function displayBuyFemaleAdmin()
     {
         $this->checkIfAdmin();

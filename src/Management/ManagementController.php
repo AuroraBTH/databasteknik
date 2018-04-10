@@ -60,7 +60,7 @@ class ManagementController implements
 
         foreach ($items as $value) {
             $productItem = $product->getProductByID($value->productID);
-            $res = array_merge_recursive((array)$productItem, (array)$value);
+            $res = array_merge_recursive((array) $productItem, (array) $value);
             $products[] = $res;
         }
 
@@ -96,7 +96,7 @@ class ManagementController implements
             $products = $orderItem->getAllItemsWhereID($order->orderID);
             foreach ($products as $key => $value) {
                 if (array_key_exists($value->productID, $orderItems)) {
-                    $productAmount = ((int)$orderItems[$value->productID]->productAmount + $value->productAmount);
+                    $productAmount = ((int) $orderItems[$value->productID]->productAmount + $value->productAmount);
                     $orderItems[$value->productID]->total = $productAmount;
                 } else if (!array_key_exists($value->productID, $orderItems)) {
                     $orderItems[$value->productID] = $value;
@@ -115,7 +115,7 @@ class ManagementController implements
         }
 
         foreach ($products as $key => $value) {
-            $total[$key]  = $value->total;
+            $total[$key] = $value->total;
         }
 
         array_multisort($total, SORT_DESC, $products);
@@ -147,7 +147,7 @@ class ManagementController implements
 
         $email = $session->get("email");
 
-        if ($user->getPermission($email) == 2 ) {
+        if ($user->getPermission($email) == 2) {
             return true;
         }
 

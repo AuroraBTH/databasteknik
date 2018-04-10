@@ -178,9 +178,9 @@ class UserCreateForm extends FormModel
             $user->setSurname($surname);
             $user->setEmail($email);
             $user->setAddress($address);
-            $user->setPostcode((int)$postcode);
+            $user->setPostcode((int) $postcode);
             $user->setCity($city);
-            $user->setPhone((int)$phone);
+            $user->setPhone((int) $phone);
             $user->setRole(0);
             $user->setPassword($password);
             $user->setGender($gender === 'Female' ? 0 : 1);

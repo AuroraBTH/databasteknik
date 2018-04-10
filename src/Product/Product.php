@@ -241,7 +241,8 @@ class Product extends ActiveRecordModel {
      * @param  int $productID ID of product.
      * @return array with one product.
      */
-    public function getProductByID($productID){
+    public function getProductByID($productID)
+    {
         $res = $this->findwhere("productID = ? and productDeleted = ?", [$productID, "false"]);
         return $res;
     }
@@ -254,7 +255,8 @@ class Product extends ActiveRecordModel {
      * @param  mixed $limit amount of product.
      * @return array with products under 500kr.
      */
-    public function getProductsUnder500($gender, $limit = null) {
+    public function getProductsUnder500($gender, $limit = null)
+    {
         $res = null;
 
         if ($limit === null) {

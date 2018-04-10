@@ -121,7 +121,7 @@ class Orders extends ActiveRecordModel {
      */
     public function getAllOrders1Month()
     {
-      $orders = $this->findallwhere("purchaseTime >= ?", "(NOW() - INTERVAL 1 MONTH)");
-      return $orders;
+        $orders = $this->findallwhere("purchaseTime >= ?", "(NOW() - INTERVAL 1 MONTH)");
+        return $orders;
     }
 }
