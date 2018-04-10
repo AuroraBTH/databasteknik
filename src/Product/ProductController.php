@@ -30,7 +30,7 @@ class ProductController implements
         $product->setDb($this->di->get("db"));
         $data = $product->getProducts("productID", $productId);
 
-        if (!$data) {
+        if (!is_array($data)) {
             $redirect = $this->di->get("url")->create("");
             $this->di->get("response")->redirect($redirect);
             return false;
@@ -79,8 +79,8 @@ class ProductController implements
         $products->setDb($this->di->get("db"));
 
         $data = [
-            "under500Male" => $products->getProductsUnder500(1, null),
-            "under500Female" => $products->getProductsUnder500(0, null)
+            "under500Male" => $products->getProductsUnder500(1),
+            "under500Female" => $products->getProductsUnder500(0)
         ];
 
         $this->display("Produkter under 500kr", "product/under500", $data);
