@@ -112,7 +112,7 @@ class Coupon extends ActiveRecordModel
         $currentDate = new \DateTime();
         $coupon = $this->find("couponName", $name);
 
-        if ($coupon != false) {
+        if ($coupon instanceof Coupon) {
             if ($currentDate < new \DateTime("$coupon->startDate")
                 || $currentDate > new \DateTime("$coupon->finishDate")) {
                 return null;

@@ -225,7 +225,7 @@ class User extends ActiveRecordModel
     public function getPermission($email)
     {
         $userInfo = $this->find("userMail", $email);
-        if ($userInfo != false) {
+        if ($userInfo instanceof User) {
             $permissions = $userInfo->userRole;
             return $permissions;
         }
