@@ -16,8 +16,13 @@ class ProductController implements
     use ConfigureTrait,
     InjectionAwareTrait;
 
+
+
     /**
-     * This function handles the rendering of one specific categories.
+     * Rendering of specific product.
+     * @method getSpecificProduct
+     * @param  int $productId ID of product.
+     * @return mixed
      */
     public function getSpecificProduct($productId)
     {
@@ -37,6 +42,13 @@ class ProductController implements
 
 
 
+    /**
+     * Rendering of all products in specific category.
+     * @method getAllProductsFromCategory
+     * @param  int  $categoryID category ID
+     * @param  int  $genderID  0 = Female, 1 = Male.
+     * @return void.
+     */
     public function getAllProductsFromCategory($categoryID, $genderID)
     {
         $products = new Product();
@@ -56,6 +68,11 @@ class ProductController implements
 
 
 
+    /**
+     * Rendering of all products under 500kr
+     * @method getAllProductsUnder500
+     * @return void.
+     */
     public function getAllProductsUnder500()
     {
         $products = new Product();
@@ -71,6 +88,14 @@ class ProductController implements
 
 
 
+    /**
+     * This function will render page.
+     * @method display
+     * @param  string $title title of page.
+     * @param  string $page  page to render.
+     * @param  array  $data  data to render.
+     * @return void
+     */
     private function display($title, $page, $data = []) {
         $title = $title;
         $view = $this->di->get("view");

@@ -248,6 +248,11 @@ class User extends ActiveRecordModel
 
 
 
+    /**
+     * Get all users.
+     * @method getAllUsers
+     * @return array with all users.
+     */
     public function getAllUsers()
     {
         $res = $this->findAll();
