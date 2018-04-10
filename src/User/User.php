@@ -220,7 +220,7 @@ class User extends ActiveRecordModel
     * Fetch permission information by email.
     *
     * @param        $email
-    * @return array
+    * @return       mixed
     */
     public function getPermission($email)
     {
@@ -243,7 +243,12 @@ class User extends ActiveRecordModel
     public function checkUserExists($email)
     {
         $res = $this->find("userMail", $email);
-        return !$res ? true : false;
+        
+        if ($res instanceof User) {
+            return true;
+        }
+
+        return false;
     }
 
 
