@@ -355,10 +355,10 @@ class ActiveRecordModel
 
 
     /**
-    * Execute rawsql
-    *
-    * @return array
-    */
+     * Execute rawsql
+     *
+     * @return array
+     */
     public function findAllSql($sql, $params = [])
     {
         $this->checkDb();

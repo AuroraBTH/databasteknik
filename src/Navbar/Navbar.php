@@ -41,7 +41,7 @@ class Navbar implements InjectionAwareInterface
 
         $products = $this->di->get("session")->get("items");
 
-        foreach ((array)$products as $key => $value) {
+        foreach ((array) $products as $key => $value) {
             $counter += (int) $value['amount'];
         }
 
@@ -75,7 +75,7 @@ class Navbar implements InjectionAwareInterface
             $route .= "</li>";
         } elseif (!$session->get("email")) {
             $loginUrl = $this->di->url->create("user/login");
-            $route .= "<li class='nav-item'><a class='nav-link' href='$loginUrl'>Logga in</a></li>";
+            $route .= "<li class='nav-item my-auto'><a class='nav-link' href='$loginUrl'>Logga in</a></li>";
         }
 
         $cartUrl = $this->di->url->create("cart");

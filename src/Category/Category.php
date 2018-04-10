@@ -54,10 +54,10 @@ class Category extends ActiveRecordModel
      *
      * @param integer $gender value of gender.
      */
-   public function setGender($gender)
-   {
-       $this->gender = $gender;
-   }
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+    }
 
 
 

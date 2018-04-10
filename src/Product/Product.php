@@ -295,7 +295,7 @@ class Product extends ActiveRecordModel {
     public function searchProducts($searchString) {
         $searchString = htmlentities($searchString);
         $sql = "SELECT * FROM Product WHERE productName like ? and productDeleted = ?";
-        $res = $this->findAllSql($sql, ["%$searchString%","false"]);
+        $res = $this->findAllSql($sql, ["%$searchString%", "false"]);
         return $res;
     }
 }
