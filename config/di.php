@@ -8,7 +8,7 @@ return [
     "services" => [
         "request" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $request = new \Anax\Request\Request();
                 $request->init();
                 return $request;
@@ -16,7 +16,7 @@ return [
         ],
         "response" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $obj = new \Anax\Response\ResponseUtility();
                 $obj->setDI($this);
                 return $obj;
@@ -24,7 +24,7 @@ return [
         ],
         "url" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $url = new \Anax\Url\Url();
                 $request = $this->get("request");
                 $url->setSiteUrl($request->getSiteUrl());
@@ -39,7 +39,7 @@ return [
         ],
         "router" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $router = new \Anax\Route\Router();
                 $router->setDI($this);
                 $router->configure("route.php");
@@ -48,7 +48,7 @@ return [
         ],
         "view" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $view = new \Anax\View\ViewCollection();
                 $view->setDI($this);
                 $view->configure("view.php");
@@ -57,7 +57,7 @@ return [
         ],
         "viewRenderFile" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $viewRender = new \Anax\View\ViewRenderFile2();
                 $viewRender->setDI($this);
                 return $viewRender;
@@ -66,7 +66,7 @@ return [
         "session" => [
             "shared" => true,
             "active" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $session = new \Anax\Session\SessionConfigurable();
                 $session->configure("session.php");
                 $session->start();
@@ -75,7 +75,7 @@ return [
         ],
         "pageRender" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $obj = new \Anax\Page\PageRender();
                 $obj->setDI($this);
                 return $obj;
@@ -83,7 +83,7 @@ return [
         ],
         "errorController" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $obj = new \Anax\Page\ErrorController();
                 $obj->setDI($this);
                 return $obj;
@@ -91,7 +91,7 @@ return [
         ],
         "debugController" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $obj = new \Anax\Page\DebugController();
                 $obj->setDI($this);
                 return $obj;
@@ -99,7 +99,7 @@ return [
         ],
         "db" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $obj = new \Anax\Database\DatabaseQueryBuilder();
                 $obj->configure("database.php");
                 return $obj;
@@ -107,7 +107,7 @@ return [
         ],
         "baseController" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $obj = new \Course\Base\BaseController();
                 $obj->setDI($this);
                 return $obj;
@@ -115,7 +115,7 @@ return [
         ],
         "categoryController" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $obj = new \Course\Category\CategoryController();
                 $obj->setDI($this);
                 return $obj;
@@ -123,7 +123,7 @@ return [
         ],
         "productController" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $obj = new \Course\Product\ProductController();
                 $obj->setDI($this);
                 return $obj;
@@ -131,7 +131,7 @@ return [
         ],
         "userController" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $obj = new \Course\User\UserController();
                 $obj->setDI($this);
                 return $obj;
@@ -139,7 +139,7 @@ return [
         ],
         "ajaxController" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $obj = new \Course\Ajax\AjaxController();
                 $obj->setDI($this);
                 return $obj;
@@ -147,7 +147,7 @@ return [
         ],
         "cartController" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $obj = new \Course\Cart\CartController();
                 $obj->setDI($this);
                 return $obj;
@@ -155,7 +155,7 @@ return [
         ],
         "orderController" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $obj = new \Course\Order\OrderController();
                 $obj->setDI($this);
                 return $obj;
@@ -163,7 +163,7 @@ return [
         ],
         "searchController" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $obj = new \Course\Search\SearchController();
                 $obj->setDI($this);
                 return $obj;
@@ -171,7 +171,7 @@ return [
         ],
         "adminController" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $obj = new \Course\Admin\AdminController();
                 $obj->setDI($this);
                 return $obj;
@@ -179,7 +179,7 @@ return [
         ],
         "managementController" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $obj = new \Course\Management\ManagementController();
                 $obj->setDI($this);
                 return $obj;
@@ -187,7 +187,7 @@ return [
         ],
         "navbar" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $navbar = new \Course\Navbar\Navbar();
                 $navbar->setDI($this);
                 $navbar->configure("navbar.php");

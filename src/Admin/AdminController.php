@@ -143,7 +143,7 @@ class AdminController implements
 
             foreach ($items as $value) {
                 $productItem = $product->getProductByID($value->productID);
-                $res = array_merge_recursive((array)$productItem, (array)$value);
+                $res = array_merge_recursive((array) $productItem, (array) $value);
                 $products[] = $res;
             }
 
@@ -299,7 +299,7 @@ class AdminController implements
     private function getOrderNumbers($orders)
     {
         $orderNumbers = [];
-        foreach ((array)$orders as $order) {
+        foreach ((array) $orders as $order) {
             array_push($orderNumbers, $order->orderID);
         }
         return $orderNumbers;

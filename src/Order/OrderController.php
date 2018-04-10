@@ -90,7 +90,7 @@ class OrderController implements
 
             foreach ($items as $value) {
                 $productItem = $product->getProductByID($value->productID);
-                $res = array_merge_recursive((array)$productItem, (array)$value);
+                $res = array_merge_recursive((array) $productItem, (array) $value);
                 $products[] = $res;
             }
 
@@ -162,7 +162,7 @@ class OrderController implements
     public function getOrderNumbers($orders)
     {
         $orderNumbers = [];
-        foreach ((array)$orders as $order) {
+        foreach ((array) $orders as $order) {
             array_push($orderNumbers, $order->orderID);
         }
         return $orderNumbers;

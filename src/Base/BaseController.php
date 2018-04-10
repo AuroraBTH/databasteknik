@@ -43,9 +43,9 @@ class BaseController implements
         foreach ($orderItems as $item) {
             $product->getProductByID($item->productID);
             if ($product->productGender == 0 && count($femaleTop10) < 10 && $product->productID !== null) {
-                $femaleTop10[] = (array)$product;
+                $femaleTop10[] = (array) $product;
             } else if ($product->productGender == 1 && count($maleTop10) < 10 && $product->productID !== null) {
-                $maleTop10[] = (array)$product;
+                $maleTop10[] = (array) $product;
             }
         }
 

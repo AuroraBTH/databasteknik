@@ -95,18 +95,18 @@ class CartController implements
             $orderID = $order->getLastInsertedID();
             $session->set("orderID", $orderID);
 
-            foreach ((array)$session->get("items") as $value) {
+            foreach ((array) $session->get("items") as $value) {
                 $product = new Product();
                 $product->setDb($db);
                 $product->getProductByID($value['productID']);
-                $product->productAmount = ($product->productAmount - (int)$value["amount"]);
+                $product->productAmount = ($product->productAmount - (int) $value["amount"]);
                 $product->save();
 
                 $orderItem = new OrderItem();
                 $orderItem->setDb($db);
-                $orderItem->setOrderID((int)$orderID);
-                $orderItem->setProductID((int)$value["productID"]);
-                $orderItem->setProductAmount((int)$value["amount"]);
+                $orderItem->setOrderID((int) $orderID);
+                $orderItem->setProductID((int) $value["productID"]);
+                $orderItem->setProductAmount((int) $value["amount"]);
                 $orderItem->save();
             }
 

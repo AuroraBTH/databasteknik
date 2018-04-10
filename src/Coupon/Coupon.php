@@ -6,20 +6,20 @@ use \Anax\Database\ActiveRecordModel;
 class Coupon extends ActiveRecordModel
 {
     /**
-    * @var string $tableName name of the database table.
-    */
+     * @var string $tableName name of the database table.
+     */
     protected $tableName = "Coupon";
     protected $tableIdColumn = "couponID";
 
     /**
-    * Columns in the table.
-    *
-    * @var integer $couponID primary key auto incremented.
-    * @var string $couponName
-    * @var integer $couponAmount
-    * @var DateTime $startDate
-    * @var DateTime $finishDate
-    */
+     * Columns in the table.
+     *
+     * @var integer $couponID primary key auto incremented.
+     * @var string $couponName
+     * @var integer $couponAmount
+     * @var DateTime $startDate
+     * @var DateTime $finishDate
+     */
 
     public $couponID;
     public $couponName;
@@ -30,12 +30,12 @@ class Coupon extends ActiveRecordModel
 
 
     /**
-    * Set coupon name.
-    *
-    * @param string $name for the coupon.
-    *
-    * @return void
-    */
+     * Set coupon name.
+     *
+     * @param string $name for the coupon.
+     *
+     * @return void
+     */
     public function setName($name)
     {
         $this->couponName = $name;
@@ -44,12 +44,12 @@ class Coupon extends ActiveRecordModel
 
 
     /**
-    * Set coupon amount.
-    *
-    * @param integer $amount for the coupon.
-    *
-    * @return void
-    */
+     * Set coupon amount.
+     *
+     * @param integer $amount for the coupon.
+     *
+     * @return void
+     */
     public function setAmount($amount)
     {
         $this->couponAmount = $amount;
@@ -58,12 +58,12 @@ class Coupon extends ActiveRecordModel
 
 
     /**
-    * Set coupon start date.
-    *
-    * @param string $date for the start of the coupon.
-    *
-    * @return void
-    */
+     * Set coupon start date.
+     *
+     * @param string $date for the start of the coupon.
+     *
+     * @return void
+     */
     public function setStartDate($date)
     {
         $this->startDate = $date;
@@ -72,12 +72,12 @@ class Coupon extends ActiveRecordModel
 
 
     /**
-    * Set coupon end date.
-    *
-    * @param string $date for the end of the coupon.
-    *
-    * @return void
-    */
+     * Set coupon end date.
+     *
+     * @param string $date for the end of the coupon.
+     *
+     * @return void
+     */
     public function setFinishDate($date)
     {
         $this->finishDate = $date;
@@ -86,12 +86,12 @@ class Coupon extends ActiveRecordModel
 
 
     /**
-    * Get all information about a specific coupon by mail.
-    *
-    * @param string $email user email.
-    *
-    * @return \Anax\Database\ActiveRecordModel
-    */
+     * Get all information about a specific coupon by mail.
+     *
+     * @param string $email user email.
+     *
+     * @return \Anax\Database\ActiveRecordModel
+     */
     public function getCouponByName($name)
     {
         $information = $this->find("couponName", $name);
@@ -101,12 +101,12 @@ class Coupon extends ActiveRecordModel
 
 
     /**
-    * Validate date.
-    *
-    * @param string $name of the coupon.
-    *
-    * @return mixed
-    */
+     * Validate date.
+     *
+     * @param string $name of the coupon.
+     *
+     * @return mixed
+     */
     public function validateCoupon($name)
     {
         $currentDate = new \DateTime();
