@@ -28,7 +28,7 @@ $order = url("cart/order");
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ((array)$cartItems as $key => $value) : ?>
+                <?php foreach ((array) $cartItems as $key => $value) : ?>
                     <tr <?= ($counter % 2) == 0 ? 'class="bg-light"' : "" ?>>
                             <td><?= $value["productManufacturer"] ?></td>
                             <td><?= $value["productName"] ?></td>
