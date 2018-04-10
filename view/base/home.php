@@ -51,8 +51,7 @@ $genderCounter = 0;
             <?php foreach ($data[1] as $under500) : ?>
                 <div class="mx-4 w-50">
                     <?= $genderCounter == 0 ?
-                        '<h1>Produkter under 500kr Dam</h1>' :
-                        '<h1>Produkter under 500kr Herr</h1>'
+                        '<h1>Produkter under 500kr Dam</h1>' : '<h1>Produkter under 500kr Herr</h1>'
                     ?>
                     <table class="table border mb-4">
                         <thead>

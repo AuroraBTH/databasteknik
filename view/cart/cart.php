@@ -29,7 +29,7 @@ $checkout = url("cart/checkout");
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ((array)$cartItems as $key => $value) : ?>
+                    <?php foreach ((array) $cartItems as $key => $value) : ?>
                         <tr <?= ($counter % 2) == 0 ? 'class="bg-light"' : "" ?>>
                                 <td><?= $value["productManufacturer"] ?></td>
                                 <td><?= $value["productName"] ?></td>
@@ -66,8 +66,8 @@ $checkout = url("cart/checkout");
                                 </td>
                             </tr>
                         <?php
-                        $price += ((int)$value['productSellPrize'] * (int)$value['amount']);
-                        $amountOfItems += ((int)$value['amount']);
+                        $price += ((int) $value['productSellPrize'] * (int) $value['amount']);
+                        $amountOfItems += ((int) $value['amount']);
                         $counter++;
                         ?>
                     <?php endforeach; ?>

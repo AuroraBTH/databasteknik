@@ -24,6 +24,11 @@ class OrderItem extends ActiveRecordModel {
 
 
 
+    /**
+     * Set orderID.
+     * @method setOrderID
+     * @param  int $orderID ID of order.
+     */
     public function setOrderID($orderID)
     {
         $this->orderID = $orderID;
@@ -31,6 +36,11 @@ class OrderItem extends ActiveRecordModel {
 
 
 
+    /**
+     * Set productID
+     * @method setProductID
+     * @param  int $productID ID of product.
+     */
     public function setProductID($productID)
     {
         $this->productID = $productID;
@@ -38,6 +48,11 @@ class OrderItem extends ActiveRecordModel {
 
 
 
+    /**
+     * Set amount of product.
+     * @method setProductAmount
+     * @param int $amount amount of product.
+     */
     public function setProductAmount($amount)
     {
         $this->productAmount = $amount;
@@ -45,6 +60,11 @@ class OrderItem extends ActiveRecordModel {
 
 
 
+    /**
+     * Get all orderItems.
+     * @method getAllOrderItems
+     * @return array with all orderItems.
+     */
     public function getAllOrderItems()
     {
         $sql = "SELECT productID, SUM(productAmount) AS Amount
@@ -56,6 +76,12 @@ class OrderItem extends ActiveRecordModel {
 
 
 
+    /**
+     * Get all orderItems from specific order.
+     * @method getAllItemsWhereID
+     * @param  int $orderID ID of order
+     * @return array with orderItems.
+     */
     public function getAllItemsWhereID($orderID)
     {
         return $this->findallwhere("orderID = ?", $orderID);
@@ -63,15 +89,20 @@ class OrderItem extends ActiveRecordModel {
 
 
 
+    /**
+     * Get most bought products.
+     * @method getMostBoughtProducts
+     * @return array with most bought product.
+     */
     public function getMostBoughtProducts()
     {
-      $sql = "SELECT productID,
+        $sql = "SELECT productID,
         SUM(productAmount) AS total
         FROM OrderItem
         GROUP BY productID
         ORDER BY SUM(productAmount)
         DESC LIMIT 10";
-      $res = $this->findAllSql($sql);
-      return $res;
+        $res = $this->findAllSql($sql);
+        return $res;
     }
 }

@@ -55,6 +55,14 @@ class CategoryController implements
 
 
 
+    /**
+     * This function will render page.
+     * @method display
+     * @param  string $title title of page.
+     * @param  string $page  page to render.
+     * @param  array  $data  data to render.
+     * @return void
+     */
     private function display($title, $page, $data = []) {
         $title = $title;
         $view = $this->di->get("view");

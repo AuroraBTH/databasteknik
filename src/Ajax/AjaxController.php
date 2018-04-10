@@ -17,6 +17,12 @@ class AjaxController implements
     InjectionAwareTrait;
 
 
+
+    /**
+     * This function will add product to cart.
+     * @method addToCart
+     * @return string
+     */
     public function addToCart()
     {
         $data = $_POST["data"];
@@ -49,6 +55,11 @@ class AjaxController implements
 
 
 
+    /**
+     * This function will remove product from cart.
+     * @method removeFromCart
+     * @return string
+     */
     public function removeFromCart()
     {
         if (isset($_POST["data"])) {
@@ -72,6 +83,11 @@ class AjaxController implements
 
 
 
+    /**
+     * This function will remove product from website.
+     * @method removeProduct
+     * @return void
+     */
     public function removeProduct()
     {
         $data = $_POST["data"];
@@ -91,6 +107,11 @@ class AjaxController implements
 
 
 
+    /**
+     * This function will add 1 to product in cart.
+     * @method plusProduct
+     * @return string
+     */
     public function plusProduct()
     {
         if (isset($_POST["data"])) {
@@ -114,6 +135,11 @@ class AjaxController implements
 
 
 
+    /**
+     * This function will remove 1 from product in cart.
+     * @method minusProduct
+     * @return string
+     */
     public function minusProduct()
     {
         if (isset($_POST["data"])) {
@@ -128,7 +154,7 @@ class AjaxController implements
                         $this->di->get("session")->set("items", $getItems);
                     } else if ($value["amount"] - 1 > 0) {
                         $getItems[$key]['amount'] = $value["amount"] - 1;
-                        $this->di->get("session")->set("items", $getItems);    
+                        $this->di->get("session")->set("items", $getItems);
                     }
                     return "success";
                 }
@@ -142,6 +168,11 @@ class AjaxController implements
 
 
 
+    /**
+     * This function will remove all products from cart.
+     * @method removeAllFromCart
+     * @return string
+     */
     public function removeAllFromCart()
     {
         $this->di->get("session")->delete("items");

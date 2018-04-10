@@ -38,9 +38,9 @@ $totalShipping = 0;
                             </th>
                         </tr>
                     <?php
-                        $price += ((int)$item['productSellPrize'] * (int)$item['productAmount'][1]);
-                        $totalWeight += (int)$item['productWeight'] * (int)$item['productAmount'][1];
-                        $amountOfItems += ((int)$item['productAmount'][1]);
+                        $price += ((int) $item['productSellPrize'] * (int) $item['productAmount'][1]);
+                        $totalWeight += (int) $item['productWeight'] * (int) $item['productAmount'][1];
+                        $amountOfItems += ((int) $item['productAmount'][1]);
                         $totalShipping = ($totalWeight / 1000) < 1 ? 50 : 50 + (20 * round($totalWeight / 1000));
                         $counter++
                     ?>

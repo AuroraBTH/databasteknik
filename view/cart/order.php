@@ -28,7 +28,7 @@ $order = url("cart/order");
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ((array)$cartItems as $key => $value) : ?>
+                <?php foreach ((array) $cartItems as $key => $value) : ?>
                     <tr <?= ($counter % 2) == 0 ? 'class="bg-light"' : "" ?>>
                             <td><?= $value["productManufacturer"] ?></td>
                             <td><?= $value["productName"] ?></td>
@@ -39,9 +39,9 @@ $order = url("cart/order");
                             <th scope="row"><a href="<?= $url ?>/<?= $value['productID'] ?>">Mer information</a></th>
                         </tr>
                     <?php
-                    $price += ((int)$value['productSellPrize'] * (int)$value['amount']);
-                    $totalWeight += (int)$value['productWeight'] * (int)$value['amount'];
-                    $amountOfItems += ((int)$value['amount']);
+                    $price += ((int) $value['productSellPrize'] * (int) $value['amount']);
+                    $totalWeight += (int) $value['productWeight'] * (int) $value['amount'];
+                    $amountOfItems += ((int) $value['amount']);
                     $totalShipping = ($totalWeight / 1000) < 1 ? 50 : 50 + (20 * round($totalWeight / 1000));
                     $counter++;
                     ?>

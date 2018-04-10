@@ -33,5 +33,7 @@ $productUrl = url("category");
 
 <?php
     $rowCount++;
-    if ($rowCount % $numOfCols == 0) echo '</div><div class="row">';
+    if ($rowCount % $numOfCols == 0) {
+        echo '</div><div class="row">';
+    }
 ?>

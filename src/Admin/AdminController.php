@@ -29,6 +29,9 @@ class AdminController implements
 
 
 
+    /**
+     * Render admin settings.
+     */
     public function displaySettingsAdmin()
     {
         $this->checkIfAdmin();
@@ -37,6 +40,9 @@ class AdminController implements
 
 
 
+    /**
+     * Render admin products.
+     */
     public function displayProductsAdmin()
     {
         $this->checkIfAdmin();
@@ -52,6 +58,9 @@ class AdminController implements
 
 
 
+    /**
+     * Render admin users.
+     */
     public function displayUsersAdmin()
     {
         $this->checkIfAdmin();
@@ -67,6 +76,9 @@ class AdminController implements
 
 
 
+    /**
+     * Render products with low amount.
+     */
     public function displayLowAdmin()
     {
         $this->checkIfAdmin();
@@ -82,6 +94,9 @@ class AdminController implements
 
 
 
+    /**
+     * Render admin orders.
+     */
     public function displayOrdersAdmin()
     {
         $this->checkIfAdmin();
@@ -97,6 +112,9 @@ class AdminController implements
 
 
 
+    /**
+     * Render admin single order.
+     */
     public function displatSingleOrderAdmin($orderID)
     {
         $this->checkIfAdmin();
@@ -125,7 +143,7 @@ class AdminController implements
 
             foreach ($items as $value) {
                 $productItem = $product->getProductByID($value->productID);
-                $res = array_merge_recursive((array)$productItem, (array)$value);
+                $res = array_merge_recursive((array) $productItem, (array) $value);
                 $products[] = $res;
             }
 
@@ -146,6 +164,9 @@ class AdminController implements
 
 
 
+    /**
+     * Render admin buy product female.
+     */
     public function displayBuyFemaleAdmin()
     {
         $this->checkIfAdmin();
@@ -162,6 +183,9 @@ class AdminController implements
 
 
 
+    /**
+     * Render admin buy product male.
+     */
     public function displayBuyMaleAdmin()
     {
         $this->checkIfAdmin();
@@ -178,6 +202,9 @@ class AdminController implements
 
 
 
+    /**
+     * Render admin edit product.
+     */
     public function displayEditAdmin($productID)
     {
         $this->checkIfAdmin();
@@ -216,6 +243,11 @@ class AdminController implements
 
 
 
+    /**
+     * Checks if user is admin.
+     * @method checkIfAdmin
+     * @return mixed
+     */
     private function checkIfAdmin()
     {
         $url = $this->di->get("url");
@@ -239,6 +271,14 @@ class AdminController implements
 
 
 
+    /**
+     * This function will render page.
+     * @method display
+     * @param  string $title title of page.
+     * @param  string $page  page to render.
+     * @param  array  $data  data to render.
+     * @return void
+     */
     private function display($title, $page, $data = []) {
         $title = $title;
         $view = $this->di->get("view");
@@ -250,10 +290,16 @@ class AdminController implements
 
 
 
+    /**
+     * This function will return all orderIDs.
+     * @method getOrderNumbers
+     * @param  array $orders all orders in database.
+     * @return array array with all orderiDs.
+     */
     private function getOrderNumbers($orders)
     {
         $orderNumbers = [];
-        foreach ((array)$orders as $order) {
+        foreach ((array) $orders as $order) {
             array_push($orderNumbers, $order->orderID);
         }
         return $orderNumbers;

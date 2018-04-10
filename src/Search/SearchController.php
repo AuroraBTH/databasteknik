@@ -20,7 +20,9 @@ class SearchController implements
 
 
     /**
-     * This function handles the rendering of aboutpage.
+     * Rendering of search result
+     * @method displayResult
+     * @return mixed
      */
     public function displayResult()
     {
@@ -36,8 +38,8 @@ class SearchController implements
         $product = new Product;
         $product->setDb($db);
 
-        $searchResultCount;
-        $searchResult;
+        $searchResultCount = null;
+        $searchResult = null;
 
         if (isset($_POST["search"])) {
             $searchString = htmlspecialchars($_POST["search"]);

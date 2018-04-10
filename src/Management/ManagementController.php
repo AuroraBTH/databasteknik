@@ -21,6 +21,11 @@ class ManagementController implements
 
 
 
+    /**
+     * Rendering of management settings.
+     * @method displaySettingsManagement
+     * @return void
+     */
     public function displaySettingsManagement()
     {
         $this->checkIfManagement();
@@ -29,6 +34,11 @@ class ManagementController implements
 
 
 
+    /**
+     * Rendering of most bought products.
+     * @method displaySettingsMostBought
+     * @return void
+     */
     public function displaySettingsMostBought()
     {
         $this->checkIfManagement();
@@ -50,7 +60,7 @@ class ManagementController implements
 
         foreach ($items as $value) {
             $productItem = $product->getProductByID($value->productID);
-            $res = array_merge_recursive((array)$productItem, (array)$value);
+            $res = array_merge_recursive((array) $productItem, (array) $value);
             $products[] = $res;
         }
 
@@ -63,6 +73,11 @@ class ManagementController implements
 
 
 
+    /**
+     * Rendering of best selling products.
+     * @method displaySettingsBestSelling
+     * @return void
+     */
     public function displaySettingsBestSelling()
     {
         $this->checkIfManagement();
@@ -74,14 +89,14 @@ class ManagementController implements
         $orders = $order->getAllOrders1Month();
 
         $orderItems = [];
-        foreach ($orders as $key => $value) {
+        foreach ($orders as $order) {
             $orderItem = new OrderItem();
             $orderItem->setDb($db);
 
-            $products = $orderItem->getAllItemsWhereID($value->orderID);
+            $products = $orderItem->getAllItemsWhereID($order->orderID);
             foreach ($products as $key => $value) {
                 if (array_key_exists($value->productID, $orderItems)) {
-                    $productAmount = ((int)$orderItems[$value->productID]->productAmount + $value->productAmount);
+                    $productAmount = ((int) $orderItems[$value->productID]->productAmount + $value->productAmount);
                     $orderItems[$value->productID]->total = $productAmount;
                 } else if (!array_key_exists($value->productID, $orderItems)) {
                     $orderItems[$value->productID] = $value;
@@ -100,7 +115,7 @@ class ManagementController implements
         }
 
         foreach ($products as $key => $value) {
-            $total[$key]  = $value->total;
+            $total[$key] = $value->total;
         }
 
         array_multisort($total, SORT_DESC, $products);
@@ -114,6 +129,11 @@ class ManagementController implements
 
 
 
+    /**
+     * This function will check if user is management.
+     * @method checkIfManagement
+     * @return mixed
+     */
     private function checkIfManagement()
     {
         $url = $this->di->get("url");
@@ -127,7 +147,7 @@ class ManagementController implements
 
         $email = $session->get("email");
 
-        if ($user->getPermission($email) == 2 ) {
+        if ($user->getPermission($email) == 2) {
             return true;
         }
 
@@ -137,6 +157,14 @@ class ManagementController implements
 
 
 
+    /**
+     * This function will render page.
+     * @method display
+     * @param  string $title title of page.
+     * @param  string $page  page to render.
+     * @param  array  $data  data to render.
+     * @return void
+     */
     private function display($title, $page, $data = []) {
         $title = $title;
         $view = $this->di->get("view");

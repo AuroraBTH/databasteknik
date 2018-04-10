@@ -21,6 +21,12 @@ class CartController implements
     InjectionAwareTrait;
 
 
+
+    /**
+     * Rendering of cart.
+     * @method displayCart
+     * @return void
+     */
     public function displayCart() {
         #Get current session.
         $session = $this->di->get("session");
@@ -34,6 +40,11 @@ class CartController implements
 
 
 
+    /**
+     * Rendering of checkout
+     * @method displayCheckout
+     * @return void
+     */
     public function displayCheckout() {
         #Get current session.
         $session = $this->di->get("session");
@@ -49,6 +60,11 @@ class CartController implements
 
 
 
+    /**
+     * Rendering of order
+     * @method displayOrder
+     * @return void
+     */
     public function displayOrder() {
         $db = $this->di->get("db");
 
@@ -79,18 +95,18 @@ class CartController implements
             $orderID = $order->getLastInsertedID();
             $session->set("orderID", $orderID);
 
-            foreach ((array)$session->get("items") as $value) {
+            foreach ((array) $session->get("items") as $value) {
                 $product = new Product();
                 $product->setDb($db);
                 $product->getProductByID($value['productID']);
-                $product->productAmount = ($product->productAmount - (int)$value["amount"]);
+                $product->productAmount = ($product->productAmount - (int) $value["amount"]);
                 $product->save();
 
                 $orderItem = new OrderItem();
                 $orderItem->setDb($db);
-                $orderItem->setOrderID((int)$orderID);
-                $orderItem->setProductID((int)$value["productID"]);
-                $orderItem->setProductAmount((int)$value["amount"]);
+                $orderItem->setOrderID((int) $orderID);
+                $orderItem->setProductID((int) $value["productID"]);
+                $orderItem->setProductAmount((int) $value["amount"]);
                 $orderItem->save();
             }
 
@@ -111,6 +127,14 @@ class CartController implements
 
 
 
+    /**
+     * This function will render page.
+     * @method display
+     * @param  string $title title of page.
+     * @param  string $page  page to render.
+     * @param  array  $data  data to render.
+     * @return void
+     */
     private function display($title, $page, $data = []) {
         $title = $title;
         $view = $this->di->get("view");
