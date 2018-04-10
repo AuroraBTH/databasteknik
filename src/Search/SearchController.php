@@ -36,8 +36,8 @@ class SearchController implements
         $product = new Product;
         $product->setDb($db);
 
-        $searchResultCount;
-        $searchResult;
+        $searchResultCount = null;
+        $searchResult = null;
 
         if (isset($_POST["search"])) {
             $searchString = htmlspecialchars($_POST["search"]);
