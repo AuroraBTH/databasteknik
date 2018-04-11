@@ -80,8 +80,13 @@ $genderCounter = 0;
                         <?php endforeach; ?>
                         </tbody>
                     </table>
-                    <a class="btn btn-block btn-primary w-50 mx-auto m-2 p-2 mb-4"
-                    href="<?= $products ?>/under500">Fler produkter</a>
+                    <?php if ($genderCounter == 0): ?>
+                        <a class="btn btn-block btn-primary w-50 mx-auto m-2 p-2 mb-4"
+                        href="<?= $products ?>/under500Female">Fler produkter</a>
+                    <?php elseif ($genderCounter == 1) : ?>
+                        <a class="btn btn-block btn-primary w-50 mx-auto m-2 p-2 mb-4"
+                        href="<?= $products ?>/under500Male">Fler produkter</a>
+                    <?php endif; ?>
                 </div>
                 <?php $genderCounter++ ?>
             <?php endforeach; ?>

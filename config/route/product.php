@@ -19,8 +19,14 @@ return [
         [
             "info" => "Under 500kr",
             "requestMethod" => "GET",
-            "path" => "products/under500",
-            "callable" => ["productController", "getAllProductsUnder500"]
+            "path" => "products/under500Female",
+            "callable" => ["productController", "getAllProductsUnder500Female"]
+        ],
+        [
+            "info" => "Under 500kr",
+            "requestMethod" => "GET",
+            "path" => "products/under500Male",
+            "callable" => ["productController", "getAllProductsUnder500Male"]
         ]
     ]
 ];
