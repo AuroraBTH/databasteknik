@@ -45,8 +45,8 @@ class CategoryController implements
         $category = new Category();
         $category->setDb($this->di->get("db"));
 
-        $title =  $category->getSpecificCategory($parentID);
-        $categories =  $category->getAllSubCategories($parentID);
+        $title = $category->getSpecificCategory($parentID);
+        $categories = $category->getAllSubCategories($parentID);
 
         if (empty($title) || empty($categories)) {
             $redirect = $this->di->get("url")->create("");
