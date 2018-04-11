@@ -97,10 +97,10 @@ class ManagementController implements
             foreach ($products as $key => $value) {
                 if (array_key_exists($value->productID, $orderItems)) {
                     $productAmount = ((int) $orderItems[$value->productID]->productAmount + $value->productAmount);
-                    $orderItems[$value->productID]->total = $productAmount;
+                    $orderItems[$value->productID]->totalBought = $productAmount;
                 } else if (!array_key_exists($value->productID, $orderItems)) {
                     $orderItems[$value->productID] = $value;
-                    $orderItems[$value->productID]->total = $value->productAmount;
+                    $orderItems[$value->productID]->totalBought = $value->productAmount;
                 }
             }
         }
@@ -110,15 +110,16 @@ class ManagementController implements
             $product = new Product();
             $product->setDb($db);
             $product->getProductByID($value->productID);
-            $product->total = $value->total;
-            $products[] = $product;
+
+            $res = array_merge((array) $product, ["totalBought" => $value->totalBought]);
+            $products[] = (object) $res;
         }
 
         foreach ($products as $key => $value) {
-            $total[$key] = $value->total;
+            $totalBought[$key] = $value->totalBought;
         }
 
-        array_multisort($total, SORT_DESC, $products);
+        array_multisort($totalBought, SORT_DESC, $products);
 
         $data = [
             "products" => $products
