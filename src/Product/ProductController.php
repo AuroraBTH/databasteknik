@@ -69,21 +69,39 @@ class ProductController implements
 
 
     /**
-     * Rendering of all products under 500kr
-     * @method getAllProductsUnder500
+     * Rendering of all female products under 500kr
+     * @method getAllProductsUnder500Female
      * @return void
      */
-    public function getAllProductsUnder500()
+    public function getAllProductsUnder500Female()
+    {
+        $products = new Product();
+        $products->setDb($this->di->get("db"));
+
+        $data = [
+            "under500Female" => $products->getProductsUnder500(0)
+        ];
+
+        $this->display("Produkter under 500kr", "product/under500Female", $data);
+    }
+
+
+
+    /**
+     * Rendering of all male products under 500kr
+     * @method getAllProductsUnder500Male
+     * @return void
+     */
+    public function getAllProductsUnder500Male()
     {
         $products = new Product();
         $products->setDb($this->di->get("db"));
 
         $data = [
             "under500Male" => $products->getProductsUnder500(1),
-            "under500Female" => $products->getProductsUnder500(0)
         ];
 
-        $this->display("Produkter under 500kr", "product/under500", $data);
+        $this->display("Produkter under 500kr", "product/under500Male", $data);
     }
 
 

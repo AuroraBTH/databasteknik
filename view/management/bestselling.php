@@ -27,9 +27,9 @@ $counter = 0;
                             <td><?= $item->productSellPrize ?></td>
                             <td><?= $item->productColor ?></td>
                             <td><?= $item->productManufacturer ?></td>
-                            <td><?= $item->total ?></td>
+                            <td><?= $item->totalBought ?></td>
                             <th scope="row">
-                                <a href="<?= $product ?>/<?= $item->productID[0] ?>">Mer information</a>
+                                <a href="<?= $product ?>/<?= $item->productID ?>">Mer information</a>
                             </th>
                         </tr>
                     <?php

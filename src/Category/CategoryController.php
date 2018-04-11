@@ -45,9 +45,18 @@ class CategoryController implements
         $category = new Category();
         $category->setDb($this->di->get("db"));
 
+        $title = $category->getSpecificCategory($parentID);
+        $categories = $category->getAllSubCategories($parentID);
+
+        if (empty($title) || empty($categories)) {
+            $redirect = $this->di->get("url")->create("");
+            $this->di->get("response")->redirect($redirect);
+            return false;
+        }
+
         $data = [
-            "title" => $category->getSpecificCategory($parentID),
-            "categories" => $category->getAllSubCategories($parentID)
+            "title" => $title,
+            "categories" => $categories
         ];
 
         $this->display("Kategori", "category/specificCategory", $data);

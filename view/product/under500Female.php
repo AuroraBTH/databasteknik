@@ -4,16 +4,14 @@ namespace Anax\View;
 
 $url = url("product");
 $counter = 0;
-$genderCounter = 0;
 ?>
 
 <div class="d-flex flex-row justify-content-center mt-4">
     <div class="d-flex flex-column w-100">
         <div class="d-flex w-100 justify-content-around">
-            <?php $genderCounter = 0; $counter = 0; ?>
             <?php foreach ($data as $under500) : ?>
                 <div class="mx-4 w-50">
-                    <?= $genderCounter == 0 ? '<h1>Produkter under 500kr Dam</h1>' : '<h1>Produkter under 500kr Herr</h1>' ?>
+                    <h1 class="text-center">Produkter under 500kr Dam</h1>
                     <table class="table border mb-4">
                         <thead>
                             <tr>
@@ -40,7 +38,6 @@ $genderCounter = 0;
                         </tbody>
                     </table>
                 </div>
-                <?php $genderCounter++ ?>
             <?php endforeach; ?>
         </div>
     </div>
