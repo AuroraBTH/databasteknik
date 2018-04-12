@@ -241,13 +241,13 @@ class Product extends ActiveRecordModel {
     {
         $res = null;
 
-        $productGenderAndDeleted = "productGender = ? and productDeleted = ?";
+        $genderAndDeleted = "productGender = ? and productDeleted = ?";
 
         if ($offset === null) {
-            $sql = "SELECT * FROM Product WHERE $key = ? and $productGenderAndDeleted";
+            $sql = "SELECT * FROM Product WHERE $key = ? and $genderAndDeleted";
             $res = $this->findAllSql($sql, [$value, $gender, "false"]);
         } elseif ($offset !== null) {
-            $sql = "SELECT * FROM Product WHERE $key = ? and $productGenderAndDeleted LIMIT 50 OFFSET ?";
+            $sql = "SELECT * FROM Product WHERE $key = ? and $genderAndDeleted LIMIT 50 OFFSET ?";
             $res = $this->findAllSql($sql, [$value, $gender, "false", $offset]);
         }
 
