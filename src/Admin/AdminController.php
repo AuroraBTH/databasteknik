@@ -54,6 +54,7 @@ class AdminController implements
 
         $amountPerPage = 50;
 
+        $res = null;
 
         if (isset($_GET["page"])) {
             if ($_GET["page"] > 0 && $_GET["page"] <= round($amountOfProducts / $amountPerPage)) {
@@ -110,6 +111,7 @@ class AdminController implements
 
         $amountPerPage = 50;
 
+        $res = null;
 
         if (isset($_GET["page"])) {
             if ($_GET["page"] > 0 && $_GET["page"] <= round($amountOfProducts / $amountPerPage)) {

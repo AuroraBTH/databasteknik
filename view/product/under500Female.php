@@ -7,9 +7,9 @@ $products = url("products");
 $counter = 0;
 if (isset($_GET["page"])) {
     $amountPerPage = 50;
+    $totalPages = round($data["amountOfProducts"];
     $start = ($_GET["page"] - 5) > 1 ? $_GET["page"] - 5 : 1;
-    $end = (($_GET["page"] + 5) < round($data["amountOfProducts"] / $amountPerPage)) ? ($_GET["page"] + 5) :
-        round($data["amountOfProducts"] / $amountPerPage);
+    $end = (($_GET["page"] + 5) < $totalPages / $amountPerPage)) ? ($_GET["page"] + 5) : $totalPages / $amountPerPage);
 }
 ?>
 
@@ -30,7 +30,7 @@ if (isset($_GET["page"])) {
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($data["under500Female"] as $item): ?>
+                    <?php foreach ($data["under500Female"] as $item) : ?>
                         <tr <?= ($counter % 2) == 0 ? 'class="bg-light"' : "" ?>>
                                 <td><?= $item->productManufacturer ?></td>
                                 <td><?= $item->productName ?></td>

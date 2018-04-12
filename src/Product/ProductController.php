@@ -47,7 +47,7 @@ class ProductController implements
      * @method getAllProductsFromCategory
      * @param  int  $categoryID category ID
      * @param  int  $genderID  0 = Female, 1 = Male.
-     * @return void
+     * @return mixed
      */
     public function getAllProductsFromCategory($categoryID, $genderID)
     {
@@ -63,7 +63,7 @@ class ProductController implements
         $amountOfProducts = count((array) $products->getProductsByGender("productCategoryID", $categoryID, $genderID));
 
         $amountPerPage = 50;
-        
+
         if (isset($_GET["page"])) {
             if ($_GET["page"] > 0 && $_GET["page"] <= round($amountOfProducts / $amountPerPage)) {
                 $offset = $_GET["page"] == 1 ? 0 : ($_GET["page"] * $amountPerPage);
@@ -91,7 +91,7 @@ class ProductController implements
     /**
      * Rendering of all female products under 500kr
      * @method getAllProductsUnder500Female
-     * @return void
+     * @return mixed
      */
     public function getAllProductsUnder500Female()
     {
@@ -131,7 +131,7 @@ class ProductController implements
     /**
      * Rendering of all male products under 500kr
      * @method getAllProductsUnder500Male
-     * @return void
+     * @return mixed
      */
     public function getAllProductsUnder500Male()
     {
