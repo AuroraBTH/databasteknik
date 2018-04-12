@@ -240,12 +240,14 @@ class Product extends ActiveRecordModel {
     public function getProductsByGender($key, $value, $gender, $offset = null)
     {
         $res = null;
-        //
+
+        $productGenderAndDeleted = "productGender = ? and productDeleted = ?";
+
         if ($offset === null) {
-            $sql = "SELECT * from Product WHERE $key = ? and productGender = ? and productDeleted = ?";
+            $sql = "SELECT * FROM Product WHERE $key = ? and $productGenderAndDeleted";
             $res = $this->findAllSql($sql, [$value, $gender, "false"]);
         } elseif ($offset !== null) {
-            $sql = "SELECT * from Product WHERE $key = ? and productGender = ? and productDeleted = ? LIMIT 50 OFFSET ?";
+            $sql = "SELECT * FROM Product WHERE $key = ? and $productGenderAndDeleted LIMIT 50 OFFSET ?";
             $res = $this->findAllSql($sql, [$value, $gender, "false", $offset]);
         }
 

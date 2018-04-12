@@ -7,9 +7,9 @@ $products = url("products");
 $counter = 0;
 if (isset($_GET["page"])) {
     $amountPerPage = 50;
-    $totalPages = round($data["amountOfProducts"];
+    $totalPages = round($data["amountOfProducts"]);
     $start = ($_GET["page"] - 5) > 1 ? $_GET["page"] - 5 : 1;
-    $end = (($_GET["page"] + 5) < $totalPages / $amountPerPage)) ? ($_GET["page"] + 5) : $totalPages / $amountPerPage);
+    $end = ($_GET["page"] + 5) < ($totalPages / $amountPerPage) ? ($_GET["page"] + 5) : ($totalPages / $amountPerPage);
 }
 ?>
 
@@ -43,11 +43,13 @@ if (isset($_GET["page"])) {
                     <?php endforeach; ?>
                     </tbody>
                 </table>
-                <?php for ($i = $start; $i <= $end; $i++) : ?>
-                    <a class="btn btn-lg btn-primary mb-4"
-                        href="<?= $products ?>/under500Female?page=<?=$i?>"><?=$i?></a>
-                <?php endfor; ?>
-                <p><b>Antal sidor: <?= round($data["amountOfProducts"] / $amountPerPage) ?></b></p>
+                <?php if (isset($_GET["page"])) : ?>
+                    <?php for ($i = $start; $i <= $end; $i++) : ?>
+                        <a class="btn btn-lg btn-primary mb-4"
+                            href="<?= $products ?>/under500Female?page=<?=$i?>"><?=$i?></a>
+                    <?php endfor; ?>
+                    <p><b>Antal sidor: <?= round($data["amountOfProducts"] / $amountPerPage) ?></b></p>
+                <?php endif; ?>
             </div>
         </div>
     </div>
