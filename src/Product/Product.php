@@ -212,9 +212,19 @@ class Product extends ActiveRecordModel {
      * @method getAllProducts
      * @return array all products from database.
      */
-    public function getAllProducts()
+    public function getAllProducts($offset = null)
     {
-        return $this->findAllWhere("productDeleted = ?", "false");
+        $res = null;
+
+        if ($offset === null) {
+            $query = "SELECT * FROM Product WHERE productDeleted = ?";
+            $res = $this->findAllSql($query, ["false"]);
+        } elseif ($offset !== null) {
+            $query = "SELECT * FROM Product WHERE productDeleted = ? LIMIT 50 OFFSET ?";
+            $res = $this->findAllSql($query, ["false", $offset]);
+        }
+
+        return $res;
     }
 
 
@@ -227,10 +237,19 @@ class Product extends ActiveRecordModel {
      *
      * @return array with product(s) from database.
      */
-    public function getProductsByGender($key, $value, $gender)
+    public function getProductsByGender($key, $value, $gender, $offset = null)
     {
-        $query = $key . " = ? and productGender = ? and productDeleted = ?";
-        return $this->findAllWhere($query, [$value, $gender, "false"]);
+        $res = null;
+        //
+        if ($offset === null) {
+            $query = "SELECT * from Product WHERE $key = ? and productGender = ? and productDeleted = ?";
+            $res = $this->findAllSql($query, [$value, $gender, "false"]);
+        } elseif ($offset !== null) {
+            $query = "SELECT * from Product WHERE $key = ? and productGender = ? and productDeleted = ? LIMIT 50 OFFSET ?";
+            $res = $this->findAllSql($query, [$value, $gender, "false", $offset]);
+        }
+
+        return $res;
     }
 
 
@@ -269,7 +288,7 @@ class Product extends ActiveRecordModel {
             $res = $this->findAllSql($sql, [$gender, "false", $limit]);
         } elseif ($limit === null && $offset !== null) {
             $sql = "SELECT * FROM Product WHERE productSellPrize <= 500
-            and productGender = ? and productDeleted = ? LIMIT 20 OFFSET ?";
+            and productGender = ? and productDeleted = ? LIMIT 50 OFFSET ?";
             $res = $this->findAllSql($sql, [$gender, "false", $offset]);
         }
         return $res;
@@ -282,9 +301,18 @@ class Product extends ActiveRecordModel {
      * @method getProductsWithLowAmount
      * @return array with all products with low amount.
      */
-    public function getProductsWithLowAmount()
+    public function getProductsWithLowAmount($offset = null)
     {
-        $res = $this->findAllWhere("productAmount <= ? and productDeleted = ?", [5, "false"]);
+        $res = null;
+        //
+        if ($offset === null) {
+            $query = "SELECT * from Product WHERE productAmount <= ? and productDeleted = ?";
+            $res = $this->findAllSql($query, [5, "false"]);
+        } elseif ($offset !== null) {
+            $query = "SELECT * from Product WHERE productAmount <= ? and productDeleted = ? LIMIT 50 OFFSET ?";
+            $res = $this->findAllSql($query, [5, "false", $offset]);
+        }
+
         return $res;
     }
 

@@ -5,11 +5,12 @@ namespace Anax\View;
 $url = url("product");
 $products = url("products");
 $counter = 0;
-
-
-$start = ($_GET["page"]-5) > 1 ? $_GET["page"]-5 : 1;
-$end = (($_GET["page"] + 5) < round($data["amountOfProducts"] / 20)) ? ($_GET["page"] + 5) : round($data["amountOfProducts"] / 20);
-
+if (isset($_GET["page"])) {
+    $amountPerPage = 50;
+    $start = ($_GET["page"] - 5) > 1 ? $_GET["page"] - 5 : 1;
+    $end = (($_GET["page"] + 5) < round($data["amountOfProducts"] / $amountPerPage)) ? ($_GET["page"] + 5) :
+        round($data["amountOfProducts"] / $amountPerPage);
+}
 ?>
 
 <div class="d-flex flex-row justify-content-center mt-4">
@@ -42,9 +43,11 @@ $end = (($_GET["page"] + 5) < round($data["amountOfProducts"] / 20)) ? ($_GET["p
                     <?php endforeach; ?>
                     </tbody>
                 </table>
-                <?php for ($i=$start; $i <= $end; $i++) : ?>
-                    <a class="btn btn-lg btn-primary mb-4" href="<?= $products ?>/under500Male?page=<?=$i?>"><?=$i?></a>
+                <?php for ($i = $start; $i <= $end; $i++) : ?>
+                    <a class="btn btn-lg btn-primary mb-4"
+                        href="<?= $products ?>/under500Male?page=<?=$i?>"><?=$i?></a>
                 <?php endfor; ?>
+                <p><b>Antal sidor: <?= round($data["amountOfProducts"] / $amountPerPage) ?></b></p>
             </div>
         </div>
     </div>

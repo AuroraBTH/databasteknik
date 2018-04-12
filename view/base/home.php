@@ -82,7 +82,7 @@ $genderCounter = 0;
                     </table>
                     <?php if ($genderCounter == 0): ?>
                         <a class="btn btn-block btn-primary w-50 mx-auto m-2 p-2 mb-4"
-                        href="<?= $products ?>/under500Female?limitPage=20">Fler produkter</a>
+                        href="<?= $products ?>/under500Female?page=1">Fler produkter</a>
                     <?php elseif ($genderCounter == 1) : ?>
                         <a class="btn btn-block btn-primary w-50 mx-auto m-2 p-2 mb-4"
                         href="<?= $products ?>/under500Male?page=1">Fler produkter</a>

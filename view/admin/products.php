@@ -1,10 +1,16 @@
 <?php
 namespace Anax\View;
 
-
-$url = url("product");
 $counter = 0;
-$admin = url("admin")
+$admin = url("admin");
+$url = url("product");
+
+if (isset($_GET["page"])) {
+    $amountPerPage = 50;
+    $start = ($_GET["page"] - 5) > 1 ? $_GET["page"] - 5 : 1;
+    $end = (($_GET["page"] + 5) < round($data["amountOfProducts"] / $amountPerPage)) ? ($_GET["page"] + 5) :
+        round($data["amountOfProducts"] / $amountPerPage);
+}
 ?>
 
 <div class="d-flex flex-row justify-content-center mt-4">
@@ -51,6 +57,11 @@ $admin = url("admin")
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <?php for ($i = $start; $i <= $end; $i++) : ?>
+            <a class="btn btn-lg btn-primary mb-4"
+                href="<?= $admin ?>/products?page=<?=$i?>"><?=$i?></a>
+        <?php endfor; ?>
+        <p><b>Antal sidor: <?= round($data["amountOfProducts"] / $amountPerPage) ?></b></p>
         <a class="btn btn-block btn-light-blue w-25 mx-auto pt-2 pb-2 mb-4"
         href="<?= $admin ?>"><i class="far fa-arrow-alt-circle-left fa-2x"></i>
         <span class="align-text-bottom pl-1">Tillbaka</span></a>

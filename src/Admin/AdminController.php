@@ -49,8 +49,28 @@ class AdminController implements
         $product = new Product();
         $product->setDb($this->di->get("db"));
 
+        $amountOfProducts = count($product->getAllProducts());
+
+
+        $amountPerPage = 50;
+
+
+        if (isset($_GET["page"])) {
+            if ($_GET["page"] > 0 && $_GET["page"] <= round($amountOfProducts / $amountPerPage)) {
+                $offset = $_GET["page"] == 1 ? 0 : ($_GET["page"] * $amountPerPage);
+                $res = $product->getAllProducts($offset);
+            } elseif ($_GET["page"] < 1 || $_GET["page"] > round($amountOfProducts / $amountPerPage)) {
+                $redirect = $this->di->get("url")->create("admin");
+                $this->di->get("response")->redirect("$redirect/products?page=1");
+                return false;
+            }
+        } elseif (!isset($_GET["page"])) {
+            $res = $product->getAllProducts();
+        }
+
         $data = [
-            "products" => $product->getAllProducts()
+            "products" => $res,
+            "amountOfProducts" => $amountOfProducts
         ];
 
         $this->display("Admin Produkter", "admin/products", $data);
@@ -85,8 +105,29 @@ class AdminController implements
         $product = new Product();
         $product->setDb($this->di->get("db"));
 
+        $amountOfProducts = count($product->getProductsWithLowAmount());
+
+
+        $amountPerPage = 50;
+
+
+        if (isset($_GET["page"])) {
+            if ($_GET["page"] > 0 && $_GET["page"] <= round($amountOfProducts / $amountPerPage)) {
+                $offset = $_GET["page"] == 1 ? 0 : ($_GET["page"] * $amountPerPage);
+                $res = $product->getProductsWithLowAmount($offset);
+            } elseif ($_GET["page"] < 1 || $_GET["page"] > round($amountOfProducts / $amountPerPage)) {
+                $redirect = $this->di->get("url")->create("admin");
+                $this->di->get("response")->redirect("$redirect/low?page=1");
+                return false;
+            }
+        } elseif (!isset($_GET["page"])) {
+            $res = $product->getProductsWithLowAmount();
+        }
+
+
         $data = [
-            "products" => $product->getProductsWithLowAmount()
+            "products" => $res,
+            "amountOfProducts" => $amountOfProducts
         ];
 
         $this->display("Admin Lågt antal", "admin/low", $data);
