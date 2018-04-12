@@ -97,8 +97,21 @@ class ProductController implements
         $products = new Product();
         $products->setDb($this->di->get("db"));
 
+        $res = null;
+
+        $amountOfProducts = count($products->getProductsUnder500(1));
+
+        if (isset($_GET["page"])) {
+            $offset = ($_GET["page"] * 20);
+            $res = $products->getProductsUnder500(1, null, $offset);
+        } elseif (!isset($_GET["offset"])) {
+            $res = $products->getProductsUnder500(1);
+        }
+
+
         $data = [
-            "under500Male" => $products->getProductsUnder500(1),
+            "under500Male" => $res,
+            "amountOfProducts" => $amountOfProducts
         ];
 
         $this->display("Produkter under 500kr", "product/under500Male", $data);

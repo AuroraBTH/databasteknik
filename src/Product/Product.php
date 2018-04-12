@@ -255,11 +255,11 @@ class Product extends ActiveRecordModel {
      * @param  mixed $limit amount of product.
      * @return array with products under 500kr.
      */
-    public function getProductsUnder500($gender, $limit = null)
+    public function getProductsUnder500($gender, $limit = null, $offset = null)
     {
         $res = null;
 
-        if ($limit === null) {
+        if ($limit === null && $offset === null) {
             $sql = "SELECT * FROM Product WHERE productSellPrize <= 500
             and productGender = ? and productDeleted = ?";
             $res = $this->findAllSql($sql, [$gender, "false"]);
@@ -267,6 +267,10 @@ class Product extends ActiveRecordModel {
             $sql = "SELECT * FROM Product WHERE productSellPrize <= 500
             and productGender = ? and productDeleted = ? LIMIT ?";
             $res = $this->findAllSql($sql, [$gender, "false", $limit]);
+        } elseif ($limit === null && $offset !== null) {
+            $sql = "SELECT * FROM Product WHERE productSellPrize <= 500
+            and productGender = ? and productDeleted = ? LIMIT 20 OFFSET ?";
+            $res = $this->findAllSql($sql, [$gender, "false", $offset]);
         }
         return $res;
     }
