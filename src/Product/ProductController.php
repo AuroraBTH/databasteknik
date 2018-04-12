@@ -65,10 +65,10 @@ class ProductController implements
         $amountPerPage = 50;
 
         if (isset($_GET["page"])) {
-            if ($_GET["page"] > 0 && $_GET["page"] <= round($amountOfProducts / $amountPerPage)) {
-                $offset = $_GET["page"] == 1 ? 0 : ($_GET["page"] * $amountPerPage);
+            if (htmlentities($_GET["page"]) > 0 && htmlentities($_GET["page"]) <= round($amountOfProducts / $amountPerPage)) {
+                $offset = htmlentities($_GET["page"]) == 1 ? 0 : (htmlentities($_GET["page"]) * $amountPerPage);
                 $res = $products->getProductsByGender("productCategoryID", $categoryID, $genderID, $offset);
-            } elseif ($_GET["page"] < 1 || $_GET["page"] > round($amountOfProducts / $amountPerPage)) {
+            } elseif (htmlentities($_GET["page"]) < 1 || htmlentities($_GET["page"]) > round($amountOfProducts / $amountPerPage)) {
                 $redirect = $this->di->get("url")->create("");
                 $this->di->get("response")->redirect($redirect);
                 return false;
@@ -105,10 +105,10 @@ class ProductController implements
         $amountPerPage = 50;
 
         if (isset($_GET["page"])) {
-            if ($_GET["page"] > 0 && $_GET["page"] <= round($amountOfProducts / $amountPerPage)) {
-                $offset = $_GET["page"] == 1 ? 0 : ($_GET["page"] * $amountPerPage);
+            if (htmlentities($_GET["page"]) > 0 && htmlentities($_GET["page"]) <= round($amountOfProducts / $amountPerPage)) {
+                $offset = htmlentities($_GET["page"]) == 1 ? 0 : (htmlentities($_GET["page"]) * $amountPerPage);
                 $res = $products->getProductsUnder500(0, null, $offset);
-            } elseif ($_GET["page"] < 1 || $_GET["page"] > round($amountOfProducts / $amountPerPage)) {
+            } elseif (htmlentities($_GET["page"]) < 1 || htmlentities($_GET["page"]) > round($amountOfProducts / $amountPerPage)) {
                 $redirect = $this->di->get("url")->create("products");
                 $this->di->get("response")->redirect("$redirect/under500Female?page=1");
                 return false;
@@ -145,10 +145,10 @@ class ProductController implements
         $amountPerPage = 50;
 
         if (isset($_GET["page"])) {
-            if ($_GET["page"] > 0 && $_GET["page"] <= round($amountOfProducts / $amountPerPage)) {
-                $offset = $_GET["page"] == 1 ? 0 : ($_GET["page"] * $amountPerPage);
+            if (htmlentities($_GET["page"]) > 0 && htmlentities($_GET["page"]) <= round($amountOfProducts / $amountPerPage)) {
+                $offset = htmlentities($_GET["page"]) == 1 ? 0 : (htmlentities($_GET["page"]) * $amountPerPage);
                 $res = $products->getProductsUnder500(1, null, $offset);
-            } elseif ($_GET["page"] < 1 || $_GET["page"] > round($amountOfProducts / $amountPerPage)) {
+            } elseif (htmlentities($_GET["page"]) < 1 || htmlentities($_GET["page"]) > round($amountOfProducts / $amountPerPage)) {
                 $redirect = $this->di->get("url")->create("products");
                 $this->di->get("response")->redirect("$redirect/under500Male?page=1");
                 return false;

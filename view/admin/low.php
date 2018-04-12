@@ -9,8 +9,8 @@ $admin = url("admin");
 if (isset($_GET["page"])) {
     $amountPerPage = 50;
     $totalPages = round($data["amountOfProducts"]);
-    $start = ($_GET["page"] - 5) > 1 ? $_GET["page"] - 5 : 1;
-    $end = ($_GET["page"] + 5) < ($totalPages / $amountPerPage) ? ($_GET["page"] + 5) : ($totalPages / $amountPerPage);
+    $start = (htmlentities($_GET["page"]) - 5) > 1 ? htmlentities($_GET["page"]) - 5 : 1;
+    $end = (htmlentities($_GET["page"]) + 5) < ($totalPages / $amountPerPage) ? (htmlentities($_GET["page"]) + 5) : ($totalPages / $amountPerPage);
 }
 ?>
 
