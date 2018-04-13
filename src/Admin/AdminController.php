@@ -47,8 +47,6 @@ class AdminController implements
     {
         $this->checkIfAdmin();
 
-        $res = null;
-
         $res = $this->pagination("getAllProducts", "getAllProducts", "admin", "/products?page=1");
 
         $data = [
@@ -85,8 +83,6 @@ class AdminController implements
     public function displayLowAdmin()
     {
         $this->checkIfAdmin();
-
-        $res = null;
 
         $res = $this->pagination("getProductsWithLowAmount", "getProductsWithLowAmount", "admin", "/low?page=1");
 
@@ -320,7 +316,7 @@ class AdminController implements
      * @param  string     $f2   name of the second function with no offset
      * @param  string     $url  first part of url
      * @param  string     $path path to resource
-     * @return array            with products and amount of products in database.
+     * @return mixed
      */
     private function pagination($f1, $f2, $url, $path = "")
     {
@@ -350,7 +346,7 @@ class AdminController implements
                 return false;
             }
         } elseif (!$request->getGet("page")) {
-            $res =  $product->$f2();
+            $res = $product->$f2();
         }
 
         return [$res, $amountOfProducts];

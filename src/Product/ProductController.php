@@ -57,15 +57,13 @@ class ProductController implements
 
         $request = $this->di->get("request");
 
-        $res = null;
-
         $amountPerPage = 50;
 
         $calcOffset = $request->getGet(htmlentities("page")) * $amountPerPage;
         $offset = $request->getGet(htmlentities("page")) == 1 ? 0 : $calcOffset;
 
         $res = $this->pagination(["productCategoryID", $categoryID, $genderID],
-            "getProductsByGender", "getProductsByGender", ["productCategoryID", $categoryID, $genderID, $offset] ,"");
+            "getProductsByGender", "getProductsByGender", ["productCategoryID", $categoryID, $genderID, $offset], "");
 
         $data = [
             "products" => $res[0],
@@ -90,14 +88,12 @@ class ProductController implements
 
         $request = $this->di->get("request");
 
-        $res = null;
-
         $amountPerPage = 50;
         $calcOffset = $request->getGet(htmlentities("page")) * $amountPerPage;
         $offset = $request->getGet(htmlentities("page")) == 1 ? 0 : $calcOffset;
 
         $res = $this->pagination([0], "getProductsUnder500", "getProductsUnder500",
-            [0, null, $offset] ,"products", "/under500Female?page=1");
+            [0, null, $offset], "products", "/under500Female?page=1");
 
         $data = [
             "under500Female" => $res[0],
@@ -120,8 +116,6 @@ class ProductController implements
         $products->setDb($this->di->get("db"));
 
         $request = $this->di->get("request");
-
-        $res = null;
 
         $amountPerPage = 50;
         $calcOffset = $request->getGet(htmlentities("page")) * $amountPerPage;
@@ -169,7 +163,7 @@ class ProductController implements
      * @param  array     $args   array with parameters to send to function
      * @param  string     $url   first part of url
      * @param  string     $path  path to resource
-     * @return array             with products and amount of products in database.
+     * @return mixed
      */
     private function pagination($getAll, $f1, $f2, $args, $url, $path = "")
     {
@@ -197,7 +191,7 @@ class ProductController implements
                 return false;
             }
         } elseif (!$request->getGet("page")) {
-            $res =  $product->$f2(...$getAll);
+            $res = $product->$f2(...$getAll);
         }
 
         return [$res, $amountOfProducts];
