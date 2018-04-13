@@ -86,9 +86,9 @@ class Coupon extends ActiveRecordModel
 
 
     /**
-     * Get all information about a specific coupon by mail.
+     * Get all information about a specific coupon by name.
      *
-     * @param string $email user email.
+     * @param string $name name of coupon.
      *
      * @return \Anax\Database\ActiveRecordModel
      */

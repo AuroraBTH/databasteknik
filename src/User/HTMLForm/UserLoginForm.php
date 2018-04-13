@@ -73,7 +73,7 @@ class UserLoginForm extends FormModel
         #Create a new user.
         $user = new User();
         #Give user access to database.
-        $user->setDB($this->di->get("db"));
+        $user->setDb($this->di->get("db"));
 
         #Check if the password match for the specific email.
         $passwordValidation = $user->verifyPassword($email, $password);
@@ -97,7 +97,7 @@ class UserLoginForm extends FormModel
 
     /**
      * Will redirect you to create user page.
-     * @method createUser
+     * @method createUser()
      * @return void
      */
     public function createUser()

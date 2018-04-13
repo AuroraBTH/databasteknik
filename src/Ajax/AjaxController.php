@@ -5,7 +5,7 @@ namespace Course\Ajax;
 use \Anax\Configure\ConfigureInterface;
 use \Anax\Configure\ConfigureTrait;
 use \Anax\DI\InjectionAwareInterface;
-use \Anax\Di\InjectionAwareTrait;
+use \Anax\DI\InjectionAwareTrait;
 
 use \Course\Product\Product;
 
@@ -20,7 +20,7 @@ class AjaxController implements
 
     /**
      * This function will add product to cart.
-     * @method addToCart
+     * @method addToCart()
      * @return string
      */
     public function addToCart()
@@ -57,7 +57,7 @@ class AjaxController implements
 
     /**
      * This function will remove product from cart.
-     * @method removeFromCart
+     * @method removeFromCart()
      * @return string
      */
     public function removeFromCart()
@@ -85,7 +85,7 @@ class AjaxController implements
 
     /**
      * This function will remove product from website.
-     * @method removeProduct
+     * @method removeProduct()
      * @return void
      */
     public function removeProduct()
@@ -109,7 +109,7 @@ class AjaxController implements
 
     /**
      * This function will add 1 to product in cart.
-     * @method plusProduct
+     * @method plusProduct()
      * @return string
      */
     public function plusProduct()
@@ -137,7 +137,7 @@ class AjaxController implements
 
     /**
      * This function will remove 1 from product in cart.
-     * @method minusProduct
+     * @method minusProduct()
      * @return string
      */
     public function minusProduct()
@@ -170,7 +170,7 @@ class AjaxController implements
 
     /**
      * This function will remove all products from cart.
-     * @method removeAllFromCart
+     * @method removeAllFromCart()
      * @return string
      */
     public function removeAllFromCart()

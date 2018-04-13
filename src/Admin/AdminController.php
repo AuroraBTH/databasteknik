@@ -5,7 +5,7 @@ namespace Course\Admin;
 use \Anax\Configure\ConfigureInterface;
 use \Anax\Configure\ConfigureTrait;
 use \Anax\DI\InjectionAwareInterface;
-use \Anax\Di\InjectionAwareTrait;
+use \Anax\DI\InjectionAwareTrait;
 
 use \Course\User\User;
 use \Course\Product\Product;
@@ -247,7 +247,7 @@ class AdminController implements
 
     /**
      * Checks if user is admin.
-     * @method checkIfAdmin
+     * @method checkIfAdmin()
      * @return mixed
      */
     private function checkIfAdmin()
@@ -275,7 +275,7 @@ class AdminController implements
 
     /**
      * This function will render page.
-     * @method display
+     * @method display()
      * @param  string $title title of page.
      * @param  string $page  page to render.
      * @param  array  $data  data to render.
@@ -294,7 +294,7 @@ class AdminController implements
 
     /**
      * This function will return all orderIDs.
-     * @method getOrderNumbers
+     * @method getOrderNumbers()
      * @param  array $orders all orders in database.
      * @return array array with all orderiDs.
      */
@@ -311,7 +311,7 @@ class AdminController implements
 
     /**
      * This function will return products based on offset and how many productes there are in the database.
-     * @method pagination
+     * @method pagination()
      * @param  string     $f1   name of the first function that will use offset
      * @param  string     $f2   name of the second function with no offset
      * @param  string     $url  first part of url

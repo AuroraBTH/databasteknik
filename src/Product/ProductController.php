@@ -5,7 +5,7 @@ namespace Course\Product;
 use \Anax\Configure\ConfigureInterface;
 use \Anax\Configure\ConfigureTrait;
 use \Anax\DI\InjectionAwareInterface;
-use \Anax\Di\InjectionAwareTrait;
+use \Anax\DI\InjectionAwareTrait;
 use \Course\Product\Product;
 use \Course\Category\Category;
 
@@ -20,7 +20,7 @@ class ProductController implements
 
     /**
      * Rendering of specific product.
-     * @method getSpecificProduct
+     * @method getSpecificProduct()
      * @param  int $productId ID of product.
      * @return mixed
      */
@@ -44,7 +44,7 @@ class ProductController implements
 
     /**
      * Rendering of all products in specific category.
-     * @method getAllProductsFromCategory
+     * @method getAllProductsFromCategory()
      * @param  int  $categoryID category ID
      * @param  int  $genderID  0 = Female, 1 = Male.
      * @return mixed
@@ -78,7 +78,7 @@ class ProductController implements
 
     /**
      * Rendering of all female products under 500kr
-     * @method getAllProductsUnder500Female
+     * @method getAllProductsUnder500Female()
      * @return mixed
      */
     public function getAllProductsUnder500Female()
@@ -107,7 +107,7 @@ class ProductController implements
 
     /**
      * Rendering of all male products under 500kr
-     * @method getAllProductsUnder500Male
+     * @method getAllProductsUnder500Male()
      * @return mixed
      */
     public function getAllProductsUnder500Male()
@@ -137,7 +137,7 @@ class ProductController implements
 
     /**
      * This function will render page.
-     * @method display
+     * @method display()
      * @param  string $title title of page.
      * @param  string $page  page to render.
      * @param  array  $data  data to render.
@@ -156,7 +156,7 @@ class ProductController implements
 
     /**
      * This function will return products based on offset and how many productes there are in the database.
-     * @method pagination
+     * @method pagination()
      * @param  array     $getAll array with parameters to send to function
      * @param  string     $f1    name of the first function that will use offset
      * @param  string     $f2    name of the second function with no offset
