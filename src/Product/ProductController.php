@@ -167,7 +167,6 @@ class ProductController implements
      */
     private function pagination($getAll, $f1, $f2, $args, $url, $path = "")
     {
-        //TODO: Change from $_GET to request->getGet();
         $product = new Product();
         $product->setDb($this->di->get("db"));
         $amountOfProducts = count($product->$f1(...$getAll));

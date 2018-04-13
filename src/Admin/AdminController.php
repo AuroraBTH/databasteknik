@@ -320,7 +320,6 @@ class AdminController implements
      */
     private function pagination($f1, $f2, $url, $path = "")
     {
-        //TODO: Change from $_GET to request->getGet();
         $product = new Product();
         $product->setDb($this->di->get("db"));
         $amountOfProducts = count($product->$f1());

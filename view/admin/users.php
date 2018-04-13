@@ -41,7 +41,7 @@ $admin = url("admin");
                                         echo "<td>Ledning</td>";
                                         break;
                                 }
-                             ?>
+                                ?>
                         </tr>
                     <?php $counter++ ?>
                 <?php endforeach; ?>
