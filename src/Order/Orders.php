@@ -27,7 +27,7 @@ class Orders extends ActiveRecordModel {
 
     /**
      * Set userID.
-     * @method setUserID
+     * @method setUserID()
      * @param  int $userID ID of user
      */
     public function setUserID($userID)
@@ -39,7 +39,7 @@ class Orders extends ActiveRecordModel {
 
     /**
      * Set couponID
-     * @method setCouponID
+     * @method setCouponID()
      * @param  int $couponID ID of coupon.
      */
     public function setCouponID($couponID)
@@ -51,7 +51,7 @@ class Orders extends ActiveRecordModel {
 
     /**
      * Get orderID.
-     * @method getOrderID
+     * @method getOrderID()
      * @param  int $userID ID of user
      * @return mixed with order.
      */
@@ -65,7 +65,7 @@ class Orders extends ActiveRecordModel {
 
     /**
      * Get last inserted id.
-     * @method getLastInsertedID
+     * @method getLastInsertedID()
      * @return int id of last insert.
      */
     public function getLastInsertedID()
@@ -78,7 +78,7 @@ class Orders extends ActiveRecordModel {
 
     /**
      * Get order by ID.
-     * @method getOrderByID
+     * @method getOrderByID()
      * @param  int  $orderID ID of order.
      * @return mixed with specific order.
      */
@@ -91,20 +91,20 @@ class Orders extends ActiveRecordModel {
 
     /**
      * Get all orders from specific user.
-     * @method getAllOrderByUserID
+     * @method getAllOrderByUserID()
      * @param  int  $userID ID of user.
      * @return array with all orders from specific user.
      */
     public function getAllOrderByUserID($userID)
     {
-        return $this->findallwhere("userID = ?", $userID);
+        return $this->findAllWhere("userID = ?", $userID);
     }
 
 
 
     /**
      * Get all orders.
-     * @method getAllOrders
+     * @method getAllOrders()
      * @return array with all orders in database.
      */
     public function getAllOrders()
@@ -116,12 +116,12 @@ class Orders extends ActiveRecordModel {
 
     /**
      * Get all orders from 1 month.
-     * @method getAllOrders1Month
+     * @method getAllOrders1Month()
      * @return array with orders.
      */
     public function getAllOrders1Month()
     {
-        $orders = $this->findallwhere("purchaseTime >= ?", "(NOW() - INTERVAL 1 MONTH)");
+        $orders = $this->findAllWhere("purchaseTime >= ?", "(NOW() - INTERVAL 1 MONTH)");
         return $orders;
     }
 }

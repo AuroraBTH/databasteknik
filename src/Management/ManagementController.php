@@ -5,7 +5,7 @@ namespace Course\Management;
 use \Anax\Configure\ConfigureInterface;
 use \Anax\Configure\ConfigureTrait;
 use \Anax\DI\InjectionAwareInterface;
-use \Anax\Di\InjectionAwareTrait;
+use \Anax\DI\InjectionAwareTrait;
 
 use \Course\User\User;
 use \Course\Order\OrderItem;
@@ -23,7 +23,7 @@ class ManagementController implements
 
     /**
      * Rendering of management settings.
-     * @method displaySettingsManagement
+     * @method displaySettingsManagement()
      * @return void
      */
     public function displaySettingsManagement()
@@ -36,7 +36,7 @@ class ManagementController implements
 
     /**
      * Rendering of most bought products.
-     * @method displaySettingsMostBought
+     * @method displaySettingsMostBought()
      * @return void
      */
     public function displaySettingsMostBought()
@@ -75,7 +75,7 @@ class ManagementController implements
 
     /**
      * Rendering of best selling products.
-     * @method displaySettingsBestSelling
+     * @method displaySettingsBestSelling()
      * @return void
      */
     public function displaySettingsBestSelling()
@@ -132,7 +132,7 @@ class ManagementController implements
 
     /**
      * This function will check if user is management.
-     * @method checkIfManagement
+     * @method checkIfManagement()
      * @return mixed
      */
     private function checkIfManagement()
@@ -160,7 +160,7 @@ class ManagementController implements
 
     /**
      * This function will render page.
-     * @method display
+     * @method display()
      * @param  string $title title of page.
      * @param  string $page  page to render.
      * @param  array  $data  data to render.

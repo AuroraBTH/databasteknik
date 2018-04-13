@@ -5,7 +5,7 @@ namespace Course\Order;
 use \Anax\Configure\ConfigureInterface;
 use \Anax\Configure\ConfigureTrait;
 use \Anax\DI\InjectionAwareInterface;
-use \Anax\Di\InjectionAwareTrait;
+use \Anax\DI\InjectionAwareTrait;
 
 use \Course\Order\Orders;
 use \Course\Order\OrderItem;
@@ -30,7 +30,7 @@ class OrderController implements
 
     /**
      * Rendering of orders
-     * @method getOrderPage
+     * @method getOrderPage()
      * @return void
      */
     public function getOrderPage()
@@ -57,7 +57,7 @@ class OrderController implements
 
     /**
      * Rendering of single order
-     * @method getSingleOrder
+     * @method getSingleOrder()
      * @param  int         $orderID orderID
      * @return mixed
      */
@@ -114,7 +114,7 @@ class OrderController implements
 
     /**
      * Check if user is logged in.
-     * @method checkLoggedIn
+     * @method checkLoggedIn()
      * @return mixed
      */
     public function checkLoggedIn()
@@ -136,7 +136,7 @@ class OrderController implements
 
     /**
      * This function will render page.
-     * @method display
+     * @method display()
      * @param  string $title title of page.
      * @param  string $page  page to render.
      * @param  array  $data  data to render.
@@ -155,7 +155,7 @@ class OrderController implements
 
     /**
      * This function will return all orderIDs.
-     * @method getOrderNumbers
+     * @method getOrderNumbers()
      * @param  array $orders all orders in database.
      * @return array array with all orderiDs.
      */

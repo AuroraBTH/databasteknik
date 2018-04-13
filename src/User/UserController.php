@@ -5,7 +5,7 @@ namespace Course\User;
 use \Anax\Configure\ConfigureInterface;
 use \Anax\Configure\ConfigureTrait;
 use \Anax\DI\InjectionAwareInterface;
-use \Anax\Di\InjectionAwareTrait;
+use \Anax\DI\InjectionAwareTrait;
 use \Course\User\HTMLForm\UserLoginForm;
 use \Course\User\HTMLForm\UserCreateForm;
 use \Course\User\HTMLForm\UserUpdateForm;
@@ -26,7 +26,7 @@ class UserController implements
 
     /**
      * Rendering of login page.
-     * @method getLoginPage
+     * @method getLoginPage()
      * @return void
      */
     public function getLoginPage()
@@ -54,7 +54,7 @@ class UserController implements
 
     /**
      * Rendering of create user page.
-     * @method getCreatePage
+     * @method getCreatePage()
      * @return void
      */
     public function getCreatePage()
@@ -74,7 +74,7 @@ class UserController implements
 
     /**
      * Rendering of update profile page.
-     * @method updateProfile
+     * @method updateProfile()
      * @return void
      */
     public function updateProfile()
@@ -94,7 +94,7 @@ class UserController implements
 
     /**
      * Rendering of profile page.
-     * @method getProfilePage
+     * @method getProfilePage()
      * @return void
      */
     public function getProfilePage()
@@ -119,7 +119,7 @@ class UserController implements
 
     /**
      * This function will handle logout.
-     * @method logout
+     * @method logout()
      * @return mixed
      */
     public function logout()
@@ -149,7 +149,7 @@ class UserController implements
 
     /**
      * This function will render page.
-     * @method display
+     * @method display()
      * @param  string $title title of page.
      * @param  string $page  page to render.
      * @param  array  $data  data to render.
@@ -168,7 +168,7 @@ class UserController implements
 
     /**
      * Check if user is logged in.
-     * @method checkLoggedIn
+     * @method checkLoggedIn()
      * @return mixed
      */
     public function checkLoggedIn()

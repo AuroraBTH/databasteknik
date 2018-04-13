@@ -5,7 +5,7 @@ namespace Course\Cart;
 use \Anax\Configure\ConfigureInterface;
 use \Anax\Configure\ConfigureTrait;
 use \Anax\DI\InjectionAwareInterface;
-use \Anax\Di\InjectionAwareTrait;
+use \Anax\DI\InjectionAwareTrait;
 
 use \Course\Order\OrderItem;
 use \Course\Order\Orders;
@@ -24,7 +24,7 @@ class CartController implements
 
     /**
      * Rendering of cart.
-     * @method displayCart
+     * @method displayCart()
      * @return void
      */
     public function displayCart() {
@@ -42,7 +42,7 @@ class CartController implements
 
     /**
      * Rendering of checkout
-     * @method displayCheckout
+     * @method displayCheckout()
      * @return void
      */
     public function displayCheckout() {
@@ -62,7 +62,7 @@ class CartController implements
 
     /**
      * Rendering of order
-     * @method displayOrder
+     * @method displayOrder()
      * @return void
      */
     public function displayOrder() {
@@ -129,7 +129,7 @@ class CartController implements
 
     /**
      * This function will render page.
-     * @method display
+     * @method display()
      * @param  string $title title of page.
      * @param  string $page  page to render.
      * @param  array  $data  data to render.

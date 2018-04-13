@@ -14,7 +14,7 @@ $admin = url("admin");
         <div class="row text-center mr-0 ml-0">
                 <div class="w-50 mt-3 mb-3 col-md-<?php echo $bootstrapColWidth; ?>">
                     <a class="mx-auto w-75 btn btn-lg btn-primary pt-4 pb-4 btn-block"
-                    href="<?= $admin ?>/products">Alla produkter</a>
+                    href="<?= $admin ?>/products?page=1">Alla produkter</a>
                 </div>
                 <div class="w-50 mt-3 mb-3 col-md-<?php echo $bootstrapColWidth; ?>">
                     <a class="mx-auto w-75 btn btn-lg btn-primary pt-4 pb-4 btn-block"

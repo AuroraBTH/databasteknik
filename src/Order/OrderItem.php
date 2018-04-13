@@ -26,7 +26,7 @@ class OrderItem extends ActiveRecordModel {
 
     /**
      * Set orderID.
-     * @method setOrderID
+     * @method setOrderID()
      * @param  int $orderID ID of order.
      */
     public function setOrderID($orderID)
@@ -38,7 +38,7 @@ class OrderItem extends ActiveRecordModel {
 
     /**
      * Set productID
-     * @method setProductID
+     * @method setProductID()
      * @param  int $productID ID of product.
      */
     public function setProductID($productID)
@@ -50,7 +50,7 @@ class OrderItem extends ActiveRecordModel {
 
     /**
      * Set amount of product.
-     * @method setProductAmount
+     * @method setProductAmount()
      * @param int $amount amount of product.
      */
     public function setProductAmount($amount)
@@ -62,7 +62,7 @@ class OrderItem extends ActiveRecordModel {
 
     /**
      * Get all orderItems.
-     * @method getAllOrderItems
+     * @method getAllOrderItems()
      * @return array with all orderItems.
      */
     public function getAllOrderItems()
@@ -78,20 +78,20 @@ class OrderItem extends ActiveRecordModel {
 
     /**
      * Get all orderItems from specific order.
-     * @method getAllItemsWhereID
+     * @method getAllItemsWhereID()
      * @param  int $orderID ID of order
      * @return array with orderItems.
      */
     public function getAllItemsWhereID($orderID)
     {
-        return $this->findallwhere("orderID = ?", $orderID);
+        return $this->findAllWhere("orderID = ?", $orderID);
     }
 
 
 
     /**
      * Get most bought products.
-     * @method getMostBoughtProducts
+     * @method getMostBoughtProducts()
      * @return array with most bought product.
      */
     public function getMostBoughtProducts()

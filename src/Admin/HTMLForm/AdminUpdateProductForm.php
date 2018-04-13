@@ -206,7 +206,7 @@ class AdminUpdateProductForm extends FormModel
 
     /**
      * On click it will take you back to admin products
-     * @method back
+     * @method back()
      * @return boolean true when redirected.
      */
     public function back()

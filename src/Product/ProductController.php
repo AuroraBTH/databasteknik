@@ -5,7 +5,7 @@ namespace Course\Product;
 use \Anax\Configure\ConfigureInterface;
 use \Anax\Configure\ConfigureTrait;
 use \Anax\DI\InjectionAwareInterface;
-use \Anax\Di\InjectionAwareTrait;
+use \Anax\DI\InjectionAwareTrait;
 use \Course\Product\Product;
 use \Course\Category\Category;
 
@@ -20,7 +20,7 @@ class ProductController implements
 
     /**
      * Rendering of specific product.
-     * @method getSpecificProduct
+     * @method getSpecificProduct()
      * @param  int $productId ID of product.
      * @return mixed
      */
@@ -44,23 +44,31 @@ class ProductController implements
 
     /**
      * Rendering of all products in specific category.
-     * @method getAllProductsFromCategory
+     * @method getAllProductsFromCategory()
      * @param  int  $categoryID category ID
      * @param  int  $genderID  0 = Female, 1 = Male.
-     * @return void
+     * @return mixed
      */
     public function getAllProductsFromCategory($categoryID, $genderID)
     {
-        $products = new Product();
-        $products->setDb($this->di->get("db"));
-
         $category = new Category();
         $category->setDb($this->di->get("db"));
         $productCategory = $category->getSpecificCategory($categoryID);
 
+        $request = $this->di->get("request");
+
+        $amountPerPage = 50;
+
+        $calcOffset = $request->getGet(htmlentities("page")) * $amountPerPage;
+        $offset = $request->getGet(htmlentities("page")) == 1 ? 0 : $calcOffset;
+
+        $res = $this->pagination(["productCategoryID", $categoryID, $genderID],
+            "getProductsByGender", "getProductsByGender", ["productCategoryID", $categoryID, $genderID, $offset], "");
+
         $data = [
-            "products" => $products->getProductsByGender("productCategoryID", $categoryID, $genderID),
-            "categoryParent" => $productCategory
+            "products" => $res[0],
+            "amountOfProducts" => $res[1],
+            "categoryParent" => $productCategory,
         ];
 
         $this->display("Produkter", "product/products", $data);
@@ -70,16 +78,26 @@ class ProductController implements
 
     /**
      * Rendering of all female products under 500kr
-     * @method getAllProductsUnder500Female
-     * @return void
+     * @method getAllProductsUnder500Female()
+     * @return mixed
      */
     public function getAllProductsUnder500Female()
     {
         $products = new Product();
         $products->setDb($this->di->get("db"));
 
+        $request = $this->di->get("request");
+
+        $amountPerPage = 50;
+        $calcOffset = $request->getGet(htmlentities("page")) * $amountPerPage;
+        $offset = $request->getGet(htmlentities("page")) == 1 ? 0 : $calcOffset;
+
+        $res = $this->pagination([0], "getProductsUnder500", "getProductsUnder500",
+            [0, null, $offset], "products", "/under500Female?page=1");
+
         $data = [
-            "under500Female" => $products->getProductsUnder500(0)
+            "under500Female" => $res[0],
+            "amountOfProducts" => $res[1]
         ];
 
         $this->display("Produkter under 500kr", "product/under500Female", $data);
@@ -89,17 +107,28 @@ class ProductController implements
 
     /**
      * Rendering of all male products under 500kr
-     * @method getAllProductsUnder500Male
-     * @return void
+     * @method getAllProductsUnder500Male()
+     * @return mixed
      */
     public function getAllProductsUnder500Male()
     {
         $products = new Product();
         $products->setDb($this->di->get("db"));
 
+        $request = $this->di->get("request");
+
+        $amountPerPage = 50;
+        $calcOffset = $request->getGet(htmlentities("page")) * $amountPerPage;
+        $offset = $request->getGet(htmlentities("page")) == 1 ? 0 : $calcOffset;
+
+        $res = $this->pagination([1], "getProductsUnder500", "getProductsUnder500",
+            [1, null, $offset], "products", "/under500Male?page=1");
+
         $data = [
-            "under500Male" => $products->getProductsUnder500(1),
+            "under500Male" => $res[0],
+            "amountOfProducts" => $res[1]
         ];
+
 
         $this->display("Produkter under 500kr", "product/under500Male", $data);
     }
@@ -108,7 +137,7 @@ class ProductController implements
 
     /**
      * This function will render page.
-     * @method display
+     * @method display()
      * @param  string $title title of page.
      * @param  string $page  page to render.
      * @param  array  $data  data to render.
@@ -121,5 +150,49 @@ class ProductController implements
 
         $view->add($page, $data);
         $pageRender->renderPage(["title" => $title]);
+    }
+
+
+
+    /**
+     * This function will return products based on offset and how many productes there are in the database.
+     * @method pagination()
+     * @param  array     $getAll array with parameters to send to function
+     * @param  string     $f1    name of the first function that will use offset
+     * @param  string     $f2    name of the second function with no offset
+     * @param  array     $args   array with parameters to send to function
+     * @param  string     $url   first part of url
+     * @param  string     $path  path to resource
+     * @return mixed
+     */
+    private function pagination($getAll, $f1, $f2, $args, $url, $path = "")
+    {
+        $product = new Product();
+        $product->setDb($this->di->get("db"));
+        $amountOfProducts = count($product->$f1(...$getAll));
+
+
+        $request = $this->di->get("request");
+
+        $amountPerPage = 50;
+        $res = null;
+
+        if ($request->getGet("page")) {
+            $pageMinCheck = $request->getGet(htmlentities("page")) > 0;
+            $pageMaxCheck = $request->getGet(htmlentities("page")) <= floor($amountOfProducts / $amountPerPage);
+            $pageLess1 = $request->getGet(htmlentities("page")) < 1;
+            $pageLargerMax = $request->getGet(htmlentities("page")) > floor($amountOfProducts / $amountPerPage);
+            if ($pageMinCheck && $pageMaxCheck) {
+                $res = $product->$f1(...$args);
+            } elseif ($pageLess1 || $pageLargerMax) {
+                $redirect = $this->di->get("url")->create($url);
+                $this->di->get("response")->redirect("$redirect" . "$path");
+                return false;
+            }
+        } elseif (!$request->getGet("page")) {
+            $res = $product->$f2(...$getAll);
+        }
+
+        return [$res, $amountOfProducts];
     }
 }

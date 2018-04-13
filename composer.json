@@ -2,6 +2,9 @@
     "name" : "course/databasteknik",
     "description": "Anax scaffolding for ramverk1",
     "license": "MIT",
+    "scripts": {
+       "phpstan": "vendor/bin/phpstan analyse -c config.neon src --level=7"
+   },
     "require": {
         "anax/request": "^1.0",
         "anax/router": "^1.0",
@@ -24,5 +27,8 @@
             "Anax\\": "src/",
             "Course\\": "src/"
         }
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^0.9.2"
     }
 }

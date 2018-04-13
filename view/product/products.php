@@ -5,7 +5,18 @@ namespace Anax\View;
 $url = url("product");
 $counter = 0;
 $parentID = $data['categoryParent'][0]->parentID;
+$categoryID = $data['categoryParent'][0]->categoryID;
+$genderID = $data['categoryParent'][0]->gender;
 $parentUrl = url("category/$parentID");
+$products = url("products");
+
+
+if (isset($_GET["page"])) {
+    $amountPerPage = 50;
+    $totalPages = floor($data["amountOfProducts"] / $amountPerPage);
+    $start = (htmlentities($_GET["page"]) - 5) > 1 ? htmlentities($_GET["page"]) - 5 : 1;
+    $end = (htmlentities($_GET["page"]) + 5) < ($totalPages) ? (htmlentities($_GET["page"]) + 5) : ($totalPages);
+}
 ?>
 
 <div class="d-flex flex-row justify-content-center mt-4">
@@ -36,6 +47,14 @@ $parentUrl = url("category/$parentID");
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <?php if (isset($_GET["page"])) : ?>
+            <?php for ($i = $start; $i <= $end; $i++) : ?>
+                <a class="btn btn-lg btn-primary mb-4"
+                    href="<?= $products ?>/<?= $categoryID ?>/<?= $genderID ?>?page=<?=$i?>"><?=$i?>
+                </a>
+            <?php endfor; ?>
+            <p><b>Antal sidor: <?= floor($totalPages) ?></b></p>
+        <?php endif; ?>
         <a class="btn btn-block btn-light-blue w-25 mx-auto pt-2 pb-2 mb-4" href="<?= $parentUrl ?>"><i class="far fa-arrow-alt-circle-left fa-2x"></i> <span class="align-text-bottom pl-1">Tillbaka</span></a>
     </div>
 </div>

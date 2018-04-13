@@ -203,7 +203,7 @@ class User extends ActiveRecordModel
      * Verify the email and the password, if successful the object contains
      * all details from the database row.
      *
-     * @param        $email
+     * @param string  $email users email
      * @param string $password the password to use.
      * @return bool true if email and password matches, else false.
      * @internal param string $email email to check.
@@ -254,7 +254,7 @@ class User extends ActiveRecordModel
 
     /**
      * Get all users.
-     * @method getAllUsers
+     * @method getAllUsers()
      * @return array with all users.
      */
     public function getAllUsers()

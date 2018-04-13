@@ -17,7 +17,7 @@ $backUrl = url("category");
             <?php foreach ($data["categories"] as $category) : ?>
                 <div class="w-50 mt-3 mb-3 col-md-<?php echo $bootstrapColWidth; ?>">
                     <a class="mx-auto w-75 btn btn-lg btn-primary pt-4 pb-4 btn-block"
-                    href="<?= $productUrl ?>/<?= $category->categoryID ?>/<?= $data["title"][0]->gender ?>">
+                    href="<?= $productUrl ?>/<?= $category->categoryID ?>/<?= $data["title"][0]->gender ?>?page=1">
                     <?= $category->categoryName; ?></a>
                 </div>
             <?php endforeach; ?>

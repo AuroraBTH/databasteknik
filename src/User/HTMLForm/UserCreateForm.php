@@ -200,7 +200,7 @@ class UserCreateForm extends FormModel
 
     /**
      * On press it will take the user back to loginpage.
-     * @method backToLogin
+     * @method backToLogin()
      * @return boolean true when redirected.
      */
     public function backToLogin()

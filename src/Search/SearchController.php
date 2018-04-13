@@ -5,7 +5,7 @@ namespace Course\Search;
 use \Anax\Configure\ConfigureInterface;
 use \Anax\Configure\ConfigureTrait;
 use \Anax\DI\InjectionAwareInterface;
-use \Anax\Di\InjectionAwareTrait;
+use \Anax\DI\InjectionAwareTrait;
 
 use \Course\Product\Product;
 
@@ -21,7 +21,7 @@ class SearchController implements
 
     /**
      * Rendering of search result
-     * @method displayResult
+     * @method displayResult()
      * @return mixed
      */
     public function displayResult()

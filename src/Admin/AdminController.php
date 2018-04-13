@@ -5,7 +5,7 @@ namespace Course\Admin;
 use \Anax\Configure\ConfigureInterface;
 use \Anax\Configure\ConfigureTrait;
 use \Anax\DI\InjectionAwareInterface;
-use \Anax\Di\InjectionAwareTrait;
+use \Anax\DI\InjectionAwareTrait;
 
 use \Course\User\User;
 use \Course\Product\Product;
@@ -46,11 +46,12 @@ class AdminController implements
     public function displayProductsAdmin()
     {
         $this->checkIfAdmin();
-        $product = new Product();
-        $product->setDb($this->di->get("db"));
+
+        $res = $this->pagination("getAllProducts", "getAllProducts", "admin", "/products?page=1");
 
         $data = [
-            "products" => $product->getAllProducts()
+            "products" => $res[0],
+            "amountOfProducts" => $res[1]
         ];
 
         $this->display("Admin Produkter", "admin/products", $data);
@@ -82,11 +83,12 @@ class AdminController implements
     public function displayLowAdmin()
     {
         $this->checkIfAdmin();
-        $product = new Product();
-        $product->setDb($this->di->get("db"));
+
+        $res = $this->pagination("getProductsWithLowAmount", "getProductsWithLowAmount", "admin", "/low?page=1");
 
         $data = [
-            "products" => $product->getProductsWithLowAmount()
+            "products" => $res[0],
+            "amountOfProducts" => $res[1]
         ];
 
         $this->display("Admin Lågt antal", "admin/low", $data);
@@ -245,7 +247,7 @@ class AdminController implements
 
     /**
      * Checks if user is admin.
-     * @method checkIfAdmin
+     * @method checkIfAdmin()
      * @return mixed
      */
     private function checkIfAdmin()
@@ -273,7 +275,7 @@ class AdminController implements
 
     /**
      * This function will render page.
-     * @method display
+     * @method display()
      * @param  string $title title of page.
      * @param  string $page  page to render.
      * @param  array  $data  data to render.
@@ -292,7 +294,7 @@ class AdminController implements
 
     /**
      * This function will return all orderIDs.
-     * @method getOrderNumbers
+     * @method getOrderNumbers()
      * @param  array $orders all orders in database.
      * @return array array with all orderiDs.
      */
@@ -303,5 +305,49 @@ class AdminController implements
             array_push($orderNumbers, $order->orderID);
         }
         return $orderNumbers;
+    }
+
+
+
+    /**
+     * This function will return products based on offset and how many productes there are in the database.
+     * @method pagination()
+     * @param  string     $f1   name of the first function that will use offset
+     * @param  string     $f2   name of the second function with no offset
+     * @param  string     $url  first part of url
+     * @param  string     $path path to resource
+     * @return mixed
+     */
+    private function pagination($f1, $f2, $url, $path = "")
+    {
+        $product = new Product();
+        $product->setDb($this->di->get("db"));
+        $amountOfProducts = count($product->$f1());
+
+
+        $request = $this->di->get("request");
+
+        $amountPerPage = 50;
+        $res = null;
+
+        if ($request->getGet("page")) {
+            $pageMinCheck = $request->getGet(htmlentities("page")) > 0;
+            $pageMaxCheck = $request->getGet(htmlentities("page")) <= floor($amountOfProducts / $amountPerPage);
+            $pageLess1 = $request->getGet(htmlentities("page")) < 1;
+            $pageLargerMax = $request->getGet(htmlentities("page")) > floor($amountOfProducts / $amountPerPage);
+            if ($pageMinCheck && $pageMaxCheck) {
+                $calcOffset = $request->getGet(htmlentities("page")) * $amountPerPage;
+                $offset = $request->getGet(htmlentities("page")) == 1 ? 0 : $calcOffset;
+                $res = $product->$f1($offset);
+            } elseif ($pageLess1 || $pageLargerMax) {
+                $redirect = $this->di->get("url")->create($url);
+                $this->di->get("response")->redirect("$redirect" . "$path");
+                return false;
+            }
+        } elseif (!$request->getGet("page")) {
+            $res = $product->$f2();
+        }
+
+        return [$res, $amountOfProducts];
     }
 }
