@@ -29,14 +29,19 @@ $admin = url("admin");
                             <td><?= $user->userMail ?></td>
                             <td><?= $user->userPhone ?></td>
                             <td><?= $user->userGender == 0 ? "Kvinna" : "Man" ?></td>
-                            <?php switch ($user->userRole) :
-                                case 0: ?>
-                                <td>Kund</td>
-                            <?php break; case 1: ?>
-                                <td>Admin</td>
-                            <?php break; case 2: ?>
-                                <td>Ledning</td>
-                            <?php break; endswitch; ?>
+                            <?php
+                                switch ($user->userRole) {
+                                    case 0:
+                                        echo "<td>Kund</td>";
+                                        break;
+                                    case 1:
+                                        echo "<td>Admin</td>";
+                                        break;
+                                    case 2:
+                                        echo "<td>Ledning</td>";
+                                        break;
+                                }
+                             ?>
                         </tr>
                     <?php $counter++ ?>
                 <?php endforeach; ?>

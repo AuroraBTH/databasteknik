@@ -4,6 +4,7 @@ imports:
 filter:
     excluded_paths:
         - vendor/*
+        - src/Database/*
         - src/HTMLForm/*
         - htdocs/cimage/*
 
