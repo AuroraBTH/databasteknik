@@ -7,9 +7,9 @@ $url = url("product");
 
 if (isset($_GET["page"])) {
     $amountPerPage = 50;
-    $totalPages = round($data["amountOfProducts"]);
+    $totalPages = floor($data["amountOfProducts"] / $amountPerPage);
     $start = (htmlentities($_GET["page"]) - 5) > 1 ? htmlentities($_GET["page"]) - 5 : 1;
-    $end = (htmlentities($_GET["page"]) + 5) < ($totalPages / $amountPerPage) ? (htmlentities($_GET["page"]) + 5) : ($totalPages / $amountPerPage);
+    $end = (htmlentities($_GET["page"]) + 5) < ($totalPages) ? (htmlentities($_GET["page"]) + 5) : ($totalPages);
 }
 ?>
 
@@ -62,7 +62,7 @@ if (isset($_GET["page"])) {
                 <a class="btn btn-lg btn-primary mb-4"
                     href="<?= $admin ?>/products?page=<?=$i?>"><?=$i?></a>
             <?php endfor; ?>
-            <p><b>Antal sidor: <?= round($data["amountOfProducts"] / $amountPerPage) ?></b></p>
+            <p><b>Antal sidor: <?= floor($totalPages) ?></b></p>
         <?php endif; ?>
         <a class="btn btn-block btn-light-blue w-25 mx-auto pt-2 pb-2 mb-4"
         href="<?= $admin ?>"><i class="far fa-arrow-alt-circle-left fa-2x"></i>

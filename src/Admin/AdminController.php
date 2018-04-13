@@ -46,32 +46,14 @@ class AdminController implements
     public function displayProductsAdmin()
     {
         $this->checkIfAdmin();
-        $product = new Product();
-        $product->setDb($this->di->get("db"));
-
-        $amountOfProducts = count($product->getAllProducts());
-
-
-        $amountPerPage = 50;
 
         $res = null;
 
-        if (isset($_GET["page"])) {
-            if (htmlentities($_GET["page"]) > 0 && htmlentities($_GET["page"]) <= round($amountOfProducts / $amountPerPage)) {
-                $offset = htmlentities($_GET["page"]) == 1 ? 0 : (htmlentities($_GET["page"]) * $amountPerPage);
-                $res = $product->getAllProducts($offset);
-            } elseif (htmlentities($_GET["page"]) < 1 || htmlentities($_GET["page"]) > round($amountOfProducts / $amountPerPage)) {
-                $redirect = $this->di->get("url")->create("admin");
-                $this->di->get("response")->redirect("$redirect/products?page=1");
-                return false;
-            }
-        } elseif (!isset($_GET["page"])) {
-            $res = $product->getAllProducts();
-        }
+        $res = $this->pagination("getAllProducts", "getAllProducts", "admin", "/products?page=1");
 
         $data = [
-            "products" => $res,
-            "amountOfProducts" => $amountOfProducts
+            "products" => $res[0],
+            "amountOfProducts" => $res[1]
         ];
 
         $this->display("Admin Produkter", "admin/products", $data);
@@ -103,33 +85,14 @@ class AdminController implements
     public function displayLowAdmin()
     {
         $this->checkIfAdmin();
-        $product = new Product();
-        $product->setDb($this->di->get("db"));
-
-        $amountOfProducts = count($product->getProductsWithLowAmount());
-
-
-        $amountPerPage = 50;
 
         $res = null;
 
-        if (isset($_GET["page"])) {
-            if (htmlentities($_GET["page"]) > 0 && htmlentities($_GET["page"]) <= round($amountOfProducts / $amountPerPage)) {
-                $offset = htmlentities($_GET["page"]) == 1 ? 0 : (htmlentities($_GET["page"]) * $amountPerPage);
-                $res = $product->getProductsWithLowAmount($offset);
-            } elseif (htmlentities($_GET["page"]) < 1 || htmlentities($_GET["page"]) > round($amountOfProducts / $amountPerPage)) {
-                $redirect = $this->di->get("url")->create("admin");
-                $this->di->get("response")->redirect("$redirect/low?page=1");
-                return false;
-            }
-        } elseif (!isset($_GET["page"])) {
-            $res = $product->getProductsWithLowAmount();
-        }
-
+        $res = $this->pagination("getProductsWithLowAmount", "getProductsWithLowAmount", "admin", "/low?page=1");
 
         $data = [
-            "products" => $res,
-            "amountOfProducts" => $amountOfProducts
+            "products" => $res[0],
+            "amountOfProducts" => $res[1]
         ];
 
         $this->display("Admin Lågt antal", "admin/low", $data);
@@ -346,5 +309,50 @@ class AdminController implements
             array_push($orderNumbers, $order->orderID);
         }
         return $orderNumbers;
+    }
+
+
+
+    /**
+     * This function will return products based on offset and how many productes there are in the database.
+     * @method pagination
+     * @param  string     $f1   name of the first function that will use offset
+     * @param  string     $f2   name of the second function with no offset
+     * @param  string     $url  first part of url
+     * @param  string     $path path to resource
+     * @return array            with products and amount of products in database.
+     */
+    private function pagination($f1, $f2, $url, $path = "")
+    {
+        //TODO: Change from $_GET to request->getGet();
+        $product = new Product();
+        $product->setDb($this->di->get("db"));
+        $amountOfProducts = count($product->$f1());
+
+
+        $request = $this->di->get("request");
+
+        $amountPerPage = 50;
+        $res = null;
+
+        if ($request->getGet("page")) {
+            $pageMinCheck = $request->getGet(htmlentities("page")) > 0;
+            $pageMaxCheck = $request->getGet(htmlentities("page")) <= floor($amountOfProducts / $amountPerPage);
+            $pageLess1 = $request->getGet(htmlentities("page")) < 1;
+            $pageLargerMax = $request->getGet(htmlentities("page")) > floor($amountOfProducts / $amountPerPage);
+            if ($pageMinCheck && $pageMaxCheck) {
+                $calcOffset = $request->getGet(htmlentities("page")) * $amountPerPage;
+                $offset = $request->getGet(htmlentities("page")) == 1 ? 0 : $calcOffset;
+                $res = $product->$f1($offset);
+            } elseif ($pageLess1 || $pageLargerMax) {
+                $redirect = $this->di->get("url")->create($url);
+                $this->di->get("response")->redirect("$redirect" . "$path");
+                return false;
+            }
+        } elseif (!$request->getGet("page")) {
+            $res =  $product->$f2();
+        }
+
+        return [$res, $amountOfProducts];
     }
 }
