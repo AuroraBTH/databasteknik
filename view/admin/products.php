@@ -58,10 +58,14 @@ if (isset($_GET["page"])) {
             </tbody>
         </table>
         <?php if (isset($_GET["page"])) : ?>
+            <a class="btn btn-lg btn-primary mb-4"
+                href="<?= $admin ?>/products?page=1">Start</a>
             <?php for ($i = $start; $i <= $end; $i++) : ?>
                 <a class="btn btn-lg btn-primary mb-4"
                     href="<?= $admin ?>/products?page=<?=$i?>"><?=$i?></a>
             <?php endfor; ?>
+            <a class="btn btn-lg btn-primary mb-4"
+                href="<?= $admin ?>/products?page=<?=$totalPages?>">Slut</a>
             <p><b>Antal sidor: <?= floor($totalPages) ?></b></p>
         <?php endif; ?>
         <a class="btn btn-block btn-light-blue w-25 mx-auto pt-2 pb-2 mb-4"

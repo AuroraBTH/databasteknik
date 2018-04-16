@@ -48,11 +48,15 @@ if (isset($_GET["page"])) {
             </tbody>
         </table>
         <?php if (isset($_GET["page"])) : ?>
-            <?php for ($i = $start; $i <= $end; $i++) : ?>
-                <a class="btn btn-lg btn-primary mb-4"
-                    href="<?= $products ?>/<?= $categoryID ?>/<?= $genderID ?>?page=<?=$i?>"><?=$i?>
-                </a>
-            <?php endfor; ?>
+            <a class="btn btn-lg btn-primary mb-4"
+                href="<?= $products ?>/<?= $categoryID ?>/<?= $genderID ?>?page=1">Start</a>
+                <?php for ($i = $start; $i <= $end; $i++) : ?>
+                    <a class="btn btn-lg btn-primary mb-4"
+                        href="<?= $products ?>/<?= $categoryID ?>/<?= $genderID ?>?page=<?=$i?>"><?=$i?>
+                    </a>
+                <?php endfor; ?>
+            <a class="btn btn-lg btn-primary mb-4"
+                href="<?= $products ?>/<?= $categoryID ?>/<?= $genderID ?>?page=<?=$totalPages?>">Slut</a>
             <p><b>Antal sidor: <?= floor($totalPages) ?></b></p>
         <?php endif; ?>
         <a class="btn btn-block btn-light-blue w-25 mx-auto pt-2 pb-2 mb-4" href="<?= $parentUrl ?>"><i class="far fa-arrow-alt-circle-left fa-2x"></i> <span class="align-text-bottom pl-1">Tillbaka</span></a>
