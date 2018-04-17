@@ -173,7 +173,7 @@ class UserCreateForm extends FormModel
 
 
         # Check if email is already in use. If not create new user.
-        if ($user->checkUserExists($email)) {
+        if (!$user->checkUserExists($email)) {
             $user->setFirstname($firstname);
             $user->setSurname($surname);
             $user->setEmail($email);
@@ -185,7 +185,7 @@ class UserCreateForm extends FormModel
             $user->setPassword($password);
             $user->setGender($gender === 'Female' ? 0 : 1);
             $user->save();
-        } else if (!$user->checkUserExists($email)) {
+        } else if ($user->checkUserExists($email)) {
             $this->form->addOutput("Email already in use");
             return false;
         }
