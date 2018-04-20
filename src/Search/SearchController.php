@@ -38,18 +38,15 @@ class SearchController implements
         $product = new Product;
         $product->setDb($db);
 
-        $searchResultCount = null;
-        $searchResult = null;
-
-        if (isset($_POST["search"])) {
-            $searchString = htmlspecialchars($_POST["search"]);
-            $searchResult = $product->searchProducts($searchString);
-            $searchResultCount = count($searchResult);
-        } else if (!isset($_POST["search"])) {
+        if (!isset($_POST["search"])) {
             $redirectUrl = $url->create("");
             $response->redirect($redirectUrl);
             return false;
         }
+
+        $searchString = htmlspecialchars($_POST["search"]);
+        $searchResult = $product->searchProducts($searchString);
+        $searchResultCount = count($searchResult);
 
         $data = [
             "searchResultCount" => $searchResultCount,

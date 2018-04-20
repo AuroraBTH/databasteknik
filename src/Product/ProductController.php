@@ -63,7 +63,8 @@ class ProductController implements
         $offset = $request->getGet(htmlentities("page")) == 1 ? 0 : $calcOffset;
 
         $res = $this->pagination(["productCategoryID", $categoryID, $genderID],
-            "getProductsByGender", "getProductsByGender", ["productCategoryID", $categoryID, $genderID, $offset], "");
+            "getProductsByGender", "getProductsByGender", ["productCategoryID",
+            $categoryID, $genderID, $offset], "products", "/$categoryID/$genderID?page=1");
 
         $data = [
             "products" => $res[0],
@@ -177,22 +178,30 @@ class ProductController implements
         $amountPerPage = 50;
         $res = null;
 
-        if ($request->getGet("page")) {
-            $pageMinCheck = $request->getGet(htmlentities("page")) > 0;
-            $pageMaxCheck = $request->getGet(htmlentities("page")) <= floor($amountOfProducts / $amountPerPage);
-            $pageLess1 = $request->getGet(htmlentities("page")) < 1;
-            $pageLargerMax = $request->getGet(htmlentities("page")) > floor($amountOfProducts / $amountPerPage);
-            if ($pageMinCheck && $pageMaxCheck) {
-                $res = $product->$f1(...$args);
-            } elseif ($pageLess1 || $pageLargerMax) {
-                $redirect = $this->di->get("url")->create($url);
-                $this->di->get("response")->redirect("$redirect" . "$path");
-                return false;
-            }
-        } elseif (!$request->getGet("page")) {
-            $res = $product->$f2(...$getAll);
+        $currentPage = $request->getGet("page");
+
+        if ($currentPage == '0') {
+            $redirect = $this->di->get("url")->create($url);
+            $this->di->get("response")->redirect("$redirect" . "$path");
+            return false;
         }
 
+        if ($request->getGet("page")) {
+            $pageMinCheck = $request->getGet(htmlentities("page")) > 0;
+            $max = (floor($amountOfProducts / $amountPerPage) == 0 ? 1 : floor($amountOfProducts / $amountPerPage));
+            $pageMaxCheck = $request->getGet(htmlentities("page")) <= $max;
+
+            if ($pageMinCheck && $pageMaxCheck && $currentPage > 0) {
+                $res = $product->$f1(...$args);
+                return [$res, $amountOfProducts];
+            }
+
+            $redirect = $this->di->get("url")->create($url);
+            $this->di->get("response")->redirect("$redirect" . "$path");
+            return false;
+        }
+
+        $res = $product->$f2(...$getAll);
         return [$res, $amountOfProducts];
     }
 }

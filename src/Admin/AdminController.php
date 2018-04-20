@@ -155,13 +155,13 @@ class AdminController implements
             ];
 
             $this->display("Admin Order", "admin/order", $data);
-        } elseif (!in_array($orderID, $orderNumbers)) {
-            $url = $this->di->get("url");
-            $response = $this->di->get("response");
-            $login = $url->create("admin/orders");
-            $response->redirect($login);
-            return false;
         }
+        
+        $url = $this->di->get("url");
+        $response = $this->di->get("response");
+        $login = $url->create("admin/orders");
+        $response->redirect($login);
+        return false;
     }
 
 
@@ -308,7 +308,6 @@ class AdminController implements
     }
 
 
-
     /**
      * This function will return products based on offset and how many productes there are in the database.
      * @method pagination()
@@ -330,24 +329,32 @@ class AdminController implements
         $amountPerPage = 50;
         $res = null;
 
+        $currentPage = $request->getGet("page");
+
+        if ($currentPage == '0') {
+            $redirect = $this->di->get("url")->create($url);
+            $this->di->get("response")->redirect("$redirect" . "$path");
+            return false;
+        }
+
         if ($request->getGet("page")) {
             $pageMinCheck = $request->getGet(htmlentities("page")) > 0;
-            $pageMaxCheck = $request->getGet(htmlentities("page")) <= floor($amountOfProducts / $amountPerPage);
-            $pageLess1 = $request->getGet(htmlentities("page")) < 1;
-            $pageLargerMax = $request->getGet(htmlentities("page")) > floor($amountOfProducts / $amountPerPage);
-            if ($pageMinCheck && $pageMaxCheck) {
+            $max = (floor($amountOfProducts / $amountPerPage) == 0 ? 1 : floor($amountOfProducts / $amountPerPage));
+            $pageMaxCheck = $request->getGet(htmlentities("page")) <= $max;
+
+            if ($pageMinCheck && $pageMaxCheck && $currentPage > 0) {
                 $calcOffset = $request->getGet(htmlentities("page")) * $amountPerPage;
                 $offset = $request->getGet(htmlentities("page")) == 1 ? 0 : $calcOffset;
                 $res = $product->$f1($offset);
-            } elseif ($pageLess1 || $pageLargerMax) {
-                $redirect = $this->di->get("url")->create($url);
-                $this->di->get("response")->redirect("$redirect" . "$path");
-                return false;
+                return [$res, $amountOfProducts];
             }
-        } elseif (!$request->getGet("page")) {
-            $res = $product->$f2();
+
+            $redirect = $this->di->get("url")->create($url);
+            $this->di->get("response")->redirect("$redirect" . "$path");
+            return false;
         }
 
+        $res = $product->$f2();
         return [$res, $amountOfProducts];
     }
 }
