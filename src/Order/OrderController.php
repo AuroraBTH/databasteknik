@@ -101,13 +101,12 @@ class OrderController implements
             ];
 
             $this->display("Order", "order/order", $data);
-        } elseif (!in_array($orderID, $orderNumbers)) {
-            $url = $this->di->get("url");
-            $response = $this->di->get("response");
-            $login = $url->create("orders");
-            $response->redirect($login);
-            return false;
         }
+        $url = $this->di->get("url");
+        $response = $this->di->get("response");
+        $login = $url->create("orders");
+        $response->redirect($login);
+        return false;
     }
 
 
@@ -126,10 +125,10 @@ class OrderController implements
 
         if ($session->has("email")) {
             return true;
-        } else if (!$session->has("email")) {
-            $response->redirect($login);
-            return false;
         }
+        
+        $response->redirect($login);
+        return false;
     }
 
 

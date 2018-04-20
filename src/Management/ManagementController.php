@@ -11,6 +11,7 @@ use \Course\User\User;
 use \Course\Order\OrderItem;
 use \Course\Order\Orders;
 use \Course\Product\Product;
+use \Course\Management\Management;
 
 class ManagementController implements
     ConfigureInterface,
@@ -83,37 +84,12 @@ class ManagementController implements
         $this->checkIfManagement();
         $db = $this->di->get("db");
 
-        $order = new Orders();
-        $order->setDb($db);
+        $management = new Management();
+        $orders = $management->getAllOrders1Month($db);
 
-        $orders = $order->getAllOrders1Month();
+        $orderItems = $management->getAllOrderItems($orders, $db);
 
-        $orderItems = [];
-        foreach ($orders as $order) {
-            $orderItem = new OrderItem();
-            $orderItem->setDb($db);
-
-            $products = $orderItem->getAllItemsWhereID($order->orderID);
-            foreach ($products as $key => $value) {
-                if (array_key_exists($value->productID, $orderItems)) {
-                    $productAmount = ((int) $orderItems[$value->productID]->productAmount + $value->productAmount);
-                    $orderItems[$value->productID]->totalBought = $productAmount;
-                } else if (!array_key_exists($value->productID, $orderItems)) {
-                    $orderItems[$value->productID] = $value;
-                    $orderItems[$value->productID]->totalBought = $value->productAmount;
-                }
-            }
-        }
-
-        $products = [];
-        foreach ($orderItems as $key => $value) {
-            $product = new Product();
-            $product->setDb($db);
-            $product->getProductByID($value->productID);
-
-            $res = array_merge((array) $product, ["totalBought" => $value->totalBought]);
-            $products[] = (object) $res;
-        }
+        $products = $management->getAllProductsFromOrderItem($orderItems, $db);
 
         foreach ($products as $key => $value) {
             $totalBought[$key] = $value->totalBought;

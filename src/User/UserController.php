@@ -37,17 +37,17 @@ class UserController implements
         if ($session->has("email")) {
             $url = $url->create("user/profile");
             $response->redirect($url);
-        } else if (!$session->has("email")) {
-            $loginForm = new UserLoginForm($this->di);
-
-            $loginForm->check();
-
-            $data = [
-                "content" => $loginForm->getHTML(),
-            ];
-
-            $this->display("Inloggning", "default1/article", $data);
+            return false;
         }
+        $loginForm = new UserLoginForm($this->di);
+
+        $loginForm->check();
+
+        $data = [
+            "content" => $loginForm->getHTML(),
+        ];
+
+        $this->display("Inloggning", "default1/article", $data);
     }
 
 
@@ -129,13 +129,13 @@ class UserController implements
         $session = $this->di->get("session");
         $login = $url->create("user/login");
 
-        if ($session->has("email")) {
-            $session->delete("email");
-            $session->delete("items");
-            $response->redirect($login);
-        } else if (!$session->has("email")) {
+        if (!$session->has("email")) {
             $response->redirect($login);
         }
+
+        $session->delete("email");
+        $session->delete("items");
+        $response->redirect($login);
 
         $hasSession = session_status() == PHP_SESSION_ACTIVE;
 
@@ -180,9 +180,9 @@ class UserController implements
 
         if ($session->has("email")) {
             return true;
-        } else if (!$session->has("email")) {
-            $response->redirect($login);
-            return false;
         }
+        
+        $response->redirect($login);
+        return false;
     }
 }
