@@ -38,9 +38,6 @@ class SearchController implements
         $product = new Product;
         $product->setDb($db);
 
-        $searchResultCount = null;
-        $searchResult = null;
-
         if (!isset($_POST["search"])) {
             $redirectUrl = $url->create("");
             $response->redirect($redirectUrl);

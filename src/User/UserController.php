@@ -27,7 +27,7 @@ class UserController implements
     /**
      * Rendering of login page.
      * @method getLoginPage()
-     * @return void
+     * @return mixed
      */
     public function getLoginPage()
     {
@@ -181,7 +181,7 @@ class UserController implements
         if ($session->has("email")) {
             return true;
         }
-        
+
         $response->redirect($login);
         return false;
     }

@@ -29,7 +29,7 @@ class Management extends ActiveRecordModel
             $orderItem->setDb($db);
 
             $products = $orderItem->getAllItemsWhereID($order->orderID);
-            foreach ($products as $key => $value) {
+            foreach ($products as $value) {
                 if (array_key_exists($value->productID, $orderItems)) {
                     $productAmount = ((int) $orderItems[$value->productID]->productAmount + $value->productAmount);
                     $orderItems[$value->productID]->totalBought = $productAmount;
@@ -49,7 +49,7 @@ class Management extends ActiveRecordModel
     {
         $products = [];
 
-        foreach ($orderItems as $key => $value) {
+        foreach ($orderItems as $value) {
             $product = new Product();
             $product->setDb($db);
             $product->getProductByID($value->productID);
