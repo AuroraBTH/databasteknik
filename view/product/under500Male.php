@@ -7,7 +7,8 @@ $products = url("products");
 $counter = 0;
 if (isset($_GET["page"])) {
     $amountPerPage = 50;
-    $totalPages = floor($data["amountOfProducts"] / $amountPerPage);
+    $pages = floor($data["amountOfProducts"] / $amountPerPage);
+    $totalPages = $pages == 0 ? 1 : $pages;
     $start = (htmlentities($_GET["page"]) - 5) > 1 ? htmlentities($_GET["page"]) - 5 : 1;
     $end = (htmlentities($_GET["page"]) + 5) < ($totalPages) ? (htmlentities($_GET["page"]) + 5) : ($totalPages);
 }
