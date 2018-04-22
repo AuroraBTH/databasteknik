@@ -52,7 +52,7 @@ class OrderController implements
             "orders" => $order->getAllOrderByUserID($userInformation->userID),
         ];
 
-        $this->display("Ordrar", "order/orders", $data);
+        $this->di->get("render")->display("Ordrar", "order/orders", $data);
     }
 
 
@@ -112,7 +112,7 @@ class OrderController implements
                 "coupon" => $coupon
             ];
 
-            $this->display("Order", "order/order", $data);
+            $this->di->get("render")->display("Order", "order/order", $data);
         }
         $url = $this->di->get("url");
         $response = $this->di->get("response");
@@ -138,28 +138,9 @@ class OrderController implements
         if ($session->has("email")) {
             return true;
         }
-        
+
         $response->redirect($login);
         return false;
-    }
-
-
-
-    /**
-     * This function will render page.
-     * @method display()
-     * @param  string $title title of page.
-     * @param  string $page  page to render.
-     * @param  array  $data  data to render.
-     * @return void
-     */
-    private function display($title, $page, $data = []) {
-        $title = $title;
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
-        $view->add($page, $data);
-        $pageRender->renderPage(["title" => $title]);
     }
 
 

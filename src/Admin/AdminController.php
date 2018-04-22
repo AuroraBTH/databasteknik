@@ -35,7 +35,7 @@ class AdminController implements
     public function displaySettingsAdmin()
     {
         $this->checkIfAdmin();
-        $this->display("Admin", "admin/admin");
+        $this->di->get("render")->display("Admin", "admin/admin");
     }
 
 
@@ -47,14 +47,21 @@ class AdminController implements
     {
         $this->checkIfAdmin();
 
-        $res = $this->pagination("getAllProducts", "getAllProducts", "admin", "/products?page=1");
+        $request = $this->di->get("request");
+
+        $amountPerPage = 50;
+        $calcOffset = $request->getGet(htmlentities("page")) * $amountPerPage;
+        $offset = $request->getGet(htmlentities("page")) == 1 ? 0 : $calcOffset;
+
+        $res = $this->di->get("pagination")->pagination([],
+            "getAllProducts", "getAllProducts", [$offset], "admin", "/products?page=1");
 
         $data = [
             "products" => $res[0],
             "amountOfProducts" => $res[1]
         ];
 
-        $this->display("Admin Produkter", "admin/products", $data);
+        $this->di->get("render")->display("Admin Produkter", "admin/products", $data);
     }
 
 
@@ -72,7 +79,7 @@ class AdminController implements
             "users" => $user->getAllUsers()
         ];
 
-        $this->display("Admin Användare", "admin/users", $data);
+        $this->di->get("render")->display("Admin Användare", "admin/users", $data);
     }
 
 
@@ -84,14 +91,21 @@ class AdminController implements
     {
         $this->checkIfAdmin();
 
-        $res = $this->pagination("getProductsWithLowAmount", "getProductsWithLowAmount", "admin", "/low?page=1");
+        $request = $this->di->get("request");
+
+        $amountPerPage = 50;
+        $calcOffset = $request->getGet(htmlentities("page")) * $amountPerPage;
+        $offset = $request->getGet(htmlentities("page")) == 1 ? 0 : $calcOffset;
+
+        $res = $this->di->get("pagination")->pagination([],
+            "getProductsWithLowAmount", "getProductsWithLowAmount", [$offset], "admin", "/low?page=1");
 
         $data = [
             "products" => $res[0],
             "amountOfProducts" => $res[1]
         ];
 
-        $this->display("Admin Lågt antal", "admin/low", $data);
+        $this->di->get("render")->display("Admin Lågt antal", "admin/low", $data);
     }
 
 
@@ -109,7 +123,7 @@ class AdminController implements
             "orders" => $order->getAllOrders(),
         ];
 
-        $this->display("Admin Ordrar", "admin/orders", $data);
+        $this->di->get("render")->display("Admin Ordrar", "admin/orders", $data);
     }
 
 
@@ -154,9 +168,9 @@ class AdminController implements
                 "orderItems" => $products,
             ];
 
-            $this->display("Admin Order", "admin/order", $data);
+            $this->di->get("render")->display("Admin Order", "admin/order", $data);
         }
-        
+
         $url = $this->di->get("url");
         $response = $this->di->get("response");
         $login = $url->create("admin/orders");
@@ -180,7 +194,7 @@ class AdminController implements
             "content" => $buyForm->getHTML(),
         ];
 
-        $this->display("Admin Köp Product", "default1/article", $data);
+        $this->di->get("render")->display("Admin Köp Product", "default1/article", $data);
     }
 
 
@@ -199,7 +213,7 @@ class AdminController implements
             "content" => $buyForm->getHTML(),
         ];
 
-        $this->display("Admin Köp Product", "default1/article", $data);
+        $this->di->get("render")->display("Admin Köp Product", "default1/article", $data);
     }
 
 
@@ -219,7 +233,7 @@ class AdminController implements
         ];
 
 
-        $this->display("Admin Köp Product", "default1/article", $data);
+        $this->di->get("render")->display("Admin Köp Product", "default1/article", $data);
     }
 
 
@@ -240,7 +254,7 @@ class AdminController implements
         ];
 
 
-        $this->display("Admin | Lägg till kupong", "default1/article", $data);
+        $this->di->get("render")->display("Admin | Lägg till kupong", "default1/article", $data);
     }
 
 
@@ -272,26 +286,6 @@ class AdminController implements
     }
 
 
-
-    /**
-     * This function will render page.
-     * @method display()
-     * @param  string $title title of page.
-     * @param  string $page  page to render.
-     * @param  array  $data  data to render.
-     * @return void
-     */
-    private function display($title, $page, $data = []) {
-        $title = $title;
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
-        $view->add($page, $data);
-        $pageRender->renderPage(["title" => $title]);
-    }
-
-
-
     /**
      * This function will return all orderIDs.
      * @method getOrderNumbers()
@@ -305,56 +299,5 @@ class AdminController implements
             array_push($orderNumbers, $order->orderID);
         }
         return $orderNumbers;
-    }
-
-
-    /**
-     * This function will return products based on offset and how many productes there are in the database.
-     * @method pagination()
-     * @param  string     $f1   name of the first function that will use offset
-     * @param  string     $f2   name of the second function with no offset
-     * @param  string     $url  first part of url
-     * @param  string     $path path to resource
-     * @return mixed
-     */
-    private function pagination($f1, $f2, $url, $path = "")
-    {
-        $product = new Product();
-        $product->setDb($this->di->get("db"));
-        $amountOfProducts = count($product->$f1());
-
-
-        $request = $this->di->get("request");
-
-        $amountPerPage = 50;
-        $res = null;
-
-        $currentPage = $request->getGet("page");
-
-        if ($currentPage == '0') {
-            $redirect = $this->di->get("url")->create($url);
-            $this->di->get("response")->redirect("$redirect" . "$path");
-            return false;
-        }
-
-        if ($request->getGet("page")) {
-            $pageMinCheck = $request->getGet(htmlentities("page")) > 0;
-            $max = (floor($amountOfProducts / $amountPerPage) == 0 ? 1 : floor($amountOfProducts / $amountPerPage));
-            $pageMaxCheck = $request->getGet(htmlentities("page")) <= $max;
-
-            if ($pageMinCheck && $pageMaxCheck && $currentPage > 0) {
-                $calcOffset = $request->getGet(htmlentities("page")) * $amountPerPage;
-                $offset = $request->getGet(htmlentities("page")) == 1 ? 0 : $calcOffset;
-                $res = $product->$f1($offset);
-                return [$res, $amountOfProducts];
-            }
-
-            $redirect = $this->di->get("url")->create($url);
-            $this->di->get("response")->redirect("$redirect" . "$path");
-            return false;
-        }
-
-        $res = $product->$f2();
-        return [$res, $amountOfProducts];
     }
 }

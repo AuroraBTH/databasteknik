@@ -29,7 +29,7 @@ class CategoryController implements
             "categoriesMale" => $category->getAllCategoriesGender(1)
         ];
 
-        $this->display("Kategorier", "category/categories", $data);
+        $this->di->get("render")->display("Kategorier", "category/categories", $data);
     }
 
 
@@ -59,25 +59,6 @@ class CategoryController implements
             "categories" => $categories
         ];
 
-        $this->display("Kategori", "category/specificCategory", $data);
-    }
-
-
-
-    /**
-     * This function will render page.
-     * @method display()
-     * @param  string $title title of page.
-     * @param  string $page  page to render.
-     * @param  array  $data  data to render.
-     * @return void
-     */
-    private function display($title, $page, $data = []) {
-        $title = $title;
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
-        $view->add($page, $data);
-        $pageRender->renderPage(["title" => $title]);
+        $this->di->get("render")->display("Kategori", "category/specificCategory", $data);
     }
 }
