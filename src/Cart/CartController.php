@@ -73,6 +73,7 @@ class CartController implements
         $user = new User();
         $user->setDb($db);
         $user->getUserInformationByEmail($session->get("email"));
+        $couponData = null;
 
         if ($session->get("order") == true) {
             if ($this->di->get("request")->getPost("coupon") != null) {
@@ -88,8 +89,6 @@ class CartController implements
 
             if (isset($couponData)) {
                 $order->setCouponID($couponData->couponID);
-            } else if (!isset($couponData)) {
-                $couponData = null;
             }
 
             $order->save();
