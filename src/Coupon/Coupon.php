@@ -86,6 +86,21 @@ class Coupon extends ActiveRecordModel
 
 
     /**
+     * Get all information about a specific coupon by id.
+     *
+     * @param integer $id of coupon.
+     *
+     * @return \Anax\Database\ActiveRecordModel
+     */
+    public function getCoupon($id)
+    {
+        $information = $this->find("couponID", $id);
+        return $information;
+    }
+
+
+
+    /**
      * Get all information about a specific coupon by name.
      *
      * @param string $name name of coupon.
@@ -110,6 +125,7 @@ class Coupon extends ActiveRecordModel
     public function validateCoupon($name)
     {
         $currentDate = new \DateTime();
+        $currentDate = date_time_set($currentDate, 0, 0, 0);
         $coupon = $this->find("couponName", $name);
 
         if ($coupon instanceof Coupon) {
