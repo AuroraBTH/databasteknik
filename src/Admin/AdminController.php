@@ -287,17 +287,17 @@ class AdminController implements
 
 
     /**
-    * This function will return all orderIDs.
-    * @method getOrderNumbers()
-    * @param  array $orders all orders in database.
-    * @return array array with all orderiDs.
-    */
-   private function getOrderNumbers($orders)
-   {
-       $orderNumbers = [];
-       foreach ((array) $orders as $order) {
-           array_push($orderNumbers, $order->orderID);
-       }
-       return $orderNumbers;
-   }
+     * This function will return all orderIDs.
+     * @method getOrderNumbers()
+     * @param  array $orders all orders in database.
+     * @return array array with all orderiDs.
+     */
+    private function getOrderNumbers($orders)
+    {
+        $orderNumbers = [];
+        foreach ((array) $orders as $order) {
+            array_push($orderNumbers, $order->orderID);
+        }
+        return $orderNumbers;
+    }
 }

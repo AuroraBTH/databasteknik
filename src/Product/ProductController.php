@@ -18,7 +18,6 @@ class ProductController implements
     InjectionAwareTrait;
 
 
-    // $pagination = $this->di->get("pagination");
 
     /**
      * Rendering of specific product.
@@ -63,6 +62,7 @@ class ProductController implements
 
         $calcOffset = $request->getGet(htmlentities("page")) * $amountPerPage;
         $offset = $request->getGet(htmlentities("page")) == 1 ? 0 : $calcOffset;
+
 
         $res = $this->di->get("pagination")->pagination(["productCategoryID", $categoryID, $genderID],
             "getProductsByGender", "getProductsByGender", ["productCategoryID",
