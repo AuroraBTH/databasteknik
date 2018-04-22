@@ -40,5 +40,11 @@ return [
             "path" => "ajax/minusProduct",
             "callable" => ["ajaxController", "minusProduct"]
         ],
+        [
+            "info" => "Validera en kupong",
+            "requestMethod" => "POST",
+            "path" => "ajax/validateCoupon",
+            "callable" => ["ajaxController", "validateCoupon"]
+        ],
     ]
 ];
