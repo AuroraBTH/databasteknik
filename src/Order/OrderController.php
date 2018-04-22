@@ -14,6 +14,8 @@ use \Course\User\User;
 
 use \Course\Product\Product;
 
+use \Course\Coupon\Coupon;
+
 /**
  * A controller class.
  *
@@ -94,10 +96,20 @@ class OrderController implements
                 $products[] = $res;
             }
 
+            $order->getOrderByID($orderID);
+            $coupon = null;
+
+            if ($order->couponID !== null) {
+                $coupon = new Coupon();
+                $coupon->setDb($this->di->get("db"));
+                $coupon->getCoupon($order->couponID);
+            }
+
             $data = [
                 "order" => $orders,
                 "userInfo" => $userInformation,
                 "orderItems" => $products,
+                "coupon" => $coupon
             ];
 
             $this->display("Order", "order/order", $data);
