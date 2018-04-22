@@ -71,3 +71,39 @@ minusProduct = (productID) => {
         }
     });
 }
+
+$(document).ready(function() {
+    var url = window.location.pathname;
+    var filename = url.substring(url.lastIndexOf("/") + 1);
+
+    if (filename === "checkout" || filename === "checkout.php") {
+        validateCoupon();
+    }
+});
+
+validateCoupon = () => {
+    let url = generateURL();
+    $('#coupon').on('input', function() {
+        let coupon = document.getElementById("coupon").value;
+        let check = document.getElementById("check");
+
+        check.classList.add("d-none");
+
+        $.ajax({
+            type: 'POST',
+            url: url + "/ajax/validateCoupon",
+            dataType: 'text',
+            data: {data: coupon},
+            success: function(answer) {
+                if (answer == "true") {
+                    check.classList.remove("d-none");
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(url + "/ajax/validateCoupon");
+                console.log("Status: " + textStatus);
+                console.log("Error: " + errorThrown);
+            }
+        })
+    });
+}
