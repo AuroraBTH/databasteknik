@@ -196,17 +196,13 @@ class AjaxController implements
         $coupon = new Coupon();
         $coupon->setDb($this->di->get("db"));
 
-        if ($coupon->validateCoupon($name) !== null) {
-            if ($coupon->couponName === htmlentities($name)) {
-                print("true");
-                return true;
-            } else if ($coupon->couponName !== $name) {
-                print("false");
-                return true;
-            }
+        if ($coupon->validateCoupon($name) !== null &&
+            $coupon->couponName === htmlentities($name)) {
+            print('true');
+            return true;
         }
-
-        print("false");
+        
+        print('false');
         return true;
     }
 }
