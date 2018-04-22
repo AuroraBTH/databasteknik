@@ -66,6 +66,10 @@ $order = url("cart/order");
                             <td><?= round($totalWeight / 1000, 1) ?> kg</td>
                         </tr>
                         <tr>
+                            <th>Kupong använd:</th>
+                            <td><?= isset($coupon) ? "$coupon->couponName ($coupon->couponAmount%)" : "" ?></td>
+                        </tr>
+                        <tr>
                             <th>Summa:</th>
                             <td><?= $price ?> kr</td>
                         </tr>
