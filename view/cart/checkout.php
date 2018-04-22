@@ -53,8 +53,11 @@ $order = url("cart/order");
             <div class="w-25">
                 <form class="" action="<?= $order ?>" method="POST">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Kupong</label>
-                        <input name="coupon" type="text" class="form-control" id="coupon" placeholder="SOMMAR2018">
+                        <label for="coupon">Kupong</label>
+                        <div class="d-flex">
+                            <input name="coupon" type="text" class="form-control w-75" id="coupon" placeholder="SOMMAR2018">
+                            <i id="check" class="fas fa-check d-none text-success m-auto"></i>
+                        </div>
                     </div>
                     <div class="form-group w-50 mx-auto">
                         <button type="submit" class="form-control btn btn-lg btn-primary">Beställ</button>
