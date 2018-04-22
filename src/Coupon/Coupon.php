@@ -125,7 +125,7 @@ class Coupon extends ActiveRecordModel
     public function validateCoupon($name)
     {
         $currentDate = new \DateTime();
-        $currentDate = date_time_set($currentDate, 0, 0, 0);
+        $currentDate = $currentDate->setTime(0, 0, 0);
         $coupon = $this->find("couponName", $name);
 
         if ($coupon instanceof Coupon) {
