@@ -30,7 +30,7 @@ class ManagementController implements
     public function displaySettingsManagement()
     {
         $this->checkIfManagement();
-        $this->display("Management", "management/management");
+        $this->di->get("render")->display("Management", "management/management");
     }
 
 
@@ -69,7 +69,7 @@ class ManagementController implements
             'products' => $products
         ];
 
-        $this->display("Management Mest Köpta", "management/mostbought", $data);
+        $this->di->get("render")->display("Management Mest Köpta", "management/mostbought", $data);
     }
 
 
@@ -101,7 +101,7 @@ class ManagementController implements
             "products" => $products
         ];
 
-        $this->display("Management Bästsäljande", "management/bestselling", $data);
+        $this->di->get("render")->display("Management Bästsäljande", "management/bestselling", $data);
     }
 
 
@@ -130,24 +130,5 @@ class ManagementController implements
 
         $response->redirect($login);
         return false;
-    }
-
-
-
-    /**
-     * This function will render page.
-     * @method display()
-     * @param  string $title title of page.
-     * @param  string $page  page to render.
-     * @param  array  $data  data to render.
-     * @return void
-     */
-    private function display($title, $page, $data = []) {
-        $title = $title;
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
-        $view->add($page, $data);
-        $pageRender->renderPage(["title" => $title]);
     }
 }

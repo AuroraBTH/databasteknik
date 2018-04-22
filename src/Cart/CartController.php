@@ -35,7 +35,7 @@ class CartController implements
             "cartItems" => $session->get("items"),
         ];
 
-        $this->display("Kassa", "cart/cart", $data);
+        $this->di->get("render")->display("Kassa", "cart/cart", $data);
     }
 
 
@@ -55,7 +55,7 @@ class CartController implements
             "cartItems" => $session->get("items"),
         ];
 
-        $this->display("Kassa", "cart/checkout", $data);
+        $this->di->get("render")->display("Kassa", "cart/checkout", $data);
     }
 
 
@@ -124,25 +124,6 @@ class CartController implements
         $session->delete("items");
         $session->delete("orderID");
 
-        $this->display("Beställning lagd", "cart/order", $data);
-    }
-
-
-
-    /**
-     * This function will render page.
-     * @method display()
-     * @param  string $title title of page.
-     * @param  string $page  page to render.
-     * @param  array  $data  data to render.
-     * @return void
-     */
-    private function display($title, $page, $data = []) {
-        $title = $title;
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
-        $view->add($page, $data);
-        $pageRender->renderPage(["title" => $title]);
+        $this->di->get("render")->display("Beställning lagd", "cart/order", $data);
     }
 }

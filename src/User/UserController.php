@@ -47,7 +47,7 @@ class UserController implements
             "content" => $loginForm->getHTML(),
         ];
 
-        $this->display("Inloggning", "default1/article", $data);
+        $this->di->get("render")->display("Inloggning", "default1/article", $data);
     }
 
 
@@ -67,7 +67,7 @@ class UserController implements
             "content" => $createForm->getHTML(),
         ];
 
-        $this->display("Skapa ny användare", "default1/article", $data);
+        $this->di->get("render")->display("Skapa ny användare", "default1/article", $data);
     }
 
 
@@ -87,7 +87,7 @@ class UserController implements
             "content" => $updateForm->getHTML(),
         ];
 
-        $this->display("Uppdatera profil", "default1/article", $data);
+        $this->di->get("render")->display("Uppdatera profil", "default1/article", $data);
     }
 
 
@@ -112,7 +112,7 @@ class UserController implements
             "content" => $user->getUserInformationByEmail($session->get("email")),
         ];
 
-        $this->display("Profile", "user/profile", $data);
+        $this->di->get("render")->display("Profile", "user/profile", $data);
     }
 
 
@@ -143,25 +143,6 @@ class UserController implements
             $response->redirect($login);
             return true;
         }
-    }
-
-
-
-    /**
-     * This function will render page.
-     * @method display()
-     * @param  string $title title of page.
-     * @param  string $page  page to render.
-     * @param  array  $data  data to render.
-     * @return void
-     */
-    private function display($title, $page, $data = []) {
-        $title = $title;
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
-
-        $view->add($page, $data);
-        $pageRender->renderPage(["title" => $title]);
     }
 
 

@@ -194,5 +194,21 @@ return [
                 return $navbar;
             }
         ],
+        "pagination" => [
+            "shared" => true,
+            "callback" => function() {
+                $pagination = new \Course\Pagination\Pagination();
+                $pagination->setDI($this);
+                return $pagination;
+            }
+        ],
+        "render" => [
+            "shared" => true,
+            "callback" => function() {
+                $render = new \Course\Render\Render();
+                $render->setDI($this);
+                return $render;
+            }
+        ],
     ],
 ];
