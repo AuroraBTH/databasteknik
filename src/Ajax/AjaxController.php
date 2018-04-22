@@ -8,6 +8,7 @@ use \Anax\DI\InjectionAwareInterface;
 use \Anax\DI\InjectionAwareTrait;
 
 use \Course\Product\Product;
+use \Course\Coupon\Coupon;
 
 class AjaxController implements
     ConfigureInterface,
@@ -177,5 +178,33 @@ class AjaxController implements
     {
         $this->di->get("session")->delete("items");
         return "success";
+    }
+
+
+
+    /**
+     * Validates the coupon entered.
+     *
+     * @return bool
+     */
+    public function validateCoupon()
+    {
+        $name = $this->di->get("request")->getPost("data");
+
+        $coupon = new Coupon();
+        $coupon->setDb($this->di->get("db"));
+
+        if ($coupon->validateCoupon($name) !== null) {
+            if ($coupon->couponName === htmlentities($name)) {
+                print("true");
+                return true;
+            } else if ($coupon->couponName !== $name) {
+                print("false");
+                return true;
+            }
+        }
+
+        print("false");
+        return true;
     }
 }
