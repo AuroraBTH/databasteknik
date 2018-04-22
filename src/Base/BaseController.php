@@ -37,21 +37,12 @@ class BaseController implements
         $product = new Product;
         $product->setDb($db);
 
-        $maleTop10 = [];
-        $femaleTop10 = [];
-
-        foreach ($orderItems as $item) {
-            $product->getProductByID($item->productID);
-            if ($product->productGender == 0 && count($femaleTop10) < 10 && $product->productID !== null) {
-                $femaleTop10[] = (array) $product;
-            } else if ($product->productGender == 1 && count($maleTop10) < 10 && $product->productID !== null) {
-                $maleTop10[] = (array) $product;
-            }
-        }
+        $base = new Base();
+        $top10 = $base->getTop10($orderItems, $db);
 
         $data = [
-            "femaleTop10" => $femaleTop10,
-            "maleTop10" => $maleTop10
+            "femaleTop10" => $top10[0],
+            "maleTop10" => $top10[1]
         ];
 
         $under500 = [

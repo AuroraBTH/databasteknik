@@ -44,13 +44,15 @@ class AjaxController implements
             }
 
             $this->di->get("session")->set("items", $getItems);
-        } elseif (!$this->di->get("session")->get("items")) {
-            $this->di->get("session")->set("items", []);
-            $getItems = $this->di->get("session")->get("items");
-            $data["amount"] = 1;
-            array_push($getItems, $data);
-            $this->di->get("session")->set("items", $getItems);
+            return "success";
         }
+
+        $this->di->get("session")->set("items", []);
+        $getItems = $this->di->get("session")->get("items");
+        $data["amount"] = 1;
+        array_push($getItems, $data);
+        $this->di->get("session")->set("items", $getItems);
+
         return "success";
     }
 
