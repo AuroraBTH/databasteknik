@@ -88,6 +88,8 @@ class CartController implements
 
             if (isset($couponData)) {
                 $order->setCouponID($couponData->couponID);
+            } else if (!isset($couponData)) {
+                $couponData = null;
             }
 
             $order->save();
@@ -116,6 +118,7 @@ class CartController implements
         $data = [
             "userInfo" => $user,
             "orderID" => $session->get("orderID"),
+            "coupon" => $couponData,
             "cartItems" => $session->get("items"),
         ];
 
