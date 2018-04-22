@@ -55,7 +55,7 @@ $order = url("cart/order");
                     <div class="form-group">
                         <label for="coupon">Kupong</label>
                         <div class="d-flex">
-                            <input name="coupon" type="text" class="form-control w-75" id="coupon" placeholder="SOMMAR2018">
+                            <input name="coupon" type="text" class="form-control w-75" id="coupon" placeholder="IDAG">
                             <i id="check" class="fas fa-check d-none text-success m-auto"></i>
                         </div>
                     </div>
