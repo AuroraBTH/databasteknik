@@ -31,8 +31,11 @@ class CartController implements
         #Get current session.
         $session = $this->di->get("session");
 
+        $items = $session->get("items");
+
         $data = [
-            "cartItems" => $session->get("items"),
+            "cartItems" => $items,
+            "price" => $this->di->get("calc")->calcPrice($items)
         ];
 
         $this->di->get("render")->display("Kassa", "cart/cart", $data);
@@ -51,8 +54,16 @@ class CartController implements
         $session->set("order", true);
         $session->set("orderID", null);
 
+        $items = $session->get("items");
+
+        $shippingAndWeight = $this->di->get("calc")->calcShipping($items);
+
         $data = [
-            "cartItems" => $session->get("items"),
+            "cartItems" => $items,
+            "price" => $this->di->get("calc")->calcPrice($items),
+            "shipping" => $shippingAndWeight[0],
+            "weight" => $shippingAndWeight[1],
+            "amountOfItems" => $this->di->get("calc")->calcAmount($items),
         ];
 
         $this->di->get("render")->display("Kassa", "cart/checkout", $data);
@@ -74,6 +85,12 @@ class CartController implements
         $user->setDb($db);
         $user->getUserInformationByEmail($session->get("email"));
         $couponData = null;
+        $discount = null;
+
+        $items = $session->get("items");
+
+        $shippingAndWeight = $this->di->get("calc")->calcShipping($items);
+        $price = $this->di->get("calc")->calcPrice($items);
 
         if ($session->get("order") == true) {
             if ($this->di->get("request")->getPost("coupon") != null) {
@@ -81,11 +98,14 @@ class CartController implements
                 $code = $this->di->get("request")->getPost("coupon", null);
                 $coupon->setDb($db);
                 $couponData = $coupon->validateCoupon($code);
+
+                $discount = isset($couponData) ? 1 - ($couponData->couponAmount / 100) : null;
             }
 
             $order = new Orders();
             $order->setDb($db);
             $order->setUserID($user->userID);
+            $order->setPrice(($shippingAndWeight[0] + $price) * (isset($couponData) ? $discount : 1));
 
             if (isset($couponData)) {
                 $order->setCouponID($couponData->couponID);
@@ -109,7 +129,12 @@ class CartController implements
             "userInfo" => $user,
             "orderID" => $session->get("orderID"),
             "coupon" => $couponData,
-            "cartItems" => $session->get("items"),
+            "cartItems" => $items,
+            "price" => $price,
+            "shipping" => $shippingAndWeight[0],
+            "weight" => $shippingAndWeight[1],
+            "amountOfItems" => $this->di->get("calc")->calcAmount($items),
+            "discount" => $discount,
         ];
 
         $session->delete("items");
@@ -127,7 +152,6 @@ class CartController implements
         $product->productAmount = ($product->productAmount - (int) $amount);
         $product->save();
     }
-
 
 
 

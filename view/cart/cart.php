@@ -4,7 +4,6 @@ namespace Anax\View;
 
 $url = url("product");
 $counter = 0;
-$price = 0;
 $amountOfItems = 0;
 $totalWeight = 0;
 $totalShipping = 0;
@@ -66,7 +65,6 @@ $checkout = url("cart/checkout");
                                 </td>
                             </tr>
                         <?php
-                        $price += ((int) $value['productSellPrize'] * (int) $value['amount']);
                         $amountOfItems += ((int) $value['amount']);
                         $counter++;
                         ?>
@@ -89,7 +87,7 @@ $checkout = url("cart/checkout");
                         </tr>
                         <tr>
                             <th>Summa:</th>
-                            <td><?= $price ?> kr</td>
+                            <td><?= $data["price"] ?> kr</td>
                         </tr>
                     </tbody>
                 </table>

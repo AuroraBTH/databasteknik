@@ -94,6 +94,7 @@ CREATE TABLE IF NOT EXISTS Orders (
 	`sentTime` DATETIME NULL,
 	`couponID` INTEGER,
 	`orderStatus` VARCHAR(40),
+	`price` INTEGER,
 	FOREIGN KEY (`userID`) REFERENCES User(`userID`),
 	FOREIGN KEY (`couponID`) REFERENCES Coupon(`couponID`)
 ) ENGINE INNODB CHARACTER SET utf8 COLLATE utf8_swedish_ci;

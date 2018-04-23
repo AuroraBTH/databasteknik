@@ -5,10 +5,6 @@ namespace Anax\View;
 $ordersUrl = url("admin/orders");
 $product = url("product");
 $counter = 0;
-$price = 0;
-$amountOfItems = 0;
-$totalWeight = 0;
-$totalShipping = 0;
 ?>
 
 <div class="d-flex flex-row justify-content-center mt-4">
@@ -38,10 +34,6 @@ $totalShipping = 0;
                             </th>
                         </tr>
                     <?php
-                        $price += ((int) $item['productSellPrize'] * (int) $item['productAmount'][1]);
-                        $totalWeight += (int) $item['productWeight'] * (int) $item['productAmount'][1];
-                        $amountOfItems += ((int) $item['productAmount'][1]);
-                        $totalShipping = ($totalWeight / 1000) < 1 ? 50 : 50 + (20 * round($totalWeight / 1000));
                         $counter++
                     ?>
                 <?php endforeach; ?>
@@ -57,23 +49,23 @@ $totalShipping = 0;
                 <tbody>
                     <tr>
                         <th>Antal Produkter:</th>
-                        <td><?= $amountOfItems ?></td>
+                        <td><?= $data["amountOfItems"] ?></td>
                     </tr>
                     <tr>
                         <th>Total vikt:</th>
-                        <td><?= round($totalWeight / 1000, 1) ?> kg</td>
+                        <td><?= round($data["weight"] / 1000, 1) ?> kg</td>
                     </tr>
                     <tr>
-                        <th>Summa:</th>
-                        <td><?= $price ?> kr</td>
+                        <th>Kupong använd:</th>
+                        <td><?= isset($coupon) ? "$coupon->couponName ($coupon->couponAmount%)" : "" ?></td>
                     </tr>
                     <tr>
                         <th>Frakt:</th>
-                        <td><?= $totalShipping ?> kr</td>
+                        <td><?= $data["shipping"] ?> kr</td>
                     </tr>
                     <tr>
-                        <th>Summa totalt:</th>
-                        <td><?= $price + $totalShipping ?> kr</td>
+                        <th>Summa Totalt:</th>
+                        <td><?= $data["price"] ?> kr</td>
                     </tr>
                 </tbody>
             </table>

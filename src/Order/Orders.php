@@ -18,10 +18,12 @@ class Orders extends ActiveRecordModel {
      * @var integer $productID primary key auto incremented.
      * @var string $productManufacturer not null.
      * @var string $productName not null.
+     * @var integer $price
      */
 
     public $userID;
     public $couponID;
+    public $price;
 
 
 
@@ -45,6 +47,18 @@ class Orders extends ActiveRecordModel {
     public function setCouponID($couponID)
     {
         $this->couponID = $couponID;
+    }
+
+
+
+    /**
+     * Set price
+     * @method setPrice
+     * @param  integer   $price price
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
     }
 
 
