@@ -4,10 +4,6 @@ namespace Anax\View;
 
 $url = url("product");
 $counter = 0;
-$price = 0;
-$amountOfItems = 0;
-$totalWeight = 0;
-$totalShipping = 0;
 
 $order = url("cart/order");
 ?>
@@ -39,16 +35,12 @@ $order = url("cart/order");
                             <th scope="row"><a href="<?= $url ?>/<?= $value['productID'] ?>">Mer information</a></th>
                         </tr>
                     <?php
-                    $price += ((int) $value['productSellPrize'] * (int) $value['amount']);
-                    $totalWeight += (int) $value['productWeight'] * (int) $value['amount'];
-                    $amountOfItems += ((int) $value['amount']);
-                    $totalShipping = ($totalWeight / 1000) < 1 ? 50 : 50 + (20 * round($totalWeight / 1000));
                     $counter++;
                     ?>
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <?php if ($amountOfItems > 0) : ?>
+        <?php if ($data["amountOfItems"] > 0) : ?>
             <div class="d-flex flex-row justify-content-around">
                 <table class="table w-25 border border-top-0">
                     <thead>
@@ -59,11 +51,11 @@ $order = url("cart/order");
                     <tbody>
                         <tr>
                             <th>Antal Produkter:</th>
-                            <td><?= $amountOfItems ?></td>
+                            <td><?= $data["amountOfItems"] ?></td>
                         </tr>
                         <tr>
                             <th>Total vikt:</th>
-                            <td><?= round($totalWeight / 1000, 1) ?> kg</td>
+                            <td><?= round($data["weight"] / 1000, 1) ?> kg</td>
                         </tr>
                         <tr>
                             <th>Kupong använd:</th>
@@ -71,15 +63,15 @@ $order = url("cart/order");
                         </tr>
                         <tr>
                             <th>Summa:</th>
-                            <td><?= $price ?> kr</td>
+                            <td><?= $data["price"] ?> kr</td>
                         </tr>
                         <tr>
                             <th>Frakt:</th>
-                            <td><?= $totalShipping ?> kr</td>
+                            <td><?= $data["shipping"] ?> kr</td>
                         </tr>
                         <tr>
                             <th>Summa totalt:</th>
-                            <td><?= $price + $totalShipping ?> kr</td>
+                            <td><?= $data["price"] + $data["shipping"] ?> kr</td>
                         </tr>
                     </tbody>
                 </table>
@@ -109,7 +101,7 @@ $order = url("cart/order");
                     </tbody>
                 </table>
             </div>
-        <?php elseif ($amountOfItems < 1) : ?>
+        <?php elseif ($data["amountOfItems"] < 1) : ?>
             <p>Din kundvagn innehåller för tillfället inga produkter.</p>
         <?php endif; ?>
     </div>

@@ -163,9 +163,15 @@ class AdminController implements
                 $products[] = $res;
             }
 
+            $shippingAndWeight = $this->di->get("calc")->calcShipping($products, "productAmount");
+
             $data = [
                 "userInfo" => $userInfo,
                 "orderItems" => $products,
+                "price" => $this->di->get("calc")->calcPrice($products, "productAmount"),
+                "shipping" => $shippingAndWeight[0],
+                "weight" => $shippingAndWeight[1],
+                "amountOfItems" => $this->di->get("calc")->calcAmount($products, "productAmount"),
             ];
 
             $this->di->get("render")->display("Admin Order", "admin/order", $data);

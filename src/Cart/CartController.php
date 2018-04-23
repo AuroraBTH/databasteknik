@@ -31,8 +31,11 @@ class CartController implements
         #Get current session.
         $session = $this->di->get("session");
 
+        $items = $session->get("items");
+
         $data = [
-            "cartItems" => $session->get("items"),
+            "cartItems" => $items,
+            "price" => $this->di->get("calc")->calcPrice($items)
         ];
 
         $this->di->get("render")->display("Kassa", "cart/cart", $data);
@@ -51,8 +54,16 @@ class CartController implements
         $session->set("order", true);
         $session->set("orderID", null);
 
+        $items = $session->get("items");
+
+        $shippingAndWeight = $this->di->get("calc")->calcShipping($items);
+
         $data = [
-            "cartItems" => $session->get("items"),
+            "cartItems" => $items,
+            "price" => $this->di->get("calc")->calcPrice($items),
+            "shipping" => $shippingAndWeight[0],
+            "weight" => $shippingAndWeight[1],
+            "amountOfItems" => $this->di->get("calc")->calcAmount($items),
         ];
 
         $this->di->get("render")->display("Kassa", "cart/checkout", $data);
@@ -105,11 +116,19 @@ class CartController implements
             $this->di->get("session")->set("order", false);
         }
 
+        $items = $session->get("items");
+
+        $shippingAndWeight = $this->di->get("calc")->calcShipping($items);
+
         $data = [
             "userInfo" => $user,
             "orderID" => $session->get("orderID"),
             "coupon" => $couponData,
-            "cartItems" => $session->get("items"),
+            "cartItems" => $items,
+            "price" => $this->di->get("calc")->calcPrice($items),
+            "shipping" => $shippingAndWeight[0],
+            "weight" => $shippingAndWeight[1],
+            "amountOfItems" => $this->di->get("calc")->calcAmount($items),
         ];
 
         $session->delete("items");
@@ -127,7 +146,6 @@ class CartController implements
         $product->productAmount = ($product->productAmount - (int) $amount);
         $product->save();
     }
-
 
 
 
