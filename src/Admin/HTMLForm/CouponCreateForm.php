@@ -74,18 +74,7 @@ class CouponCreateForm extends FormModel
      */
     public function callbackSubmit()
     {
-        #Get all values from Form
-        $name = $this->form->value("name");
-        $amount = $this->form->value("amount");
-        $start = $this->form->value("start");
-        $end = $this->form->value("end");
-
-        $arrayOfData = [
-            $name,
-            $amount,
-            $start,
-            $end
-        ];
+        $arrayOfData = $this->getDataFromForm();
 
         $formcheck = $this->arrayEmpty($arrayOfData);
 
@@ -94,27 +83,44 @@ class CouponCreateForm extends FormModel
             return false;
         }
 
-        # Create new Coupon and set databas.
+        #Create new Coupon and set databas.
         $coupon = new Coupon();
         $coupon->setDb($this->di->get("db"));
 
-
-        # Check if that Coupon name already exists. If not create new coupon.
-        if ($coupon->getCouponByName($name) == null) {
-            $coupon->setName($name);
-            $coupon->setAmount((int) $amount);
-            $coupon->setStartDate($start);
-            $coupon->setFinishDate($end);
-            $coupon->save();
-        } else if ($coupon->getCouponByName($name) != null) {
+        if ($coupon->getCouponByName($arrayOfData["name"]) != null) {
             $this->form->addOutput("Coupon already exists.");
             return false;
         }
+
+        $coupon->setName($arrayOfData["name"]);
+        $coupon->setAmount((int) $arrayOfData["amount"]);
+        $coupon->setStartDate($arrayOfData["start"]);
+        $coupon->setFinishDate($arrayOfData["end"]);
+        $coupon->save();
 
         #Create url and redirect to admin.
         $url = $this->di->get("url")->create("admin");
         $this->di->get("response")->redirect($url);
         return true;
+    }
+
+
+
+    /**
+     * Get all data from form.
+     * @method getDataFromForm
+     * @return array with data from form.
+     */
+    public function getDataFromForm()
+    {
+        $arrayOfData = [
+            "name" => $this->form->value("name"),
+            "amount" => $this->form->value("amount"),
+            "start" => $this->form->value("start"),
+            "end" => $this->form->value("end")
+        ];
+
+        return $arrayOfData;
     }
 
 

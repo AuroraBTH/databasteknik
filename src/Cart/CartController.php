@@ -97,18 +97,9 @@ class CartController implements
             $session->set("orderID", $orderID);
 
             foreach ((array) $session->get("items") as $value) {
-                $product = new Product();
-                $product->setDb($db);
-                $product->getProductByID($value['productID']);
-                $product->productAmount = ($product->productAmount - (int) $value["amount"]);
-                $product->save();
+                $this->removeFromTotal($db, $value['productID'], $value["amount"]);
 
-                $orderItem = new OrderItem();
-                $orderItem->setDb($db);
-                $orderItem->setOrderID((int) $orderID);
-                $orderItem->setProductID((int) $value["productID"]);
-                $orderItem->setProductAmount((int) $value["amount"]);
-                $orderItem->save();
+                $this->createOrderItem($db, $orderID, $value["productID"], $value["amount"]);
             }
 
             $this->di->get("session")->set("order", false);
@@ -125,5 +116,28 @@ class CartController implements
         $session->delete("orderID");
 
         $this->di->get("render")->display("Beställning lagd", "cart/order", $data);
+    }
+
+
+    private function removeFromTotal($db, $productID, $amount)
+    {
+        $product = new Product();
+        $product->setDb($db);
+        $product->getProductByID($productID);
+        $product->productAmount = ($product->productAmount - (int) $amount);
+        $product->save();
+    }
+
+
+
+
+    private function createOrderItem($db, $orderID, $productID, $amount)
+    {
+        $orderItem = new OrderItem();
+        $orderItem->setDb($db);
+        $orderItem->setOrderID((int) $orderID);
+        $orderItem->setProductID((int) $productID);
+        $orderItem->setProductAmount((int) $amount);
+        $orderItem->save();
     }
 }

@@ -128,37 +128,14 @@ class UserCreateForm extends FormModel
      */
     public function callbackSubmit()
     {
-        #Get all values from Form
-        $firstname = $this->form->value("firstname");
-        $surname = $this->form->value("surname");
-        $email = $this->form->value("email");
-        $phone = $this->form->value("phone");
-        $address = $this->form->value("address");
-        $gender = $this->form->value("gender");
-        $postcode = $this->form->value("postcode");
-        $city = $this->form->value("city");
-        $password = $this->form->value("password");
-        $passwordAgain = $this->form->value("password-again");
+        $arrayOfData = $this->getDataFromForm();
 
         # Check password matches
-        if ($password !== $passwordAgain) {
+        if ($arrayOfData["password"] !== $arrayOfData["passwordAgain"]) {
             $this->form->rememberValues();
             $this->form->addOutput("Password did not match.");
             return false;
         }
-
-        $arrayOfData = [
-            $firstname,
-            $surname,
-            $email,
-            $address,
-            $postcode,
-            $city,
-            $password,
-            $passwordAgain,
-            $phone,
-            $gender
-        ];
 
         $formcheck = $this->arrayEmpty($arrayOfData);
 
@@ -171,29 +148,52 @@ class UserCreateForm extends FormModel
         $user = new User();
         $user->setDb($this->di->get("db"));
 
-
-        # Check if email is already in use. If not create new user.
-        if (!$user->checkUserExists($email)) {
-            $user->setFirstname($firstname);
-            $user->setSurname($surname);
-            $user->setEmail($email);
-            $user->setAddress($address);
-            $user->setPostcode((int) $postcode);
-            $user->setCity($city);
-            $user->setPhone((int) $phone);
-            $user->setRole(0);
-            $user->setPassword($password);
-            $user->setGender($gender === 'Female' ? 0 : 1);
-            $user->save();
-        } else if ($user->checkUserExists($email)) {
-            $this->form->addOutput("Email already in use");
+        if ($user->checkUserExists($arrayOfData["email"])) {
+            $this->form->addOutput("That mail is already in use.");
             return false;
         }
+
+        $user->setFirstname($arrayOfData["firstname"]);
+        $user->setSurname($arrayOfData["surname"]);
+        $user->setEmail($arrayOfData["email"]);
+        $user->setAddress($arrayOfData["address"]);
+        $user->setPostcode((int) $arrayOfData["postcode"]);
+        $user->setCity($arrayOfData["city"]);
+        $user->setPhone((int) $arrayOfData["phone"]);
+        $user->setRole(0);
+        $user->setPassword($arrayOfData["password"]);
+        $user->setGender($arrayOfData["gender"] === 'Female' ? 0 : 1);
+        $user->save();
 
         #Create url and redirect to login.
         $url = $this->di->get("url")->create("user/login");
         $this->di->get("response")->redirect($url);
         return true;
+    }
+
+
+
+    /**
+     * Get all data from form.
+     * @method getDataFromForm
+     * @return array with data from form.
+     */
+    public function getDataFromForm()
+    {
+        $arrayOfData = [
+            "firstname" => $this->form->value("firstname"),
+            "surname" => $this->form->value("surname"),
+            "email" => $this->form->value("email"),
+            "phone" => $this->form->value("phone"),
+            "address" => $this->form->value("address"),
+            "gender" => $this->form->value("gender"),
+            "postcode" => $this->form->value("postcode"),
+            "city" => $this->form->value("city"),
+            "password" => $this->form->value("password"),
+            "passwordAgain" => $this->form->value("password-again")
+        ];
+
+        return $arrayOfData;
     }
 
 

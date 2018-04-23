@@ -26,9 +26,10 @@ class Base extends ActiveRecordModel
             $product->getProductByID($item->productID);
             if ($product->productGender == 0 && count($femaleTop10) < 10 && $product->productID !== null) {
                 $femaleTop10[] = (array) $product;
-            } else if ($product->productGender == 1 && count($maleTop10) < 10 && $product->productID !== null) {
-                $maleTop10[] = (array) $product;
+                continue;
             }
+
+            $maleTop10[] = (array) $product;
         }
 
         return [$femaleTop10, $maleTop10];

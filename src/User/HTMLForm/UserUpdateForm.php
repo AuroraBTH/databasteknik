@@ -139,19 +139,7 @@ class UserUpdateForm extends FormModel
         $session = $this->di->get("session");
         $user->getUserInformationByEmail($session->get("email"));
 
-        #Get all values from Form
-        $arrayOfData = [
-            "firstname" => $this->form->value("firstname"),
-            "surname" => $this->form->value("surname"),
-            "email" => $this->form->value("email"),
-            "phone" => $this->form->value("phone"),
-            "address" => $this->form->value("address"),
-            "gender" => $this->form->value("gender"),
-            "postcode" => $this->form->value("postcode"),
-            "city" => $this->form->value("city"),
-            "password" => $this->form->value("password"),
-            "passwordAgain" => $this->form->value("password-again")
-        ];
+        $arrayOfData = $this->getDataFromForm();
 
         # Check password matches
         if ($arrayOfData["password"] !== $arrayOfData["passwordAgain"]) {
@@ -167,22 +155,21 @@ class UserUpdateForm extends FormModel
             return false;
         }
 
-        # Check if email is already in use. If not create new user.
-        if (!$user->checkUserExists($arrayOfData["email"]) || $user->checkUserExists($session->get("mail"))) {
-            $user->setFirstname($arrayOfData["firstname"]);
-            $user->setSurname($arrayOfData["surname"]);
-            $user->setEmail($arrayOfData["email"]);
-            $user->setAddress($arrayOfData["address"]);
-            $user->setPostcode((int) $arrayOfData["postcode"]);
-            $user->setCity($arrayOfData["city"]);
-            $user->setPhone((int) $arrayOfData["phone"]);
-            $user->setPassword($arrayOfData["password"]);
-            $user->setGender($arrayOfData["gender"] === 'Female' ? 0 : 1);
-            $user->save();
-        } else if ($user->checkUserExists($arrayOfData["email"])) {
+        if ($user->checkUserExists($arrayOfData["email"]) && $session->get("email") !== $arrayOfData["email"]) {
             $this->form->addOutput("That mail is already in use.");
             return false;
         }
+
+        $user->setFirstname($arrayOfData["firstname"]);
+        $user->setSurname($arrayOfData["surname"]);
+        $user->setEmail($arrayOfData["email"]);
+        $user->setAddress($arrayOfData["address"]);
+        $user->setPostcode((int) $arrayOfData["postcode"]);
+        $user->setCity($arrayOfData["city"]);
+        $user->setPhone((int) $arrayOfData["phone"]);
+        $user->setPassword($arrayOfData["password"]);
+        $user->setGender($arrayOfData["gender"] === 'Female' ? 0 : 1);
+        $user->save();
 
         $session->set("email", $user->userMail);
 
@@ -192,6 +179,30 @@ class UserUpdateForm extends FormModel
         return true;
     }
 
+
+
+    /**
+     * Get all data from form.
+     * @method getDataFromForm
+     * @return array with data from form.
+     */
+    public function getDataFromForm()
+    {
+        $arrayOfData = [
+            "firstname" => $this->form->value("firstname"),
+            "surname" => $this->form->value("surname"),
+            "email" => $this->form->value("email"),
+            "phone" => $this->form->value("phone"),
+            "address" => $this->form->value("address"),
+            "gender" => $this->form->value("gender"),
+            "postcode" => $this->form->value("postcode"),
+            "city" => $this->form->value("city"),
+            "password" => $this->form->value("password"),
+            "passwordAgain" => $this->form->value("password-again")
+        ];
+
+        return $arrayOfData;
+    }
 
 
     /**
