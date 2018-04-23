@@ -162,18 +162,7 @@ class AdminUpdateProductForm extends FormModel
         $product->getProductByID($productID);
 
         #Get all values from Form
-        $arrayOfData = [
-            "productManufacturer" => $this->form->value("productManufacturer"),
-            "productName" => $this->form->value("productName"),
-            "productOriginCountry" => $this->form->value("productOriginCountry"),
-            "productWeight" => $this->form->value("productWeight"),
-            "productSize" => $this->form->value("productSize"),
-            "productSellPrize" => $this->form->value("productSellPrize"),
-            "productBuyPrize" => $this->form->value("productBuyPrize"),
-            "productColor" => $this->form->value("productColor"),
-            "productAmount" => $this->form->value("productAmount"),
-            "productCategoryID" => $this->form->value("productCategoryID")
-        ];
+        $arrayOfData = $this->getDataFromForm();
 
         $formcheck = $this->arrayEmpty($arrayOfData);
 
@@ -200,6 +189,31 @@ class AdminUpdateProductForm extends FormModel
         $url = $this->di->get("url")->create("admin/products");
         $this->di->get("response")->redirect($url);
         return true;
+    }
+
+
+
+    /**
+     * Get all data from form.
+     * @method getDataFromForm
+     * @return array with data from form.
+     */
+    public function getDataFromForm()
+    {
+        $arrayOfData = [
+            "productManufacturer" => $this->form->value("productManufacturer"),
+            "productName" => $this->form->value("productName"),
+            "productOriginCountry" => $this->form->value("productOriginCountry"),
+            "productWeight" => $this->form->value("productWeight"),
+            "productSize" => $this->form->value("productSize"),
+            "productSellPrize" => $this->form->value("productSellPrize"),
+            "productBuyPrize" => $this->form->value("productBuyPrize"),
+            "productColor" => $this->form->value("productColor"),
+            "productAmount" => $this->form->value("productAmount"),
+            "productCategoryID" => $this->form->value("productCategoryID")
+        ];
+
+        return $arrayOfData;
     }
 
 

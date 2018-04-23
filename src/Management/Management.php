@@ -33,10 +33,11 @@ class Management extends ActiveRecordModel
                 if (array_key_exists($value->productID, $orderItems)) {
                     $productAmount = ((int) $orderItems[$value->productID]->productAmount + $value->productAmount);
                     $orderItems[$value->productID]->totalBought = $productAmount;
-                } else if (!array_key_exists($value->productID, $orderItems)) {
-                    $orderItems[$value->productID] = $value;
-                    $orderItems[$value->productID]->totalBought = $value->productAmount;
+                    continue;
                 }
+
+                $orderItems[$value->productID] = $value;
+                $orderItems[$value->productID]->totalBought = $value->productAmount;
             }
         }
 

@@ -122,18 +122,7 @@ class AdminBuyMaleForm extends FormModel
      */
     public function callbackSubmit()
     {
-        $arrayOfData = [
-            "productManufacturer" => $this->form->value("productManufacturer"),
-            "productName" => $this->form->value("productName"),
-            "productOriginCountry" => $this->form->value("productOriginCountry"),
-            "productWeight" => $this->form->value("productWeight"),
-            "productSize" => $this->form->value("productSize"),
-            "productSellPrize" => $this->form->value("productSellPrize"),
-            "productBuyPrize" => $this->form->value("productBuyPrize"),
-            "productColor" => $this->form->value("productColor"),
-            "productAmount" => $this->form->value("productAmount"),
-            "productCategoryID" => $this->form->value("productCategoryID"),
-        ];
+        $arrayOfData = $this->getDataFromForm();
 
         $formcheck = $this->arrayEmpty($arrayOfData);
 
@@ -165,6 +154,30 @@ class AdminBuyMaleForm extends FormModel
         return true;
     }
 
+
+
+    /**
+     * Get all data from form.
+     * @method getDataFromForm
+     * @return array with data from form.
+     */
+    public function getDataFromForm()
+    {
+        $arrayOfData = [
+            "productManufacturer" => $this->form->value("productManufacturer"),
+            "productName" => $this->form->value("productName"),
+            "productOriginCountry" => $this->form->value("productOriginCountry"),
+            "productWeight" => $this->form->value("productWeight"),
+            "productSize" => $this->form->value("productSize"),
+            "productSellPrize" => $this->form->value("productSellPrize"),
+            "productBuyPrize" => $this->form->value("productBuyPrize"),
+            "productColor" => $this->form->value("productColor"),
+            "productAmount" => $this->form->value("productAmount"),
+            "productCategoryID" => $this->form->value("productCategoryID")
+        ];
+
+        return $arrayOfData;
+    }
 
 
 
