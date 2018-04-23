@@ -155,9 +155,7 @@ class AdminUpdateProductForm extends FormModel
         $product = new Product();
         $product->setDb($this->di->get("db"));
 
-
         $productID = $this->productID;
-
 
         $product->getProductByID($productID);
 
@@ -184,7 +182,7 @@ class AdminUpdateProductForm extends FormModel
         $product->setProductGender($product->productGender);
         $product->setProductDeleted("false");
         $product->save();
-        //
+
         // #Create url and redirect to login.
         $url = $this->di->get("url")->create("admin/products");
         $this->di->get("response")->redirect($url);
