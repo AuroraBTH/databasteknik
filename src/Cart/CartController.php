@@ -90,7 +90,7 @@ class CartController implements
         $items = $session->get("items");
 
         $shippingAndWeight = $this->di->get("calc")->calcShipping($items);
-        $price =  $this->di->get("calc")->calcPrice($items);
+        $price = $this->di->get("calc")->calcPrice($items);
 
         if ($session->get("order") == true) {
             if ($this->di->get("request")->getPost("coupon") != null) {
