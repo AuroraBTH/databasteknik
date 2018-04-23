@@ -162,13 +162,22 @@ class AdminController implements
                 $res = array_merge_recursive((array) $productItem, (array) $value);
                 $products[] = $res;
             }
+            
+            $coupon = null;
+
+            if ($order->couponID !== null) {
+                $coupon = new Coupon();
+                $coupon->setDb($this->di->get("db"));
+                $coupon->getCoupon($order->couponID);
+            }
 
             $shippingAndWeight = $this->di->get("calc")->calcShipping($products, "productAmount");
 
             $data = [
                 "userInfo" => $userInfo,
+                "coupon" => $coupon,
                 "orderItems" => $products,
-                "price" => $this->di->get("calc")->calcPrice($products, "productAmount"),
+                "price" => $order->getOrderByID($orderID)->price,
                 "shipping" => $shippingAndWeight[0],
                 "weight" => $shippingAndWeight[1],
                 "amountOfItems" => $this->di->get("calc")->calcAmount($products, "productAmount"),

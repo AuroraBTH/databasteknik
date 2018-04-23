@@ -71,7 +71,7 @@ $order = url("cart/order");
                         </tr>
                         <tr>
                             <th>Summa totalt:</th>
-                            <td><?= $data["price"] + $data["shipping"] ?> kr</td>
+                            <td><?= ($data["price"] + $data["shipping"]) * (isset($discount) ? $discount : 1) ?> kr</td>
                         </tr>
                     </tbody>
                 </table>

@@ -60,16 +60,12 @@ $counter = 0;
                         <td><?= isset($coupon) ? "$coupon->couponName ($coupon->couponAmount%)" : "" ?></td>
                     </tr>
                     <tr>
-                        <th>Summa:</th>
-                        <td><?= $data["price"] ?> kr</td>
-                    </tr>
-                    <tr>
                         <th>Frakt:</th>
                         <td><?= $data["shipping"] ?> kr</td>
                     </tr>
                     <tr>
-                        <th>Summa totalt:</th>
-                        <td><?= $data["price"] + $data["shipping"] ?> kr</td>
+                        <th>Summa Totalt:</th>
+                        <td><?= $data["price"] ?> kr</td>
                     </tr>
                 </tbody>
             </table>

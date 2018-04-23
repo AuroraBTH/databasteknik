@@ -108,11 +108,10 @@ class OrderController implements
             $shippingAndWeight = $this->di->get("calc")->calcShipping($products, "productAmount");
 
             $data = [
-                "order" => $orders,
                 "userInfo" => $userInformation,
                 "coupon" => $coupon,
                 "orderItems" => $products,
-                "price" => $this->di->get("calc")->calcPrice($products, "productAmount"),
+                "price" => $order->getOrderByID($orderID)->price,
                 "shipping" => $shippingAndWeight[0],
                 "weight" => $shippingAndWeight[1],
                 "amountOfItems" => $this->di->get("calc")->calcAmount($products, "productAmount"),
