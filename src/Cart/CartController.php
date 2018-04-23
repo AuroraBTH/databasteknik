@@ -99,7 +99,7 @@ class CartController implements
                 $coupon->setDb($db);
                 $couponData = $coupon->validateCoupon($code);
 
-                $discount = 1 - ($couponData->couponAmount / 100);
+                $discount = isset($couponData) ? 1 - ($couponData->couponAmount / 100) : null;
             }
 
             $order = new Orders();
