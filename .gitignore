@@ -6,3 +6,4 @@ vendor
 data/
 sql/dummy.txt
 sql/dummy_data.sql
+composer.lock
