@@ -41,5 +41,5 @@ do
     # echo $RANDOMCATEGORY >> test.txt
 done
 # > "../data/db.sqlite"
-# echo "${dummyComplete[@]}" | sed 's/\(.*\),/\1;/'
-echo "${dummyComplete[@]}" > test.sql
+echo "${dummyComplete[@]}" | sed -z 's/\(.*\),/\1;/' > test.sql
+# echo "${dummyComplete[@]}" > test.sql
