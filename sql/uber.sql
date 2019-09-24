@@ -1,31 +1,20 @@
 --
--- Create databasteknik and use it.
---
-
-DROP DATABASE IF EXISTS databasteknik;
-CREATE DATABASE IF NOT EXISTS databasteknik;
-
-USE databasteknik;
-
-SET NAMES utf8;
-
---
 -- Create the table Category
 --
 
 CREATE TABLE IF NOT EXISTS Category (
-	`categoryID` INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	`categoryID` INTEGER PRIMARY KEY NOT NULL,
     `categoryName` VARCHAR(80) NOT NULL,
 	`parentID` INTEGER DEFAULT NULL,
 	`gender`   INTEGER NOT NULL
-) ENGINE INNODB CHARACTER SET utf8 COLLATE utf8_swedish_ci;
+);
 
 --
 -- Create the table Product
 --
 
 CREATE TABLE IF NOT EXISTS Product (
-	`productID` INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	`productID` INTEGER PRIMARY KEY NOT NULL,
     `productManufacturer` VARCHAR(80) NOT NULL,
     `productName` VARCHAR(80) NOT NULL,
     `productOriginCountry` VARCHAR(40) NOT NULL,
@@ -39,7 +28,7 @@ CREATE TABLE IF NOT EXISTS Product (
 	`productGender`   INTEGER NOT NULL,
     `productDeleted`  VARCHAR(5) NOT NULL,
 	FOREIGN KEY (`productCategoryID`) REFERENCES Category(`categoryID`)
-) ENGINE INNODB CHARACTER SET utf8 COLLATE utf8_swedish_ci;
+);
 
 --
 -- Create the table Role
@@ -48,14 +37,14 @@ CREATE TABLE IF NOT EXISTS Product (
 CREATE TABLE IF NOT EXISTS Role (
 	`roleID` INTEGER PRIMARY KEY NOT NULL,
 	`roleName` VARCHAR(80) NOT NULL
-) ENGINE INNODB CHARACTER SET utf8 COLLATE utf8_swedish_ci;
+);
 
 --
 -- Create the table User
 --
 
 CREATE TABLE IF NOT EXISTS User (
-	`userID` INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	`userID` INTEGER PRIMARY KEY NOT NULL,
     `userFirstName` VARCHAR(40) NOT NULL,
     `userSurName` VARCHAR(80) NOT NULL,
     `userPhone` VARCHAR(40),
@@ -67,19 +56,19 @@ CREATE TABLE IF NOT EXISTS User (
 	`userRole` INTEGER NOT NULL DEFAULT 0,
 	`userPassword` VARCHAR(255) NOT NULL,
 	FOREIGN KEY (`userRole`) REFERENCES Role(`roleID`)
-) ENGINE INNODB CHARACTER SET utf8 COLLATE utf8_swedish_ci;
+);
 
 --
 -- Create the table Coupons
 --
 
 CREATE TABLE IF NOT EXISTS Coupon (
-	`couponID` INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	`couponID` INTEGER PRIMARY KEY NOT NULL,
     `couponName` VARCHAR(64) UNIQUE,
     `couponAmount` INTEGER,
     `startDate` DATETIME,
     `finishDate` DATETIME
-) ENGINE INNODB CHARACTER SET utf8 COLLATE utf8_swedish_ci;
+);
 
 
 --
@@ -88,7 +77,7 @@ CREATE TABLE IF NOT EXISTS Coupon (
 --
 
 CREATE TABLE IF NOT EXISTS Orders (
-	`orderID` INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	`orderID` INTEGER PRIMARY KEY NOT NULL,
     `userID` INTEGER NOT NULL,
     `purchaseTime` DATETIME DEFAULT CURRENT_TIMESTAMP,
 	`sentTime` DATETIME NULL,
@@ -97,7 +86,7 @@ CREATE TABLE IF NOT EXISTS Orders (
 	`price` INTEGER,
 	FOREIGN KEY (`userID`) REFERENCES User(`userID`),
 	FOREIGN KEY (`couponID`) REFERENCES Coupon(`couponID`)
-) ENGINE INNODB CHARACTER SET utf8 COLLATE utf8_swedish_ci;
+);
 
 --
 -- Create the table OrderItem
@@ -110,7 +99,7 @@ CREATE TABLE IF NOT EXISTS OrderItem (
 	PRIMARY KEY (`orderID`, `productID`),
 	FOREIGN KEY (`orderID`) REFERENCES Orders(`orderID`),
 	FOREIGN KEY (`productID`) REFERENCES Product(`productID`)
-) ENGINE INNODB CHARACTER SET utf8 COLLATE utf8_swedish_ci;
+);
 
 USE databasteknik;
 
