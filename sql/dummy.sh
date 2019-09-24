@@ -42,4 +42,4 @@ do
     # echo $RANDOMCATEGORY >> test.txt
 done
 # > "../data/db.sqlite"
-sqlite3 data/db.sqlite < $(< "${dummyComplete[@]}" | sed 's/\(.*\),/\1; /')
+echo "${dummyComplete[@]}" | sed 's/\(.*\),/\1;/'
