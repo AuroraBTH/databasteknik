@@ -1,0 +1,11 @@
+version: "3"
+services:
+    itsec_app:
+        image: lewenhagen/itsec-app:latest
+        ports:
+            - "8083:80"
+        volumes:
+            - "./config/:/var/www/html/config"
+            - "./src/:/var/www/html/src"
+            - "./view/:/var/www/html/view"
+            - "./sql/:/var/www/html/sql"
