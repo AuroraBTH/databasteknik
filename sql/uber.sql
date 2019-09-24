@@ -101,10 +101,6 @@ CREATE TABLE IF NOT EXISTS OrderItem (
 	FOREIGN KEY (`productID`) REFERENCES Product(`productID`)
 );
 
-USE databasteknik;
-
-SET NAMES utf8;
-
 INSERT INTO Category (
     `categoryName`,
     `gender`
@@ -158,10 +154,6 @@ INSERT INTO OrderItem (
     `productID`,
     `productAmount`
 ) VALUES (1, 1, 2);
-
-USE databasteknik;
-
-SET NAMES utf8;
 
 INSERT INTO Category (`categoryName`, `gender`, `parentID`) VALUES ("Shorts", 0, 1);
 INSERT INTO Category (`categoryName`, `gender`, `parentID`) VALUES ("Jeans", 0, 1);
