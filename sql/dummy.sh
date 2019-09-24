@@ -1,6 +1,6 @@
 #!/bin/bash
 
-amount=20
+
 
 dummySize=(XS S M L XL XXL)
 dummyCategoryName=('' '' '' '' '' '' '' '' '' '' '' '' 'Shorts' 'Jeans' 'Träningsbyxa' 'Trosa' 'BH' 'Nattlinne' 'T-shirt' 'Sweatshirt' 'Cardigan' 'Linne' 'Långklänning' 'Korta klänning' 'Vinterjacka' 'Skinnjacka' 'Jacka' 'Skinnväska' 'Ryggsäck' 'Shorts' 'Jeans' 'Träningsbyxa' 'T-shirt' 'Sweatshirt' 'Cardigan' 'Linne' 'Y-front' 'Boxershort' 'Vinterjacka' 'Skinnjacka' 'Jacka' 'Kostym' 'Skinnväska' 'Ryggsäck')
@@ -10,7 +10,7 @@ dummyColor=('Rosa' 'Lila' 'Grön' 'Blå' 'Gul' 'Ljusblå' 'Vit' 'Svart')
 dummyComplete=('INSERT INTO Product(`productManufacturer`, `productName`, `productOriginCountry`, `productWeight`, `productSize`, `productSellPrize`, `productBuyPrize`, `productColor`, `productAmount`, `productCategoryID`, `productGender`, `productDeleted`) VALUES ')
 
 
-for _ in $(seq 1 ${amount});
+for _ in $(seq 1 100)
 do
     RANDOMSIZE=$(( ( RANDOM % 6 ) ))
     RANDOMCATEGORY=$(( ( RANDOM % 32 ) + 12 ))
