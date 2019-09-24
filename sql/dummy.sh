@@ -1,7 +1,6 @@
 #!/bin/bash
 
-echo "How many products do you want? (1+) (Press Enter to continue)"
-read amount
+amount=20
 
 dummySize=(XS S M L XL XXL)
 dummyCategoryName=('' '' '' '' '' '' '' '' '' '' '' '' 'Shorts' 'Jeans' 'Träningsbyxa' 'Trosa' 'BH' 'Nattlinne' 'T-shirt' 'Sweatshirt' 'Cardigan' 'Linne' 'Långklänning' 'Korta klänning' 'Vinterjacka' 'Skinnjacka' 'Jacka' 'Skinnväska' 'Ryggsäck' 'Shorts' 'Jeans' 'Träningsbyxa' 'T-shirt' 'Sweatshirt' 'Cardigan' 'Linne' 'Y-front' 'Boxershort' 'Vinterjacka' 'Skinnjacka' 'Jacka' 'Kostym' 'Skinnväska' 'Ryggsäck')
@@ -43,4 +42,4 @@ do
     # echo $RANDOMCATEGORY >> test.txt
 done
 
-echo ${dummyComplete[@]} | sed -e '$s/,$//' > dummy_data.sql
+echo ${dummyComplete[@]} | sed -e '$s/,$//' > "../data/db.sqlite"
