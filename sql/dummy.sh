@@ -1,6 +1,4 @@
-#!/bin/bash
-
-
+#!/usr/bin/env sh
 
 dummySize=(XS S M L XL XXL)
 dummyCategoryName=('' '' '' '' '' '' '' '' '' '' '' '' 'Shorts' 'Jeans' 'Träningsbyxa' 'Trosa' 'BH' 'Nattlinne' 'T-shirt' 'Sweatshirt' 'Cardigan' 'Linne' 'Långklänning' 'Korta klänning' 'Vinterjacka' 'Skinnjacka' 'Jacka' 'Skinnväska' 'Ryggsäck' 'Shorts' 'Jeans' 'Träningsbyxa' 'T-shirt' 'Sweatshirt' 'Cardigan' 'Linne' 'Y-front' 'Boxershort' 'Vinterjacka' 'Skinnjacka' 'Jacka' 'Kostym' 'Skinnväska' 'Ryggsäck')
