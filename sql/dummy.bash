@@ -9,7 +9,7 @@ dummyComplete=('INSERT INTO Product(`productManufacturer`, `productName`, `produ
 
 
 
-for _ in $(seq 1 100)
+for _ in $(seq 1 500)
 do
     RANDOMSIZE=$(( ( RANDOM % 6 ) ))
     RANDOMCATEGORY=$(( ( RANDOM % 32 ) + 12 ))
