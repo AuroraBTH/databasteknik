@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 
 dummySize=(XS S M L XL XXL)
-dummyCategoryName=('' '' '' '' '' '' '' '' '' '' '' '' 'Shorts' 'Jeans' 'Träningsbyxa' 'Trosa' 'BH' 'Nattlinne' 'T-shirt' 'Sweatshirt' 'Cardigan' 'Linne' 'Långklänning' 'Korta klänning' 'Vinterjacka' 'Skinnjacka' 'Jacka' 'Skinnväska' 'Ryggsäck' 'Shorts' 'Jeans' 'Träningsbyxa' 'T-shirt' 'Sweatshirt' 'Cardigan' 'Linne' 'Y-front' 'Boxershort' 'Vinterjacka' 'Skinnjacka' 'Jacka' 'Kostym' 'Skinnväska' 'Ryggsäck')
-dummyManufacturer=('HM' 'Cubus' 'GANT' 'Jack&Jones' 'Levi' 'Adrian Hammond')
-dummytOriginCountry=('Sverige' 'Danmark' 'Finland' 'Norge' 'Tyskland' 'Nya Zeeland' 'Kina' 'Taiwan' 'Japan' 'Nigeria' 'Sydafrika' 'Kuwait')
-dummyColor=('Rosa' 'Lila' 'Grön' 'Blå' 'Gul' 'Ljusblå' 'Vit' 'Svart')
-dummyComplete=('INSERT INTO Product(`productManufacturer`, `productName`, `productOriginCountry`, `productWeight`, `productSize`, `productSellPrize`, `productBuyPrize`, `productColor`, `productAmount`, `productCategoryID`, `productGender`, `productDeleted`) VALUES ')
+dummyCategoryName=("" "" "" "" "" "" "" "" "" "" "" "" "Shorts" "Jeans" "Träningsbyxa" "Trosa" "BH" "Nattlinne" "T-shirt" "Sweatshirt" "Cardigan" "Linne" "Långklänning" "Korta klänning" "Vinterjacka" "Skinnjacka" "Jacka" "Skinnväska" "Ryggsäck" "Shorts" "Jeans" "Träningsbyxa" "T-shirt" "Sweatshirt" "Cardigan" "Linne" "Y-front" "Boxershort" "Vinterjacka" "Skinnjacka" "Jacka" "Kostym" "Skinnväska" "Ryggsäck")
+dummyCategoryName=("" "" "" "" "" "" "" "" "" "" "" "" "Shorts" "Jeans" "Träningsbyxa" "Trosa" "BH" "Nattlinne" "T-shirt" "Sweatshirt" "Cardigan" "Linne" "Långklänning" "Korta klänning" "Vinterjacka" "Skinnjacka" "Jacka" "Skinnväska" "Ryggsäck" "Shorts" "Jeans" "Träningsbyxa" "T-shirt" "Sweatshirt" "Cardigan" "Linne" "Y-front" "Boxershort" "Vinterjacka" "Skinnjacka" "Jacka" "Kostym" "Skinnväska" "Ryggsäck")
+dummyManufacturer=("HM" "Cubus" "GANT" "Jack&Jones" "Levi" "Adrian Hammond")
+dummyManufacturer=("HM" "Cubus" "GANT" "Jack&Jones" "Levi" "Adrian Hammond")
+dummytOriginCountry=("Sverige" "Danmark" "Finland" "Norge" "Tyskland" "Nya Zeeland" "Kina" "Taiwan" "Japan" "Nigeria" "Sydafrika" "Kuwait")
+dummytOriginCountry=("Sverige" "Danmark" "Finland" "Norge" "Tyskland" "Nya Zeeland" "Kina" "Taiwan" "Japan" "Nigeria" "Sydafrika" "Kuwait")
+dummyColor=("Rosa" "Lila" "Grön" "Blå" "Gul" "Ljusblå" "Vit" "Svart")
+dummyColor=("Rosa" "Lila" "Grön" "Blå" "Gul" "Ljusblå" "Vit" "Svart")
+dummyComplete=("INSERT INTO Product(`productManufacturer`, `productName`, `productOriginCountry`, `productWeight`, `productSize`, `productSellPrize`, `productBuyPrize`, `productColor`, `productAmount`, `productCategoryID`, `productGender`, `productDeleted`) VALUES ")
+dummyComplete=("INSERT INTO Product(`productManufacturer`, `productName`, `productOriginCountry`, `productWeight`, `productSize`, `productSellPrize`, `productBuyPrize`, `productColor`, `productAmount`, `productCategoryID`, `productGender`, `productDeleted`) VALUES ")
 
 
 for _ in $(seq 1 100)
@@ -33,6 +38,7 @@ do
     ${RANDOMCATEGORY},
     ${RANDOMGENDER},
     'false'),
+    'false'),
     ")
     #echo The counter is $COUNTERALL
     #let COUNTERALL=COUNTERALL+1
@@ -40,4 +46,5 @@ do
     # echo $RANDOMCATEGORY >> test.txt
 done
 # > "../data/db.sqlite"
+echo "${dummyComplete[@]}" | sed 's/\(.*\),/\1;/'
 echo "${dummyComplete[@]}" | sed 's/\(.*\),/\1;/'
