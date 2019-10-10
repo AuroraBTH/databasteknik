@@ -1,6 +1,0 @@
-parameters:
-    excludes_analyse:
-        - %rootDir%/../../../src/Database/*
-        - %rootDir%/../../../src/HTMLForm/*
-        - %rootDir%/../../../htdocs/cimage/*
-        - %rootDir%/../../../src/App*
