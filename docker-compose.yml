@@ -1,11 +1,24 @@
-version: "3"
+version: '3'
+
 services:
-    itsec_app:
-        image: lewenhagen/itsec-app:latest
-        ports:
-            - "8083:80"
-        volumes:
-            - "./config/:/var/www/html/config"
-            - "./src/:/var/www/html/src"
-            - "./view/:/var/www/html/view"
-            - "./sql/:/var/www/html/sql"
+  itsec-anax-php:
+    image: anax/dev:php73-apache
+    volumes:
+      - .:/home/anax/repo
+    ports:
+      - 8082:80
+  itsec-anax-db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    volumes:
+      - persistent-db:/var/lib/mysql
+  itsec-anax-adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+
+volumes:
+  persistent-db:
