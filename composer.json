@@ -1,10 +1,7 @@
 {
-    "name" : "course/databasteknik",
-    "description": "Anax scaffolding for ramverk1",
+    "name" : "dbwebb-se/itsec-app",
+    "description": "PHP application used i course assignment 3 and 6 in the course DV1616.",
     "license": "MIT",
-    "scripts": {
-       "phpstan": "vendor/bin/phpstan analyse -c config.neon src --level=7"
-   },
     "require": {
         "anax/request": "^1.0",
         "anax/router": "^1.0",
