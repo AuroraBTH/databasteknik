@@ -2,7 +2,4 @@
 .bin/
 build/
 cache/
-vendor
-data/
-sql/dummy.txt
-sql/dummy_data.sql
+vendor/
