@@ -1,32 +1,37 @@
-[![Build Status](https://travis-ci.org/aurora-munge/databasteknik.svg?branch=master)](https://travis-ci.org/aurora-munge/databasteknik)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/aurora-munge/databasteknik/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/aurora-munge/databasteknik/?branch=master)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/18225f2d9efa471bb2469e4b57218b48)](https://www.codacy.com/app/MagnusGreiff/databasteknik?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=aurora-munge/databasteknik&amp;utm_campaign=Badge_Grade)
+# itsec - Test Application
 
-# Databasteknik
+This repository contains the application used in kmom03 in the course "Information Security with Web Applications" (DV1616).
 
-This repo will contain the base for the project in the course Databasteknik.
+## Requirements
+
+To run the application, the user needs to have Docker installed.
 
 ## Installation
 
-To install, run the following command to download the dependencies needed.
+To start the application, navigate to the application folder and run:
 
-* ```make install-dep```
+```
+docker-compose up -d
+```
 
-To create the tables needed in your database, run the following SQL-file:
+### MariaDB
 
-* ```sql/tables.sql```
+Once running, you can access the database with: `mysql:host=itsec-anax-db;` or by browsing to `http://localhost:8081/` to access an instance of [Adminer](https://www.adminer.org/).
 
-And to fill it with data:
+The default login is `root/example` but can be changed at [line 14](https://github.com/dbwebb-se/itsec-app/blob/7fe04fd991dfb56cc85ae157741659d8c10a255f/docker-compose.yml#L14) in `docker-compose.yml`.
 
-* ```sql/data.sql```
+#### SQL
 
-## Testing
+The application will not load without the basic categories and these can be added by running `sql/restore.sql` either via `docker exec` or by using Adminer.
 
-Run the following commands to download the necessary tools and validate the repo.
+## Usage
 
-* ```make install```
-* ```make test```
+The website can be accessed by browsing to http://localhost:8082/ in your preferred browser.
+
+### Note
+
+The database container is using a consistent volume.
 
 ## Credits
 
-Maintained by Niklas Andersson ([AuroraBTH](https://github.com/AuroraBTH)) and Magnus Greiff ([MagnusGreiff](https://github.com/MagnusGreiff)).
+Original work done by Niklas Andersson ([AuroraBTH](https://github.com/AuroraBTH)) and Magnus Greiff ([MagnusGreiff](https://github.com/MagnusGreiff)), now maintained by the [dbwebb-team](https://github.com/dbwebb-se/).
