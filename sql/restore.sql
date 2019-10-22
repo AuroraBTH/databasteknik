@@ -146,10 +146,12 @@ INSERT INTO User (
 ) VALUES ("Carl", "Svensson", 123, "carl.svensson@outlook.com", "Drottningsgatan 13", 37140, "Karlskrona", 0, 'hej123'), ("Admin", "Adminson", 123, "admin@admin.com", "Admingatan 22", 12345, "Karlskrona", 1, '$2y$10$Jxu9IJZukqkXyUUB0RhXuOxEBtDo7O6LtuWjIYNzJeDtqpI9hh9Q.'),
 ("Company", "Management", 123, "cm@cm.com", "Companygatan 11", 12222, "Karlskrona", 2, "$2y$10$Jxu9IJZukqkXyUUB0RhXuOxEBtDo7O6LtuWjIYNzJeDtqpI9hh9Q.");
 
-INSERT INTO Coupon (
+INSERT INTO `Coupon` (
     `couponName`,
-    `couponAmount`
-) VALUES ("TISDAG", 20);
+    `couponAmount`,
+    `startDate`,
+    `finishDate`
+) VALUES ('HELG',	120, '1999-01-01 00:00:00',	'2999-01-01 00:00:00');
 
 INSERT INTO Orders (
     `userID`,
