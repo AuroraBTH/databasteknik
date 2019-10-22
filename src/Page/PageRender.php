@@ -24,15 +24,14 @@ class PageRender implements PageRenderInterface, InjectionAwareInterface
     public function renderPage($data = null, $status = 200)
     {
         $data["stylesheets"] = [
-            "css/style.css", "../vendor/twbs/bootstrap/dist/css/bootstrap.min.css",
-            "../vendor/components/font-awesome/css/fontawesome-all.min.css"
+            "css/style.css",
+            "../vendor/twbs/bootstrap/dist/css/bootstrap.min.css",
+            "../vendor/components/font-awesome/css/all.min.css"
         ];
 
         $data["scripts"] = [
-            "../vendor/twbs/bootstrap/assets/js/vendor/jquery-slim.min.js",
-            "../vendor/twbs/bootstrap/assets/js/vendor/popper.min.js",
-            "../vendor/twbs/bootstrap/dist/js/bootstrap.min.js",
             "../vendor/components/jquery/jquery.min.js",
+            "../vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js",
             "js/product.js",
             "js/cart.js"
         ];
