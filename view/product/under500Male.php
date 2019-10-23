@@ -17,16 +17,16 @@ if (isset($_GET["page"])) {
 <div class="d-flex flex-row justify-content-center mt-4">
     <div class="d-flex flex-column w-100">
         <div class="d-flex w-100 justify-content-around">
-            <div class="mx-4 w-50">
+            <div class="mx-4 w-50 w-100-mobile">
                 <h1 class="text-center">Produkter under 500kr Herr</h1>
                 <table class="table border mb-4">
                     <thead>
                         <tr>
                             <th scope="col" class="border-bottom-0">Tillverkare</th>
                             <th scope="col" class="border-bottom-0">Namn</th>
-                            <th scope="col" class="border-bottom-0">Storlek</th>
+                            <th scope="col" class="border-bottom-0 hide-on-mobile">Storlek</th>
                             <th scope="col" class="border-bottom-0">Pris</th>
-                            <th scope="col" class="border-bottom-0">Färg</th>
+                            <th scope="col" class="border-bottom-0 hide-on-mobile">Färg</th>
                             <th scope="col" class="border-bottom-0"></th>
                         </tr>
                     </thead>
@@ -35,9 +35,9 @@ if (isset($_GET["page"])) {
                         <tr <?= ($counter % 2) == 0 ? 'class="bg-light"' : "" ?>>
                                 <td><?= $item->productManufacturer ?></td>
                                 <td><?= $item->productName ?></td>
-                                <td><?= $item->productSize ?></td>
+                                <td class="hide-on-mobile"><?= $item->productSize ?></td>
                                 <td><?= $item->productSellPrize ?></td>
-                                <td><?= $item->productColor ?></td>
+                                <td class="hide-on-mobile"><?= $item->productColor ?></td>
                                 <th scope="row"><a href="<?= $url ?>/<?= $item->productID ?>">Mer information</a></th>
                             </tr>
                         <?php $counter++ ?>
@@ -45,14 +45,16 @@ if (isset($_GET["page"])) {
                     </tbody>
                 </table>
                 <?php if (isset($_GET["page"])) : ?>
-                    <a class="btn btn-lg btn-primary mb-4"
-                        href="<?= $products ?>/under500Male?page=1">Start</a>
-                    <?php for ($i = $start; $i <= $end; $i++) : ?>
-                        <a class="btn btn-lg btn-primary mb-4"
-                            href="<?= $products ?>/under500Male?page=<?=$i?>"><?=$i?></a>
-                    <?php endfor; ?>
-                    <a class="btn btn-lg btn-primary mb-4"
-                        href="<?= $products ?>/under500Male?page=<?=$totalPages?>">Slut</a>
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-lg btn-primary mb-4 mx-2"
+                            href="<?= $products ?>/under500Male?page=1">Start</a>
+                        <?php for ($i = $start; $i <= $end; $i++) : ?>
+                            <a class="btn btn-lg btn-primary mb-4 mx-2"
+                                href="<?= $products ?>/under500Male?page=<?=$i?>"><?=$i?></a>
+                        <?php endfor; ?>
+                        <a class="btn btn-lg btn-primary mb-4 mx-2"
+                            href="<?= $products ?>/under500Male?page=<?=$totalPages?>">Slut</a>
+                    </div>
                     <p><b>Antal sidor: <?= floor($totalPages) ?></b></p>
                 <?php endif; ?>
             </div>

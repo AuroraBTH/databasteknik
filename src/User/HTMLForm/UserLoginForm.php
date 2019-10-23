@@ -24,7 +24,7 @@ class UserLoginForm extends FormModel
             [
                 "id"     => __CLASS__,
                 "legend" => "Logga in",
-                "class"  => "form-group w-50 d-flex justify-content-center p-4",
+                "class"  => "form-group w-50 w-100-mobile d-flex justify-content-center p-4",
             ],
             [
                 "email" => [

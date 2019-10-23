@@ -14,7 +14,7 @@ $productUrl = url("category");
         <div class="row text-center mr-0 ml-0">
             <?php foreach ($data["categoriesFemale"] as $category) : ?>
                 <div class="w-50 mt-3 mb-3 col-md-<?php echo $bootstrapColWidth; ?>">
-                    <a class="mx-auto w-75 btn btn-lg btn-primary pt-4 pb-4 btn-block"
+                    <a class="mx-auto w-75 w-100-mobile btn btn-lg btn-primary pt-4 pb-4 btn-block"
                     href="<?= $productUrl ?>/<?= $category->categoryID ?>"><?= $category->categoryName; ?></a>
                 </div>
             <?php endforeach; ?>
@@ -23,7 +23,7 @@ $productUrl = url("category");
         <div class="row text-center mr-0 ml-0">
             <?php foreach ($data["categoriesMale"] as $category) : ?>
                 <div class="w-50 mt-3 mb-3 col-md-<?php echo $bootstrapColWidth; ?>">
-                    <a class="mx-auto w-75 btn btn-lg btn-primary pt-4 pb-4 btn-block"
+                    <a class="mx-auto w-75 w-100-mobile btn btn-lg btn-primary pt-4 pb-4 btn-block"
                     href="<?= $productUrl ?>/<?= $category->categoryID ?>"><?= $category->categoryName; ?></a>
                 </div>
             <?php endforeach; ?>

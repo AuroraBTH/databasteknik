@@ -8,7 +8,7 @@ $counter = 0;
 ?>
 
 <div class="d-flex flex-row justify-content-center mt-4">
-    <div class="w-75">
+    <div class="w-75 w-100-mobile">
         <table class="table border mb-4">
             <thead>
                 <tr>
@@ -28,7 +28,7 @@ $counter = 0;
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <a class="btn btn-block btn-light-blue w-25 mx-auto m-2 p-2 mb-4" href="<?= $profileUrl ?>">
+        <a class="btn btn-block btn-light-blue w-25 w-75-mobile mx-auto m-2 p-2 mb-4" href="<?= $profileUrl ?>">
             <i class="far fa-arrow-alt-circle-left fa-2x"></i>
             <span class="align-text-bottom pl-1"> Tillbaka till profil</span>
         </a>

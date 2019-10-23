@@ -37,7 +37,7 @@ class AdminBuyFemaleForm extends FormModel
             [
                 "id" => __CLASS__,
                 "legend" => "Köp produkt (Kvinna)",
-                "class"  => "form-group w-50 d-flex justify-content-center p-4",
+                "class"  => "form-group w-50 w-100-mobile d-flex justify-content-center p-4",
             ],
             [
                 "productManufacturer" => [

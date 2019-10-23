@@ -15,6 +15,25 @@ body {
     flex-shrink: 0;
 }
 
+@media (max-width: 720px) {
+    .hide-on-mobile {
+        display: none;
+    }
+    .flex-column-mobile {
+        flex-direction: column !important;
+    }
+    .w-100-mobile {
+        width: 100% !important;
+    }
+    .w-75-mobile {
+        width: 75% !important;
+    }
+    .mx-auto-mobile {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
 /* Centers login form on /user/login */
 
 .login .main-wrap {
@@ -109,7 +128,6 @@ body {
     padding: 0;
     cursor: pointer;
 }
-
 
 .cartButtons {
     background: none;

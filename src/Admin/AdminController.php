@@ -61,7 +61,7 @@ class AdminController implements
             "amountOfProducts" => $res[1]
         ];
 
-        $this->di->get("render")->display("Admin Produkter", "admin/products", $data);
+        $this->di->get("render")->display("Admin | Produkter", "admin/products", $data);
     }
 
 
@@ -79,7 +79,7 @@ class AdminController implements
             "users" => $user->getAllUsers()
         ];
 
-        $this->di->get("render")->display("Admin Användare", "admin/users", $data);
+        $this->di->get("render")->display("Admin | Användare", "admin/users", $data);
     }
 
 
@@ -105,7 +105,7 @@ class AdminController implements
             "amountOfProducts" => $res[1]
         ];
 
-        $this->di->get("render")->display("Admin Lågt antal", "admin/low", $data);
+        $this->di->get("render")->display("Admin | Lågt antal", "admin/low", $data);
     }
 
 
@@ -123,7 +123,7 @@ class AdminController implements
             "orders" => $order->getAllOrders(),
         ];
 
-        $this->di->get("render")->display("Admin Ordrar", "admin/orders", $data);
+        $this->di->get("render")->display("Admin | Ordrar", "admin/orders", $data);
     }
 
 
@@ -183,7 +183,7 @@ class AdminController implements
                 "amountOfItems" => $this->di->get("calc")->calcAmount($products, "productAmount"),
             ];
 
-            $this->di->get("render")->display("Admin Order", "admin/order", $data);
+            $this->di->get("render")->display("Admin | Order", "admin/order", $data);
         }
 
         $url = $this->di->get("url");
@@ -209,7 +209,7 @@ class AdminController implements
             "content" => $buyForm->getHTML(),
         ];
 
-        $this->di->get("render")->display("Admin Köp Product", "default1/article", $data);
+        $this->di->get("render")->display("Admin | Köp Product", "default1/article", $data);
     }
 
 
@@ -228,7 +228,7 @@ class AdminController implements
             "content" => $buyForm->getHTML(),
         ];
 
-        $this->di->get("render")->display("Admin Köp Product", "default1/article", $data);
+        $this->di->get("render")->display("Admin | Köp Product", "default1/article", $data);
     }
 
 
@@ -248,7 +248,7 @@ class AdminController implements
         ];
 
 
-        $this->di->get("render")->display("Admin Köp Product", "default1/article", $data);
+        $this->di->get("render")->display("Admin | Köp Product", "default1/article", $data);
     }
 
 

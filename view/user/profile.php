@@ -9,7 +9,7 @@ $address = $data["content"]->userAddress . " " . $data["content"]->userPostcode 
 ?>
 
 <div class="d-flex justify-content-center p-2">
-    <div class="d-flex flex-column w-50 justify-content-center">
+    <div class="d-flex flex-column justify-content-center">
         <table class="table my-2 border border-top-0">
             <tr>
                 <th>Kund ID</th>
