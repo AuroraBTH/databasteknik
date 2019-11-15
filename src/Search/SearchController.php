@@ -44,7 +44,7 @@ class SearchController implements
             return false;
         }
 
-        $searchString = htmlspecialchars($_POST["search"]);
+        $searchString = $_POST["search"];
         $searchResult = $product->searchProducts($searchString);
         $searchResultCount = count($searchResult);
 
